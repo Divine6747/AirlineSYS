@@ -73,7 +73,7 @@ namespace AirlineSYS
 
 
         //These are the setters
-        public void setAirportCode(string AirportCode) { this.AirportCode = airportCode;}
+        public void setAirportCode(string AirportCode) { this.AirportCode = AirportCode;}
 
         public void setName(string Name) { this.Name = Name;}
 
@@ -122,15 +122,51 @@ namespace AirlineSYS
             Status = status;
         }
 
-        public string getOperatorCode() {  return OperatorCode; }
 
-        public string getName() { return Name; }
+        //These are Getters
+        public string getOperatorCode() {  return this.OperatorCode; }
 
-        public string getCity() { return City; }
+        public string getName() { return this.Name; }
 
-        public string getCountry() { return Country; }
+        public string getCity() { return this.City; }
 
-        public string getStatus() { return Status; }
+        public string getCountry() { return this.Country; }
+
+        public string getStatus() { return this.Status; }
+
+
+        //These are Setter
+        public void setOperatorCode(string OperatorCode) {  this.OperatorCode = OperatorCode; }
+
+        public void setName(string Name) { this.Name = Name; }
+        
+        public void setCity(string City) {  this.City = City; } 
+
+        public void setCountry(string Country) {  this.Country = Country; } 
+
+        public void setStatus(string Status) { this.Status = Status; }
+
+    }
+
+    class Route()
+    {
+        private int RouteID;
+        private string DeptAirport;
+        private string ArrAirport;
+        private double TicketPrice;
+        private int Duration;
+        private char Status;
+
+        public Route()
+        {
+            this.RouteID = 0;
+            this.DeptAirport = "";
+            this.ArrAirport = "";
+            this.TicketPrice = 0;
+            this.Duration = 0;
+            this.Status = "";
+        }
+
 
     }
 }
