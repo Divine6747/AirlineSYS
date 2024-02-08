@@ -9,18 +9,16 @@ namespace AirlineSYS
 {
     class Airport
     {
-        private String AirportCode;
-        private String Name;
-        private String Street;
-        private String City;
-        private String Country;
-        private String Eircode;
-        private String Address;
+        private string AirportCode;
+        private string Name;
+        private string Street;
+        private string City;
+        private string Country;
+        private string Eircode;
+        private string Address;
         private int Phone;
-        private String Email;
-        private String Status;
-
-        
+        private string Email;
+        private string Status;
 
 
         public Airport()
@@ -53,58 +51,58 @@ namespace AirlineSYS
 
         //These are the getters
     
-        public String getAirportCode() { return this.AirportCode;}
+        public string getAirportCode() { return this.AirportCode;}
 
-        public String getName() { return this.Name;}
+        public string getName() { return this.Name;}
 
-        public String getStreet() { return this.Street;}
+        public string getStreet() { return this.Street;}
 
-        public String getCity() { return this.City;}
+        public string getCity() { return this.City;}
 
-        public String getCountry() { return this.Country;}
+        public string getCountry() { return this.Country;}
 
-        public String getEircode() {  return this.Eircode;}
+        public string getEircode() {  return this.Eircode;}
 
-        public String getAddress() { return this.Address;}
+        public string getAddress() { return this.Address;}
 
         public int getPhone() { return this.Phone;}
         
-        public String getEmail() { return this.Email;}
+        public string getEmail() { return this.Email;}
 
-        public String getStatus() { return this.Status;}
+        public string getStatus() { return this.Status;}
 
 
         //These are the setters
-        public void setAirportCode(String AirportCode) { this.AirportCode = airportCode;}
+        public void setAirportCode(string AirportCode) { this.AirportCode = airportCode;}
 
-        public void setName(String Name) { this.Name = Name;}
+        public void setName(string Name) { this.Name = Name;}
 
-        public void setStreet(String Street) { this.Street = Street; }
+        public void setStreet(string Street) { this.Street = Street; }
 
-        public void setCity(String City) { this.City = City; }
+        public void setCity(string City) { this.City = City; }
 
-        public void setCountry(String Country) { this.Country = Country; }
+        public void setCountry(string Country) { this.Country = Country; }
 
-        public void setEircode(String Eircode) { this.Eircode = Eircode; }
+        public void setEircode(string Eircode) { this.Eircode = Eircode; }
 
-        public void setAddress(String Address) { this.Address = Address; }
+        public void setAddress(string Address) { this.Address = Address; }
 
         public void setPhone(int Phone) { this.Phone = Phone; }
 
-        public void setEmail(String Email) { this.Email = Email; }
+        public void setEmail(string Email) { this.Email = Email; }
 
-        public void setStatus(String Status) { this.Status = Status; }
+        public void setStatus(string Status) { this.Status = Status; }
 
 
     
     }
     class Operators
     {
-        private String OperatorCode;
-        private String Name;
-        private String City;
-        private String Country;
-        private String Status;
+        private string OperatorCode;
+        private string Name;
+        private string City;
+        private string Country;
+        private string Status;
 
         public Operators()
         {
@@ -115,7 +113,7 @@ namespace AirlineSYS
             this.Status = "";
         }
 
-        public Operators(String operatorCode, String name, String city, String country, String status)
+        public Operators(string operatorCode, string name, string city, string country, string status)
         {
             OperatorCode = operatorCode;
             Name = name;
@@ -124,15 +122,15 @@ namespace AirlineSYS
             Status = status;
         }
 
-        public String getOperatorCode() {  return OperatorCode; }
+        public string getOperatorCode() {  return OperatorCode; }
 
-        public String getName() { return Name; }
+        public string getName() { return Name; }
 
-        public String getCity() { return City; }
+        public string getCity() { return City; }
 
-        public String getCountry() { return Country; }
+        public string getCountry() { return Country; }
 
-        public String getStatus() { return Status; }
+        public string getStatus() { return Status; }
 
     }
 }
