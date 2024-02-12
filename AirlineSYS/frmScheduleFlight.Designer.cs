@@ -165,8 +165,10 @@
             // 
             this.txtTicketPriceFlight.Location = new System.Drawing.Point(182, 212);
             this.txtTicketPriceFlight.Name = "txtTicketPriceFlight";
-            this.txtTicketPriceFlight.Size = new System.Drawing.Size(184, 29);
+            this.txtTicketPriceFlight.Size = new System.Drawing.Size(120, 29);
             this.txtTicketPriceFlight.TabIndex = 27;
+            this.txtTicketPriceFlight.Text = "0.00";
+            this.txtTicketPriceFlight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // grpAirportDetails
             // 
@@ -243,11 +245,13 @@
             // 
             // dtpDeptFlight
             // 
-            this.dtpDeptFlight.CustomFormat = "dd-MM-yyyy";
+            this.dtpDeptFlight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpDeptFlight.CustomFormat = "dd - MM - yyyy";
             this.dtpDeptFlight.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDeptFlight.Location = new System.Drawing.Point(182, 155);
             this.dtpDeptFlight.Name = "dtpDeptFlight";
-            this.dtpDeptFlight.Size = new System.Drawing.Size(184, 29);
+            this.dtpDeptFlight.Size = new System.Drawing.Size(120, 29);
             this.dtpDeptFlight.TabIndex = 29;
             // 
             // cboArrAirportFlight
@@ -327,7 +331,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmScheduleFlight";
             this.Text = "Schedule Flight";
-            this.Load += new System.EventHandler(this.frmScheduleFlight_Load);
             this.grpAirportDetails.ResumeLayout(false);
             this.grpAirportDetails.PerformLayout();
             this.ResumeLayout(false);

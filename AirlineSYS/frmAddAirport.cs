@@ -111,7 +111,11 @@ namespace AirlineSYS
             }
             else
             {
+                //Create an instance of an Airport and instantiate with values from form controls
+                Airport anAirport = new Airport(txtAirportCode.Text,txtAirportName.Text, txtAirportStreet.Text, txtAirportCity.Text, txtAirportCountry.Text, 
+                                                txtAirportEircode.Text,txtAirportPhone.Text,txtAirportEmail.Text);
 
+                anAirport.addAirport();
                 MessageBox.Show("Airport has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 txtAirportCode.Clear();

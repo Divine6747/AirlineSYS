@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
+using System.Data;
 using System.Text;
-using System.Threading.Tasks;
+using Oracle.ManagedDataAccess.Client;
 
 namespace AirlineSYS
 {
@@ -15,10 +14,8 @@ namespace AirlineSYS
         private string City;
         private string Country;
         private string Eircode;
-        private string Address;
-        private int Phone;
+        private string Phone;
         private string Email;
-        private string Status;
 
 
         public Airport()
@@ -29,53 +26,46 @@ namespace AirlineSYS
             this.City = "";
             this.Country = "";
             this.Eircode = "";
-            this.Address = "";
-            this.Phone = 0;
+            this.Phone = "";
             this.Email = "";
-            this.Status = "";
         }
 
-        public Airport(string airportCode, string name, string street, string city, string country, string eircode, string address, int phone, string email, string status)
+        public Airport(string airportCode, string name, string street, string city, string country, string eircode, string phone, string email)
         {
-            AirportCode = airportCode;
-            Name = name;
-            Street = street;
-            City = city;
-            Country = country;
-            Eircode = eircode;
-            Address = address;
-            Phone = phone;
-            Email = email;
-            Status = status;
+            this.AirportCode = airportCode;
+            this.Name = name;
+            this.Street = street;
+            this.City = city;
+            this.Country = country;
+            this.Eircode = eircode;
+            this.Phone = phone;
+            this.Email = email;
         }
 
         //These are the getters
-    
-        public string getAirportCode() { return this.AirportCode;}
 
-        public string getName() { return this.Name;}
+        public string getAirportCode() { return this.AirportCode; }
 
-        public string getStreet() { return this.Street;}
+        public string getName() { return this.Name; }
 
-        public string getCity() { return this.City;}
+        public string getStreet() { return this.Street; }
 
-        public string getCountry() { return this.Country;}
+        public string getCity() { return this.City; }
 
-        public string getEircode() {  return this.Eircode;}
+        public string getCountry() { return this.Country; }
 
-        public string getAddress() { return this.Address;}
+        public string getEircode() { return this.Eircode; }
 
-        public int getPhone() { return this.Phone;}
-        
-        public string getEmail() { return this.Email;}
+        public string getPhone() { return this.Phone; }
 
-        public string getStatus() { return this.Status;}
+        public string getEmail() { return this.Email; }
+
 
 
         //These are the setters
-        public void setAirportCode(string AirportCode) { this.AirportCode = AirportCode;}
+        public void setAirportCode(string AirportCode) { this.AirportCode = AirportCode; }
 
-        public void setName(string Name) { this.Name = Name;}
+        public void setName(string Name) { this.Name = Name; }
 
         public void setStreet(string Street) { this.Street = Street; }
 
@@ -85,88 +75,39 @@ namespace AirlineSYS
 
         public void setEircode(string Eircode) { this.Eircode = Eircode; }
 
-        public void setAddress(string Address) { this.Address = Address; }
-
-        public void setPhone(int Phone) { this.Phone = Phone; }
+        public void setPhone(string Phone) { this.Phone = Phone; }
 
         public void setEmail(string Email) { this.Email = Email; }
 
-        public void setStatus(string Status) { this.Status = Status; }
-
-
-    
-    }
-    class Operators
-    {
-        private string OperatorCode;
-        private string Name;
-        private string City;
-        private string Country;
-        private string Status;
-
-        public Operators()
+        public void addAirport()
         {
-            this.OperatorCode = "";
-            this.Name = "";
-            this.City = "";
-            this.Country = "";
-            this.Status = "";
+
+            //Opens the db connection
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            String sqlQuery = "INSERT INTO Airports (AirportCode, Name, Street, City, Country, Eircode, Phone, Email) VALUES (" +
+                "'" + this.AirportCode + "', '" +
+                this.Name + "', '" +
+                this.Street + "', '" +
+                this.City + "', '" +
+                this.Country + "', '" +
+                this.Eircode + "', '" +
+                this.Phone + "', '" +
+                this.Email + "')";
+
+
+            //Execute the SQL query to be executed
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+            conn.Open();
+
+            cmd.ExecuteNonQuery();
+
+            //Close db connection
+            conn.Close();
+
+
         }
-
-        public Operators(string operatorCode, string name, string city, string country, string status)
-        {
-            OperatorCode = operatorCode;
-            Name = name;
-            City = city;
-            Country = country;
-            Status = status;
-        }
-
-
-        //These are Getters
-        public string getOperatorCode() {  return this.OperatorCode; }
-
-        public string getName() { return this.Name; }
-
-        public string getCity() { return this.City; }
-
-        public string getCountry() { return this.Country; }
-
-        public string getStatus() { return this.Status; }
-
-
-        //These are Setter
-        public void setOperatorCode(string OperatorCode) {  this.OperatorCode = OperatorCode; }
-
-        public void setName(string Name) { this.Name = Name; }
-        
-        public void setCity(string City) {  this.City = City; } 
-
-        public void setCountry(string Country) {  this.Country = Country; } 
-
-        public void setStatus(string Status) { this.Status = Status; }
 
     }
 
-    class Route()
-    {
-        private int RouteID;
-        private string DeptAirport;
-        private string ArrAirport;
-        private double TicketPrice;
-        private int Duration;
-        private char Status;
-
-        public Route()
-        {
-            this.RouteID = 0;
-            this.DeptAirport = "";
-            this.ArrAirport = "";
-            this.TicketPrice = 0;
-            this.Duration = 0;
-            this.Status = "";
-        }
-
-
-    }
 }
