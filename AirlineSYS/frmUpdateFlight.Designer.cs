@@ -81,7 +81,7 @@
             // 
             this.btnAirportConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnAirportConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAirportConfirm.Location = new System.Drawing.Point(313, 395);
+            this.btnAirportConfirm.Location = new System.Drawing.Point(313, 400);
             this.btnAirportConfirm.Name = "btnAirportConfirm";
             this.btnAirportConfirm.Size = new System.Drawing.Size(174, 38);
             this.btnAirportConfirm.TabIndex = 16;

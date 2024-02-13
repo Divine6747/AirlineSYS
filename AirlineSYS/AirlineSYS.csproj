@@ -92,6 +92,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUpdateAiport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateAiport.Designer.cs">
+      <DependentUpon>frmUpdateAiport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Route.cs" />
     <Compile Include="DBconnect.cs" />
     <Compile Include="frmAddAirport.cs">
@@ -206,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmScheduleFlight.resx">
       <DependentUpon>frmScheduleFlight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateAiport.resx">
+      <DependentUpon>frmUpdateAiport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateBooking.resx">
       <DependentUpon>frmUpdateBooking.cs</DependentUpon>

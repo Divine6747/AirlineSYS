@@ -36,6 +36,7 @@
             this.mnuAddOperator = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCreateRoute = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEndRoute = new System.Windows.Forms.ToolStripMenuItem();
+            this.munUpdateAirport = new System.Windows.Forms.ToolStripMenuItem();
             this.flightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuScheduleFlight = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdateFlight = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +49,7 @@
             this.mnuYearFlightAnalysis = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuYearRevenue = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuYearRouteAnalysis = new System.Windows.Forms.ToolStripMenuItem();
+            this.munExit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picAirlineMainMenu)).BeginInit();
             this.mnuAirlineMainMenu.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +85,8 @@
             this.mnuAddAirport,
             this.mnuAddOperator,
             this.mnuCreateRoute,
-            this.mnuEndRoute});
+            this.mnuEndRoute,
+            this.munUpdateAirport});
             this.airportToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.airportToolStripMenuItem.Name = "airportToolStripMenuItem";
             this.airportToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
@@ -92,30 +95,37 @@
             // mnuAddAirport
             // 
             this.mnuAddAirport.Name = "mnuAddAirport";
-            this.mnuAddAirport.Size = new System.Drawing.Size(170, 24);
+            this.mnuAddAirport.Size = new System.Drawing.Size(178, 24);
             this.mnuAddAirport.Text = "Add Airport";
             this.mnuAddAirport.Click += new System.EventHandler(this.mnuAddAirport_Click_1);
             // 
             // mnuAddOperator
             // 
             this.mnuAddOperator.Name = "mnuAddOperator";
-            this.mnuAddOperator.Size = new System.Drawing.Size(170, 24);
+            this.mnuAddOperator.Size = new System.Drawing.Size(178, 24);
             this.mnuAddOperator.Text = "Add Operator";
             this.mnuAddOperator.Click += new System.EventHandler(this.mnuAddOperator_Click_1);
             // 
             // mnuCreateRoute
             // 
             this.mnuCreateRoute.Name = "mnuCreateRoute";
-            this.mnuCreateRoute.Size = new System.Drawing.Size(170, 24);
+            this.mnuCreateRoute.Size = new System.Drawing.Size(178, 24);
             this.mnuCreateRoute.Text = "Create Route";
             this.mnuCreateRoute.Click += new System.EventHandler(this.mnuCreateRoute_Click_1);
             // 
             // mnuEndRoute
             // 
             this.mnuEndRoute.Name = "mnuEndRoute";
-            this.mnuEndRoute.Size = new System.Drawing.Size(170, 24);
+            this.mnuEndRoute.Size = new System.Drawing.Size(178, 24);
             this.mnuEndRoute.Text = "End Route";
             this.mnuEndRoute.Click += new System.EventHandler(this.mnuEndRoute_Click_1);
+            // 
+            // munUpdateAirport
+            // 
+            this.munUpdateAirport.Name = "munUpdateAirport";
+            this.munUpdateAirport.Size = new System.Drawing.Size(178, 24);
+            this.munUpdateAirport.Text = "Update Airport";
+            this.munUpdateAirport.Click += new System.EventHandler(this.munUpdateAirport_Click);
             // 
             // flightToolStripMenuItem
             // 
@@ -213,11 +223,25 @@
             this.mnuYearRouteAnalysis.Text = "Year Route Analysis";
             this.mnuYearRouteAnalysis.Click += new System.EventHandler(this.mnuYearRouteAnalysis_Click);
             // 
+            // munExit
+            // 
+            this.munExit.AutoSize = true;
+            this.munExit.BackColor = System.Drawing.Color.Violet;
+            this.munExit.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.munExit.Location = new System.Drawing.Point(746, 3);
+            this.munExit.Name = "munExit";
+            this.munExit.Padding = new System.Windows.Forms.Padding(10, 2, 10, 2);
+            this.munExit.Size = new System.Drawing.Size(53, 24);
+            this.munExit.TabIndex = 13;
+            this.munExit.Text = "Exit";
+            this.munExit.Click += new System.EventHandler(this.munExit_Click_1);
+            // 
             // frmAirlineMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.munExit);
             this.Controls.Add(this.picAirlineMainMenu);
             this.Controls.Add(this.mnuAirlineMainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -253,6 +277,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuYearFlightAnalysis;
         private System.Windows.Forms.ToolStripMenuItem mnuYearRevenue;
         private System.Windows.Forms.ToolStripMenuItem mnuYearRouteAnalysis;
+        private System.Windows.Forms.ToolStripMenuItem munUpdateAirport;
+        private System.Windows.Forms.Label munExit;
     }
 }
 

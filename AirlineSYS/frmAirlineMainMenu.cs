@@ -114,5 +114,18 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
 
+        private void munUpdateAirport_Click(object sender, EventArgs e)
+        {
+            frmUpdateAiport frmUpdateAirport = new frmUpdateAiport();
+            this.Hide();
+            frmUpdateAirport.Show();
+        }
+
+
+
+        private void munExit_Click_1(object sender, EventArgs e)
+        {
+             Application.Exit();
+        }
     }
 }

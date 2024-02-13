@@ -46,7 +46,7 @@ namespace AirlineSYS
 
             else if (txtAirportCode.Text.Length != 3 || !txtAirportCode.Text.All(char.IsUpper))
             {
-                MessageBox.Show("Airport Code must be a valid THREE UPPERCASE LETTER Airport Code.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport Code must be a valid THREE UPPERCASE LETTERS", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAirportCode.Focus();
                 return;
 
@@ -54,22 +54,28 @@ namespace AirlineSYS
 
             else if (txtAirportName.Text.Length > 60 || !txtAirportName.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
             {
-                MessageBox.Show("Airport Name must contain only letters and have a maximum length of 60 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport Name can only contain letter witb the maximum length of 60 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAirportName.Focus();
                 return;
             }
 
 
 
-            else if (txtAirportStreet.Text.Length > 40 || !txtAirportStreet.Text.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
+            else if (txtAirportStreet.Text.Length > 60 || !txtAirportStreet.Text.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
             {
-                MessageBox.Show("Airport Street has a MAXIMUM of 40 characters and can contain only alphanumeric characters and spaces.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport Street has a MAXIMUM of 60 characters and can contain only alphanumeric characters and spaces.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAirportStreet.Focus();
                 return;
             }
 
+            else if (txtAirportCity.Text.Length > 60 || !txtAirportCity.Text.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
+            {
+                MessageBox.Show("Airport city has a MAXIMUM of 60 characters and can contain only alphanumeric characters and spaces.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtAirportStreet.Focus();
+                return;
+            }
 
-            else if (txtAirportCountry.Text.Length > 30 || !txtAirportCountry.Text.All(char.IsLetter))
+            else if (txtAirportCountry.Text.Length > 60 || !txtAirportCountry.Text.All(c => char.IsLetter(c)))
             {
                 MessageBox.Show("Airport Country must be Alpha Numeric", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAirportCountry.Focus();
@@ -91,9 +97,9 @@ namespace AirlineSYS
             }
 
 
-            else if (txtAirportEmail.Text.All(char.IsDigit) || txtAirportEmail.Text.Length > 45)
+            else if (txtAirportEmail.Text.All(char.IsDigit) || txtAirportEmail.Text.Length > 60)
             {
-                MessageBox.Show("Airport Email must can not be Numeric and MAXIMUM length of 45", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport Email must can not be Numeric and MAXIMUM length of 60", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAirportEmail.Focus();
                 return;
             }

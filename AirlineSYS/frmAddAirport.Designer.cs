@@ -110,7 +110,7 @@
             // 
             this.txtAirportCode.Location = new System.Drawing.Point(148, 39);
             this.txtAirportCode.Name = "txtAirportCode";
-            this.txtAirportCode.Size = new System.Drawing.Size(173, 29);
+            this.txtAirportCode.Size = new System.Drawing.Size(196, 29);
             this.txtAirportCode.TabIndex = 8;
             // 
             // lblAirportName
@@ -127,7 +127,7 @@
             // 
             this.txtAirportName.Location = new System.Drawing.Point(469, 43);
             this.txtAirportName.Name = "txtAirportName";
-            this.txtAirportName.Size = new System.Drawing.Size(173, 29);
+            this.txtAirportName.Size = new System.Drawing.Size(214, 29);
             this.txtAirportName.TabIndex = 10;
             // 
             // grpAirportAddress
@@ -142,7 +142,7 @@
             this.grpAirportAddress.Controls.Add(this.txtAirportCity);
             this.grpAirportAddress.Location = new System.Drawing.Point(35, 76);
             this.grpAirportAddress.Name = "grpAirportAddress";
-            this.grpAirportAddress.Size = new System.Drawing.Size(642, 146);
+            this.grpAirportAddress.Size = new System.Drawing.Size(665, 146);
             this.grpAirportAddress.TabIndex = 11;
             this.grpAirportAddress.TabStop = false;
             this.grpAirportAddress.Text = "Address";
@@ -151,7 +151,7 @@
             // 
             this.txtAirportEircode.Location = new System.Drawing.Point(434, 86);
             this.txtAirportEircode.Name = "txtAirportEircode";
-            this.txtAirportEircode.Size = new System.Drawing.Size(173, 29);
+            this.txtAirportEircode.Size = new System.Drawing.Size(214, 29);
             this.txtAirportEircode.TabIndex = 16;
             // 
             // lblAirportEircode
@@ -178,14 +178,14 @@
             // 
             this.txtAirportCountry.Location = new System.Drawing.Point(113, 86);
             this.txtAirportCountry.Name = "txtAirportCountry";
-            this.txtAirportCountry.Size = new System.Drawing.Size(173, 29);
+            this.txtAirportCountry.Size = new System.Drawing.Size(196, 29);
             this.txtAirportCountry.TabIndex = 14;
             // 
             // txtAirportStreet
             // 
             this.txtAirportStreet.Location = new System.Drawing.Point(113, 28);
             this.txtAirportStreet.Name = "txtAirportStreet";
-            this.txtAirportStreet.Size = new System.Drawing.Size(173, 29);
+            this.txtAirportStreet.Size = new System.Drawing.Size(196, 29);
             this.txtAirportStreet.TabIndex = 12;
             // 
             // lblAirportCountry
@@ -212,7 +212,7 @@
             // 
             this.txtAirportCity.Location = new System.Drawing.Point(434, 28);
             this.txtAirportCity.Name = "txtAirportCity";
-            this.txtAirportCity.Size = new System.Drawing.Size(173, 29);
+            this.txtAirportCity.Size = new System.Drawing.Size(214, 29);
             this.txtAirportCity.TabIndex = 14;
             // 
             // lblAirportPhone
@@ -229,7 +229,7 @@
             // 
             this.txtAirportPhone.Location = new System.Drawing.Point(148, 232);
             this.txtAirportPhone.Name = "txtAirportPhone";
-            this.txtAirportPhone.Size = new System.Drawing.Size(173, 29);
+            this.txtAirportPhone.Size = new System.Drawing.Size(196, 29);
             this.txtAirportPhone.TabIndex = 17;
             // 
             // lblAirportEmail
@@ -246,7 +246,7 @@
             // 
             this.txtAirportEmail.Location = new System.Drawing.Point(469, 232);
             this.txtAirportEmail.Name = "txtAirportEmail";
-            this.txtAirportEmail.Size = new System.Drawing.Size(173, 29);
+            this.txtAirportEmail.Size = new System.Drawing.Size(214, 29);
             this.txtAirportEmail.TabIndex = 18;
             // 
             // grpAirportDetails
@@ -263,7 +263,7 @@
             this.grpAirportDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpAirportDetails.Location = new System.Drawing.Point(30, 79);
             this.grpAirportDetails.Name = "grpAirportDetails";
-            this.grpAirportDetails.Size = new System.Drawing.Size(749, 304);
+            this.grpAirportDetails.Size = new System.Drawing.Size(749, 289);
             this.grpAirportDetails.TabIndex = 8;
             this.grpAirportDetails.TabStop = false;
             this.grpAirportDetails.Text = "Airport Details";
@@ -272,7 +272,7 @@
             // 
             this.btnAirportConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnAirportConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAirportConfirm.Location = new System.Drawing.Point(310, 400);
+            this.btnAirportConfirm.Location = new System.Drawing.Point(305, 384);
             this.btnAirportConfirm.Name = "btnAirportConfirm";
             this.btnAirportConfirm.Size = new System.Drawing.Size(174, 38);
             this.btnAirportConfirm.TabIndex = 10;
@@ -284,7 +284,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 438);
             this.Controls.Add(this.btnAirportConfirm);
             this.Controls.Add(this.grpAirportDetails);
             this.Controls.Add(this.lblAddAirport);

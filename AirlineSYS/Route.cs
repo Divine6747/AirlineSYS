@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 
 namespace AirlineSYS
@@ -84,8 +85,9 @@ namespace AirlineSYS
 
             //Opens the db connection
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            String sqlQuery = "INSERT INTO Airports (AirportCode, Name, Street, City, Country, Eircode, Phone, Email) VALUES (" +
-                "'" + this.AirportCode + "', '" +
+            String sqlQuery = "INSERT INTO Airports (AirportCode, Name, Street, City, Country, Eircode, Phone, Email) VALUES (" + "'" + 
+                
+                this.AirportCode + "', '" +
                 this.Name + "', '" +
                 this.Street + "', '" +
                 this.City + "', '" +
@@ -107,7 +109,97 @@ namespace AirlineSYS
 
 
         }
+        public void updateAirport()
+        {
+            try
+            {
+                // Opens the db connection
+                OracleConnection conn = new OracleConnection(DBConnect.oradb);
+                conn.Open();
+
+                // Construct the SQL query
+                String sqlQuery = "UPDATE Airports SET " +
+                                  "Name = '" + this.Name + "', " +
+                                  "Street = '" + this.Street + "', " +
+                                  "City = '" + this.City + "', " +
+                                  "Country = '" + this.Country + "', " +
+                                  "Eircode = '" + this.Eircode + "', " +
+                                  "Phone = '" + this.Phone + "', " +
+                                  "Email = '" + this.Email + "' " +
+                                  "WHERE AirportCode = '" + this.AirportCode + "'";
+
+                // Print out the SQL query for debugging
+                Console.WriteLine("SQL Query: " + sqlQuery);
+
+                // Execute the SQL query
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                cmd.ExecuteNonQuery();
+
+                // Close the db connection
+                conn.Close();
+
+                Console.WriteLine("Airport updated successfully.");
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine("Database error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+
+        // Modify the findAirportDetails method
+        public void findAirportDetails(string airportCode)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            string sqlQuery = "SELECT Name, Street, City, Country, Eircode, Phone, Email FROM Airports WHERE AirportCode = '" + airportCode + "'";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+            try
+            {
+                conn.Open();
+
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    setName(reader.GetString(0));
+                    setStreet(reader.GetString(1));
+                    setCity(reader.GetString(2));
+                    setCountry(reader.GetString(3));
+                    setEircode(reader.GetString(4));
+                    setPhone(reader.GetString(5));
+                    setEmail(reader.GetString(6));
+                }
+                else
+                {
+                    throw new Exception("Airport not found.");
+
+
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
 
     }
 
+
 }
+
