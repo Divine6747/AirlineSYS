@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,45 +31,24 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
 
-        private void grpOperatorDetails_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblOperatorPhone_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnCreateRouteConfirm_Click(object sender, EventArgs e)
         {
-            if (txtDurationRoute.Text.Equals("") || cboArrAirportCreteRoute.Text.Equals("") || cboDeptAirportCreteRoute.Text.Equals(""))
-            {
-                MessageBox.Show("All fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cboDeptAirportCreteRoute.Focus();
-                return;
-            }
-            else if (cboArrAirportCreteRoute.Text.Equals(cboDeptAirportCreteRoute.Text) || cboDeptAirportCreteRoute.Text.Equals(cboArrAirportCreteRoute.Text))
-            {
-                MessageBox.Show("Departure or Arrival Airports can not be the same", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cboArrAirportCreteRoute.SelectedIndex = -1;
-                cboDeptAirportCreteRoute.SelectedIndex = -1;
-                return;
-            }
-            else if (!txtDurationRoute.Text.All(char.IsDigit))
-            {
-                MessageBox.Show("Route Duration must be NUMERIC", "Error !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Route route = new Route(Convert.ToInt32(txtRouteID.Text),txtRouteDept.Text,txtRouteArr.Text,Convert.ToDecimal(txtRoutePrice.Text),Convert.ToInt32(txtRouteDur.Text),txtRouteStatus.Text);
+            route.addRoute();
 
-                txtDurationRoute.Clear();
-            }
-            else
-            {
-                MessageBox.Show("Airport has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txtRouteID.Text = Route.getNextRouteID().ToString("00");    
+            txtRouteDept.Clear();
+            txtRouteArr.Clear();
+            txtRoutePrice.Clear();
+            txtRouteDur.Clear();
+            txtRouteStatus.Clear();
 
-                txtDurationRoute.Clear();
-                cboArrAirportCreteRoute.SelectedIndex = -1;
-                cboDeptAirportCreteRoute.SelectedIndex = -1;
-            }
+        }
+
+        private void frmCreateRoute_Load(object sender, EventArgs e)
+        {
+            txtRouteID.Text = Route.getNextRouteID().ToString("00");
         }
     }
 }

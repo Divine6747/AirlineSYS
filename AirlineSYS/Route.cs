@@ -343,6 +343,77 @@ namespace AirlineSYS
 
         public void setStatus(string status) { this.Status = status;}
 
+        public static int getNextRouteID()
+        {
+            int nextRouteID = 1;
+
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT MAX(RouteID) FROM Routes";
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                    conn.Open();
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            nextRouteID = reader.GetInt32(0) + 1;
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                // Handle Oracle-specific exceptions
+                Console.WriteLine("Oracle Exception: " + ex.Message);
+                // You can choose to throw the exception or return a default value if desired
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                Console.WriteLine("Exception: " + ex.Message);
+                // You can choose to throw the exception or return a default value if desired
+            }
+
+            return nextRouteID;
+        }
+
+        public void addRoute()
+        {
+            OracleConnection conn = new OracleConnection();
+
+            string sqlQuery = "INSERT INTO Routes VALUES (" +
+                this.RouteID + ",'" +
+                this.DepartureAirport + "','" +
+                this.ArrivalAirport + "', " +
+                this.TicketPrice + ", " +
+                this.Duration + ", '" +
+                this.Status + "')";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Route has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
     }
 
