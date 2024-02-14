@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpdateAiport));
             this.btnUpdateAirportConfirm = new System.Windows.Forms.Button();
             this.grpUpdateAirportDetails = new System.Windows.Forms.GroupBox();
-            this.txtUpdateAirportEmail = new System.Windows.Forms.TextBox();
             this.lblUpdateAirportEmail = new System.Windows.Forms.Label();
             this.txtUpdateAirportPhone = new System.Windows.Forms.TextBox();
             this.lblUpdateAirportPhone = new System.Windows.Forms.Label();
@@ -50,8 +49,9 @@
             this.munBack = new System.Windows.Forms.Label();
             this.mnuAddAiport = new System.Windows.Forms.MenuStrip();
             this.lblUpadteAiporSerch = new System.Windows.Forms.Label();
-            this.txtUpdateAirport = new System.Windows.Forms.TextBox();
+            this.txtUpdateAirportCode = new System.Windows.Forms.TextBox();
             this.btnAirportCodeSearch = new System.Windows.Forms.Button();
+            this.txtUpdateAirportEmail = new System.Windows.Forms.TextBox();
             this.grpUpdateAirportDetails.SuspendLayout();
             this.grpUpdateAirportAddress.SuspendLayout();
             this.SuspendLayout();
@@ -84,13 +84,6 @@
             this.grpUpdateAirportDetails.TabIndex = 14;
             this.grpUpdateAirportDetails.TabStop = false;
             this.grpUpdateAirportDetails.Text = "Update Airport Details";
-            // 
-            // txtUpdateAirportEmail
-            // 
-            this.txtUpdateAirportEmail.Location = new System.Drawing.Point(469, 232);
-            this.txtUpdateAirportEmail.Name = "txtUpdateAirportEmail";
-            this.txtUpdateAirportEmail.Size = new System.Drawing.Size(231, 29);
-            this.txtUpdateAirportEmail.TabIndex = 18;
             // 
             // lblUpdateAirportEmail
             // 
@@ -206,7 +199,7 @@
             // 
             // txtUpdateAirportName
             // 
-            this.txtUpdateAirportName.Location = new System.Drawing.Point(148, 41);
+            this.txtUpdateAirportName.Location = new System.Drawing.Point(148, 28);
             this.txtUpdateAirportName.Name = "txtUpdateAirportName";
             this.txtUpdateAirportName.Size = new System.Drawing.Size(173, 29);
             this.txtUpdateAirportName.TabIndex = 10;
@@ -215,7 +208,7 @@
             // 
             this.lblUpdateAirportName.AutoSize = true;
             this.lblUpdateAirportName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateAirportName.Location = new System.Drawing.Point(42, 44);
+            this.lblUpdateAirportName.Location = new System.Drawing.Point(42, 31);
             this.lblUpdateAirportName.Name = "lblUpdateAirportName";
             this.lblUpdateAirportName.Size = new System.Drawing.Size(48, 18);
             this.lblUpdateAirportName.TabIndex = 9;
@@ -264,13 +257,13 @@
             this.lblUpadteAiporSerch.TabIndex = 25;
             this.lblUpadteAiporSerch.Text = "Airport Code";
             // 
-            // txtUpdateAirport
+            // txtUpdateAirportCode
             // 
-            this.txtUpdateAirport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateAirport.Location = new System.Drawing.Point(299, 62);
-            this.txtUpdateAirport.Name = "txtUpdateAirport";
-            this.txtUpdateAirport.Size = new System.Drawing.Size(173, 29);
-            this.txtUpdateAirport.TabIndex = 26;
+            this.txtUpdateAirportCode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateAirportCode.Location = new System.Drawing.Point(299, 62);
+            this.txtUpdateAirportCode.Name = "txtUpdateAirportCode";
+            this.txtUpdateAirportCode.Size = new System.Drawing.Size(173, 29);
+            this.txtUpdateAirportCode.TabIndex = 26;
             // 
             // btnAirportCodeSearch
             // 
@@ -284,13 +277,20 @@
             this.btnAirportCodeSearch.UseVisualStyleBackColor = false;
             this.btnAirportCodeSearch.Click += new System.EventHandler(this.btnAirportCodeSearch_Click);
             // 
+            // txtUpdateAirportEmail
+            // 
+            this.txtUpdateAirportEmail.Location = new System.Drawing.Point(469, 232);
+            this.txtUpdateAirportEmail.Name = "txtUpdateAirportEmail";
+            this.txtUpdateAirportEmail.Size = new System.Drawing.Size(231, 29);
+            this.txtUpdateAirportEmail.TabIndex = 18;
+            // 
             // frmUpdateAiport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 453);
             this.Controls.Add(this.btnAirportCodeSearch);
-            this.Controls.Add(this.txtUpdateAirport);
+            this.Controls.Add(this.txtUpdateAirportCode);
             this.Controls.Add(this.lblUpadteAiporSerch);
             this.Controls.Add(this.btnUpdateAirportConfirm);
             this.Controls.Add(this.grpUpdateAirportDetails);
@@ -314,7 +314,6 @@
 
         private System.Windows.Forms.Button btnUpdateAirportConfirm;
         private System.Windows.Forms.GroupBox grpUpdateAirportDetails;
-        private System.Windows.Forms.TextBox txtUpdateAirportEmail;
         private System.Windows.Forms.Label lblUpdateAirportEmail;
         private System.Windows.Forms.TextBox txtUpdateAirportPhone;
         private System.Windows.Forms.Label lblUpdateAirportPhone;
@@ -333,7 +332,8 @@
         private System.Windows.Forms.Label munBack;
         private System.Windows.Forms.MenuStrip mnuAddAiport;
         private System.Windows.Forms.Label lblUpadteAiporSerch;
-        private System.Windows.Forms.TextBox txtUpdateAirport;
+        private System.Windows.Forms.TextBox txtUpdateAirportCode;
         private System.Windows.Forms.Button btnAirportCodeSearch;
+        private System.Windows.Forms.TextBox txtUpdateAirportEmail;
     }
 }

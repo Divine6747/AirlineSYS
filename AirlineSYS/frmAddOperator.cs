@@ -27,10 +27,9 @@ namespace AirlineSYS
 
         private void btnOperatorConfirm_Click(object sender, EventArgs e)
         {
-            if (txtOperatorCode.Text.Equals("") || txtOperatorName.Text.Equals("") || txtOperatorStreet.Text.Equals("") ||
-                txtOperatorCity.Text.Equals("") || txtOperatorCountry.Text.Equals("") || txtOperatorEircode.Text.Equals("") ||
-                txtOperatorPhone.Text.Equals("") || txtOperatorEmail.Text.Equals(""))
-                        {
+            if (txtOperatorCode.Text.Equals("") || txtOperatorName.Text.Equals("") || txtOperatorCity.Text.Equals("") || 
+                                                    txtOperatorCountry.Text.Equals("") || txtOperatorStatus.Text.Equals(""))
+             {
                 MessageBox.Show("All fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtOperatorCode.Focus();
 
@@ -40,7 +39,7 @@ namespace AirlineSYS
 
             else if (txtOperatorCode.Text.Length != 2 || !txtOperatorCode.Text.All(char.IsUpper))
             {
-                 MessageBox.Show("Operator Code must be a valid THREE UPPERCASE LETTER Operator Code.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 MessageBox.Show("Operator Code must be a valid TWO UPPERCASE LETTER Operator Code.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                  txtOperatorCode.Focus();
                  return;
 
@@ -54,71 +53,36 @@ namespace AirlineSYS
             }
 
 
-            else if (txtOperatorStreet.Text.Length > 40 || !txtOperatorStreet.Text.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
+            else if (txtOperatorCountry.Text.Length > 30 || !txtOperatorCountry.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
             {
-                MessageBox.Show("Operator Street has a MAXIMUM of 40 characters and contain only alphanumeric characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorStreet.Focus();
-                return;
-            }
-
-            else if (txtOperatorCountry.Text.Length > 30 || !txtOperatorCountry.Text.All(char.IsLetter))
-            {
-                MessageBox.Show("Operator Country must be Alpha Numeric", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Operator Country must be letter", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtOperatorCountry.Focus();
                 return;
             }
 
-            else if (txtOperatorEircode.Text.Length != 7 || !txtOperatorEircode.Text.All(char.IsLetterOrDigit))
+            else if (txtOperatorStatus.Text.Length !=1 || !txtOperatorStatus.Text.All(char.IsLetter))
             {
-                MessageBox.Show("Operator Eircode must be Alpha Numeric", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorEircode.Focus();
+                MessageBox.Show("Operator status is either A for 'Active' or I for 'Inactive'");
+                txtOperatorStatus.Focus();
                 return;
             }
 
-            else if (!(txtOperatorPhone.Text.StartsWith("08") || txtOperatorPhone.Text.StartsWith("+353")) || !(txtOperatorPhone.Text.Length > 0 && txtOperatorPhone.Text.Length <= 15) || !txtOperatorPhone.Text.All(char.IsLetterOrDigit))
-            {
-                MessageBox.Show("Operator phone must be Numeric, Starts with (08 or +353 ) and Maxium 15 characters", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorPhone.Focus();
-                return;
-            }
-
-
-            else if (txtOperatorEmail.Text.All(char.IsDigit) || txtOperatorEmail.Text.Length > 45)
-            {
-                MessageBox.Show("Operator Email must can not be Numeric and MAXIMUM length of 45", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorEmail.Focus();
-                return;
-            }
-
-
-            string email = txtOperatorEmail.Text;
-
-            string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
-
-            if (!System.Text.RegularExpressions.Regex.IsMatch(email, emailPattern))
-            {
-                MessageBox.Show("Invalid email format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorEmail.Focus();
-                return;
-            }
             else
             {
-                MessageBox.Show("Operator has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                Operator anOperator = new Operator(txtOperatorCode.Text,txtOperatorName.Text,txtOperatorCity.Text,txtOperatorCountry.Text,txtOperatorStatus.Text);
 
+                anOperator.addOperator();
                 txtOperatorCode.Clear();
-                txtOperatorName.Clear();
-                txtOperatorStreet.Clear();
                 txtOperatorName.Clear();
                 txtOperatorCity.Clear();
                 txtOperatorCountry.Clear();
-                txtOperatorEircode.Clear();
-                txtOperatorPhone.Clear();
-                txtOperatorEmail.Clear();
+                txtOperatorStatus.Clear();
+
             }
 
             
         }
-
     }
 }
 

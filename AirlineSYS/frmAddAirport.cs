@@ -52,7 +52,7 @@ namespace AirlineSYS
 
             }
 
-            else if (txtAirportName.Text.Length > 60 || !txtAirportName.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
+            else if (txtAirportName.Text.Length > 60 || (!txtAirportName.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c == '.')))
             {
                 MessageBox.Show("Airport Name can only contain letter witb the maximum length of 60 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAirportName.Focus();
@@ -89,7 +89,7 @@ namespace AirlineSYS
                 return;
             }
 
-            else if (!(txtAirportPhone.Text.StartsWith("08") || txtAirportPhone.Text.StartsWith("+353")) || !(txtAirportPhone.Text.Length > 0 && txtAirportPhone.Text.Length <= 15) || !txtAirportPhone.Text.All(char.IsLetterOrDigit))
+            else if (!(txtAirportPhone.Text.StartsWith("08")) || !(txtAirportPhone.Text.Length > 0 && txtAirportPhone.Text.Length <= 15) || !txtAirportPhone.Text.All(char.IsLetterOrDigit))
             {
                 MessageBox.Show("Airport phone must be Numeric, Starts with (08 or +353 ) and Maxium 15 characters", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAirportPhone.Focus();
@@ -122,7 +122,6 @@ namespace AirlineSYS
                                                 txtAirportEircode.Text,txtAirportPhone.Text,txtAirportEmail.Text);
 
                 anAirport.addAirport();
-                MessageBox.Show("Airport has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 txtAirportCode.Clear();
                 txtAirportName.Clear();

@@ -4,6 +4,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AirlineSYS
 {
@@ -80,13 +81,14 @@ namespace AirlineSYS
 
         public void setEmail(string Email) { this.Email = Email; }
 
+
+
         public void addAirport()
         {
 
             //Opens the db connection
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            String sqlQuery = "INSERT INTO Airports (AirportCode, Name, Street, City, Country, Eircode, Phone, Email) VALUES (" + "'" + 
-                
+            string sqlQuery = "INSERT INTO Airports VALUES (" + "'" +
                 this.AirportCode + "', '" +
                 this.Name + "', '" +
                 this.Street + "', '" +
@@ -109,49 +111,44 @@ namespace AirlineSYS
 
 
         }
-        public void updateAirport()
+        public void updateAirport(string airportCode)
         {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            string sqlQuery = "UPDATE Airports SET " +
+                              "Name = '" + this.Name + "', " +
+                              "Street = '" + this.Street + "', " +
+                              "City = '" + this.City + "', " +
+                              "Country = '" + this.Country + "', " +
+                              "Eircode = '" + this.Eircode + "', " +
+                              "Phone = '" + this.Phone + "', " +
+                              "Email = '" + this.Email + "' " +
+                              "WHERE AirportCode = '" + airportCode + "'";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
             try
             {
-                // Opens the db connection
-                OracleConnection conn = new OracleConnection(DBConnect.oradb);
                 conn.Open();
-
-                // Construct the SQL query
-                String sqlQuery = "UPDATE Airports SET " +
-                                  "Name = '" + this.Name + "', " +
-                                  "Street = '" + this.Street + "', " +
-                                  "City = '" + this.City + "', " +
-                                  "Country = '" + this.Country + "', " +
-                                  "Eircode = '" + this.Eircode + "', " +
-                                  "Phone = '" + this.Phone + "', " +
-                                  "Email = '" + this.Email + "' " +
-                                  "WHERE AirportCode = '" + this.AirportCode + "'";
-
-                // Print out the SQL query for debugging
-                Console.WriteLine("SQL Query: " + sqlQuery);
-
-                // Execute the SQL query
-                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
                 cmd.ExecuteNonQuery();
-
-                // Close the db connection
-                conn.Close();
-
-                Console.WriteLine("Airport updated successfully.");
+                MessageBox.Show("Airport has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (OracleException ex)
             {
-                Console.WriteLine("Database error: " + ex.Message);
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
 
-        // Modify the findAirportDetails method
         public void findAirportDetails(string airportCode)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -198,8 +195,156 @@ namespace AirlineSYS
 
         }
 
+        
+
     }
 
+    class Operator
+    {
+
+        private string OperatorCode;
+        private string Name;
+        private string City;
+        private string Country;
+        private string Status;
+
+
+        public Operator()
+        {
+            this.OperatorCode = "";
+            this.Name = "";
+            this.City = "";
+            this.Country = "";
+            this.Status = "";
+        }
+        public Operator(string operatorCode, string name, string city, string country, string status)
+        {
+            this.OperatorCode = operatorCode;
+            this.Name = name;
+            this.City = city;
+            this.Country = country;
+            this.Status = status;
+        }
+
+
+        //Getters
+        public string getOperatorCode() { return this.OperatorCode; }
+
+        public string getName() { return this.Name;}
+
+        public string getCity() { return this.City;}
+
+        public string getCountry() { return this.Country;}
+
+        public string getStatus() { return this.Status;}
+
+
+        //Setters
+        public void setOperatotCode(string OperatorCode) { this.OperatorCode = OperatorCode; }
+
+        public void setName(string Name) { this.Name = Name;}
+
+        public void setCity(string City) {  this.City = City;}
+
+        public void setCountry(string Country) {  this.Country = Country;}
+
+        public void setStatus(string Status) {  this.Status = Status;}
+
+
+
+         //Adding Operators
+        public void addOperator()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            String sqlQuery = "INSERT INTO Operators Values ('" +
+                this.OperatorCode + "', '" +
+                this.Name + "', '" +
+                this.City + "', '" +
+                this.Country + "', '" +
+                this.Status + "')";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Operator has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+    }
+    class Route
+    {
+        public int RouteID;
+        public string DepartureAirport;
+        public string ArrivalAirport;
+        private decimal TicketPrice;
+        private int Duration;
+        private string Status;
+
+        public Route() {
+
+            this.RouteID = 0;
+            this.DepartureAirport = "";
+            this.ArrivalAirport = "";
+            this.TicketPrice = 0;
+            this.Duration = 0;
+            this.Status = "";
+
+        }
+
+        public Route(int routeID, string departureAirport, string arrivalAirport, decimal ticketPrice, int duration, string status)
+        {
+            this.RouteID = routeID;
+            this.DepartureAirport = departureAirport;
+            this.ArrivalAirport = arrivalAirport;
+            this.TicketPrice = ticketPrice;
+            this.Duration = duration;
+            this.Status = status;
+        }
+
+        //Getters
+        public int getRouteID() { return this.RouteID; }
+
+        public string getDepartureAirport() {  return this.DepartureAirport; }
+
+        public string getArrivalAirport() { return this.ArrivalAirport; }
+
+        public decimal getTicketPrice () { return this.TicketPrice; }
+
+        public int getDuration () { return this.Duration; }
+
+        public string getStatus() { return this.Status;}
+
+       
+        //Setters
+        public void setRouteID(int routeID) { this.RouteID = routeID;}
+
+        public void setDepartureAirport(string departureAirport) { this.DepartureAirport = departureAirport; }
+       
+        public void setArrivalAirport(string arrivalAirport) { this.ArrivalAirport = arrivalAirport;}
+
+        public void setTicketPrice(decimal ticketPrice) { this.TicketPrice = ticketPrice; }
+
+        public void setDuration(int duration) { this.Duration = duration; }
+
+        public void setStatus(string status) { this.Status = status;}
+
+
+    }
 
 }
 

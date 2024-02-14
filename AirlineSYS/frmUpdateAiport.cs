@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-
 namespace AirlineSYS
 {
     public partial class frmUpdateAiport : Form
@@ -24,14 +29,14 @@ namespace AirlineSYS
         {
             try
             {
-                if (string.IsNullOrEmpty(txtUpdateAirport.Text))
+                if (string.IsNullOrEmpty(txtUpdateAirportCode.Text))
                 {
                     MessageBox.Show("Please enter an airport code.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 Airport airport = new Airport();
-                airport.findAirportDetails(txtUpdateAirport.Text);
+                airport.findAirportDetails(txtUpdateAirportCode.Text);
 
                 txtUpdateAirportName.Text = airport.getName();
                 txtUpdateAirportStreet.Text = airport.getStreet();
@@ -53,71 +58,73 @@ namespace AirlineSYS
         }
 
 
-
         private void btnUpdateAirportConfirm_Click(object sender, EventArgs e)
         {
-            if (txtUpdateAirportName.Text.Equals("") || txtUpdateAirportStreet.Text.Equals("") || txtUpdateAirportCity.Text.Equals("") || 
-                txtUpdateAirportCountry.Text.Equals("") || txtUpdateAirportEircode.Text.Equals("") || txtUpdateAirportEircode.Text.Equals("") || txtUpdateAirportEmail.Text.Equals(""))
+            // Validate if any required fields are empty
+            if (string.IsNullOrWhiteSpace(txtUpdateAirportName.Text) || string.IsNullOrWhiteSpace(txtUpdateAirportStreet.Text) || string.IsNullOrWhiteSpace(txtUpdateAirportCity.Text) || 
+                string.IsNullOrWhiteSpace(txtUpdateAirportCountry.Text) || string.IsNullOrWhiteSpace(txtUpdateAirportEircode.Text) ||string.IsNullOrWhiteSpace(txtUpdateAirportPhone.Text) ||
+                string.IsNullOrWhiteSpace(txtUpdateAirportEmail.Text) || string.IsNullOrWhiteSpace(txtUpdateAirportCode.Text))
             {
                 MessageBox.Show("All fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUpdateAirportName.Focus();
-
                 return;
             }
 
-            else if (txtUpdateAirportName.Text.Length > 60 || !txtUpdateAirportName.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c))
-)
+            // Validate Airport Name
+            else if (txtUpdateAirportName.Text.Length > 60 || (!txtUpdateAirportName.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c == '.')))
             {
-                MessageBox.Show("Airport Name can only contain letter witb the maximum length of 60 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport Name can only contain letters with a maximum length of 60 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUpdateAirportName.Focus();
                 return;
             }
 
-
-
-            else if (txtUpdateAirportStreet.Text.Length > 60 || !txtUpdateAirportStreet.Text.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
+            // Validate Airport Street
+            if (txtUpdateAirportStreet.Text.Length > 60 || !txtUpdateAirportStreet.Text.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
             {
-                MessageBox.Show("Airport Street has a MAXIMUM of 60 characters and can contain only alphanumeric characters and spaces.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport Street has a maximum length of 60 characters and can contain only alphanumeric characters and spaces.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUpdateAirportStreet.Focus();
                 return;
             }
 
-            else if (txtUpdateAirportCity.Text.Length > 60 || !txtUpdateAirportCity.Text.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
+            // Validate Airport City
+            if (txtUpdateAirportCity.Text.Length > 60 || !txtUpdateAirportCity.Text.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
             {
-                MessageBox.Show("Airport city has a MAXIMUM of 60 characters and can contain only alphanumeric characters and spaces.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUpdateAirportStreet.Focus();
+                MessageBox.Show("Airport City has a maximum length of 60 characters and can contain only alphanumeric characters and spaces.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUpdateAirportCity.Focus();
                 return;
             }
 
-            else if (txtUpdateAirportCountry.Text.Length > 60 || !txtUpdateAirportCountry.Text.All(c => char.IsLetter(c)))
+            // Validate Airport Country
+            if (txtUpdateAirportCountry.Text.Length > 60 || !txtUpdateAirportCountry.Text.All(c => char.IsLetter(c)))
             {
-                MessageBox.Show("Airport Country must be Alpha Numeric", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport Country must be alphanumeric.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUpdateAirportCountry.Focus();
                 return;
             }
 
-            else if (txtUpdateAirportEircode.Text.Length != 7 || !txtUpdateAirportEircode.Text.All(char.IsLetterOrDigit))
+            // Validate Airport Eircode
+            if (txtUpdateAirportEircode.Text.Length != 7 || !txtUpdateAirportEircode.Text.Replace(" ", "").All(char.IsLetterOrDigit))
             {
-                MessageBox.Show("Airport Eircode must be Alpha Numeric", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport Eircode must be alphanumeric and have a length of 7 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUpdateAirportEircode.Focus();
                 return;
             }
 
-            else if (!(txtUpdateAirportPhone.Text.StartsWith("08") || txtUpdateAirportPhone.Text.StartsWith("+353")) || !(txtUpdateAirportPhone.Text.Length > 0 && txtUpdateAirportPhone.Text.Length <= 15) || !txtUpdateAirportPhone.Text.All(char.IsLetterOrDigit))
+
+            // Validate Airport Phone
+            if (!(txtUpdateAirportPhone.Text.StartsWith("08") || txtUpdateAirportPhone.Text.Length < 10 ) || !txtUpdateAirportPhone.Text.All(char.IsDigit))
             {
-                MessageBox.Show("Airport phone must be Numeric, Starts with (08 or +353 ) and Maxium 15 characters", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUpdateAirportPhone.Focus(); // Corrected focus
+                MessageBox.Show("Airport phone must start with '08', and have a length of 10 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUpdateAirportPhone.Focus();
                 return;
             }
 
-
-            else if (txtUpdateAirportEmail.Text.All(char.IsDigit) || txtUpdateAirportEmail.Text.Length > 60)
+            // Validate Airport Email
+            if (txtUpdateAirportEmail.Text.Length > 60 || !Regex.IsMatch(txtUpdateAirportEmail.Text.Trim(), @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
             {
-                MessageBox.Show("Airport Email must can not be Numeric and MAXIMUM length of 60", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid email format or maximum length exceeded (60 characters).", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUpdateAirportEmail.Focus();
                 return;
             }
-
 
             string email = txtUpdateAirportEmail.Text;
 
@@ -129,7 +136,9 @@ namespace AirlineSYS
                 txtUpdateAirportEmail.Focus();
                 return;
             }
-
+            else
+            { 
+                // All validations passed, proceed with updating the airport
                 Airport airport = new Airport();
 
                 airport.setName(txtUpdateAirportName.Text);
@@ -140,21 +149,21 @@ namespace AirlineSYS
                 airport.setPhone(txtUpdateAirportPhone.Text);
                 airport.setEmail(txtUpdateAirportEmail.Text);
 
-                airport.updateAirport();
+                airport.updateAirport(txtUpdateAirportCode.Text);
 
-                MessageBox.Show("Airport has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                /*txtUpdateAirportName.Clear();
+                // Clear the textboxes after successful update
+                txtUpdateAirportName.Clear();
                 txtUpdateAirportStreet.Clear();
                 txtUpdateAirportCity.Clear();
                 txtUpdateAirportCountry.Clear();
                 txtUpdateAirportEircode.Clear();
                 txtUpdateAirportPhone.Clear();
-                txtUpdateAirportEmail.Clear();**/
-            
- 
-                            
+                txtUpdateAirportEmail.Clear();
+                txtUpdateAirportCode.Clear();
+            }
+                
         }
+
 
         private void munBack_Click(object sender, EventArgs e)
         {
