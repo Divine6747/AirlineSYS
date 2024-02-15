@@ -432,6 +432,29 @@ namespace AirlineSYS
             }
         }
 
+        public static List<Route> getRoutes() { 
+            List<Route> routes = new List<Route>();
+            try
+            {
+                using(OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT DepartureAirport, ArrivalAirport FROM Routes";
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                }
+            }
+            catch (OracleException ex)
+            {
+
+            }
+            
+            return new List<Route>(); 
+        }
+        public void endRoute()
+        {
+            OracleConnection conn = new OracleConnection( DBConnect.oradb); 
+
+        }
+
     }
 
 }

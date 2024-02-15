@@ -39,68 +39,7 @@ namespace AirlineSYS
 
         private void btnRouteSearch_Click(object sender, EventArgs e)
         {
-            if (!validRoutes.Contains(cboEndRoute.Text))
-            {
-                MessageBox.Show("Route Does not Exist", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cboEndRoute.Focus();
-                return;
-            }
-            else
-            {
-                grpEndRouteDetails.Visible = true;
-                lblEndRouteDetails.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-
-                if (cboEndRoute.SelectedIndex == 0)
-                {
-                    lblEndRouteDetails.Text = "Departure Airport: Dublin Aiport" +
-                        "\n\nArrival Airport: Shanghai Airport" +
-                        "\n\nDuration: 60 mins" +
-                        "\n\nDeparture Airport Email: dublin.airport@airport.ie" +
-                        "\n\nArrival Airport Email: shanghai.airport@airport.ie";
-
-                }
-
-                else if (cboEndRoute.SelectedIndex == 1)
-                {
-                    lblEndRouteDetails.Text = "Departure Airport: New York Aiport" +
-                        "\n\nArrival Airport: Shanghai Airport" +
-                        "\n\nDuration: 60 mins" +
-                        "\n\nDeparture Airport Email: newyork.airport@airport.ie" +
-                        "\n\nArrival Airport Email: shanghai.airport@airport.ie";
-
-                }
-
-                else if (cboEndRoute.SelectedIndex == 2)
-                {
-                    lblEndRouteDetails.Text = "Departure Airport: Shanghai Aiport" +
-                         "\n\nArrival Airport: Beijing Airport" +
-                         "\n\nDuration: 60 mins" +
-                         "\n\nDeparture Airport Email: shanghai.airport@airport.ie" +
-                         "\n\nArrival Airport Email: beijing.airport@airport.ie";
-
-                }
-
-                else if (cboEndRoute.SelectedIndex == 3)
-                {
-                    lblEndRouteDetails.Text = "Departure Airport: Shannon Aiport" +
-                        "\n\nArrival Airport: Rome Airport" +
-                        "\n\nDuration: 60 mins" +
-                        "\n\nDeparture Airport Email: shannon.airport@airport.ie" +
-                        "\n\nArrival Airport Email: rome.airport@airport.ie";
-
-                }
-
-                else if (cboEndRoute.SelectedIndex == 4)
-                {
-                    lblEndRouteDetails.Text = "Departure Airport: Dublin Aiport" +
-                        "\n\nArrival Airport: Millan Airport" +
-                        "\n\nDuration: 60 mins" +
-                        "\n\nDeparture Airport Email: dublin.airport@airport.ie" +
-                        "\n\nArrival Airport Email: millan.airport@airport.ie";
-
-                }
-
-            }
+           
         }
 
         private void btnEndRouteConfirm_Click(object sender, EventArgs e)
