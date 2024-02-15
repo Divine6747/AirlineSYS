@@ -308,6 +308,17 @@ namespace AirlineSYS
 
         public Route(int routeID, string departureAirport, string arrivalAirport, decimal ticketPrice, int duration, string status)
         {
+
+            if (routeID <= 0)
+            {
+                throw new ArgumentException("Invalid route ID.");
+            }
+
+            if (string.IsNullOrEmpty(departureAirport))
+            {
+                throw new ArgumentException("Departure airport cannot be empty.");
+            }
+
             this.RouteID = routeID;
             this.DepartureAirport = departureAirport;
             this.ArrivalAirport = arrivalAirport;
@@ -333,7 +344,15 @@ namespace AirlineSYS
         //Setters
         public void setRouteID(int routeID) { this.RouteID = routeID;}
 
-        public void setDepartureAirport(string departureAirport) { this.DepartureAirport = departureAirport; }
+        public void setDepartureAirport(string departureAirport) {
+
+            if (string.IsNullOrEmpty(departureAirport))
+            {
+                throw new ArgumentException("Departure airport cannot be empty.");
+            }
+
+            this.DepartureAirport = departureAirport;
+        }
        
         public void setArrivalAirport(string arrivalAirport) { this.ArrivalAirport = arrivalAirport;}
 
@@ -367,23 +386,21 @@ namespace AirlineSYS
             }
             catch (OracleException ex)
             {
-                // Handle Oracle-specific exceptions
-                Console.WriteLine("Oracle Exception: " + ex.Message);
-                // You can choose to throw the exception or return a default value if desired
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                // Handle other exceptions
-                Console.WriteLine("Exception: " + ex.Message);
-                // You can choose to throw the exception or return a default value if desired
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return nextRouteID;
+
         }
 
         public void addRoute()
         {
-            OracleConnection conn = new OracleConnection();
+ 
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             string sqlQuery = "INSERT INTO Routes VALUES (" +
                 this.RouteID + ",'" +

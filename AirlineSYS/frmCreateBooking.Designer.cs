@@ -76,7 +76,7 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.munBack.Location = new System.Drawing.Point(741, -2);
+            this.munBack.Location = new System.Drawing.Point(741, 2);
             this.munBack.Name = "munBack";
             this.munBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.munBack.Size = new System.Drawing.Size(60, 20);
