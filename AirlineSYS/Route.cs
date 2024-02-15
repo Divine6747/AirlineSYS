@@ -291,9 +291,9 @@ namespace AirlineSYS
         public int RouteID;
         public string DepartureAirport;
         public string ArrivalAirport;
-        private decimal TicketPrice;
-        private int Duration;
-        private string Status;
+        public decimal TicketPrice;
+        public int Duration;
+        public string Status;
 
         public Route() {
 
@@ -305,6 +305,7 @@ namespace AirlineSYS
             this.Status = "";
 
         }
+
 
         public Route(int routeID, string departureAirport, string arrivalAirport, decimal ticketPrice, int duration, string status)
         {
@@ -432,23 +433,82 @@ namespace AirlineSYS
             }
         }
 
-        public static List<Route> getRoutes() { 
+        public static List<Route> getRoutes()
+        {
             List<Route> routes = new List<Route>();
             try
             {
-                using(OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
-                    string sqlQuery = "SELECT DepartureAirport, ArrivalAirport FROM Routes";
+                    string sqlQuery = "SELECT DeptAirport, ArrAirport FROM Routes";
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                    conn.Open();
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string deptAirport = reader.GetString(0);
+                            string arrAirport = reader.GetString(1);
+                            routes.Add(new Route { DepartureAirport = deptAirport, ArrivalAirport = arrAirport });
+                        }
+                    }
                 }
             }
             catch (OracleException ex)
             {
-
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-            return new List<Route>(); 
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return routes;
         }
+
+        public static List<Route> getAllRouteDetails()
+        {
+            List<Route> routes = new List<Route>();
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT* FROM Routes";
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                    conn.Open();
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int routeID = reader.GetInt32(0);
+                            string deptAirport = reader.GetString(1);
+                            string arrAirport = reader.GetString(2);
+                            decimal ticketPrice = reader.GetDecimal(3);
+                            int duration = reader.GetInt32(4);
+                            string status = reader.GetString(5);
+                            routes.Add(new Route { RouteID = routeID, DepartureAirport = deptAirport, ArrivalAirport = arrAirport, TicketPrice = ticketPrice, Duration = duration, Status = status });
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return routes;
+        }
+
+
+
+
+
         public void endRoute()
         {
             OracleConnection conn = new OracleConnection( DBConnect.oradb); 
