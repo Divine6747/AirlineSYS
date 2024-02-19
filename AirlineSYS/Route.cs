@@ -505,13 +505,11 @@ namespace AirlineSYS
             return routes;
         }
 
-
-
-
-
         public void endRoute()
         {
-            OracleConnection conn = new OracleConnection( DBConnect.oradb); 
+            OracleConnection conn = new OracleConnection( DBConnect.oradb);
+            string sqlQuery = "UPDATE Routes SET " +
+                              "Status = '" + this.Status
 
         }
 
