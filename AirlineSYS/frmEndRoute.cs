@@ -33,7 +33,8 @@ namespace AirlineSYS
 
         private void btnRouteSearch_Click(object sender, EventArgs e)
         {
-            List<Route> routes = Route.getAllRouteDetails();
+            // Fetch routes from the database
+            List<Route> routes = Route.getAllRouteDetails(); // Fetch routes from the database
 
             if (cboEndRoute.SelectedIndex == -1)
             {
@@ -52,40 +53,49 @@ namespace AirlineSYS
 
             lblEndRouteDetails.Text = routeInfo;
             grpEndRouteDetails.Visible = true;
-
+            btnEndRouteConfirm.Visible = true;
         }
 
         private void btnEndRouteConfirm_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to end the route?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (cboEndRoute.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a route.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            string successMsg = "Route has been Ended";
-            string failureMsg = "Route has not been ended";
+          
+
+            DialogResult result = MessageBox.Show("Are you sure you want to end the route?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                MessageBox.Show(successMsg, "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show(failureMsg, "End not Ended!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Route route = new Route();
+                route.endRoute(cboEndRoute.SelectedIndex);
+                MessageBox.Show("Route has been ended in the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
 
             grpEndRouteDetails.Visible = false;
-            cboEndRoute.Text = "";
+            cboEndRoute.SelectedIndex = -1;
         }
 
         private void frmEndRoute_Load(object sender, EventArgs e)
         {
-            cboEndRoute.Items.Clear();
+            cboEndRoute.Items.Clear();            
+            btnEndRouteConfirm.Visible = false;
+
 
             List<Route> routes = Route.getRoutes();
+
             foreach (Route route in routes)
             {
                 string routeInfo = route.DepartureAirport + " - " + route.ArrivalAirport;
                 cboEndRoute.Items.Add(routeInfo);
             }
+
             lblEndRouteDetails.Font = new Font("Segoe UI", 12, FontStyle.Regular);
         }
     }
 }
+

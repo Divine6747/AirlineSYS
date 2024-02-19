@@ -505,13 +505,25 @@ namespace AirlineSYS
             return routes;
         }
 
-        public void endRoute()
+        public void endRoute(int routeID)
         {
-            OracleConnection conn = new OracleConnection( DBConnect.oradb);
-            string sqlQuery = "UPDATE Routes SET " +
-                              "Status = '" + this.Status
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                string sqlQuery = "UPDATE Routes SET Status = 'I' WHERE RouteID = :RouteID";
 
+                conn.Open();
+
+                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                {
+                    cmd.Parameters.Add("RouteID", OracleDbType.Int32).Value = routeID;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
+
+
+
 
     }
 
