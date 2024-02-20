@@ -440,7 +440,7 @@ namespace AirlineSYS
             {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
-                    string sqlQuery = "SELECT DeptAirport, ArrAirport FROM Routes";
+                    string sqlQuery = "SELECT RouteID, DeptAirport, ArrAirport FROM Routes";
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
                     conn.Open();
 
@@ -448,8 +448,9 @@ namespace AirlineSYS
                     {
                         while (reader.Read())
                         {
-                            string deptAirport = reader.GetString(0);
-                            string arrAirport = reader.GetString(1);
+                            int routeid = reader.GetInt32(0);
+                            string deptAirport = reader.GetString(1);
+                            string arrAirport = reader.GetString(2);
                             routes.Add(new Route { DepartureAirport = deptAirport, ArrivalAirport = arrAirport });
                         }
                     }
@@ -507,20 +508,32 @@ namespace AirlineSYS
 
         public void endRoute(int routeID)
         {
-            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
-            {
-                string sqlQuery = "UPDATE Routes SET Status = 'I' WHERE RouteID = :RouteID";
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
+            string sqlQuery = "UPDATE Routes SET Status = 'I' WHERE RouteID = '" + routeID + "'";
+
+            try
+            {
                 conn.Open();
 
-                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
-                {
-                    cmd.Parameters.Add("RouteID", OracleDbType.Int32).Value = routeID;
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.ExecuteNonQuery();
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
+
 
 
 

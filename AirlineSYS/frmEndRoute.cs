@@ -70,6 +70,7 @@ namespace AirlineSYS
 
             if (result == DialogResult.Yes)
             {
+                
                 Route route = new Route();
                 route.endRoute(cboEndRoute.SelectedIndex);
                 MessageBox.Show("Route has been ended in the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -77,12 +78,12 @@ namespace AirlineSYS
             }
 
             grpEndRouteDetails.Visible = false;
-            cboEndRoute.SelectedIndex = -1;
         }
 
         private void frmEndRoute_Load(object sender, EventArgs e)
         {
-            cboEndRoute.Items.Clear();            
+            cboEndRoute.Items.Clear(); 
+            
             btnEndRouteConfirm.Visible = false;
 
 
@@ -90,7 +91,8 @@ namespace AirlineSYS
 
             foreach (Route route in routes)
             {
-                string routeInfo = route.DepartureAirport + " - " + route.ArrivalAirport;
+                string routeInfo = route.RouteID.ToString().PadLeft(2) + " " + route.DepartureAirport + " - " + route.ArrivalAirport;
+
                 cboEndRoute.Items.Add(routeInfo);
             }
 
