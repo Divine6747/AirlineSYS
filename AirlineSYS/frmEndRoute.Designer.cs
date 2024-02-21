@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboEndRoute = new System.Windows.Forms.ComboBox();
             this.btnRouteSearch = new System.Windows.Forms.Button();
+            this.mnuBack = new System.Windows.Forms.Label();
             this.grpEndRouteDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,11 +146,26 @@
             this.btnRouteSearch.UseVisualStyleBackColor = false;
             this.btnRouteSearch.Click += new System.EventHandler(this.btnRouteSearch_Click);
             // 
+            // mnuBack
+            // 
+            this.mnuBack.AccessibleRole = System.Windows.Forms.AccessibleRole.Animation;
+            this.mnuBack.AutoSize = true;
+            this.mnuBack.BackColor = System.Drawing.Color.Violet;
+            this.mnuBack.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuBack.Location = new System.Drawing.Point(769, 0);
+            this.mnuBack.Name = "mnuBack";
+            this.mnuBack.Padding = new System.Windows.Forms.Padding(10, 2, 10, 2);
+            this.mnuBack.Size = new System.Drawing.Size(60, 24);
+            this.mnuBack.TabIndex = 25;
+            this.mnuBack.Text = "Back";
+            this.mnuBack.Click += new System.EventHandler(this.munBack_Click);
+            // 
             // frmEndRoute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(829, 520);
+            this.Controls.Add(this.mnuBack);
             this.Controls.Add(this.btnRouteSearch);
             this.Controls.Add(this.cboEndRoute);
             this.Controls.Add(this.label1);
@@ -180,5 +196,6 @@
         private System.Windows.Forms.ComboBox cboEndRoute;
         private System.Windows.Forms.Button btnRouteSearch;
         private System.Windows.Forms.Label lblEndRouteDetails;
+        private System.Windows.Forms.Label mnuBack;
     }
 }
