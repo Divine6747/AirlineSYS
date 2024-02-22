@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Airport.cs" />
+    <Compile Include="Flight.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

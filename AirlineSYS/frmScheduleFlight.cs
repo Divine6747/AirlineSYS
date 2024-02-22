@@ -96,5 +96,9 @@ namespace AirlineSYS
 
         }
 
+        private void frmScheduleFlight_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
