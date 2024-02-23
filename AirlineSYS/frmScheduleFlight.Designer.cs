@@ -47,7 +47,7 @@
             this.dtpDeptFlight = new System.Windows.Forms.DateTimePicker();
             this.cboArrAirportFlight = new System.Windows.Forms.ComboBox();
             this.cboDeptAirportFlight = new System.Windows.Forms.ComboBox();
-            this.btnAirportConfirm = new System.Windows.Forms.Button();
+            this.btnFlightConfirm = new System.Windows.Forms.Button();
             this.grpAirportDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -306,24 +306,24 @@
             this.cboDeptAirportFlight.Size = new System.Drawing.Size(120, 29);
             this.cboDeptAirportFlight.TabIndex = 19;
             // 
-            // btnAirportConfirm
+            // btnFlightConfirm
             // 
-            this.btnAirportConfirm.BackColor = System.Drawing.Color.Plum;
-            this.btnAirportConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAirportConfirm.Location = new System.Drawing.Point(312, 373);
-            this.btnAirportConfirm.Name = "btnAirportConfirm";
-            this.btnAirportConfirm.Size = new System.Drawing.Size(174, 38);
-            this.btnAirportConfirm.TabIndex = 13;
-            this.btnAirportConfirm.Text = "CONFIRM";
-            this.btnAirportConfirm.UseVisualStyleBackColor = false;
-            this.btnAirportConfirm.Click += new System.EventHandler(this.btnAirportConfirm_Click);
+            this.btnFlightConfirm.BackColor = System.Drawing.Color.Plum;
+            this.btnFlightConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFlightConfirm.Location = new System.Drawing.Point(312, 373);
+            this.btnFlightConfirm.Name = "btnFlightConfirm";
+            this.btnFlightConfirm.Size = new System.Drawing.Size(174, 38);
+            this.btnFlightConfirm.TabIndex = 13;
+            this.btnFlightConfirm.Text = "CONFIRM";
+            this.btnFlightConfirm.UseVisualStyleBackColor = false;
+            this.btnFlightConfirm.Click += new System.EventHandler(this.btnFlightConfirm_Click);
             // 
             // frmScheduleFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 422);
-            this.Controls.Add(this.btnAirportConfirm);
+            this.Controls.Add(this.btnFlightConfirm);
             this.Controls.Add(this.grpAirportDetails);
             this.Controls.Add(this.lblAddAirport);
             this.Controls.Add(this.munBack);
@@ -354,7 +354,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTicketPriceFlight;
         private System.Windows.Forms.GroupBox grpAirportDetails;
-        private System.Windows.Forms.Button btnAirportConfirm;
+        private System.Windows.Forms.Button btnFlightConfirm;
         private System.Windows.Forms.ComboBox cboArrAirportFlight;
         private System.Windows.Forms.ComboBox cboDeptAirportFlight;
         private System.Windows.Forms.DateTimePicker dtpDeptFlight;

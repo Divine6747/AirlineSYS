@@ -30,11 +30,12 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
 
-        private void btnAirportConfirm_Click(object sender, EventArgs e)
+     
+        private void btnFlightConfirm_Click(object sender, EventArgs e)
         {
             decimal ticketPriceFlight;
             if (cboDeptAirportFlight.Text.Equals("") || cboArrAirportFlight.Text.Equals("") || cboOperatorCodeFlight.Text.Equals("") ||
-                txtNumFlightSeats.Text.Equals("") || txtTicketPriceFlight.Text.Equals("") || cboDeptTime.Text.Equals("") )
+                txtNumFlightSeats.Text.Equals("") || txtTicketPriceFlight.Text.Equals("") || cboDeptTime.Text.Equals(""))
             {
                 MessageBox.Show("All fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cboDeptAirportFlight.Focus();
@@ -56,7 +57,7 @@ namespace AirlineSYS
                 return;
             }
 
-            else if (cboOperatorCodeFlight.SelectedIndex == - 1)
+            else if (cboOperatorCodeFlight.SelectedIndex == -1)
             {
                 MessageBox.Show("Operator Code must be selected.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cboOperatorCodeFlight.Focus();
@@ -94,11 +95,20 @@ namespace AirlineSYS
 
             }
 
+
         }
+
 
         private void frmScheduleFlight_Load(object sender, EventArgs e)
         {
+            cboOperatorCodeFlight.Items.Clear();
 
+            List<Flight> flights = Flight.getOperators();
+
+            foreach(Flight flight in flights)
+            {
+                //finish
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.ManagedDataAccess.Client;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AirlineSYS
 {
@@ -163,7 +163,9 @@ namespace AirlineSYS
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
                     string sqlQuery = "SELECT RouteID, DeptAirport, ArrAirport FROM Routes";
+
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
                     conn.Open();
 
                     using (OracleDataReader reader = cmd.ExecuteReader())
