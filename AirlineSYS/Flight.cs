@@ -138,47 +138,6 @@ namespace AirlineSYS
             }
         }
 
-        public static List<Flight> getOperators()
-        {
-            List<Flight> flights = new List<Flight>();
-            try
-            {
-                using(OracleConnection conn = new OracleConnection(DBConnect.oradb))
-                {
-                    string sqlQuery = "SELECT OperatorCode FROM Operators";
-
-                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-                    conn.Open();
-
-                    using(OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string operatorCode = reader.GetString(0);
-
-                            flights.Add(new Flight { OperatorCode = operatorCode });
-                        }
-                    }
-
-                }
-            }
-
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-            return flights;
-        }
-
-
     }
 
 }

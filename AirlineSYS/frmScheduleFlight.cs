@@ -34,6 +34,7 @@ namespace AirlineSYS
         private void btnFlightConfirm_Click(object sender, EventArgs e)
         {
             decimal ticketPriceFlight;
+
             if (cboDeptAirportFlight.Text.Equals("") || cboArrAirportFlight.Text.Equals("") || cboOperatorCodeFlight.Text.Equals("") ||
                 txtNumFlightSeats.Text.Equals("") || txtTicketPriceFlight.Text.Equals("") || cboDeptTime.Text.Equals(""))
             {
@@ -72,15 +73,12 @@ namespace AirlineSYS
                 return;
             }
 
-
-
             else if (!decimal.TryParse(txtTicketPriceFlight.Text, out ticketPriceFlight) || txtTicketPriceFlight.Text.Length > 999)
             {
                 MessageBox.Show("Ticket price must be a valid decimal format and MAXIMUM value of €999.00", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTicketPriceFlight.Focus();
                 return;
             }
-
 
             else
             {
@@ -95,20 +93,22 @@ namespace AirlineSYS
 
             }
 
-
         }
-
 
         private void frmScheduleFlight_Load(object sender, EventArgs e)
         {
             cboOperatorCodeFlight.Items.Clear();
 
-            List<Flight> flights = Flight.getOperators();
+            List<Operator> operators = Operator.getOperators();
 
-            foreach(Flight flight in flights)
+            foreach (Operator opCode in operators)
             {
-                //finish
+                cboOperatorCodeFlight.Items.Add(opCode.getOperatorCode());
             }
         }
+
+
+
+
     }
 }

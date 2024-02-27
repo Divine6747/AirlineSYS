@@ -86,7 +86,6 @@ namespace AirlineSYS
         public void addAirport()
         {
 
-            //Opens the db connection
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             string sqlQuery = "INSERT INTO Airports VALUES (" + "'" +
                 this.AirportCode + "', '" +
@@ -99,16 +98,28 @@ namespace AirlineSYS
                 this.Email + "')";
 
 
-            //Execute the SQL query to be executed
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
-            conn.Open();
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Airport has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            //Close db connection
-            conn.Close();
-
+            }
+            finally
+            {
+                conn.Close();
+            }
 
         }
         public void updateAirport(string airportCode)
@@ -130,7 +141,7 @@ namespace AirlineSYS
             {
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Airport has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(airportCode + " has been updated to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (OracleException ex)
             {

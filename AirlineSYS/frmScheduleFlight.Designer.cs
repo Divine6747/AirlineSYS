@@ -48,6 +48,8 @@
             this.cboArrAirportFlight = new System.Windows.Forms.ComboBox();
             this.cboDeptAirportFlight = new System.Windows.Forms.ComboBox();
             this.btnFlightConfirm = new System.Windows.Forms.Button();
+            this.lblFlightNumber = new System.Windows.Forms.Label();
+            this.lblFlightNumberDetail = new System.Windows.Forms.Label();
             this.grpAirportDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +58,7 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 12.5F);
-            this.munBack.Location = new System.Drawing.Point(687, 0);
+            this.munBack.Location = new System.Drawing.Point(708, 0);
             this.munBack.Name = "munBack";
             this.munBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.munBack.Size = new System.Drawing.Size(65, 23);
@@ -214,7 +216,7 @@
             "TK: - Turkish Airlines",
             "UA - United Airlines",
             "FR - Ryanair"});
-            this.cboOperatorCodeFlight.Location = new System.Drawing.Point(211, 98);
+            this.cboOperatorCodeFlight.Location = new System.Drawing.Point(211, 99);
             this.cboOperatorCodeFlight.Name = "cboOperatorCodeFlight";
             this.cboOperatorCodeFlight.Size = new System.Drawing.Size(120, 29);
             this.cboOperatorCodeFlight.TabIndex = 31;
@@ -318,11 +320,34 @@
             this.btnFlightConfirm.UseVisualStyleBackColor = false;
             this.btnFlightConfirm.Click += new System.EventHandler(this.btnFlightConfirm_Click);
             // 
+            // lblFlightNumber
+            // 
+            this.lblFlightNumber.AutoSize = true;
+            this.lblFlightNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
+            this.lblFlightNumber.Location = new System.Drawing.Point(611, 40);
+            this.lblFlightNumber.Name = "lblFlightNumber";
+            this.lblFlightNumber.Size = new System.Drawing.Size(104, 18);
+            this.lblFlightNumber.TabIndex = 14;
+            this.lblFlightNumber.Text = "Flight Number:";
+            // 
+            // lblFlightNumberDetail
+            // 
+            this.lblFlightNumberDetail.AutoSize = true;
+            this.lblFlightNumberDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
+            this.lblFlightNumberDetail.ForeColor = System.Drawing.Color.Plum;
+            this.lblFlightNumberDetail.Location = new System.Drawing.Point(717, 40);
+            this.lblFlightNumberDetail.Name = "lblFlightNumberDetail";
+            this.lblFlightNumberDetail.Size = new System.Drawing.Size(24, 18);
+            this.lblFlightNumberDetail.TabIndex = 15;
+            this.lblFlightNumberDetail.Text = "00";
+            // 
             // frmScheduleFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 422);
+            this.Controls.Add(this.lblFlightNumberDetail);
+            this.Controls.Add(this.lblFlightNumber);
             this.Controls.Add(this.btnFlightConfirm);
             this.Controls.Add(this.grpAirportDetails);
             this.Controls.Add(this.lblAddAirport);
@@ -360,5 +385,7 @@
         private System.Windows.Forms.DateTimePicker dtpDeptFlight;
         private System.Windows.Forms.ComboBox cboDeptTime;
         private System.Windows.Forms.ComboBox cboOperatorCodeFlight;
+        private System.Windows.Forms.Label lblFlightNumber;
+        private System.Windows.Forms.Label lblFlightNumberDetail;
     }
 }

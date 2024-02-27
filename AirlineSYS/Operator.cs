@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AirlineSYS
 {
-    class Operator
+     class Operator
     {
 
         private string OperatorCode;
@@ -60,8 +60,6 @@ namespace AirlineSYS
         public void setStatus(string Status) { this.Status = Status; }
 
 
-
-        //Adding Operators
         public void addOperator()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -92,6 +90,42 @@ namespace AirlineSYS
             {
                 conn.Close();
             }
+        }
+
+        public static List<Operator> getOperators()
+        {
+            List<Operator> operatorCodes = new List<Operator>();
+
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT OperatorCode FROM Operators";
+
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                    conn.Open();
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string operatorCode = reader.GetString(0);
+                            operatorCodes.Add(new Operator { OperatorCode = operatorCode});
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return operatorCodes;
         }
 
     }

@@ -87,7 +87,6 @@ namespace AirlineSYS
 
             foreach (Route route in routes)
             {
-                //This format includes leading zeros with the RouteID
                 string routeInfo = route.RouteID.ToString("D2") + " " + route.DepartureAirport + " - " + route.ArrivalAirport;
 
                 cboEndRoute.Items.Add(routeInfo);
