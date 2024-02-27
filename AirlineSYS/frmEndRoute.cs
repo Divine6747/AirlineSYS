@@ -31,7 +31,6 @@ namespace AirlineSYS
 
         private void btnRouteSearch_Click(object sender, EventArgs e)
         {
-            // Fetch routes from the database
             List<Route> routes = Route.getAllRouteDetails();
             if (cboEndRoute.SelectedIndex == -1)
             {

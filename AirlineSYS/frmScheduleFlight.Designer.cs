@@ -260,23 +260,6 @@
             // 
             this.cboArrAirportFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboArrAirportFlight.FormattingEnabled = true;
-            this.cboArrAirportFlight.Items.AddRange(new object[] {
-            "JFK",
-            "CDG",
-            "DXB",
-            "PEK",
-            "NRT",
-            "YYZ",
-            "FRA",
-            "HKG",
-            "ICN",
-            "MIA",
-            "CGK",
-            "SNN",
-            "DUB",
-            "SHA",
-            "FCO",
-            "BGY"});
             this.cboArrAirportFlight.Location = new System.Drawing.Point(553, 41);
             this.cboArrAirportFlight.Name = "cboArrAirportFlight";
             this.cboArrAirportFlight.Size = new System.Drawing.Size(107, 29);
@@ -286,23 +269,6 @@
             // 
             this.cboDeptAirportFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDeptAirportFlight.FormattingEnabled = true;
-            this.cboDeptAirportFlight.Items.AddRange(new object[] {
-            "JFK",
-            "CDG",
-            "DXB",
-            "PEK",
-            "NRT",
-            "YYZ",
-            "FRA",
-            "HKG",
-            "ICN",
-            "MIA",
-            "CGK",
-            "SNN",
-            "DUB",
-            "SHA",
-            "FCO",
-            "BGY"});
             this.cboDeptAirportFlight.Location = new System.Drawing.Point(211, 39);
             this.cboDeptAirportFlight.Name = "cboDeptAirportFlight";
             this.cboDeptAirportFlight.Size = new System.Drawing.Size(120, 29);

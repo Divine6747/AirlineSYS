@@ -105,6 +105,10 @@ namespace AirlineSYS
             {
                 cboOperatorCodeFlight.Items.Add(opCode.getOperatorCode());
             }
+
+
+            List<Airport> airports = Airport.get;
+
         }
 
 
