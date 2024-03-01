@@ -42,11 +42,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRoutePrice = new System.Windows.Forms.TextBox();
             this.txtRouteArr = new System.Windows.Forms.TextBox();
-            this.txtRouteDept = new System.Windows.Forms.TextBox();
             this.btnCreateRouteConfirm = new System.Windows.Forms.Button();
             this.lblRouteID = new System.Windows.Forms.Label();
             this.lblRoute = new System.Windows.Forms.Label();
             this.mnuBack = new System.Windows.Forms.Label();
+            this.txtRouteDept = new System.Windows.Forms.TextBox();
             this.grpOperatorDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -180,13 +180,6 @@
             this.txtRouteArr.Size = new System.Drawing.Size(169, 29);
             this.txtRouteArr.TabIndex = 19;
             // 
-            // txtRouteDept
-            // 
-            this.txtRouteDept.Location = new System.Drawing.Point(180, 56);
-            this.txtRouteDept.Name = "txtRouteDept";
-            this.txtRouteDept.Size = new System.Drawing.Size(169, 29);
-            this.txtRouteDept.TabIndex = 18;
-            // 
             // btnCreateRouteConfirm
             // 
             this.btnCreateRouteConfirm.BackColor = System.Drawing.Color.Plum;
@@ -232,6 +225,13 @@
             this.mnuBack.Text = "Back";
             this.mnuBack.Click += new System.EventHandler(this.mnuBack_Click);
             // 
+            // txtRouteDept
+            // 
+            this.txtRouteDept.Location = new System.Drawing.Point(180, 56);
+            this.txtRouteDept.Name = "txtRouteDept";
+            this.txtRouteDept.Size = new System.Drawing.Size(169, 29);
+            this.txtRouteDept.TabIndex = 18;
+            // 
             // frmCreateRoute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,7 +269,6 @@
         private System.Windows.Forms.Button btnCreateRouteConfirm;
         private System.Windows.Forms.TextBox txtRoutePrice;
         private System.Windows.Forms.TextBox txtRouteArr;
-        private System.Windows.Forms.TextBox txtRouteDept;
         private System.Windows.Forms.TextBox txtRouteDur;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtRouteStatus;
@@ -277,5 +276,6 @@
         private System.Windows.Forms.Label lblRouteID;
         private System.Windows.Forms.Label lblRoute;
         private System.Windows.Forms.Label mnuBack;
+        private System.Windows.Forms.TextBox txtRouteDept;
     }
 }

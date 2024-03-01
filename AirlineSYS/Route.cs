@@ -10,28 +10,25 @@ namespace AirlineSYS
 {
     class Route
     {
-        public int RouteID;
-        public string DepartureAirport;
-        public string ArrivalAirport;
-        public decimal TicketPrice;
-        public int Duration;
-        public string Status;
+        private int RouteID;
+        private string DepartureAirport;
+        private string ArrivalAirport;
+        private decimal TicketPrice;
+        private int Duration;
+        private string Status;
 
-        public Route() {
-
+        public Route() 
+        {
             this.RouteID = 0;
             this.DepartureAirport = "";
             this.ArrivalAirport = "";
             this.TicketPrice = 0;
             this.Duration = 0;
             this.Status = "";
-
         }
-
 
         public Route(int routeID, string departureAirport, string arrivalAirport, decimal ticketPrice, int duration, string status)
         {
-
             if (routeID <= 0)
             {
                 throw new ArgumentException("Invalid route ID.");
@@ -51,7 +48,7 @@ namespace AirlineSYS
         }
 
         //Getters
-        public int getRouteID() { return this.RouteID; }
+        public int getRouteID() { return RouteID; }
 
         public string getDepartureAirport() {  return this.DepartureAirport; }
 
@@ -117,12 +114,11 @@ namespace AirlineSYS
             }
 
             return nextRouteID;
-
+            
         }
 
         public void addRoute()
         {
- 
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             string sqlQuery = "INSERT INTO Routes VALUES (" +
@@ -258,11 +254,42 @@ namespace AirlineSYS
             }
         }
 
+        public static bool doesRouteExist(string deptAirport, string arrAiport)
+        {
+            bool routeExistance = false;
 
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT COUNT(*) FROM Routes WHERE DeptAirport = '" + deptAirport + "' AND ArrAirport = '" + arrAiport + "'";
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
+                    conn.Open();
 
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int count = reader.GetInt32(0);
+                            routeExistance = count > 0;
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
+            return routeExistance;
+        }
+
+       
     }
-
 }
 

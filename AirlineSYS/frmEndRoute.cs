@@ -40,12 +40,13 @@ namespace AirlineSYS
 
             Route selectedRoute = routes[cboEndRoute.SelectedIndex];
 
-            string routeInfo = "Route ID: " + selectedRoute.RouteID + "\n\n" +
-                               "Departure Airport: " + selectedRoute.DepartureAirport + "\n\n" +
-                               "Arrival Airport: " + selectedRoute.ArrivalAirport + "\n\n" +
-                               "Ticket Price: " + selectedRoute.TicketPrice + "\n\n" +
-                               "Duration: " + selectedRoute.Duration + "\n\n" +
-                               "Status: " + selectedRoute.Status;
+            string routeInfo = "Route ID: " + selectedRoute.getRouteID() + "\n\n" +
+                                "Departure Airport: " + selectedRoute.getDepartureAirport() + "\n\n" +
+                                "Arrival Airport: " + selectedRoute.getArrivalAirport() + "\n\n" +
+                                "Ticket Price: " + selectedRoute.getTicketPrice() + "\n\n" +
+                                "Duration: " + selectedRoute.getDuration() + "\n\n" +
+                                "Status: " + selectedRoute.getStatus();
+
 
             lblEndRouteDetails.Text = routeInfo;
             grpEndRouteDetails.Visible = true;
@@ -86,7 +87,7 @@ namespace AirlineSYS
 
             foreach (Route route in routes)
             {
-                string routeInfo = route.RouteID.ToString("D2") + " " + route.DepartureAirport + " - " + route.ArrivalAirport;
+                string routeInfo = route.getRouteID().ToString("D2") + " " + route.getDepartureAirport() + " - " + route.getArrivalAirport();
 
                 cboEndRoute.Items.Add(routeInfo);
             }

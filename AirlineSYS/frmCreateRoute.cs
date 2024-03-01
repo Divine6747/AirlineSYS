@@ -30,15 +30,13 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
 
-
-
-
         private void btnCreateRouteConfirm_Click(object sender, EventArgs e)
         {
             int duration;
             decimal ticketPrice;
-
             bool isValid = true;
+
+            List<string> availAirports = Airport.getAvailAirports();
 
             if (string.IsNullOrEmpty(lblRouteID.Text) || string.IsNullOrEmpty(txtRouteDept.Text) ||
                 string.IsNullOrEmpty(txtRouteArr.Text) || string.IsNullOrEmpty(txtRoutePrice.Text) ||
@@ -49,7 +47,7 @@ namespace AirlineSYS
             }
             else if (txtRouteDept.Text.Equals(txtRouteArr.Text) || txtRouteArr.Text.Equals(txtRouteDept.Text))
             {
-                MessageBox.Show("Departure Airport and Arrival Airport can not be the same and vice versa", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Departure Airport and Arrival Airport cannot be the same.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
             else if (!int.TryParse(txtRouteDur.Text, out duration) || duration <= 0)
@@ -67,8 +65,22 @@ namespace AirlineSYS
                 MessageBox.Show("Status must be either 'A' for Active or 'I' for Inactive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
+            else if (!availAirports.Contains(txtRouteDept.Text))
+            {
+                MessageBox.Show("Departure airport is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
+            else if (!availAirports.Contains(txtRouteArr.Text))
+            {
+                MessageBox.Show("Arrival airport is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
+            else if (Route.doesRouteExist(txtRouteDept.Text, txtRouteArr.Text))
+            {
+                MessageBox.Show("Route is not valid. Alreary Exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
 
-            
             if (!isValid)
             {
                 return;
@@ -84,6 +96,7 @@ namespace AirlineSYS
             txtRouteDur.Clear();
             txtRouteStatus.Clear();
         }
+
 
 
         private void frmCreateRoute_Load(object sender, EventArgs e)

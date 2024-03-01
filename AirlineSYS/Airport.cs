@@ -19,7 +19,6 @@ namespace AirlineSYS
         private string Phone;
         private string Email;
 
-
         public Airport()
         {
             this.AirportCode = "";
@@ -81,11 +80,9 @@ namespace AirlineSYS
 
         public void setEmail(string Email) { this.Email = Email; }
 
-
-
+        //And Airport Method
         public void addAirport()
         {
-
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             string sqlQuery = "INSERT INTO Airports VALUES (" + "'" +
                 this.AirportCode + "', '" +
@@ -96,7 +93,6 @@ namespace AirlineSYS
                 this.Eircode + "', '" +
                 this.Phone + "', '" +
                 this.Email + "')";
-
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
@@ -114,14 +110,13 @@ namespace AirlineSYS
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             finally
             {
                 conn.Close();
             }
-
         }
+        //Update Airport Method
         public void updateAirport(string airportCode)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -146,12 +141,10 @@ namespace AirlineSYS
             catch (OracleException ex)
             {
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             finally
             {
@@ -187,8 +180,6 @@ namespace AirlineSYS
                 else
                 {
                     throw new Exception("Airport not found.");
-
-
                 }
             }
             catch (OracleException ex)
@@ -203,10 +194,42 @@ namespace AirlineSYS
             {
                 conn.Close();
             }
-
         }
 
+        public static List<string> getAvailAirports()
+        {
+            List<string> availAirports = new List<string>();
 
+            try
+            {
+                using(OracleConnection conn  = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT AirportCode FROM Airports";
 
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                    conn.Open();
+
+                    using(OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string airportCode = reader.GetString(0);
+                            availAirports.Add(airportCode);
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return availAirports;
+        }
     }
 }

@@ -106,7 +106,7 @@ namespace AirlineSYS
                             object result = reader[0];
 
                             int maxFlightNumber;
-                            if (result != DBNull.Value)
+                            if (result != DBNull.Value && int.TryParse(result.ToString(), out maxFlightNumber))
                             {
                                 maxFlightNumber = Convert.ToInt32(result);
                             }
@@ -138,34 +138,6 @@ namespace AirlineSYS
             }
         }
 
-        public static List<Airport> getAllAirports()
-        {
-            List<Airport> airports = new List<Airport>();
-
-            try
-            {
-                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
-                {
-                    string sqlQuery = "SELECT DeptAirport, ArrAirport FROM Routes";
-
-                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-                    conn.Open();
-
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string deptAirport = reader.GetString(0);
-                            string arrAirport = reader.GetString(1);
-                            airports.Add(new Airport {  });
-                        }
-                    }
-                }
-            }
-
-        }
 
     }
-
 }

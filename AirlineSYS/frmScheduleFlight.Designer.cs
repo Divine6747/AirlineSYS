@@ -220,6 +220,7 @@
             this.cboOperatorCodeFlight.Name = "cboOperatorCodeFlight";
             this.cboOperatorCodeFlight.Size = new System.Drawing.Size(120, 29);
             this.cboOperatorCodeFlight.TabIndex = 31;
+            this.cboOperatorCodeFlight.SelectedIndexChanged += new System.EventHandler(this.cboOperatorCodeFlight_SelectedIndexChanged);
             // 
             // cboDeptTime
             // 
@@ -303,9 +304,8 @@
             this.lblFlightNumberDetail.ForeColor = System.Drawing.Color.Plum;
             this.lblFlightNumberDetail.Location = new System.Drawing.Point(717, 40);
             this.lblFlightNumberDetail.Name = "lblFlightNumberDetail";
-            this.lblFlightNumberDetail.Size = new System.Drawing.Size(24, 18);
+            this.lblFlightNumberDetail.Size = new System.Drawing.Size(0, 18);
             this.lblFlightNumberDetail.TabIndex = 15;
-            this.lblFlightNumberDetail.Text = "00";
             // 
             // frmScheduleFlight
             // 

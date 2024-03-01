@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AirlineSYS;
 
 namespace AirlineSYS
 {
@@ -90,11 +91,28 @@ namespace AirlineSYS
                 cboDeptTime.SelectedIndex = -1;
                 txtTicketPriceFlight.Clear();
                 txtNumFlightSeats.Clear();
-
             }
 
+            if (cboOperatorCodeFlight.SelectedItem != null)
+            {
+                string selectedOperatorCode = cboOperatorCodeFlight.SelectedItem.ToString();
+                lblFlightNumberDetail.Text = Flight.getFlightNumber(selectedOperatorCode);
+            }
+            else
+            {
+                MessageBox.Show("Please select an operator code.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void cboOperatorCodeFlight_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboOperatorCodeFlight.SelectedIndex != -1)
+            {
+                string selectedOperator = cboOperatorCodeFlight.SelectedItem.ToString();
+                lblFlightNumberDetail.Text = selectedOperator;
+            }
+        }        
+        
         private void frmScheduleFlight_Load(object sender, EventArgs e)
         {
             cboOperatorCodeFlight.Items.Clear();
@@ -106,13 +124,17 @@ namespace AirlineSYS
                 cboOperatorCodeFlight.Items.Add(opCode.getOperatorCode());
             }
 
+            cboOperatorCodeFlight.SelectedIndexChanged += cboOperatorCodeFlight_SelectedIndexChanged;
 
-            List<Airport> airports = Airport.get;
+            List<Route> routes = Route.getRoutes();
+
+            foreach (Route route in routes)
+            {
+                cboDeptAirportFlight.Items.Add(route.getDepartureAirport());
+                cboArrAirportFlight.Items.Add(route.getArrivalAirport());
+            }
+            
 
         }
-
-
-
-
     }
 }

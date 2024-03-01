@@ -10,13 +10,11 @@ namespace AirlineSYS
 {
      class Operator
     {
-
         private string OperatorCode;
         private string Name;
         private string City;
         private string Country;
         private string Status;
-
 
         public Operator()
         {
@@ -35,7 +33,6 @@ namespace AirlineSYS
             this.Status = status;
         }
 
-
         //Getters
         public string getOperatorCode() { return this.OperatorCode; }
 
@@ -46,7 +43,6 @@ namespace AirlineSYS
         public string getCountry() { return this.Country; }
 
         public string getStatus() { return this.Status; }
-
 
         //Setters
         public void setOperatotCode(string OperatorCode) { this.OperatorCode = OperatorCode; }
@@ -59,7 +55,7 @@ namespace AirlineSYS
 
         public void setStatus(string Status) { this.Status = Status; }
 
-
+        //Add Operetor Method
         public void addOperator()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -92,6 +88,7 @@ namespace AirlineSYS
             }
         }
 
+        //Get Operator Method
         public static List<Operator> getOperators()
         {
             List<Operator> operatorCodes = new List<Operator>();
@@ -124,7 +121,6 @@ namespace AirlineSYS
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             return operatorCodes;
         }
 
