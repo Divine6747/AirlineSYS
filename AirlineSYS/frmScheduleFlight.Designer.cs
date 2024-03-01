@@ -291,7 +291,7 @@
             // 
             this.lblFlightNumber.AutoSize = true;
             this.lblFlightNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
-            this.lblFlightNumber.Location = new System.Drawing.Point(611, 40);
+            this.lblFlightNumber.Location = new System.Drawing.Point(600, 40);
             this.lblFlightNumber.Name = "lblFlightNumber";
             this.lblFlightNumber.Size = new System.Drawing.Size(104, 18);
             this.lblFlightNumber.TabIndex = 14;
@@ -302,10 +302,11 @@
             this.lblFlightNumberDetail.AutoSize = true;
             this.lblFlightNumberDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
             this.lblFlightNumberDetail.ForeColor = System.Drawing.Color.Plum;
-            this.lblFlightNumberDetail.Location = new System.Drawing.Point(717, 40);
+            this.lblFlightNumberDetail.Location = new System.Drawing.Point(704, 40);
             this.lblFlightNumberDetail.Name = "lblFlightNumberDetail";
-            this.lblFlightNumberDetail.Size = new System.Drawing.Size(0, 18);
+            this.lblFlightNumberDetail.Size = new System.Drawing.Size(40, 18);
             this.lblFlightNumberDetail.TabIndex = 15;
+            this.lblFlightNumberDetail.Text = "0000";
             // 
             // frmScheduleFlight
             // 

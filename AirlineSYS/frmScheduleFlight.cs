@@ -96,12 +96,9 @@ namespace AirlineSYS
             if (cboOperatorCodeFlight.SelectedItem != null)
             {
                 string selectedOperatorCode = cboOperatorCodeFlight.SelectedItem.ToString();
-                lblFlightNumberDetail.Text = Flight.getFlightNumber(selectedOperatorCode);
+                lblFlightNumberDetail.Text = selectedOperatorCode + Flight.getFlightNumber(selectedOperatorCode);
             }
-            else
-            {
-                MessageBox.Show("Please select an operator code.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
         }
 
         private void cboOperatorCodeFlight_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,7 +106,12 @@ namespace AirlineSYS
             if(cboOperatorCodeFlight.SelectedIndex != -1)
             {
                 string selectedOperator = cboOperatorCodeFlight.SelectedItem.ToString();
-                lblFlightNumberDetail.Text = selectedOperator;
+
+                string increflightNumber = Flight.getFlightNumber(selectedOperator);
+
+                string nextFlightNumber = selectedOperator + increflightNumber;
+
+                lblFlightNumberDetail.Text = nextFlightNumber;
             }
         }        
         
@@ -133,8 +135,6 @@ namespace AirlineSYS
                 cboDeptAirportFlight.Items.Add(route.getDepartureAirport());
                 cboArrAirportFlight.Items.Add(route.getArrivalAirport());
             }
-            
-
-        }
+        } 
     }
 }

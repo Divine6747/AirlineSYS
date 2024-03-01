@@ -89,9 +89,10 @@ namespace AirlineSYS
         {
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
-                string sqlQuery = "SELECT MAX(SUBSTRING(FlightNumber, 3, LEN(FlightNumber) - 2)) " +
-                                  "FROM Flights " +
-                                  "WHERE SUBSTRING(FlightNumber, 1, 2) = '" + selectedOperatorCode + "'";
+                string sqlQuery = "SELECT MAX(SUBSTR(FlightNumber, 3, LENGTH(FlightNumber) - 2)) " +
+                  "FROM Flights " +
+                  "WHERE SUBSTR(FlightNumber, 1, 2) = '" + selectedOperatorCode + "'";
+
 
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
@@ -115,7 +116,15 @@ namespace AirlineSYS
                                 maxFlightNumber = 0;
                             }
 
-                            string nextFlightNumber = selectedOperatorCode + (maxFlightNumber + 1).ToString("D4");
+                            maxFlightNumber++;
+
+                            if (maxFlightNumber % 10 == 0)
+                            {
+                                maxFlightNumber += 10;
+                            }
+
+                            string nextFlightNumber = selectedOperatorCode + maxFlightNumber.ToString("D4");
+
                             return nextFlightNumber;
                         }
                         else
