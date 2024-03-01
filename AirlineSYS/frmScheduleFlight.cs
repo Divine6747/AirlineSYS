@@ -96,7 +96,17 @@ namespace AirlineSYS
             if (cboOperatorCodeFlight.SelectedItem != null)
             {
                 string selectedOperatorCode = cboOperatorCodeFlight.SelectedItem.ToString();
-                lblFlightNumberDetail.Text = selectedOperatorCode + Flight.getFlightNumber(selectedOperatorCode);
+
+                string lastFlightNumber = Flight.getFlightNumber(selectedOperatorCode);
+
+                int lastNumericPart = int.Parse(lastFlightNumber.Substring(selectedOperatorCode.Length));
+
+
+                int nextNumericPart = lastNumericPart + 1;
+
+                string nextFlightNumber = selectedOperatorCode + nextNumericPart.ToString("D4");
+
+                lblFlightNumberDetail.Text = nextFlightNumber;
             }
 
         }

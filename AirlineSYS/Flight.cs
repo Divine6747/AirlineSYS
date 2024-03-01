@@ -89,10 +89,9 @@ namespace AirlineSYS
         {
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
-                string sqlQuery = "SELECT MAX(SUBSTR(FlightNumber, 3, LENGTH(FlightNumber) - 2)) " +
-                  "FROM Flights " +
-                  "WHERE SUBSTR(FlightNumber, 1, 2) = '" + selectedOperatorCode + "'";
-
+                string sqlQuery = "SELECT MAX(SUBSTR(FlightNumber, LENGTH('" + selectedOperatorCode + "') + 1)) " +
+                                  "FROM Flights " +
+                                  "WHERE SUBSTR(FlightNumber, 1, LENGTH('" + selectedOperatorCode + "')) = '" + selectedOperatorCode + "'";
 
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
@@ -118,12 +117,9 @@ namespace AirlineSYS
 
                             maxFlightNumber++;
 
-                            if (maxFlightNumber % 10 == 0)
-                            {
-                                maxFlightNumber += 10;
-                            }
+                            string paddedFlightNumber = maxFlightNumber.ToString("D4");
 
-                            string nextFlightNumber = selectedOperatorCode + maxFlightNumber.ToString("D4");
+                            string nextFlightNumber = selectedOperatorCode + paddedFlightNumber;
 
                             return nextFlightNumber;
                         }
@@ -141,11 +137,11 @@ namespace AirlineSYS
                 catch (Exception ex)
                 {
                     MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     throw ex;
                 }
             }
         }
+
 
 
     }
