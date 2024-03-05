@@ -37,7 +37,7 @@ namespace AirlineSYS
             decimal ticketPriceFlight;
 
             if (cboDeptAirportFlight.Text.Equals("") || cboArrAirportFlight.Text.Equals("") || cboOperatorCodeFlight.Text.Equals("") ||
-                txtNumFlightSeats.Text.Equals("") || txtTicketPriceFlight.Text.Equals("") || cboDeptTime.Text.Equals(""))
+                txtNumFlightSeats.Text.Equals("") || txtTicketPriceFlight.Text.Equals("") || dtpDeptFlight.Equals("") || cboDeptTime.Text.Equals(""))
             {
                 MessageBox.Show("All fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cboDeptAirportFlight.Focus();
@@ -93,21 +93,7 @@ namespace AirlineSYS
                 txtNumFlightSeats.Clear();
             }
 
-            if (cboOperatorCodeFlight.SelectedItem != null)
-            {
-                string selectedOperatorCode = cboOperatorCodeFlight.SelectedItem.ToString();
 
-                string lastFlightNumber = Flight.getFlightNumber(selectedOperatorCode);
-
-                int lastNumericPart = int.Parse(lastFlightNumber.Substring(selectedOperatorCode.Length));
-
-
-                int nextNumericPart = lastNumericPart + 1;
-
-                string nextFlightNumber = selectedOperatorCode + nextNumericPart.ToString("D4");
-
-                lblFlightNumberDetail.Text = nextFlightNumber;
-            }
 
         }
 
@@ -115,11 +101,16 @@ namespace AirlineSYS
         {
             if(cboOperatorCodeFlight.SelectedIndex != -1)
             {
+
                 string selectedOperator = cboOperatorCodeFlight.SelectedItem.ToString();
 
                 string increflightNumber = Flight.getFlightNumber(selectedOperator);
 
-                string nextFlightNumber = selectedOperator + increflightNumber;
+                int numericPart = int.Parse(increflightNumber.Substring(selectedOperator.Length));
+
+                int nextFlightNumberPart = numericPart + 1;
+
+                string nextFlightNumber = selectedOperator + nextFlightNumberPart.ToString("D4"); 
 
                 lblFlightNumberDetail.Text = nextFlightNumber;
             }
@@ -128,6 +119,8 @@ namespace AirlineSYS
         private void frmScheduleFlight_Load(object sender, EventArgs e)
         {
             cboOperatorCodeFlight.Items.Clear();
+            cboDeptAirportFlight.Items.Clear();
+            cboArrAirportFlight.Items.Clear();
 
             List<Operator> operators = Operator.getOperators();
 
@@ -140,11 +133,26 @@ namespace AirlineSYS
 
             List<Route> routes = Route.getRoutes();
 
+            //HashSetdoes not allow duplicate elements
+            //It is going to store unique departureAirports and arrivalAirports(so filtering both airports)
+            HashSet<string> departureAirports = new HashSet<string>();
+            HashSet<string> arrivalAirports = new HashSet<string>();
+
             foreach (Route route in routes)
             {
-                cboDeptAirportFlight.Items.Add(route.getDepartureAirport());
-                cboArrAirportFlight.Items.Add(route.getArrivalAirport());
+                //Contains is cheking if the airport been added is already in the combo box
+                if (!departureAirports.Contains(route.getDepartureAirport()))
+                    departureAirports.Add(route.getDepartureAirport());
+
+                if (!arrivalAirports.Contains(route.getArrivalAirport()))
+                    arrivalAirports.Add(route.getArrivalAirport());
             }
+
+            
+            cboDeptAirportFlight.Items.AddRange(departureAirports.ToArray());
+
+            cboArrAirportFlight.Items.AddRange(arrivalAirports.ToArray());
+
         } 
     }
 }

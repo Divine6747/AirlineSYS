@@ -48,40 +48,24 @@ namespace AirlineSYS
 
         // Getter methods
         public string getFlightNumber() { return FlightNumber; }
-
         public string getOperatorCode() { return OperatorCode; }
-
         public int getRouteID() { return RouteID; }
-
         public DateTime getFlightDate() { return FlightDate; }
-
         public DateTime getFlightTime() { return FlightTime; }
-
         public string getEstArrTime() { return EstArrTime; }
-
         public int getNumSeats() { return NumSeats; }
-
         public int getNumSeatAvail() { return NumSeatAvail; }
-
         public string getStatus() { return Status; }
 
         // Setter methods
         public void setFlightNumber(string flightNumber) { FlightNumber = flightNumber; }
-
         public void setOperatorCode(string operatorCode) { OperatorCode = operatorCode; }
-
         public void setRouteID(int routeID) { RouteID = routeID; }
-
         public void setFlightDate(DateTime flightDate) { FlightDate = flightDate; }
-
         public void setFlightTime(DateTime flightTime) { FlightTime = flightTime; }
-
         public void setEstArrTime(string estArrTime) { EstArrTime = estArrTime; }
-
         public void setNumSeats(int numSeats) { NumSeats = numSeats; }
-
         public void setNumSeatAvail(int numSeatAvail) { NumSeatAvail = numSeatAvail; }
-
         public void setStatus(string status) { Status = status; }
 
 
@@ -90,8 +74,7 @@ namespace AirlineSYS
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
                 string sqlQuery = "SELECT MAX(SUBSTR(FlightNumber, LENGTH('" + selectedOperatorCode + "') + 1)) " +
-                                  "FROM Flights " +
-                                  "WHERE SUBSTR(FlightNumber, 1, LENGTH('" + selectedOperatorCode + "')) = '" + selectedOperatorCode + "'";
+                                  "FROM Flights ";
 
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
@@ -141,8 +124,5 @@ namespace AirlineSYS
                 }
             }
         }
-
-
-
     }
 }
