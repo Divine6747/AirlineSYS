@@ -101,21 +101,31 @@ namespace AirlineSYS
         {
             if(cboOperatorCodeFlight.SelectedIndex != -1)
             {
-
                 string selectedOperator = cboOperatorCodeFlight.SelectedItem.ToString();
 
                 string increflightNumber = Flight.getFlightNumber(selectedOperator);
 
                 int numericPart = int.Parse(increflightNumber.Substring(selectedOperator.Length));
 
-                int nextFlightNumberPart = numericPart + 1;
+                int nextFlightNumberPart = numericPart;
 
                 string nextFlightNumber = selectedOperator + nextFlightNumberPart.ToString("D4"); 
 
                 lblFlightNumberDetail.Text = nextFlightNumber;
             }
         }        
-        
+         private void cboDeptAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboDeptAirportFlight.SelectedIndex != -1)
+            {
+
+            }
+        }
+
+        private void cboArrAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
         private void frmScheduleFlight_Load(object sender, EventArgs e)
         {
             cboOperatorCodeFlight.Items.Clear();
@@ -153,6 +163,8 @@ namespace AirlineSYS
 
             cboArrAirportFlight.Items.AddRange(arrivalAirports.ToArray());
 
-        } 
+        }
+
+       
     }
 }

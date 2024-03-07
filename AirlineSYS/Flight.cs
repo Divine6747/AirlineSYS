@@ -108,7 +108,7 @@ namespace AirlineSYS
                         }
                         else
                         {
-                            return selectedOperatorCode + "0001";
+                            return selectedOperatorCode + "0000";
                         }
                     }
                 }
