@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="validateFlightUtility.cs" />
     <EmbeddedResource Include="frmAddAirport.resx">
       <DependentUpon>frmAddAirport.cs</DependentUpon>
     </EmbeddedResource>

@@ -33,54 +33,25 @@ namespace AirlineSYS
 
      
         private void btnFlightConfirm_Click(object sender, EventArgs e)
-        {
-            decimal ticketPriceFlight;
+        {   
+            Flight flight = new Flight();
+            string dept = cboDeptAirportFlight.SelectedItem.ToString();
+            string arr = cboArrAirportFlight.SelectedItem.ToString();
+            int routeID = flight.getRouteID(dept, arr);
 
-            if (cboDeptAirportFlight.Text.Equals("") || cboArrAirportFlight.Text.Equals("") || cboOperatorCodeFlight.Text.Equals("") ||
-                txtNumFlightSeats.Text.Equals("") || txtTicketPriceFlight.Text.Equals("") || dtpDeptFlight.Equals("") || cboDeptTime.Text.Equals(""))
+            if(routeID != -1)
             {
-                MessageBox.Show("All fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cboDeptAirportFlight.Focus();
-
-                return;
+                MessageBox.Show("Primary Key: " + routeID.ToString(), "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if (dtpDeptFlight.Value <= DateTime.Now)
+            else
             {
-                MessageBox.Show("Date picked must be greater than current date", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dtpDeptFlight.Focus();
+                MessageBox.Show("No Primary Key found: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
-            else if (cboDeptAirportFlight.Text.Equals(cboArrAirportFlight.Text) || cboArrAirportFlight.Text.Equals(cboDeptAirportFlight.Text))
+            if (!validateFlightUtility.validateFlightField(cboArrAirportFlight, cboDeptAirportFlight, cboOperatorCodeFlight.Text,txtNumFlightSeats.Text,txtTicketPriceFlight.Text,dtpDeptFlight.Value))
             {
-                MessageBox.Show("Departure or Arrival Airports can not be the same", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cboDeptAirportFlight.SelectedIndex = -1;
-                cboArrAirportFlight.SelectedIndex = -1;
-                return;
+                MessageBox.Show("Please fill all fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            else if (cboOperatorCodeFlight.SelectedIndex == -1)
-            {
-                MessageBox.Show("Operator Code must be selected.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cboOperatorCodeFlight.Focus();
-                return;
-
-            }
-
-            else if (!txtNumFlightSeats.Text.All(char.IsDigit) || int.Parse(txtNumFlightSeats.Text) < 70)
-            {
-                MessageBox.Show("Number of seats must be 70 or more and NUMERIC", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNumFlightSeats.Focus();
-                return;
-            }
-
-            else if (!decimal.TryParse(txtTicketPriceFlight.Text, out ticketPriceFlight) || txtTicketPriceFlight.Text.Length > 999)
-            {
-                MessageBox.Show("Ticket price must be a valid decimal format and MAXIMUM value of €999.00", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTicketPriceFlight.Focus();
-                return;
-            }
-
             else
             {
                 MessageBox.Show("Flight has been scheduled", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,13 +59,11 @@ namespace AirlineSYS
                 cboArrAirportFlight.SelectedIndex = -1;
                 cboDeptAirportFlight.SelectedIndex = -1;
                 cboOperatorCodeFlight.SelectedIndex = -1;
+                txtNumFlightSeats.Clear();
+                dtpDeptFlight.Value = DateTime.MinValue;
                 cboDeptTime.SelectedIndex = -1;
                 txtTicketPriceFlight.Clear();
-                txtNumFlightSeats.Clear();
             }
-
-
-
         }
 
         private void cboOperatorCodeFlight_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,18 +83,7 @@ namespace AirlineSYS
                 lblFlightNumberDetail.Text = nextFlightNumber;
             }
         }        
-         private void cboDeptAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(cboDeptAirportFlight.SelectedIndex != -1)
-            {
 
-            }
-        }
-
-        private void cboArrAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void frmScheduleFlight_Load(object sender, EventArgs e)
         {
             cboOperatorCodeFlight.Items.Clear();
@@ -158,13 +116,9 @@ namespace AirlineSYS
                     arrivalAirports.Add(route.getArrivalAirport());
             }
 
-            
             cboDeptAirportFlight.Items.AddRange(departureAirports.ToArray());
 
             cboArrAirportFlight.Items.AddRange(arrivalAirports.ToArray());
-
         }
-
-       
     }
 }

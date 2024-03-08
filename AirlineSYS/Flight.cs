@@ -124,5 +124,41 @@ namespace AirlineSYS
                 }
             }
         }
+
+        public int getRouteID(string dept, string arr)
+        {
+            int routeID = -1;
+
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                string sqlQuery = "SELECT RouteID FROM Routes " + "WHERE DeptAirport = :dept AND ArrAirport = :arr";
+                
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                cmd.Parameters.Add(":dept", dept);
+                cmd.Parameters.Add(":arr", arr);
+
+                try
+                {
+                    conn.Open();
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    if(reader.Read())
+                    {
+                        routeID = Convert.ToInt32(reader["RouteID"]);
+                    }
+                    reader.Close();
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return routeID;
+        }
     }
 }

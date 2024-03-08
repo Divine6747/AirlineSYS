@@ -265,7 +265,6 @@
             this.cboArrAirportFlight.Name = "cboArrAirportFlight";
             this.cboArrAirportFlight.Size = new System.Drawing.Size(107, 29);
             this.cboArrAirportFlight.TabIndex = 20;
-            this.cboArrAirportFlight.SelectedIndexChanged += new System.EventHandler(this.cboArrAirportFlight_SelectedIndexChanged);
             // 
             // cboDeptAirportFlight
             // 
@@ -275,7 +274,6 @@
             this.cboDeptAirportFlight.Name = "cboDeptAirportFlight";
             this.cboDeptAirportFlight.Size = new System.Drawing.Size(120, 29);
             this.cboDeptAirportFlight.TabIndex = 19;
-            this.cboDeptAirportFlight.SelectedIndexChanged += new System.EventHandler(this.cboDeptAirportFlight_SelectedIndexChanged);
             // 
             // btnFlightConfirm
             // 
