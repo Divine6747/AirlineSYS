@@ -50,6 +50,8 @@
             this.btnFlightConfirm = new System.Windows.Forms.Button();
             this.lblFlightNumber = new System.Windows.Forms.Label();
             this.lblFlightNumberDetail = new System.Windows.Forms.Label();
+            this.lblFlightsRouteIdDetails = new System.Windows.Forms.Label();
+            this.lblFlightsRouteID = new System.Windows.Forms.Label();
             this.grpAirportDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -308,11 +310,35 @@
             this.lblFlightNumberDetail.TabIndex = 15;
             this.lblFlightNumberDetail.Text = "0000";
             // 
+            // lblFlightsRouteIdDetails
+            // 
+            this.lblFlightsRouteIdDetails.AutoSize = true;
+            this.lblFlightsRouteIdDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
+            this.lblFlightsRouteIdDetails.ForeColor = System.Drawing.Color.Plum;
+            this.lblFlightsRouteIdDetails.Location = new System.Drawing.Point(498, 40);
+            this.lblFlightsRouteIdDetails.Name = "lblFlightsRouteIdDetails";
+            this.lblFlightsRouteIdDetails.Size = new System.Drawing.Size(24, 18);
+            this.lblFlightsRouteIdDetails.TabIndex = 17;
+            this.lblFlightsRouteIdDetails.Text = "00";
+            this.lblFlightsRouteIdDetails.Click += new System.EventHandler(this.lblFlightsRouteIdDetails_Click);
+            // 
+            // lblFlightsRouteID
+            // 
+            this.lblFlightsRouteID.AutoSize = true;
+            this.lblFlightsRouteID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
+            this.lblFlightsRouteID.Location = new System.Drawing.Point(432, 40);
+            this.lblFlightsRouteID.Name = "lblFlightsRouteID";
+            this.lblFlightsRouteID.Size = new System.Drawing.Size(70, 18);
+            this.lblFlightsRouteID.TabIndex = 16;
+            this.lblFlightsRouteID.Text = "Route ID:";
+            // 
             // frmScheduleFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 422);
+            this.Controls.Add(this.lblFlightsRouteIdDetails);
+            this.Controls.Add(this.lblFlightsRouteID);
             this.Controls.Add(this.lblFlightNumberDetail);
             this.Controls.Add(this.lblFlightNumber);
             this.Controls.Add(this.btnFlightConfirm);
@@ -354,5 +380,7 @@
         private System.Windows.Forms.ComboBox cboOperatorCodeFlight;
         private System.Windows.Forms.Label lblFlightNumber;
         private System.Windows.Forms.Label lblFlightNumberDetail;
+        private System.Windows.Forms.Label lblFlightsRouteIdDetails;
+        private System.Windows.Forms.Label lblFlightsRouteID;
     }
 }

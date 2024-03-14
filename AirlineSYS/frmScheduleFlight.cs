@@ -23,32 +23,15 @@ namespace AirlineSYS
             InitializeComponent();
             this.parent = parent;
         }
-
         private void munBack_Click(object sender, EventArgs e)
         {
             this.Close();
             frmAirlineMainMenu frmAirlineMainMenu = new frmAirlineMainMenu();
             frmAirlineMainMenu.Show();
         }
-
-     
         private void btnFlightConfirm_Click(object sender, EventArgs e)
         {   
-            Flight flight = new Flight();
-            string dept = cboDeptAirportFlight.SelectedItem.ToString();
-            string arr = cboArrAirportFlight.SelectedItem.ToString();
-            int routeID = flight.getRouteID(dept, arr);
-
-            if(routeID != -1)
-            {
-                MessageBox.Show("Primary Key: " + routeID.ToString(), "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("No Primary Key found: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (!validateFlightUtility.validateFlightField(cboArrAirportFlight, cboDeptAirportFlight, cboOperatorCodeFlight.Text,txtNumFlightSeats.Text,txtTicketPriceFlight.Text,dtpDeptFlight.Value))
+            if (validateFlightUtility.validateFlightField(cboArrAirportFlight, cboDeptAirportFlight, cboOperatorCodeFlight.Text,txtNumFlightSeats.Text,txtTicketPriceFlight.Text,dtpDeptFlight.Value))
             {
                 MessageBox.Show("Please fill all fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -60,12 +43,11 @@ namespace AirlineSYS
                 cboDeptAirportFlight.SelectedIndex = -1;
                 cboOperatorCodeFlight.SelectedIndex = -1;
                 txtNumFlightSeats.Clear();
-                dtpDeptFlight.Value = DateTime.MinValue;
+                dtpDeptFlight.Value = DateTime.Now;
                 cboDeptTime.SelectedIndex = -1;
                 txtTicketPriceFlight.Clear();
             }
         }
-
         private void cboOperatorCodeFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(cboOperatorCodeFlight.SelectedIndex != -1)
@@ -89,6 +71,7 @@ namespace AirlineSYS
             cboOperatorCodeFlight.Items.Clear();
             cboDeptAirportFlight.Items.Clear();
             cboArrAirportFlight.Items.Clear();
+            cboDeptTime.Items.Clear();
 
             List<Operator> operators = Operator.getOperators();
 
@@ -107,8 +90,7 @@ namespace AirlineSYS
             HashSet<string> arrivalAirports = new HashSet<string>();
 
             foreach (Route route in routes)
-            {
-                //Contains is cheking if the airport been added is already in the combo box
+            {   //Contains is cheking if the airport been added is already in the combo box
                 if (!departureAirports.Contains(route.getDepartureAirport()))
                     departureAirports.Add(route.getDepartureAirport());
 
@@ -119,6 +101,32 @@ namespace AirlineSYS
             cboDeptAirportFlight.Items.AddRange(departureAirports.ToArray());
 
             cboArrAirportFlight.Items.AddRange(arrivalAirports.ToArray());
+
+            List<Flight> times = Flight.getTime();
+
+            foreach (Flight time in times)
+            {
+                cboDeptTime.Items.Add(time.getTime());
+            }
+        }
+
+        private void lblFlightsRouteIdDetails_Click(object sender, EventArgs e)
+        {
+            Flight flight = new Flight();
+            string dept = cboDeptAirportFlight.SelectedItem.ToString();
+            string arr = cboArrAirportFlight.SelectedItem.ToString();
+            int routeID = flight.getRouteID(dept, arr);
+
+            if (routeID != -1)
+            {
+                lblFlightsRouteIdDetails.Text = routeID.ToString();
+                MessageBox.Show("Primary Key: " + routeID.ToString(), "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                lblFlightsRouteIdDetails.Text = "Not Found";
+                MessageBox.Show("No Primary Key found: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

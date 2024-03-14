@@ -14,7 +14,7 @@ namespace AirlineSYS
         private string OperatorCode;
         private int RouteID;
         private DateTime FlightDate;
-        private DateTime FlightTime;
+        private string FlightTime;
         private string EstArrTime;
         private int NumSeats;
         private int NumSeatAvail;
@@ -26,14 +26,14 @@ namespace AirlineSYS
             OperatorCode = "";
             RouteID = 0;
             FlightDate = DateTime.Now;
-            FlightTime = DateTime.Now;
+            FlightTime = "";
             EstArrTime = "";
             NumSeats = 0;
             NumSeatAvail = 0;
             Status = "";
         }
 
-        public Flight(string flightNumber, string operatorCode, int routeID, DateTime flightDate, DateTime flightTime, string estArrTime, int numSeats, int numSeatAvail, string status)
+        public Flight(string flightNumber, string operatorCode, int routeID, DateTime flightDate, string flightTime, string estArrTime, int numSeats, int numSeatAvail, string status)
         {
             FlightNumber = flightNumber;
             OperatorCode = operatorCode;
@@ -51,7 +51,7 @@ namespace AirlineSYS
         public string getOperatorCode() { return OperatorCode; }
         public int getRouteID() { return RouteID; }
         public DateTime getFlightDate() { return FlightDate; }
-        public DateTime getFlightTime() { return FlightTime; }
+        public string getFlightTime() { return FlightTime; }
         public string getEstArrTime() { return EstArrTime; }
         public int getNumSeats() { return NumSeats; }
         public int getNumSeatAvail() { return NumSeatAvail; }
@@ -62,7 +62,7 @@ namespace AirlineSYS
         public void setOperatorCode(string operatorCode) { OperatorCode = operatorCode; }
         public void setRouteID(int routeID) { RouteID = routeID; }
         public void setFlightDate(DateTime flightDate) { FlightDate = flightDate; }
-        public void setFlightTime(DateTime flightTime) { FlightTime = flightTime; }
+        public void setFlightTime(string flightTime) { FlightTime = flightTime; }
         public void setEstArrTime(string estArrTime) { EstArrTime = estArrTime; }
         public void setNumSeats(int numSeats) { NumSeats = numSeats; }
         public void setNumSeatAvail(int numSeatAvail) { NumSeatAvail = numSeatAvail; }
@@ -73,8 +73,7 @@ namespace AirlineSYS
         {
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
-                string sqlQuery = "SELECT MAX(SUBSTR(FlightNumber, LENGTH('" + selectedOperatorCode + "') + 1)) " +
-                                  "FROM Flights ";
+                string sqlQuery = "SELECT MAX(SUBSTR(FlightNumber, LENGTH('" + selectedOperatorCode + "') + 1)) " + "FROM Flights ";
 
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
@@ -132,7 +131,7 @@ namespace AirlineSYS
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
                 string sqlQuery = "SELECT RouteID FROM Routes " + "WHERE DeptAirport = :dept AND ArrAirport = :arr";
-                
+
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
                 cmd.Parameters.Add(":dept", dept);
@@ -143,7 +142,7 @@ namespace AirlineSYS
                     conn.Open();
                     OracleDataReader reader = cmd.ExecuteReader();
 
-                    if(reader.Read())
+                    if (reader.Read())
                     {
                         routeID = Convert.ToInt32(reader["RouteID"]);
                     }
@@ -151,7 +150,7 @@ namespace AirlineSYS
                 }
                 catch (OracleException ex)
                 {
-                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
@@ -159,6 +158,42 @@ namespace AirlineSYS
                 }
             }
             return routeID;
+        }
+
+        public static List<Flight> getTime()
+        {
+            List<Flight> flightTimes = new List<Flight>();
+
+            using(OracleConnection conn = new OracleConnection( DBConnect.oradb))
+            {
+                string sqlQuery = "SELECT FlightTime FROM FlightTimes";
+
+                OracleCommand cmd = new OracleCommand( sqlQuery, conn);
+                try
+                {
+                    conn.Open();
+
+                    using(OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string flightTime = reader.GetString(0);
+                            flightTimes.Add(new Flight { FlightTime = flightTime });
+                        }
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            return flightTimes;
         }
     }
 }
