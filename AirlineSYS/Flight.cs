@@ -160,40 +160,5 @@ namespace AirlineSYS
             return routeID;
         }
 
-        public static List<Flight> getTime()
-        {
-            List<Flight> flightTimes = new List<Flight>();
-
-            using(OracleConnection conn = new OracleConnection( DBConnect.oradb))
-            {
-                string sqlQuery = "SELECT FlightTime FROM FlightTimes";
-
-                OracleCommand cmd = new OracleCommand( sqlQuery, conn);
-                try
-                {
-                    conn.Open();
-
-                    using(OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string flightTime = reader.GetString(0);
-                            flightTimes.Add(new Flight { FlightTime = flightTime });
-                        }
-                    }
-                }
-                catch (OracleException ex)
-                {
-                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
-            }
-            return flightTimes;
-        }
     }
 }

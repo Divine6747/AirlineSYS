@@ -102,30 +102,34 @@ namespace AirlineSYS
 
             cboArrAirportFlight.Items.AddRange(arrivalAirports.ToArray());
 
-            List<Flight> times = Flight.getTime();
+            List<FlightTimes> times = FlightTimes.getFlightTimes();
 
-            foreach (Flight time in times)
+            foreach (FlightTimes time in times)
             {
-                cboDeptTime.Items.Add(time.getTime());
+                cboDeptTime.Items.Add(time.getFlightTime());
             }
+
         }
 
         private void lblFlightsRouteIdDetails_Click(object sender, EventArgs e)
         {
-            Flight flight = new Flight();
-            string dept = cboDeptAirportFlight.SelectedItem.ToString();
-            string arr = cboArrAirportFlight.SelectedItem.ToString();
-            int routeID = flight.getRouteID(dept, arr);
+            if (cboDeptAirportFlight.SelectedItem != null && cboArrAirportFlight.SelectedItem != null)
+            {
+                string dept = cboDeptAirportFlight.SelectedItem.ToString();
+                string arr = cboArrAirportFlight.SelectedItem.ToString();
+                Flight flight = new Flight();
+                int routeID = flight.getRouteID(dept, arr);
 
-            if (routeID != -1)
-            {
-                lblFlightsRouteIdDetails.Text = routeID.ToString();
-                MessageBox.Show("Primary Key: " + routeID.ToString(), "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                lblFlightsRouteIdDetails.Text = "Not Found";
-                MessageBox.Show("No Primary Key found: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (routeID != -1)
+                {
+                    lblFlightsRouteIdDetails.Text = routeID.ToString();
+                    MessageBox.Show("Primary Key: " + routeID.ToString(), "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    lblFlightsRouteIdDetails.Text = "Not Found";
+                    MessageBox.Show("No Primary Key found: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
