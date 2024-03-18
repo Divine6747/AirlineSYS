@@ -117,7 +117,6 @@ namespace AirlineSYS
             }
             else
             {
-                //Create an instance of an Airport and instantiate with values from form controls
                 Airport anAirport = new Airport(txtAirportCode.Text,txtAirportName.Text, txtAirportStreet.Text, txtAirportCity.Text, txtAirportCountry.Text, 
                                                 txtAirportEircode.Text,txtAirportPhone.Text,txtAirportEmail.Text);
 
@@ -132,9 +131,6 @@ namespace AirlineSYS
                 txtAirportPhone.Clear();
                 txtAirportEmail.Clear();
             }
-
-
         }
-
     }
 }

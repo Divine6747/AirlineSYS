@@ -35,24 +35,16 @@ namespace AirlineSYS
 
         //Getters
         public string getOperatorCode() { return this.OperatorCode; }
-
         public string getName() { return this.Name; }
-
         public string getCity() { return this.City; }
-
         public string getCountry() { return this.Country; }
-
         public string getStatus() { return this.Status; }
 
         //Setters
         public void setOperatotCode(string OperatorCode) { this.OperatorCode = OperatorCode; }
-
         public void setName(string Name) { this.Name = Name; }
-
         public void setCity(string City) { this.City = City; }
-
         public void setCountry(string Country) { this.Country = Country; }
-
         public void setStatus(string Status) { this.Status = Status; }
 
         //Add Operetor Method

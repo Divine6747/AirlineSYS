@@ -17,6 +17,7 @@ namespace AirlineSYS
         public frmScheduleFlight()
         {
             InitializeComponent();
+            cboDeptAirportFlight.SelectedIndexChanged += cboDeptAirportFlight_SelectedIndexChanged;
         }
         public frmScheduleFlight(frmAirlineMainMenu parent)
         {
@@ -30,27 +31,50 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
         private void btnFlightConfirm_Click(object sender, EventArgs e)
-        {   
-            if (validateFlightUtility.validateFlightField(cboArrAirportFlight, cboDeptAirportFlight, cboOperatorCodeFlight.Text,txtNumFlightSeats.Text,txtTicketPriceFlight.Text,dtpDeptFlight.Value))
+        {
+            if (!validateFlightUtility.validateFlightField(cboArrAirportFlight, cboDeptAirportFlight, cboOperatorCodeFlight.Text, txtNumFlightSeats.Text, txtTicketPriceFlight.Text, dtpDeptFlight.Value,cboDeptTime))
             {
                 MessageBox.Show("Please fill all fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Flight has been scheduled", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string dept = cboDeptAirportFlight.SelectedItem.ToString();
 
-                cboArrAirportFlight.SelectedIndex = -1;
-                cboDeptAirportFlight.SelectedIndex = -1;
-                cboOperatorCodeFlight.SelectedIndex = -1;
-                txtNumFlightSeats.Clear();
-                dtpDeptFlight.Value = DateTime.Now;
-                cboDeptTime.SelectedIndex = -1;
-                txtTicketPriceFlight.Clear();
+                string arr = cboArrAirportFlight.SelectedItem.ToString();
+
+                Flight flight = new Flight();
+
+                int routeID = flight.getRouteID(dept, arr);
+
+                if (routeID != -1)
+                {
+                    MessageBox.Show("Flight has been scheduled", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
+                                     lblFlightNumberDetail + "\n\n" +
+                                     cboOperatorCodeFlight.SelectedItem + "\n\n" +
+                                     txtNumFlightSeats.Text + "\n\n" +
+                                     txtTicketPriceFlight.Text + "\n\n" +
+                                     dtpDeptFlight.Text + "\n\n" +
+                                     cboDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    cboArrAirportFlight.SelectedIndex = -1;
+                    cboDeptAirportFlight.SelectedIndex = -1;
+                    cboOperatorCodeFlight.SelectedIndex = -1;
+                    txtNumFlightSeats.Clear();
+                    dtpDeptFlight.Value = DateTime.Now;
+                    cboDeptTime.SelectedIndex = -1;
+                    txtTicketPriceFlight.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("No RouteID Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
         }
         private void cboOperatorCodeFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboOperatorCodeFlight.SelectedIndex != -1)
+            if (cboOperatorCodeFlight.SelectedIndex != -1)
             {
                 string selectedOperator = cboOperatorCodeFlight.SelectedItem.ToString();
 
@@ -60,12 +84,11 @@ namespace AirlineSYS
 
                 int nextFlightNumberPart = numericPart;
 
-                string nextFlightNumber = selectedOperator + nextFlightNumberPart.ToString("D4"); 
+                string nextFlightNumber = selectedOperator + nextFlightNumberPart.ToString("D4");
 
                 lblFlightNumberDetail.Text = nextFlightNumber;
             }
-        }        
-
+        }
         private void frmScheduleFlight_Load(object sender, EventArgs e)
         {
             cboOperatorCodeFlight.Items.Clear();
@@ -108,10 +131,8 @@ namespace AirlineSYS
             {
                 cboDeptTime.Items.Add(time.getFlightTime());
             }
-
         }
-
-        private void lblFlightsRouteIdDetails_Click(object sender, EventArgs e)
+        public void checkRoutExist()
         {
             if (cboDeptAirportFlight.SelectedItem != null && cboArrAirportFlight.SelectedItem != null)
             {
@@ -122,15 +143,18 @@ namespace AirlineSYS
 
                 if (routeID != -1)
                 {
-                    lblFlightsRouteIdDetails.Text = routeID.ToString();
-                    MessageBox.Show("Primary Key: " + routeID.ToString(), "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Route ID is: " + routeID.ToString(), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    lblFlightsRouteIdDetails.Text = "Not Found";
-                    MessageBox.Show("No Primary Key found: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No Route ID found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void cboDeptAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkRoutExist();
         }
     }
 }

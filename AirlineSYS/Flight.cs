@@ -68,7 +68,13 @@ namespace AirlineSYS
         public void setNumSeatAvail(int numSeatAvail) { NumSeatAvail = numSeatAvail; }
         public void setStatus(string status) { Status = status; }
 
-
+        public void scheduleFlight()
+        {
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                string sqlQuery = "";
+            }
+        }
         public static string getFlightNumber(string selectedOperatorCode)
         {
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
@@ -123,7 +129,6 @@ namespace AirlineSYS
                 }
             }
         }
-
         public int getRouteID(string dept, string arr)
         {
             int routeID = -1;
