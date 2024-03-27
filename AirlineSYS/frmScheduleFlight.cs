@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
-using AirlineSYS;
 
 namespace AirlineSYS
 {
@@ -32,30 +26,37 @@ namespace AirlineSYS
         }
         private void btnFlightConfirm_Click(object sender, EventArgs e)
         {
-            if (!validateFlightUtility.validateFlightField(cboArrAirportFlight, cboDeptAirportFlight, cboOperatorCodeFlight.Text, txtNumFlightSeats.Text, txtTicketPriceFlight.Text, dtpDeptFlight.Value,cboDeptTime))
+            if (!validateFlightUtility.ValidateFlightField(cboDeptAirportFlight, cboArrAirportFlight, cboOperatorCodeFlight.Text, txtNumFlightSeats.Text, txtTicketPriceFlight.Text, dtpDeptFlight.Value, cboDeptTime))
             {
-                MessageBox.Show("Please fill all fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else
             {
                 string dept = cboDeptAirportFlight.SelectedItem.ToString();
-
                 string arr = cboArrAirportFlight.SelectedItem.ToString();
 
-                Flight flight = new Flight();
+                Route route = new Route();
 
-                int routeID = flight.getRouteID(dept, arr);
+                int duration = route.getDuration(dept, arr);
 
-                if (routeID != -1)
+                if (duration != -1)
                 {
+                    DateTime deptDateTime = dtpDeptFlight.Value.Date + TimeSpan.Parse(cboDeptTime.SelectedItem.ToString());
+
+                    // Handling time format for adding duration
+                    DateTime estArrivalTime = deptDateTime.AddMinutes(duration);
+                    string estArrivalTimeString = estArrivalTime.ToString("hh:mm tt");
+
                     MessageBox.Show("Flight has been scheduled", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
-                                     lblFlightNumberDetail + "\n\n" +
+                    MessageBox.Show(
+                                    "Flight Details:\n" +
+                                     lblFlightNumberDetail.Text + "\n\n" +
                                      cboOperatorCodeFlight.SelectedItem + "\n\n" +
                                      txtNumFlightSeats.Text + "\n\n" +
                                      txtTicketPriceFlight.Text + "\n\n" +
                                      dtpDeptFlight.Text + "\n\n" +
-                                     cboDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                     cboDeptTime.SelectedItem + "\n\n" +
+                                     "Estimated Arrival Time: " + estArrivalTimeString, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     cboArrAirportFlight.SelectedIndex = -1;
                     cboDeptAirportFlight.SelectedIndex = -1;
@@ -63,15 +64,15 @@ namespace AirlineSYS
                     txtNumFlightSeats.Clear();
                     dtpDeptFlight.Value = DateTime.Now;
                     cboDeptTime.SelectedIndex = -1;
-                    txtTicketPriceFlight.Clear();
+                    txtTicketPriceFlight.Text = "0.00";
                 }
                 else
                 {
                     MessageBox.Show("No RouteID Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 }
             }
         }
+
         private void cboOperatorCodeFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboOperatorCodeFlight.SelectedIndex != -1)
@@ -106,14 +107,12 @@ namespace AirlineSYS
             cboOperatorCodeFlight.SelectedIndexChanged += cboOperatorCodeFlight_SelectedIndexChanged;
 
             List<Route> routes = Route.getRoutes();
-
-            //HashSetdoes not allow duplicate elements
-            //It is going to store unique departureAirports and arrivalAirports(so filtering both airports)
-            HashSet<string> departureAirports = new HashSet<string>();
-            HashSet<string> arrivalAirports = new HashSet<string>();
+            //Checking for duplicate elements to store unique departureAirports and arrivalAirports(so filtering both sets of airports)
+            List<string> departureAirports = new List<string>();
+            List<string> arrivalAirports = new List<string>();
 
             foreach (Route route in routes)
-            {   //Contains is cheking if the airport been added is already in the combo box
+            {   //Contains is cheking if the airport being added is already in the combo box
                 if (!departureAirports.Contains(route.getDepartureAirport()))
                     departureAirports.Add(route.getDepartureAirport());
 
@@ -132,29 +131,59 @@ namespace AirlineSYS
                 cboDeptTime.Items.Add(time.getFlightTime());
             }
         }
-        public void checkRoutExist()
+        public bool checkRoutExist()
         {
             if (cboDeptAirportFlight.SelectedItem != null && cboArrAirportFlight.SelectedItem != null)
             {
                 string dept = cboDeptAirportFlight.SelectedItem.ToString();
                 string arr = cboArrAirportFlight.SelectedItem.ToString();
-                Flight flight = new Flight();
-                int routeID = flight.getRouteID(dept, arr);
+                Route route = new Route();
+                int routeID = route.getRouteID(dept, arr);
 
                 if (routeID != -1)
-                {
+                {                    
+                    lblRouteIdDetails.Text = routeID.ToString();
                     MessageBox.Show("Route ID is: " + routeID.ToString(), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
                 }
                 else
                 {
-                    MessageBox.Show("No Route ID found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblRouteIdDetails.Text = "does not exist";
+                    MessageBox.Show("Route does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
+            return true;
         }
-
         private void cboDeptAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
             checkRoutExist();
+            checkDuration();
+        }
+        private void cboArrAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkRoutExist();
+            checkDuration();
+        }
+        private void checkDuration()
+        {
+            if (cboDeptAirportFlight.SelectedItem != null && cboArrAirportFlight.SelectedItem != null)
+            {
+                string dept = cboDeptAirportFlight.SelectedItem.ToString();
+                string arr = cboArrAirportFlight.SelectedItem.ToString();
+
+                Route route = new Route();
+                int duration = route.getDuration(dept, arr);
+
+                if (duration != -1)
+                {
+                    lbRouteDuration.Text = duration.ToString();
+                }
+                else
+                {
+                    lbRouteDuration.Text = "Not found";
+                }
+            }
         }
     }
 }

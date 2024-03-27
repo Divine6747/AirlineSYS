@@ -47,13 +47,13 @@ namespace AirlineSYS
 
         //Setters
         public void setRouteID(int routeID) { this.RouteID = routeID;}
-
         public void setDepartureAirport(string departureAirport) {}
         public void setArrivalAirport(string arrivalAirport) { this.ArrivalAirport = arrivalAirport;}
         public void setTicketPrice(decimal ticketPrice) { this.TicketPrice = ticketPrice; }
         public void setDuration(int duration) { this.Duration = duration; }
         public void setStatus(string status) { this.Status = status;}
-
+        
+        //Getting next route ID
         public static int getNextRouteID()
         {
             int nextRouteID = 1;
@@ -87,7 +87,7 @@ namespace AirlineSYS
             }
             return nextRouteID;         
         }
-
+        //Adding Route
         public void addRoute()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -121,7 +121,7 @@ namespace AirlineSYS
                 conn.Close();
             }
         }
-
+        //Getting All Routes from database
         public static List<Route> getRoutes()
         {
             List<Route> routes = new List<Route>();
@@ -158,6 +158,7 @@ namespace AirlineSYS
             return routes;
         }
 
+        //Retrieving all Route Details from database
         public static List<Route> getAllRouteDetails()
         {
             List<Route> routes = new List<Route>();
@@ -195,7 +196,7 @@ namespace AirlineSYS
 
             return routes;
         }
-
+        //Ending Routes
         public void endRoute(int routeID)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -224,6 +225,7 @@ namespace AirlineSYS
             }
         }
 
+        //Checking the database to check for route existance
         public static bool doesRouteExist(string deptAirport, string arrAiport)
         {
             bool routeExistance = false;
@@ -257,6 +259,79 @@ namespace AirlineSYS
             }
             return routeExistance;
         }
+        //Getting route Id by using depature and arrival airport
+        public int getRouteID(string dept, string arr)
+        {
+            int routeID = -1;
+
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                string sqlQuery = "SELECT RouteID FROM Routes " + "WHERE DeptAirport = :dept AND ArrAirport = :arr";
+
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                cmd.Parameters.Add(":dept", dept);
+                cmd.Parameters.Add(":arr", arr);
+
+                try
+                {
+                    conn.Open();
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        routeID = Convert.ToInt32(reader["RouteID"]);
+                    }
+                    reader.Close();
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return routeID;
+        }
+
+        // Inside the Route class
+        public int getDuration(string dept, string arr)
+        {
+            int duration = -1;
+
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                string sqlQuery = "SELECT Duration FROM Routes WHERE DeptAirport = :dept AND ArrAirport = :arr";
+
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                cmd.Parameters.Add(":dept", dept);
+                cmd.Parameters.Add(":arr", arr);
+
+                try
+                {
+                    conn.Open();
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        duration = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return duration;
+        }
+
     }
 }
-

@@ -115,6 +115,5 @@ namespace AirlineSYS
             }
             return operatorCodes;
         }
-
     }
 }

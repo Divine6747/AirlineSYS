@@ -97,8 +97,6 @@ namespace AirlineSYS
             txtRouteStatus.Clear();
         }
 
-
-
         private void frmCreateRoute_Load(object sender, EventArgs e)
         {
             lblRouteID.Text = Route.getNextRouteID().ToString("00");
