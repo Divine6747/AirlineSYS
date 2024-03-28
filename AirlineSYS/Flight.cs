@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,11 +70,13 @@ namespace AirlineSYS
 
         public void scheduleFlight()
         {
+            string flightDateFormat = FlightDate.ToString("dd-MMM-yy", CultureInfo.InvariantCulture).ToUpper();
+
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
                 string sqlQuery = "INSERT INTO FLIGHTS (FlightNumber, OperatorCode, RouteID, FlightDate, FlightTime, EstArrTime, NumSeats, NumSeatAvail, Status) " +
-                                  "VALUES (:flightNumber, :operatorCode, :routeID, :flightDate, :flightTime, :estArrTime, :numSeats, numSeatsAvail, :status)";
-            
+                                  "VALUES (:flightNumber, :operatorCode, :routeID, :flightDate, :flightTime, :estArrTime, :numSeats, :numSeatsAvail, :status)";
+
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
                 cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = FlightNumber;
@@ -84,8 +87,8 @@ namespace AirlineSYS
                 cmd.Parameters.Add(":estArrTime", OracleDbType.Varchar2).Value = EstArrTime;
                 cmd.Parameters.Add(":numSeats", OracleDbType.Int32).Value = NumSeats;
                 cmd.Parameters.Add(":numSeatsAvail", OracleDbType.Int32).Value = NumSeatAvail;
-                cmd.Parameters.Add(":status", OracleDbType.Varchar2).Value = FlightNumber;
-                
+                cmd.Parameters.Add(":status", OracleDbType.Varchar2).Value = Status;
+
                 try
                 {
                     conn.Open();
@@ -102,8 +105,9 @@ namespace AirlineSYS
                     MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw ex;
                 }
-            }                     
+            }
         }
+
         //Retrieving and incrementing flight number
         public static string getFlightNumber(string selectedOperatorCode)
         {

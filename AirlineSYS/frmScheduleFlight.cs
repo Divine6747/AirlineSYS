@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
@@ -43,7 +43,11 @@ namespace AirlineSYS
 
                 if (routeID != -1)
                 {
-                    MessageBox.Show("Flight has been scheduled", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Flight scheduleFlight = new Flight(lblFlightNumberDetail.Text, cboOperatorCodeFlight.SelectedItem.ToString(),
+                              int.Parse(lblRouteIdDetails.Text), dtpDeptFlight.Value, cboDeptTime.SelectedItem.ToString(),
+                              lblEstArrTimeDetail.Text, int.Parse(txtNumFlightSeats.Text), int.Parse(txtNumFlightSeats.Text), "A");
+                    scheduleFlight.scheduleFlight();
+
                     MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
                                      lblFlightNumberDetail + "\n\n" +
                                      cboOperatorCodeFlight.SelectedItem + "\n\n" +
@@ -136,15 +140,16 @@ namespace AirlineSYS
                 int routeID = checkRoutExist.getRouteID(dept, arr);
 
                 if (routeID != -1)
-                {                    
+                {
                     lblRouteIdDetails.Text = routeID.ToString();
-                    MessageBox.Show("Route ID is: " + routeID.ToString(), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cboDeptTime.Enabled = true;
                     return true;
                 }
                 else
                 {
-                    lblRouteIdDetails.Text = "does not exist";
-                    MessageBox.Show("Route does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblRouteIdDetails.Text = "Does Not Exist";
+                    cboDeptTime.SelectedIndex = -1;
+                    cboDeptTime.Enabled= false;
                     return false;
                 }
             }
@@ -152,12 +157,23 @@ namespace AirlineSYS
         }
         private void cboDeptAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            checkRoutExist();
+            if (!checkRoutExist())
+            {
+                cboDeptTime.SelectedIndex = -1;
+                lblEstArrTimeDetail.Text = "Cannot Be Calculated";
+                return;
+            }            
             checkDuration();
         }
         private void cboArrAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            checkRoutExist();
+            if (!checkRoutExist())
+            {               
+                lblRouteDurationDetail.Text = "000";
+                lblEstArrTimeDetail.Text = "Cannot Be Calculated";
+                cboDeptTime.SelectedIndex = -1;
+                return;
+            }
             checkDuration();
         }
         private void checkDuration()
@@ -172,44 +188,38 @@ namespace AirlineSYS
 
                 if (duration != -1)
                 {
-                    lbRouteDuration.Text = duration.ToString();
+                    lblRouteDurationDetail.Text = duration.ToString();
                 }
                 else
                 {
-                    lbRouteDuration.Text = "Not found";
+                    lblRouteDurationDetail.Text = "Not Found";
                 }
             }
         }
         private void calculateEstArrTime()
         {
-            if (cboDeptTime.SelectedItem != null && lbRouteDuration.Text != "Not found")
+            if (cboDeptTime.SelectedItem != null && lblRouteDurationDetail.Text != "Not found")
             {
                 string selectedDeptTime = cboDeptTime.SelectedItem.ToString();
-                int duration = int.Parse(lbRouteDuration.Text);
+                int duration = int.Parse(lblRouteDurationDetail.Text);
 
                 DateTime deptTime;
 
-                DateTime.TryParseExact(selectedDeptTime, "hh:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out deptTime);
+                if (DateTime.TryParseExact(selectedDeptTime, "HH:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out deptTime))
+                {
+                    DateTime estimatedArrivalTime = deptTime.AddMinutes(duration);
 
-                DateTime estimatedArrivalTime = deptTime.AddMinutes(duration);
-
-                lblEstArrTimeDetail.Text = estimatedArrivalTime.ToString("hh:mm tt");
-            
+                    lblEstArrTimeDetail.Text = estimatedArrivalTime.ToString("HH:mm tt", CultureInfo.InvariantCulture).ToUpper();
+                }
             }
             else
             {
-                lblEstArrTimeDetail.Text = "cannot be calculated";
+                lblEstArrTimeDetail.Text = "Cannot Be Calculated";
             }
         }
-
         private void cboDeptTime_SelectedIndexChanged(object sender, EventArgs e)
         {
             calculateEstArrTime();
-        }
-
-        private void grpAirportDetails_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
