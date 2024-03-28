@@ -54,7 +54,11 @@
             this.lblRouteId = new System.Windows.Forms.Label();
             this.lbRouteDuration = new System.Windows.Forms.Label();
             this.lblRouteDuration = new System.Windows.Forms.Label();
+            this.lblEstArrTimeDetail = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grpAirportDetails.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // munBack
@@ -62,7 +66,7 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 12.5F);
-            this.munBack.Location = new System.Drawing.Point(708, 1);
+            this.munBack.Location = new System.Drawing.Point(800, 0);
             this.munBack.Name = "munBack";
             this.munBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.munBack.Size = new System.Drawing.Size(65, 23);
@@ -77,7 +81,7 @@
             this.mnuScheduleFlight.Location = new System.Drawing.Point(0, 0);
             this.mnuScheduleFlight.Name = "mnuScheduleFlight";
             this.mnuScheduleFlight.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuScheduleFlight.Size = new System.Drawing.Size(774, 24);
+            this.mnuScheduleFlight.Size = new System.Drawing.Size(866, 24);
             this.mnuScheduleFlight.TabIndex = 4;
             // 
             // lblAddAirport
@@ -192,12 +196,13 @@
             this.grpAirportDetails.Controls.Add(this.lblAirportName);
             this.grpAirportDetails.Controls.Add(this.lblAirportCode);
             this.grpAirportDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpAirportDetails.Location = new System.Drawing.Point(30, 77);
+            this.grpAirportDetails.Location = new System.Drawing.Point(47, 214);
             this.grpAirportDetails.Name = "grpAirportDetails";
-            this.grpAirportDetails.Size = new System.Drawing.Size(714, 272);
+            this.grpAirportDetails.Size = new System.Drawing.Size(773, 290);
             this.grpAirportDetails.TabIndex = 12;
             this.grpAirportDetails.TabStop = false;
             this.grpAirportDetails.Text = "Schedule Flight Details";
+            this.grpAirportDetails.Enter += new System.EventHandler(this.grpAirportDetails_Enter);
             // 
             // cboOperatorCodeFlight
             // 
@@ -248,6 +253,7 @@
             this.cboDeptTime.Name = "cboDeptTime";
             this.cboDeptTime.Size = new System.Drawing.Size(107, 29);
             this.cboDeptTime.TabIndex = 30;
+            this.cboDeptTime.SelectedIndexChanged += new System.EventHandler(this.cboDeptTime_SelectedIndexChanged);
             // 
             // dtpDeptFlight
             // 
@@ -285,7 +291,7 @@
             // 
             this.btnFlightConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnFlightConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFlightConfirm.Location = new System.Drawing.Point(312, 373);
+            this.btnFlightConfirm.Location = new System.Drawing.Point(307, 521);
             this.btnFlightConfirm.Name = "btnFlightConfirm";
             this.btnFlightConfirm.Size = new System.Drawing.Size(174, 38);
             this.btnFlightConfirm.TabIndex = 13;
@@ -296,8 +302,8 @@
             // lblFlightNumber
             // 
             this.lblFlightNumber.AutoSize = true;
-            this.lblFlightNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
-            this.lblFlightNumber.Location = new System.Drawing.Point(598, 43);
+            this.lblFlightNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFlightNumber.Location = new System.Drawing.Point(14, 42);
             this.lblFlightNumber.Name = "lblFlightNumber";
             this.lblFlightNumber.Size = new System.Drawing.Size(104, 18);
             this.lblFlightNumber.TabIndex = 14;
@@ -306,9 +312,9 @@
             // lblFlightNumberDetail
             // 
             this.lblFlightNumberDetail.AutoSize = true;
-            this.lblFlightNumberDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
+            this.lblFlightNumberDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFlightNumberDetail.ForeColor = System.Drawing.Color.Plum;
-            this.lblFlightNumberDetail.Location = new System.Drawing.Point(702, 43);
+            this.lblFlightNumberDetail.Location = new System.Drawing.Point(118, 42);
             this.lblFlightNumberDetail.Name = "lblFlightNumberDetail";
             this.lblFlightNumberDetail.Size = new System.Drawing.Size(40, 18);
             this.lblFlightNumberDetail.TabIndex = 15;
@@ -317,9 +323,9 @@
             // lblRouteIdDetails
             // 
             this.lblRouteIdDetails.AutoSize = true;
-            this.lblRouteIdDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
+            this.lblRouteIdDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRouteIdDetails.ForeColor = System.Drawing.Color.Plum;
-            this.lblRouteIdDetails.Location = new System.Drawing.Point(487, 43);
+            this.lblRouteIdDetails.Location = new System.Drawing.Point(275, 42);
             this.lblRouteIdDetails.Name = "lblRouteIdDetails";
             this.lblRouteIdDetails.Size = new System.Drawing.Size(24, 18);
             this.lblRouteIdDetails.TabIndex = 17;
@@ -328,8 +334,8 @@
             // lblRouteId
             // 
             this.lblRouteId.AutoSize = true;
-            this.lblRouteId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
-            this.lblRouteId.Location = new System.Drawing.Point(420, 43);
+            this.lblRouteId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRouteId.Location = new System.Drawing.Point(208, 42);
             this.lblRouteId.Name = "lblRouteId";
             this.lblRouteId.Size = new System.Drawing.Size(70, 18);
             this.lblRouteId.TabIndex = 16;
@@ -338,9 +344,9 @@
             // lbRouteDuration
             // 
             this.lbRouteDuration.AutoSize = true;
-            this.lbRouteDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
+            this.lbRouteDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRouteDuration.ForeColor = System.Drawing.Color.Plum;
-            this.lbRouteDuration.Location = new System.Drawing.Point(328, 43);
+            this.lbRouteDuration.Location = new System.Drawing.Point(86, 79);
             this.lbRouteDuration.Name = "lbRouteDuration";
             this.lbRouteDuration.Size = new System.Drawing.Size(32, 18);
             this.lbRouteDuration.TabIndex = 19;
@@ -349,24 +355,58 @@
             // lblRouteDuration
             // 
             this.lblRouteDuration.AutoSize = true;
-            this.lblRouteDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic);
-            this.lblRouteDuration.Location = new System.Drawing.Point(261, 43);
+            this.lblRouteDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRouteDuration.Location = new System.Drawing.Point(19, 79);
             this.lblRouteDuration.Name = "lblRouteDuration";
             this.lblRouteDuration.Size = new System.Drawing.Size(68, 18);
             this.lblRouteDuration.TabIndex = 18;
             this.lblRouteDuration.Text = "Duration:";
             // 
+            // lblEstArrTimeDetail
+            // 
+            this.lblEstArrTimeDetail.AutoSize = true;
+            this.lblEstArrTimeDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstArrTimeDetail.ForeColor = System.Drawing.Color.Plum;
+            this.lblEstArrTimeDetail.Location = new System.Drawing.Point(373, 79);
+            this.lblEstArrTimeDetail.Name = "lblEstArrTimeDetail";
+            this.lblEstArrTimeDetail.Size = new System.Drawing.Size(32, 18);
+            this.lblEstArrTimeDetail.TabIndex = 20;
+            this.lblEstArrTimeDetail.Text = "000";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(208, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(159, 18);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Estimated Arrival Time:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblRouteIdDetails);
+            this.groupBox1.Controls.Add(this.lbRouteDuration);
+            this.groupBox1.Controls.Add(this.lblRouteId);
+            this.groupBox1.Controls.Add(this.lblEstArrTimeDetail);
+            this.groupBox1.Controls.Add(this.lblFlightNumberDetail);
+            this.groupBox1.Controls.Add(this.lblRouteDuration);
+            this.groupBox1.Controls.Add(this.lblFlightNumber);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.groupBox1.Location = new System.Drawing.Point(398, 68);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(422, 121);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "View Extra Details";
+            // 
             // frmScheduleFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 422);
-            this.Controls.Add(this.lbRouteDuration);
-            this.Controls.Add(this.lblRouteDuration);
-            this.Controls.Add(this.lblRouteIdDetails);
-            this.Controls.Add(this.lblRouteId);
-            this.Controls.Add(this.lblFlightNumberDetail);
-            this.Controls.Add(this.lblFlightNumber);
+            this.ClientSize = new System.Drawing.Size(866, 572);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnFlightConfirm);
             this.Controls.Add(this.grpAirportDetails);
             this.Controls.Add(this.lblAddAirport);
@@ -378,6 +418,8 @@
             this.Load += new System.EventHandler(this.frmScheduleFlight_Load);
             this.grpAirportDetails.ResumeLayout(false);
             this.grpAirportDetails.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,5 +452,8 @@
         private System.Windows.Forms.Label lblRouteId;
         private System.Windows.Forms.Label lbRouteDuration;
         private System.Windows.Forms.Label lblRouteDuration;
+        private System.Windows.Forms.Label lblEstArrTimeDetail;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

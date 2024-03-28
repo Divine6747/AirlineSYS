@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
@@ -12,6 +12,7 @@ namespace AirlineSYS
         {
             InitializeComponent();
             cboDeptAirportFlight.SelectedIndexChanged += cboDeptAirportFlight_SelectedIndexChanged;
+            cboDeptTime.SelectedIndexChanged += cboDeptTime_SelectedIndexChanged;
         }
         public frmScheduleFlight(frmAirlineMainMenu parent)
         {
@@ -33,30 +34,23 @@ namespace AirlineSYS
             else
             {
                 string dept = cboDeptAirportFlight.SelectedItem.ToString();
+
                 string arr = cboArrAirportFlight.SelectedItem.ToString();
 
-                Route route = new Route();
+                Route getRouteID = new Route();
 
-                int duration = route.getDuration(dept, arr);
+                int routeID = getRouteID.getRouteID(dept, arr);
 
-                if (duration != -1)
+                if (routeID != -1)
                 {
-                    DateTime deptDateTime = dtpDeptFlight.Value.Date + TimeSpan.Parse(cboDeptTime.SelectedItem.ToString());
-
-                    // Handling time format for adding duration
-                    DateTime estArrivalTime = deptDateTime.AddMinutes(duration);
-                    string estArrivalTimeString = estArrivalTime.ToString("hh:mm tt");
-
                     MessageBox.Show("Flight has been scheduled", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show(
-                                    "Flight Details:\n" +
-                                     lblFlightNumberDetail.Text + "\n\n" +
+                    MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
+                                     lblFlightNumberDetail + "\n\n" +
                                      cboOperatorCodeFlight.SelectedItem + "\n\n" +
                                      txtNumFlightSeats.Text + "\n\n" +
                                      txtTicketPriceFlight.Text + "\n\n" +
                                      dtpDeptFlight.Text + "\n\n" +
-                                     cboDeptTime.SelectedItem + "\n\n" +
-                                     "Estimated Arrival Time: " + estArrivalTimeString, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                     cboDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     cboArrAirportFlight.SelectedIndex = -1;
                     cboDeptAirportFlight.SelectedIndex = -1;
@@ -64,6 +58,7 @@ namespace AirlineSYS
                     txtNumFlightSeats.Clear();
                     dtpDeptFlight.Value = DateTime.Now;
                     cboDeptTime.SelectedIndex = -1;
+                    txtTicketPriceFlight.Clear();
                     txtTicketPriceFlight.Text = "0.00";
                 }
                 else
@@ -137,8 +132,8 @@ namespace AirlineSYS
             {
                 string dept = cboDeptAirportFlight.SelectedItem.ToString();
                 string arr = cboArrAirportFlight.SelectedItem.ToString();
-                Route route = new Route();
-                int routeID = route.getRouteID(dept, arr);
+                Route checkRoutExist = new Route();
+                int routeID = checkRoutExist.getRouteID(dept, arr);
 
                 if (routeID != -1)
                 {                    
@@ -184,6 +179,37 @@ namespace AirlineSYS
                     lbRouteDuration.Text = "Not found";
                 }
             }
+        }
+        private void calculateEstArrTime()
+        {
+            if (cboDeptTime.SelectedItem != null && lbRouteDuration.Text != "Not found")
+            {
+                string selectedDeptTime = cboDeptTime.SelectedItem.ToString();
+                int duration = int.Parse(lbRouteDuration.Text);
+
+                DateTime deptTime;
+
+                DateTime.TryParseExact(selectedDeptTime, "hh:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out deptTime);
+
+                DateTime estimatedArrivalTime = deptTime.AddMinutes(duration);
+
+                lblEstArrTimeDetail.Text = estimatedArrivalTime.ToString("hh:mm tt");
+            
+            }
+            else
+            {
+                lblEstArrTimeDetail.Text = "cannot be calculated";
+            }
+        }
+
+        private void cboDeptTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            calculateEstArrTime();
+        }
+
+        private void grpAirportDetails_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
