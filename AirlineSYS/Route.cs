@@ -296,7 +296,7 @@ namespace AirlineSYS
             return routeID;
         }
 
-        // Inside the Route class
+        //Getting the duration of a route from the Routes table
         public int getDuration(string dept, string arr)
         {
             int duration = -1;
@@ -332,6 +332,5 @@ namespace AirlineSYS
             }
             return duration;
         }
-
     }
 }
