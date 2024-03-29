@@ -129,6 +129,7 @@ namespace AirlineSYS
             {
                 cboDeptTime.Items.Add(time.getFlightTime());
             }
+            cboDeptTime.Enabled = false;
         }
         public bool checkRoutExist()
         {
@@ -143,24 +144,26 @@ namespace AirlineSYS
                 {
                     lblRouteIdDetails.Text = routeID.ToString();
                     cboDeptTime.Enabled = true;
+                    lblEstArrTimeDetail.Text = "Select A Departure Time";
                     return true;
                 }
                 else
                 {
                     lblRouteIdDetails.Text = "Does Not Exist";
-                    cboDeptTime.SelectedIndex = -1;
-                    cboDeptTime.Enabled= false;
+                    lblRouteDurationDetail.Text = "Not Retrieved";
+                    lblEstArrTimeDetail.Text = "Cannot Be Calculated";
+                    cboDeptTime.Enabled = false;
                     return false;
                 }
             }
-            return true;
+            cboDeptTime.Enabled = false;
+            return false;
         }
         private void cboDeptAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!checkRoutExist())
             {
                 cboDeptTime.SelectedIndex = -1;
-                lblEstArrTimeDetail.Text = "Cannot Be Calculated";
                 return;
             }            
             checkDuration();
@@ -169,8 +172,6 @@ namespace AirlineSYS
         {
             if (!checkRoutExist())
             {               
-                lblRouteDurationDetail.Text = "000";
-                lblEstArrTimeDetail.Text = "Cannot Be Calculated";
                 cboDeptTime.SelectedIndex = -1;
                 return;
             }
@@ -192,13 +193,14 @@ namespace AirlineSYS
                 }
                 else
                 {
-                    lblRouteDurationDetail.Text = "Not Found";
+                    lblRouteDurationDetail.Text = "Does Not Exist";
+                    cboDeptTime.Enabled = false;
                 }
             }
         }
         private void calculateEstArrTime()
         {
-            if (cboDeptTime.SelectedItem != null && lblRouteDurationDetail.Text != "Not found")
+            if (cboDeptTime.SelectedItem != null &&  lblRouteDurationDetail.Text != "Does Not Exist")
             {
                 string selectedDeptTime = cboDeptTime.SelectedItem.ToString();
                 int duration = int.Parse(lblRouteDurationDetail.Text);

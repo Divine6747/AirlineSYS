@@ -59,10 +59,11 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.munBack.Location = new System.Drawing.Point(740, 1);
+            this.munBack.Location = new System.Drawing.Point(987, 1);
+            this.munBack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.munBack.Name = "munBack";
-            this.munBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.munBack.Size = new System.Drawing.Size(60, 20);
+            this.munBack.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            this.munBack.Size = new System.Drawing.Size(77, 25);
             this.munBack.TabIndex = 7;
             this.munBack.Text = "Back";
             this.munBack.Click += new System.EventHandler(this.munBack_Click);
@@ -74,16 +75,17 @@
             this.mnuUpdateFlight.Location = new System.Drawing.Point(0, 0);
             this.mnuUpdateFlight.Name = "mnuUpdateFlight";
             this.mnuUpdateFlight.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuUpdateFlight.Size = new System.Drawing.Size(800, 24);
+            this.mnuUpdateFlight.Size = new System.Drawing.Size(1067, 24);
             this.mnuUpdateFlight.TabIndex = 6;
             // 
             // btnAirportConfirm
             // 
             this.btnAirportConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnAirportConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAirportConfirm.Location = new System.Drawing.Point(313, 400);
+            this.btnAirportConfirm.Location = new System.Drawing.Point(417, 492);
+            this.btnAirportConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAirportConfirm.Name = "btnAirportConfirm";
-            this.btnAirportConfirm.Size = new System.Drawing.Size(174, 38);
+            this.btnAirportConfirm.Size = new System.Drawing.Size(232, 47);
             this.btnAirportConfirm.TabIndex = 16;
             this.btnAirportConfirm.Text = "CONFIRM";
             this.btnAirportConfirm.UseVisualStyleBackColor = false;
@@ -106,9 +108,11 @@
             this.grpUpdateFlightDetails.Controls.Add(this.lblAirportName);
             this.grpUpdateFlightDetails.Controls.Add(this.lblAirportCode);
             this.grpUpdateFlightDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpUpdateFlightDetails.Location = new System.Drawing.Point(26, 114);
+            this.grpUpdateFlightDetails.Location = new System.Drawing.Point(35, 140);
+            this.grpUpdateFlightDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grpUpdateFlightDetails.Name = "grpUpdateFlightDetails";
-            this.grpUpdateFlightDetails.Size = new System.Drawing.Size(749, 262);
+            this.grpUpdateFlightDetails.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpUpdateFlightDetails.Size = new System.Drawing.Size(999, 322);
             this.grpUpdateFlightDetails.TabIndex = 15;
             this.grpUpdateFlightDetails.TabStop = false;
             this.grpUpdateFlightDetails.Text = "Update Flight Details";
@@ -134,9 +138,10 @@
             "TK: - Turkish Airlines",
             "UA - United Airlines",
             "FR - Ryanair"});
-            this.cboOperatorCodeFlight.Location = new System.Drawing.Point(170, 98);
+            this.cboOperatorCodeFlight.Location = new System.Drawing.Point(227, 121);
+            this.cboOperatorCodeFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboOperatorCodeFlight.Name = "cboOperatorCodeFlight";
-            this.cboOperatorCodeFlight.Size = new System.Drawing.Size(184, 29);
+            this.cboOperatorCodeFlight.Size = new System.Drawing.Size(244, 36);
             this.cboOperatorCodeFlight.TabIndex = 38;
             // 
             // cboDeptTime
@@ -158,18 +163,20 @@
             "11:00 AM",
             "00:00 AM",
             "12:00 PM"});
-            this.cboDeptTime.Location = new System.Drawing.Point(535, 149);
+            this.cboDeptTime.Location = new System.Drawing.Point(713, 183);
+            this.cboDeptTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboDeptTime.Name = "cboDeptTime";
-            this.cboDeptTime.Size = new System.Drawing.Size(184, 29);
+            this.cboDeptTime.Size = new System.Drawing.Size(244, 36);
             this.cboDeptTime.TabIndex = 37;
             // 
             // dtpDeptFlight
             // 
             this.dtpDeptFlight.CustomFormat = "dd-MM-yyyy";
             this.dtpDeptFlight.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDeptFlight.Location = new System.Drawing.Point(170, 156);
+            this.dtpDeptFlight.Location = new System.Drawing.Point(227, 192);
+            this.dtpDeptFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpDeptFlight.Name = "dtpDeptFlight";
-            this.dtpDeptFlight.Size = new System.Drawing.Size(184, 29);
+            this.dtpDeptFlight.Size = new System.Drawing.Size(244, 34);
             this.dtpDeptFlight.TabIndex = 36;
             // 
             // cboArrAirportFlight
@@ -193,16 +200,18 @@
             "SHA",
             "FCO",
             "BGY"});
-            this.cboArrAirportFlight.Location = new System.Drawing.Point(535, 43);
+            this.cboArrAirportFlight.Location = new System.Drawing.Point(713, 53);
+            this.cboArrAirportFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboArrAirportFlight.Name = "cboArrAirportFlight";
-            this.cboArrAirportFlight.Size = new System.Drawing.Size(184, 29);
+            this.cboArrAirportFlight.Size = new System.Drawing.Size(244, 36);
             this.cboArrAirportFlight.TabIndex = 33;
             // 
             // txtTicketPriceFlight
             // 
-            this.txtTicketPriceFlight.Location = new System.Drawing.Point(170, 212);
+            this.txtTicketPriceFlight.Location = new System.Drawing.Point(227, 261);
+            this.txtTicketPriceFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTicketPriceFlight.Name = "txtTicketPriceFlight";
-            this.txtTicketPriceFlight.Size = new System.Drawing.Size(184, 29);
+            this.txtTicketPriceFlight.Size = new System.Drawing.Size(244, 34);
             this.txtTicketPriceFlight.TabIndex = 35;
             // 
             // cboDeptAirportFlight
@@ -225,25 +234,28 @@
             "SHA",
             "FCO",
             "BGY"});
-            this.cboDeptAirportFlight.Location = new System.Drawing.Point(170, 41);
+            this.cboDeptAirportFlight.Location = new System.Drawing.Point(227, 50);
+            this.cboDeptAirportFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboDeptAirportFlight.Name = "cboDeptAirportFlight";
-            this.cboDeptAirportFlight.Size = new System.Drawing.Size(184, 29);
+            this.cboDeptAirportFlight.Size = new System.Drawing.Size(244, 36);
             this.cboDeptAirportFlight.TabIndex = 32;
             // 
             // txtNumFlightSeats
             // 
-            this.txtNumFlightSeats.Location = new System.Drawing.Point(535, 97);
+            this.txtNumFlightSeats.Location = new System.Drawing.Point(713, 119);
+            this.txtNumFlightSeats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNumFlightSeats.Name = "txtNumFlightSeats";
-            this.txtNumFlightSeats.Size = new System.Drawing.Size(184, 29);
+            this.txtNumFlightSeats.Size = new System.Drawing.Size(244, 34);
             this.txtNumFlightSeats.TabIndex = 34;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(31, 215);
+            this.label3.Location = new System.Drawing.Point(41, 265);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 18);
+            this.label3.Size = new System.Drawing.Size(108, 24);
             this.label3.TabIndex = 26;
             this.label3.Text = "Ticket Price";
             // 
@@ -251,9 +263,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(405, 99);
+            this.label2.Location = new System.Drawing.Point(540, 122);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 18);
+            this.label2.Size = new System.Drawing.Size(150, 24);
             this.label2.TabIndex = 24;
             this.label2.Text = "Number of Seats";
             // 
@@ -261,9 +274,10 @@
             // 
             this.lblOperatorCode.AutoSize = true;
             this.lblOperatorCode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperatorCode.Location = new System.Drawing.Point(31, 100);
+            this.lblOperatorCode.Location = new System.Drawing.Point(41, 123);
+            this.lblOperatorCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOperatorCode.Name = "lblOperatorCode";
-            this.lblOperatorCode.Size = new System.Drawing.Size(113, 21);
+            this.lblOperatorCode.Size = new System.Drawing.Size(143, 28);
             this.lblOperatorCode.TabIndex = 20;
             this.lblOperatorCode.Text = "Operator Code";
             // 
@@ -271,9 +285,10 @@
             // 
             this.lblAirportEmail.AutoSize = true;
             this.lblAirportEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAirportEmail.Location = new System.Drawing.Point(405, 152);
+            this.lblAirportEmail.Location = new System.Drawing.Point(540, 187);
+            this.lblAirportEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAirportEmail.Name = "lblAirportEmail";
-            this.lblAirportEmail.Size = new System.Drawing.Size(110, 18);
+            this.lblAirportEmail.Size = new System.Drawing.Size(141, 24);
             this.lblAirportEmail.TabIndex = 19;
             this.lblAirportEmail.Text = "Departure Time";
             // 
@@ -281,9 +296,10 @@
             // 
             this.lblAirportPhone.AutoSize = true;
             this.lblAirportPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAirportPhone.Location = new System.Drawing.Point(31, 159);
+            this.lblAirportPhone.Location = new System.Drawing.Point(41, 196);
+            this.lblAirportPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAirportPhone.Name = "lblAirportPhone";
-            this.lblAirportPhone.Size = new System.Drawing.Size(108, 18);
+            this.lblAirportPhone.Size = new System.Drawing.Size(136, 24);
             this.lblAirportPhone.TabIndex = 17;
             this.lblAirportPhone.Text = "Departure Date";
             // 
@@ -291,9 +307,10 @@
             // 
             this.lblAirportName.AutoSize = true;
             this.lblAirportName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAirportName.Location = new System.Drawing.Point(405, 46);
+            this.lblAirportName.Location = new System.Drawing.Point(540, 57);
+            this.lblAirportName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAirportName.Name = "lblAirportName";
-            this.lblAirportName.Size = new System.Drawing.Size(95, 18);
+            this.lblAirportName.Size = new System.Drawing.Size(122, 24);
             this.lblAirportName.TabIndex = 9;
             this.lblAirportName.Text = "Arrival Airport";
             // 
@@ -301,9 +318,10 @@
             // 
             this.lblAirportCode.AutoSize = true;
             this.lblAirportCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAirportCode.Location = new System.Drawing.Point(31, 44);
+            this.lblAirportCode.Location = new System.Drawing.Point(41, 54);
+            this.lblAirportCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAirportCode.Name = "lblAirportCode";
-            this.lblAirportCode.Size = new System.Drawing.Size(120, 18);
+            this.lblAirportCode.Size = new System.Drawing.Size(153, 24);
             this.lblAirportCode.TabIndex = 7;
             this.lblAirportCode.Text = "Departure Airport";
             // 
@@ -311,27 +329,30 @@
             // 
             this.lblAddAirport.AutoSize = true;
             this.lblAddAirport.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddAirport.Location = new System.Drawing.Point(25, 28);
+            this.lblAddAirport.Location = new System.Drawing.Point(33, 34);
+            this.lblAddAirport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddAirport.Name = "lblAddAirport";
-            this.lblAddAirport.Size = new System.Drawing.Size(137, 30);
+            this.lblAddAirport.Size = new System.Drawing.Size(179, 37);
             this.lblAddAirport.TabIndex = 14;
             this.lblAddAirport.Text = "Update Flight";
             // 
             // txtUpdateFlightNumber
             // 
             this.txtUpdateFlightNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateFlightNumber.Location = new System.Drawing.Point(290, 61);
+            this.txtUpdateFlightNumber.Location = new System.Drawing.Point(387, 75);
+            this.txtUpdateFlightNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUpdateFlightNumber.Name = "txtUpdateFlightNumber";
-            this.txtUpdateFlightNumber.Size = new System.Drawing.Size(173, 29);
+            this.txtUpdateFlightNumber.Size = new System.Drawing.Size(229, 34);
             this.txtUpdateFlightNumber.TabIndex = 23;
             // 
             // lblFlightNumber
             // 
             this.lblFlightNumber.AutoSize = true;
             this.lblFlightNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFlightNumber.Location = new System.Drawing.Point(170, 63);
+            this.lblFlightNumber.Location = new System.Drawing.Point(227, 78);
+            this.lblFlightNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFlightNumber.Name = "lblFlightNumber";
-            this.lblFlightNumber.Size = new System.Drawing.Size(111, 21);
+            this.lblFlightNumber.Size = new System.Drawing.Size(139, 28);
             this.lblFlightNumber.TabIndex = 22;
             this.lblFlightNumber.Text = "Flight Number";
             // 
@@ -339,9 +360,10 @@
             // 
             this.btnFlightSearch.BackColor = System.Drawing.Color.Plum;
             this.btnFlightSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnFlightSearch.Location = new System.Drawing.Point(504, 61);
+            this.btnFlightSearch.Location = new System.Drawing.Point(672, 75);
+            this.btnFlightSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFlightSearch.Name = "btnFlightSearch";
-            this.btnFlightSearch.Size = new System.Drawing.Size(126, 28);
+            this.btnFlightSearch.Size = new System.Drawing.Size(168, 34);
             this.btnFlightSearch.TabIndex = 24;
             this.btnFlightSearch.Text = "SEARCH";
             this.btnFlightSearch.UseVisualStyleBackColor = false;
@@ -349,9 +371,9 @@
             // 
             // frmUpdateFlight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.btnFlightSearch);
             this.Controls.Add(this.txtUpdateFlightNumber);
             this.Controls.Add(this.lblFlightNumber);
@@ -361,8 +383,10 @@
             this.Controls.Add(this.munBack);
             this.Controls.Add(this.mnuUpdateFlight);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmUpdateFlight";
             this.Text = "Update Flight";
+            this.Load += new System.EventHandler(this.frmUpdateFlight_Load);
             this.grpUpdateFlightDetails.ResumeLayout(false);
             this.grpUpdateFlightDetails.PerformLayout();
             this.ResumeLayout(false);
