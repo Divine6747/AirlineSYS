@@ -170,7 +170,7 @@ namespace AirlineSYS
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
                     conn.Open();
 
-                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    using(OracleDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {

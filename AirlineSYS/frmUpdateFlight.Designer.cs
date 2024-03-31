@@ -31,15 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpdateFlight));
             this.munBack = new System.Windows.Forms.Label();
             this.mnuUpdateFlight = new System.Windows.Forms.MenuStrip();
-            this.btnAirportConfirm = new System.Windows.Forms.Button();
+            this.btnUpdateFlightConfirm = new System.Windows.Forms.Button();
             this.grpUpdateFlightDetails = new System.Windows.Forms.GroupBox();
-            this.cboOperatorCodeFlight = new System.Windows.Forms.ComboBox();
-            this.cboDeptTime = new System.Windows.Forms.ComboBox();
-            this.dtpDeptFlight = new System.Windows.Forms.DateTimePicker();
-            this.cboArrAirportFlight = new System.Windows.Forms.ComboBox();
-            this.txtTicketPriceFlight = new System.Windows.Forms.TextBox();
-            this.cboDeptAirportFlight = new System.Windows.Forms.ComboBox();
-            this.txtNumFlightSeats = new System.Windows.Forms.TextBox();
+            this.cboUpdateOperatorCodeFlight = new System.Windows.Forms.ComboBox();
+            this.cboUpdateDeptTime = new System.Windows.Forms.ComboBox();
+            this.dtpUpdateDeptFlight = new System.Windows.Forms.DateTimePicker();
+            this.cboUpdateArrAirportFlight = new System.Windows.Forms.ComboBox();
+            this.txtUpdateTicketPriceFlight = new System.Windows.Forms.TextBox();
+            this.cboUpdateDeptAirportFlight = new System.Windows.Forms.ComboBox();
+            this.txtUpdateNumFlightSeats = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblOperatorCode = new System.Windows.Forms.Label();
@@ -48,10 +48,21 @@
             this.lblAirportName = new System.Windows.Forms.Label();
             this.lblAirportCode = new System.Windows.Forms.Label();
             this.lblAddAirport = new System.Windows.Forms.Label();
-            this.txtUpdateFlightNumber = new System.Windows.Forms.TextBox();
-            this.lblFlightNumber = new System.Windows.Forms.Label();
-            this.btnFlightSearch = new System.Windows.Forms.Button();
+            this.lblUpdateFlightList = new System.Windows.Forms.Label();
+            this.btnUpdateFlightSearch = new System.Windows.Forms.Button();
+            this.cboUpdateFlight = new System.Windows.Forms.ComboBox();
+            this.lblEndRouteDetails = new System.Windows.Forms.Label();
+            this.grpViewUpdateFlightDetails = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblUpdateFlightRouteIdDetails = new System.Windows.Forms.Label();
+            this.lblUpdateFlightRouteDurationDetail = new System.Windows.Forms.Label();
+            this.lblRouteId = new System.Windows.Forms.Label();
+            this.lblUpdateFlightEstArrTimeDetail = new System.Windows.Forms.Label();
+            this.lblUpdateFlightNumberDetail = new System.Windows.Forms.Label();
+            this.lblRouteDuration = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.grpUpdateFlightDetails.SuspendLayout();
+            this.grpViewUpdateFlightDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // munBack
@@ -59,7 +70,7 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.munBack.Location = new System.Drawing.Point(987, 1);
+            this.munBack.Location = new System.Drawing.Point(1078, -1);
             this.munBack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.munBack.Name = "munBack";
             this.munBack.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
@@ -75,31 +86,31 @@
             this.mnuUpdateFlight.Location = new System.Drawing.Point(0, 0);
             this.mnuUpdateFlight.Name = "mnuUpdateFlight";
             this.mnuUpdateFlight.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuUpdateFlight.Size = new System.Drawing.Size(1067, 24);
+            this.mnuUpdateFlight.Size = new System.Drawing.Size(1155, 24);
             this.mnuUpdateFlight.TabIndex = 6;
             // 
-            // btnAirportConfirm
+            // btnUpdateFlightConfirm
             // 
-            this.btnAirportConfirm.BackColor = System.Drawing.Color.Plum;
-            this.btnAirportConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAirportConfirm.Location = new System.Drawing.Point(417, 492);
-            this.btnAirportConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnAirportConfirm.Name = "btnAirportConfirm";
-            this.btnAirportConfirm.Size = new System.Drawing.Size(232, 47);
-            this.btnAirportConfirm.TabIndex = 16;
-            this.btnAirportConfirm.Text = "CONFIRM";
-            this.btnAirportConfirm.UseVisualStyleBackColor = false;
-            this.btnAirportConfirm.Click += new System.EventHandler(this.btnAirportConfirm_Click);
+            this.btnUpdateFlightConfirm.BackColor = System.Drawing.Color.Plum;
+            this.btnUpdateFlightConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateFlightConfirm.Location = new System.Drawing.Point(461, 671);
+            this.btnUpdateFlightConfirm.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateFlightConfirm.Name = "btnUpdateFlightConfirm";
+            this.btnUpdateFlightConfirm.Size = new System.Drawing.Size(232, 47);
+            this.btnUpdateFlightConfirm.TabIndex = 13;
+            this.btnUpdateFlightConfirm.Text = "CONFIRM";
+            this.btnUpdateFlightConfirm.UseVisualStyleBackColor = false;
+            this.btnUpdateFlightConfirm.Click += new System.EventHandler(this.btnAirportConfirm_Click);
             // 
             // grpUpdateFlightDetails
             // 
-            this.grpUpdateFlightDetails.Controls.Add(this.cboOperatorCodeFlight);
-            this.grpUpdateFlightDetails.Controls.Add(this.cboDeptTime);
-            this.grpUpdateFlightDetails.Controls.Add(this.dtpDeptFlight);
-            this.grpUpdateFlightDetails.Controls.Add(this.cboArrAirportFlight);
-            this.grpUpdateFlightDetails.Controls.Add(this.txtTicketPriceFlight);
-            this.grpUpdateFlightDetails.Controls.Add(this.cboDeptAirportFlight);
-            this.grpUpdateFlightDetails.Controls.Add(this.txtNumFlightSeats);
+            this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateOperatorCodeFlight);
+            this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateDeptTime);
+            this.grpUpdateFlightDetails.Controls.Add(this.dtpUpdateDeptFlight);
+            this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateArrAirportFlight);
+            this.grpUpdateFlightDetails.Controls.Add(this.txtUpdateTicketPriceFlight);
+            this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateDeptAirportFlight);
+            this.grpUpdateFlightDetails.Controls.Add(this.txtUpdateNumFlightSeats);
             this.grpUpdateFlightDetails.Controls.Add(this.label3);
             this.grpUpdateFlightDetails.Controls.Add(this.label2);
             this.grpUpdateFlightDetails.Controls.Add(this.lblOperatorCode);
@@ -108,47 +119,31 @@
             this.grpUpdateFlightDetails.Controls.Add(this.lblAirportName);
             this.grpUpdateFlightDetails.Controls.Add(this.lblAirportCode);
             this.grpUpdateFlightDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpUpdateFlightDetails.Location = new System.Drawing.Point(35, 140);
-            this.grpUpdateFlightDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpUpdateFlightDetails.Location = new System.Drawing.Point(77, 301);
+            this.grpUpdateFlightDetails.Margin = new System.Windows.Forms.Padding(4);
             this.grpUpdateFlightDetails.Name = "grpUpdateFlightDetails";
-            this.grpUpdateFlightDetails.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpUpdateFlightDetails.Size = new System.Drawing.Size(999, 322);
+            this.grpUpdateFlightDetails.Padding = new System.Windows.Forms.Padding(4);
+            this.grpUpdateFlightDetails.Size = new System.Drawing.Size(999, 338);
             this.grpUpdateFlightDetails.TabIndex = 15;
             this.grpUpdateFlightDetails.TabStop = false;
             this.grpUpdateFlightDetails.Text = "Update Flight Details";
             this.grpUpdateFlightDetails.Visible = false;
             // 
-            // cboOperatorCodeFlight
+            // cboUpdateOperatorCodeFlight
             // 
-            this.cboOperatorCodeFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboOperatorCodeFlight.FormattingEnabled = true;
-            this.cboOperatorCodeFlight.Items.AddRange(new object[] {
-            "AA - American Airlines",
-            "DL - Delta Air Lines",
-            "EK - Emirates",
-            "LH -  Lufthansa",
-            "BA -  British Airways",
-            "AC - Air Canada",
-            "QF - Qantas",
-            "SQ -  Singapore Airlines",
-            "CX - Cathay Pacific",
-            "WN - Southwest Airlines",
-            "AF - Air France",
-            "JL - Japan Airlines",
-            "TK: - Turkish Airlines",
-            "UA - United Airlines",
-            "FR - Ryanair"});
-            this.cboOperatorCodeFlight.Location = new System.Drawing.Point(227, 121);
-            this.cboOperatorCodeFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cboOperatorCodeFlight.Name = "cboOperatorCodeFlight";
-            this.cboOperatorCodeFlight.Size = new System.Drawing.Size(244, 36);
-            this.cboOperatorCodeFlight.TabIndex = 38;
+            this.cboUpdateOperatorCodeFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUpdateOperatorCodeFlight.FormattingEnabled = true;
+            this.cboUpdateOperatorCodeFlight.Location = new System.Drawing.Point(227, 121);
+            this.cboUpdateOperatorCodeFlight.Margin = new System.Windows.Forms.Padding(4);
+            this.cboUpdateOperatorCodeFlight.Name = "cboUpdateOperatorCodeFlight";
+            this.cboUpdateOperatorCodeFlight.Size = new System.Drawing.Size(159, 36);
+            this.cboUpdateOperatorCodeFlight.TabIndex = 38;
             // 
-            // cboDeptTime
+            // cboUpdateDeptTime
             // 
-            this.cboDeptTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDeptTime.FormattingEnabled = true;
-            this.cboDeptTime.Items.AddRange(new object[] {
+            this.cboUpdateDeptTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUpdateDeptTime.FormattingEnabled = true;
+            this.cboUpdateDeptTime.Items.AddRange(new object[] {
             "18:00 PM",
             "06:00 AM",
             "19:00 PM",
@@ -163,27 +158,27 @@
             "11:00 AM",
             "00:00 AM",
             "12:00 PM"});
-            this.cboDeptTime.Location = new System.Drawing.Point(713, 183);
-            this.cboDeptTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cboDeptTime.Name = "cboDeptTime";
-            this.cboDeptTime.Size = new System.Drawing.Size(244, 36);
-            this.cboDeptTime.TabIndex = 37;
+            this.cboUpdateDeptTime.Location = new System.Drawing.Point(713, 183);
+            this.cboUpdateDeptTime.Margin = new System.Windows.Forms.Padding(4);
+            this.cboUpdateDeptTime.Name = "cboUpdateDeptTime";
+            this.cboUpdateDeptTime.Size = new System.Drawing.Size(159, 36);
+            this.cboUpdateDeptTime.TabIndex = 37;
             // 
-            // dtpDeptFlight
+            // dtpUpdateDeptFlight
             // 
-            this.dtpDeptFlight.CustomFormat = "dd-MM-yyyy";
-            this.dtpDeptFlight.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDeptFlight.Location = new System.Drawing.Point(227, 192);
-            this.dtpDeptFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dtpDeptFlight.Name = "dtpDeptFlight";
-            this.dtpDeptFlight.Size = new System.Drawing.Size(244, 34);
-            this.dtpDeptFlight.TabIndex = 36;
+            this.dtpUpdateDeptFlight.CustomFormat = " dd-MM-yyyy";
+            this.dtpUpdateDeptFlight.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpUpdateDeptFlight.Location = new System.Drawing.Point(227, 192);
+            this.dtpUpdateDeptFlight.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpUpdateDeptFlight.Name = "dtpUpdateDeptFlight";
+            this.dtpUpdateDeptFlight.Size = new System.Drawing.Size(159, 34);
+            this.dtpUpdateDeptFlight.TabIndex = 36;
             // 
-            // cboArrAirportFlight
+            // cboUpdateArrAirportFlight
             // 
-            this.cboArrAirportFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboArrAirportFlight.FormattingEnabled = true;
-            this.cboArrAirportFlight.Items.AddRange(new object[] {
+            this.cboUpdateArrAirportFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUpdateArrAirportFlight.FormattingEnabled = true;
+            this.cboUpdateArrAirportFlight.Items.AddRange(new object[] {
             "JFK",
             "CDG",
             "DXB",
@@ -200,24 +195,24 @@
             "SHA",
             "FCO",
             "BGY"});
-            this.cboArrAirportFlight.Location = new System.Drawing.Point(713, 53);
-            this.cboArrAirportFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cboArrAirportFlight.Name = "cboArrAirportFlight";
-            this.cboArrAirportFlight.Size = new System.Drawing.Size(244, 36);
-            this.cboArrAirportFlight.TabIndex = 33;
+            this.cboUpdateArrAirportFlight.Location = new System.Drawing.Point(713, 53);
+            this.cboUpdateArrAirportFlight.Margin = new System.Windows.Forms.Padding(4);
+            this.cboUpdateArrAirportFlight.Name = "cboUpdateArrAirportFlight";
+            this.cboUpdateArrAirportFlight.Size = new System.Drawing.Size(159, 36);
+            this.cboUpdateArrAirportFlight.TabIndex = 33;
             // 
-            // txtTicketPriceFlight
+            // txtUpdateTicketPriceFlight
             // 
-            this.txtTicketPriceFlight.Location = new System.Drawing.Point(227, 261);
-            this.txtTicketPriceFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtTicketPriceFlight.Name = "txtTicketPriceFlight";
-            this.txtTicketPriceFlight.Size = new System.Drawing.Size(244, 34);
-            this.txtTicketPriceFlight.TabIndex = 35;
+            this.txtUpdateTicketPriceFlight.Location = new System.Drawing.Point(227, 261);
+            this.txtUpdateTicketPriceFlight.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUpdateTicketPriceFlight.Name = "txtUpdateTicketPriceFlight";
+            this.txtUpdateTicketPriceFlight.Size = new System.Drawing.Size(159, 34);
+            this.txtUpdateTicketPriceFlight.TabIndex = 35;
             // 
-            // cboDeptAirportFlight
+            // cboUpdateDeptAirportFlight
             // 
-            this.cboDeptAirportFlight.FormattingEnabled = true;
-            this.cboDeptAirportFlight.Items.AddRange(new object[] {
+            this.cboUpdateDeptAirportFlight.FormattingEnabled = true;
+            this.cboUpdateDeptAirportFlight.Items.AddRange(new object[] {
             "JFK",
             "CDG",
             "DXB",
@@ -234,19 +229,19 @@
             "SHA",
             "FCO",
             "BGY"});
-            this.cboDeptAirportFlight.Location = new System.Drawing.Point(227, 50);
-            this.cboDeptAirportFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cboDeptAirportFlight.Name = "cboDeptAirportFlight";
-            this.cboDeptAirportFlight.Size = new System.Drawing.Size(244, 36);
-            this.cboDeptAirportFlight.TabIndex = 32;
+            this.cboUpdateDeptAirportFlight.Location = new System.Drawing.Point(227, 50);
+            this.cboUpdateDeptAirportFlight.Margin = new System.Windows.Forms.Padding(4);
+            this.cboUpdateDeptAirportFlight.Name = "cboUpdateDeptAirportFlight";
+            this.cboUpdateDeptAirportFlight.Size = new System.Drawing.Size(159, 36);
+            this.cboUpdateDeptAirportFlight.TabIndex = 32;
             // 
-            // txtNumFlightSeats
+            // txtUpdateNumFlightSeats
             // 
-            this.txtNumFlightSeats.Location = new System.Drawing.Point(713, 119);
-            this.txtNumFlightSeats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtNumFlightSeats.Name = "txtNumFlightSeats";
-            this.txtNumFlightSeats.Size = new System.Drawing.Size(244, 34);
-            this.txtNumFlightSeats.TabIndex = 34;
+            this.txtUpdateNumFlightSeats.Location = new System.Drawing.Point(713, 119);
+            this.txtUpdateNumFlightSeats.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUpdateNumFlightSeats.Name = "txtUpdateNumFlightSeats";
+            this.txtUpdateNumFlightSeats.Size = new System.Drawing.Size(159, 34);
+            this.txtUpdateNumFlightSeats.TabIndex = 34;
             // 
             // label3
             // 
@@ -336,59 +331,194 @@
             this.lblAddAirport.TabIndex = 14;
             this.lblAddAirport.Text = "Update Flight";
             // 
-            // txtUpdateFlightNumber
+            // lblUpdateFlightList
             // 
-            this.txtUpdateFlightNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateFlightNumber.Location = new System.Drawing.Point(387, 75);
-            this.txtUpdateFlightNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtUpdateFlightNumber.Name = "txtUpdateFlightNumber";
-            this.txtUpdateFlightNumber.Size = new System.Drawing.Size(229, 34);
-            this.txtUpdateFlightNumber.TabIndex = 23;
+            this.lblUpdateFlightList.AutoSize = true;
+            this.lblUpdateFlightList.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateFlightList.Location = new System.Drawing.Point(296, 78);
+            this.lblUpdateFlightList.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUpdateFlightList.Name = "lblUpdateFlightList";
+            this.lblUpdateFlightList.Size = new System.Drawing.Size(135, 28);
+            this.lblUpdateFlightList.TabIndex = 22;
+            this.lblUpdateFlightList.Text = "Lists of Flights";
             // 
-            // lblFlightNumber
+            // btnUpdateFlightSearch
             // 
-            this.lblFlightNumber.AutoSize = true;
-            this.lblFlightNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFlightNumber.Location = new System.Drawing.Point(227, 78);
-            this.lblFlightNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFlightNumber.Name = "lblFlightNumber";
-            this.lblFlightNumber.Size = new System.Drawing.Size(139, 28);
-            this.lblFlightNumber.TabIndex = 22;
-            this.lblFlightNumber.Text = "Flight Number";
+            this.btnUpdateFlightSearch.BackColor = System.Drawing.Color.Plum;
+            this.btnUpdateFlightSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnUpdateFlightSearch.Location = new System.Drawing.Point(691, 75);
+            this.btnUpdateFlightSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateFlightSearch.Name = "btnUpdateFlightSearch";
+            this.btnUpdateFlightSearch.Size = new System.Drawing.Size(168, 34);
+            this.btnUpdateFlightSearch.TabIndex = 24;
+            this.btnUpdateFlightSearch.Text = "SEARCH";
+            this.btnUpdateFlightSearch.UseVisualStyleBackColor = false;
+            this.btnUpdateFlightSearch.Click += new System.EventHandler(this.btnFlightSearch_Click);
             // 
-            // btnFlightSearch
+            // cboUpdateFlight
             // 
-            this.btnFlightSearch.BackColor = System.Drawing.Color.Plum;
-            this.btnFlightSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnFlightSearch.Location = new System.Drawing.Point(672, 75);
-            this.btnFlightSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnFlightSearch.Name = "btnFlightSearch";
-            this.btnFlightSearch.Size = new System.Drawing.Size(168, 34);
-            this.btnFlightSearch.TabIndex = 24;
-            this.btnFlightSearch.Text = "SEARCH";
-            this.btnFlightSearch.UseVisualStyleBackColor = false;
-            this.btnFlightSearch.Click += new System.EventHandler(this.btnFlightSearch_Click);
+            this.cboUpdateFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUpdateFlight.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboUpdateFlight.FormattingEnabled = true;
+            this.cboUpdateFlight.Items.AddRange(new object[] {
+            "DUB - SHA",
+            "JFK - SHA",
+            "SHA - PEK",
+            "SNN - FCO",
+            "DUB - BGY"});
+            this.cboUpdateFlight.Location = new System.Drawing.Point(452, 73);
+            this.cboUpdateFlight.Margin = new System.Windows.Forms.Padding(4);
+            this.cboUpdateFlight.Name = "cboUpdateFlight";
+            this.cboUpdateFlight.Size = new System.Drawing.Size(218, 36);
+            this.cboUpdateFlight.TabIndex = 25;
+            // 
+            // lblEndRouteDetails
+            // 
+            this.lblEndRouteDetails.AutoSize = true;
+            this.lblEndRouteDetails.Font = new System.Drawing.Font("Segoe UI", 17F);
+            this.lblEndRouteDetails.Location = new System.Drawing.Point(359, 303);
+            this.lblEndRouteDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEndRouteDetails.Name = "lblEndRouteDetails";
+            this.lblEndRouteDetails.Size = new System.Drawing.Size(436, 40);
+            this.lblEndRouteDetails.TabIndex = 39;
+            this.lblEndRouteDetails.Text = "NO FLIGHT HAS BEEN SELECTED";
+            // 
+            // grpViewUpdateFlightDetails
+            // 
+            this.grpViewUpdateFlightDetails.Controls.Add(this.label1);
+            this.grpViewUpdateFlightDetails.Controls.Add(this.lblUpdateFlightRouteIdDetails);
+            this.grpViewUpdateFlightDetails.Controls.Add(this.lblUpdateFlightRouteDurationDetail);
+            this.grpViewUpdateFlightDetails.Controls.Add(this.lblRouteId);
+            this.grpViewUpdateFlightDetails.Controls.Add(this.lblUpdateFlightEstArrTimeDetail);
+            this.grpViewUpdateFlightDetails.Controls.Add(this.lblUpdateFlightNumberDetail);
+            this.grpViewUpdateFlightDetails.Controls.Add(this.lblRouteDuration);
+            this.grpViewUpdateFlightDetails.Controls.Add(this.label4);
+            this.grpViewUpdateFlightDetails.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grpViewUpdateFlightDetails.Location = new System.Drawing.Point(77, 135);
+            this.grpViewUpdateFlightDetails.Margin = new System.Windows.Forms.Padding(4);
+            this.grpViewUpdateFlightDetails.Name = "grpViewUpdateFlightDetails";
+            this.grpViewUpdateFlightDetails.Padding = new System.Windows.Forms.Padding(4);
+            this.grpViewUpdateFlightDetails.Size = new System.Drawing.Size(762, 149);
+            this.grpViewUpdateFlightDetails.TabIndex = 40;
+            this.grpViewUpdateFlightDetails.TabStop = false;
+            this.grpViewUpdateFlightDetails.Text = "View Extra Details";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(310, 97);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(202, 24);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Estimated Arrival Time:";
+            // 
+            // lblUpdateFlightRouteIdDetails
+            // 
+            this.lblUpdateFlightRouteIdDetails.AutoSize = true;
+            this.lblUpdateFlightRouteIdDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateFlightRouteIdDetails.ForeColor = System.Drawing.Color.Plum;
+            this.lblUpdateFlightRouteIdDetails.Location = new System.Drawing.Point(401, 52);
+            this.lblUpdateFlightRouteIdDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUpdateFlightRouteIdDetails.Name = "lblUpdateFlightRouteIdDetails";
+            this.lblUpdateFlightRouteIdDetails.Size = new System.Drawing.Size(175, 24);
+            this.lblUpdateFlightRouteIdDetails.TabIndex = 17;
+            this.lblUpdateFlightRouteIdDetails.Text = "No Route Retrieved";
+            // 
+            // lblUpdateFlightRouteDurationDetail
+            // 
+            this.lblUpdateFlightRouteDurationDetail.AutoSize = true;
+            this.lblUpdateFlightRouteDurationDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateFlightRouteDurationDetail.ForeColor = System.Drawing.Color.Plum;
+            this.lblUpdateFlightRouteDurationDetail.Location = new System.Drawing.Point(111, 97);
+            this.lblUpdateFlightRouteDurationDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUpdateFlightRouteDurationDetail.Name = "lblUpdateFlightRouteDurationDetail";
+            this.lblUpdateFlightRouteDurationDetail.Size = new System.Drawing.Size(173, 24);
+            this.lblUpdateFlightRouteDurationDetail.TabIndex = 19;
+            this.lblUpdateFlightRouteDurationDetail.Text = "Does Not Retrieved";
+            // 
+            // lblRouteId
+            // 
+            this.lblRouteId.AutoSize = true;
+            this.lblRouteId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRouteId.Location = new System.Drawing.Point(310, 52);
+            this.lblRouteId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRouteId.Name = "lblRouteId";
+            this.lblRouteId.Size = new System.Drawing.Size(87, 24);
+            this.lblRouteId.TabIndex = 16;
+            this.lblRouteId.Text = "Route ID:";
+            // 
+            // lblUpdateFlightEstArrTimeDetail
+            // 
+            this.lblUpdateFlightEstArrTimeDetail.AutoSize = true;
+            this.lblUpdateFlightEstArrTimeDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateFlightEstArrTimeDetail.ForeColor = System.Drawing.Color.Plum;
+            this.lblUpdateFlightEstArrTimeDetail.Location = new System.Drawing.Point(518, 97);
+            this.lblUpdateFlightEstArrTimeDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUpdateFlightEstArrTimeDetail.Name = "lblUpdateFlightEstArrTimeDetail";
+            this.lblUpdateFlightEstArrTimeDetail.Size = new System.Drawing.Size(195, 24);
+            this.lblUpdateFlightEstArrTimeDetail.TabIndex = 20;
+            this.lblUpdateFlightEstArrTimeDetail.Text = "No Duration Retrieved";
+            // 
+            // lblUpdateFlightNumberDetail
+            // 
+            this.lblUpdateFlightNumberDetail.AutoSize = true;
+            this.lblUpdateFlightNumberDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateFlightNumberDetail.ForeColor = System.Drawing.Color.Plum;
+            this.lblUpdateFlightNumberDetail.Location = new System.Drawing.Point(160, 52);
+            this.lblUpdateFlightNumberDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUpdateFlightNumberDetail.Name = "lblUpdateFlightNumberDetail";
+            this.lblUpdateFlightNumberDetail.Size = new System.Drawing.Size(82, 24);
+            this.lblUpdateFlightNumberDetail.TabIndex = 15;
+            this.lblUpdateFlightNumberDetail.Text = "N/A0000";
+            // 
+            // lblRouteDuration
+            // 
+            this.lblRouteDuration.AutoSize = true;
+            this.lblRouteDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRouteDuration.Location = new System.Drawing.Point(22, 97);
+            this.lblRouteDuration.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRouteDuration.Name = "lblRouteDuration";
+            this.lblRouteDuration.Size = new System.Drawing.Size(85, 24);
+            this.lblRouteDuration.TabIndex = 18;
+            this.lblRouteDuration.Text = "Duration:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(22, 52);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(135, 24);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Flight Number:";
             // 
             // frmUpdateFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.btnFlightSearch);
-            this.Controls.Add(this.txtUpdateFlightNumber);
-            this.Controls.Add(this.lblFlightNumber);
-            this.Controls.Add(this.btnAirportConfirm);
+            this.ClientSize = new System.Drawing.Size(1155, 738);
+            this.Controls.Add(this.grpViewUpdateFlightDetails);
             this.Controls.Add(this.grpUpdateFlightDetails);
+            this.Controls.Add(this.cboUpdateFlight);
+            this.Controls.Add(this.btnUpdateFlightSearch);
+            this.Controls.Add(this.lblUpdateFlightList);
+            this.Controls.Add(this.btnUpdateFlightConfirm);
             this.Controls.Add(this.lblAddAirport);
             this.Controls.Add(this.munBack);
             this.Controls.Add(this.mnuUpdateFlight);
+            this.Controls.Add(this.lblEndRouteDetails);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmUpdateFlight";
             this.Text = "Update Flight";
             this.Load += new System.EventHandler(this.frmUpdateFlight_Load);
             this.grpUpdateFlightDetails.ResumeLayout(false);
             this.grpUpdateFlightDetails.PerformLayout();
+            this.grpViewUpdateFlightDetails.ResumeLayout(false);
+            this.grpViewUpdateFlightDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,7 +528,7 @@
 
         private System.Windows.Forms.Label munBack;
         private System.Windows.Forms.MenuStrip mnuUpdateFlight;
-        private System.Windows.Forms.Button btnAirportConfirm;
+        private System.Windows.Forms.Button btnUpdateFlightConfirm;
         private System.Windows.Forms.GroupBox grpUpdateFlightDetails;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -408,15 +538,25 @@
         private System.Windows.Forms.Label lblAirportName;
         private System.Windows.Forms.Label lblAirportCode;
         private System.Windows.Forms.Label lblAddAirport;
-        private System.Windows.Forms.TextBox txtUpdateFlightNumber;
-        private System.Windows.Forms.Label lblFlightNumber;
-        private System.Windows.Forms.Button btnFlightSearch;
-        private System.Windows.Forms.ComboBox cboOperatorCodeFlight;
-        private System.Windows.Forms.ComboBox cboDeptTime;
-        private System.Windows.Forms.DateTimePicker dtpDeptFlight;
-        private System.Windows.Forms.ComboBox cboArrAirportFlight;
-        private System.Windows.Forms.TextBox txtTicketPriceFlight;
-        private System.Windows.Forms.ComboBox cboDeptAirportFlight;
-        private System.Windows.Forms.TextBox txtNumFlightSeats;
+        private System.Windows.Forms.Label lblUpdateFlightList;
+        private System.Windows.Forms.Button btnUpdateFlightSearch;
+        private System.Windows.Forms.ComboBox cboUpdateOperatorCodeFlight;
+        private System.Windows.Forms.ComboBox cboUpdateDeptTime;
+        private System.Windows.Forms.DateTimePicker dtpUpdateDeptFlight;
+        private System.Windows.Forms.ComboBox cboUpdateArrAirportFlight;
+        private System.Windows.Forms.TextBox txtUpdateTicketPriceFlight;
+        private System.Windows.Forms.ComboBox cboUpdateDeptAirportFlight;
+        private System.Windows.Forms.TextBox txtUpdateNumFlightSeats;
+        private System.Windows.Forms.ComboBox cboUpdateFlight;
+        private System.Windows.Forms.Label lblEndRouteDetails;
+        private System.Windows.Forms.GroupBox grpViewUpdateFlightDetails;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblUpdateFlightRouteIdDetails;
+        private System.Windows.Forms.Label lblUpdateFlightRouteDurationDetail;
+        private System.Windows.Forms.Label lblRouteId;
+        private System.Windows.Forms.Label lblUpdateFlightEstArrTimeDetail;
+        private System.Windows.Forms.Label lblUpdateFlightNumberDetail;
+        private System.Windows.Forms.Label lblRouteDuration;
+        private System.Windows.Forms.Label label4;
     }
 }

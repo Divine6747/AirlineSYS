@@ -41,7 +41,7 @@
             this.txtNumFlightSeats = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtTicketPriceFlight = new System.Windows.Forms.TextBox();
-            this.grpAirportDetails = new System.Windows.Forms.GroupBox();
+            this.grpScheduleFlightDetails = new System.Windows.Forms.GroupBox();
             this.cboOperatorCodeFlight = new System.Windows.Forms.ComboBox();
             this.cboDeptTime = new System.Windows.Forms.ComboBox();
             this.dtpDeptFlight = new System.Windows.Forms.DateTimePicker();
@@ -57,7 +57,7 @@
             this.lblEstArrTimeDetail = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.grpAirportDetails.SuspendLayout();
+            this.grpScheduleFlightDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,13 +65,13 @@
             // 
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
-            this.munBack.Font = new System.Drawing.Font("Segoe UI", 12.5F);
-            this.munBack.Location = new System.Drawing.Point(1073, 0);
+            this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.munBack.Location = new System.Drawing.Point(1078, -1);
             this.munBack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.munBack.Name = "munBack";
             this.munBack.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
-            this.munBack.Size = new System.Drawing.Size(82, 30);
-            this.munBack.TabIndex = 5;
+            this.munBack.Size = new System.Drawing.Size(77, 25);
+            this.munBack.TabIndex = 7;
             this.munBack.Text = "Back";
             this.munBack.Click += new System.EventHandler(this.munBack_Click);
             // 
@@ -83,7 +83,7 @@
             this.mnuScheduleFlight.Name = "mnuScheduleFlight";
             this.mnuScheduleFlight.Padding = new System.Windows.Forms.Padding(0);
             this.mnuScheduleFlight.Size = new System.Drawing.Size(1155, 30);
-            this.mnuScheduleFlight.TabIndex = 4;
+            this.mnuScheduleFlight.TabIndex = 6;
             // 
             // lblAddAirport
             // 
@@ -167,7 +167,7 @@
             this.txtNumFlightSeats.Location = new System.Drawing.Point(737, 202);
             this.txtNumFlightSeats.Margin = new System.Windows.Forms.Padding(4);
             this.txtNumFlightSeats.Name = "txtNumFlightSeats";
-            this.txtNumFlightSeats.Size = new System.Drawing.Size(141, 34);
+            this.txtNumFlightSeats.Size = new System.Drawing.Size(159, 34);
             this.txtNumFlightSeats.TabIndex = 25;
             // 
             // label3
@@ -190,31 +190,31 @@
             this.txtTicketPriceFlight.TabIndex = 27;
             this.txtTicketPriceFlight.Text = "0.00";
             // 
-            // grpAirportDetails
+            // grpScheduleFlightDetails
             // 
-            this.grpAirportDetails.Controls.Add(this.cboOperatorCodeFlight);
-            this.grpAirportDetails.Controls.Add(this.cboDeptTime);
-            this.grpAirportDetails.Controls.Add(this.dtpDeptFlight);
-            this.grpAirportDetails.Controls.Add(this.cboArrAirportFlight);
-            this.grpAirportDetails.Controls.Add(this.txtTicketPriceFlight);
-            this.grpAirportDetails.Controls.Add(this.cboDeptAirportFlight);
-            this.grpAirportDetails.Controls.Add(this.label3);
-            this.grpAirportDetails.Controls.Add(this.txtNumFlightSeats);
-            this.grpAirportDetails.Controls.Add(this.label2);
-            this.grpAirportDetails.Controls.Add(this.lblOperatorCode);
-            this.grpAirportDetails.Controls.Add(this.lblAirportEmail);
-            this.grpAirportDetails.Controls.Add(this.lblAirportPhone);
-            this.grpAirportDetails.Controls.Add(this.lblAirportName);
-            this.grpAirportDetails.Controls.Add(this.lblAirportCode);
-            this.grpAirportDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpAirportDetails.Location = new System.Drawing.Point(62, 237);
-            this.grpAirportDetails.Margin = new System.Windows.Forms.Padding(4);
-            this.grpAirportDetails.Name = "grpAirportDetails";
-            this.grpAirportDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.grpAirportDetails.Size = new System.Drawing.Size(1031, 372);
-            this.grpAirportDetails.TabIndex = 12;
-            this.grpAirportDetails.TabStop = false;
-            this.grpAirportDetails.Text = "Schedule Flight Details";
+            this.grpScheduleFlightDetails.Controls.Add(this.cboOperatorCodeFlight);
+            this.grpScheduleFlightDetails.Controls.Add(this.cboDeptTime);
+            this.grpScheduleFlightDetails.Controls.Add(this.dtpDeptFlight);
+            this.grpScheduleFlightDetails.Controls.Add(this.cboArrAirportFlight);
+            this.grpScheduleFlightDetails.Controls.Add(this.txtTicketPriceFlight);
+            this.grpScheduleFlightDetails.Controls.Add(this.cboDeptAirportFlight);
+            this.grpScheduleFlightDetails.Controls.Add(this.label3);
+            this.grpScheduleFlightDetails.Controls.Add(this.txtNumFlightSeats);
+            this.grpScheduleFlightDetails.Controls.Add(this.label2);
+            this.grpScheduleFlightDetails.Controls.Add(this.lblOperatorCode);
+            this.grpScheduleFlightDetails.Controls.Add(this.lblAirportEmail);
+            this.grpScheduleFlightDetails.Controls.Add(this.lblAirportPhone);
+            this.grpScheduleFlightDetails.Controls.Add(this.lblAirportName);
+            this.grpScheduleFlightDetails.Controls.Add(this.lblAirportCode);
+            this.grpScheduleFlightDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpScheduleFlightDetails.Location = new System.Drawing.Point(62, 237);
+            this.grpScheduleFlightDetails.Margin = new System.Windows.Forms.Padding(4);
+            this.grpScheduleFlightDetails.Name = "grpScheduleFlightDetails";
+            this.grpScheduleFlightDetails.Padding = new System.Windows.Forms.Padding(4);
+            this.grpScheduleFlightDetails.Size = new System.Drawing.Size(1031, 372);
+            this.grpScheduleFlightDetails.TabIndex = 12;
+            this.grpScheduleFlightDetails.TabStop = false;
+            this.grpScheduleFlightDetails.Text = "Schedule Flight Details";
             // 
             // cboOperatorCodeFlight
             // 
@@ -265,7 +265,7 @@
             this.cboDeptTime.Location = new System.Drawing.Point(737, 126);
             this.cboDeptTime.Margin = new System.Windows.Forms.Padding(4);
             this.cboDeptTime.Name = "cboDeptTime";
-            this.cboDeptTime.Size = new System.Drawing.Size(141, 36);
+            this.cboDeptTime.Size = new System.Drawing.Size(159, 36);
             this.cboDeptTime.TabIndex = 30;
             this.cboDeptTime.SelectedIndexChanged += new System.EventHandler(this.cboDeptTime_SelectedIndexChanged);
             // 
@@ -289,7 +289,7 @@
             this.cboArrAirportFlight.Location = new System.Drawing.Point(737, 50);
             this.cboArrAirportFlight.Margin = new System.Windows.Forms.Padding(4);
             this.cboArrAirportFlight.Name = "cboArrAirportFlight";
-            this.cboArrAirportFlight.Size = new System.Drawing.Size(141, 36);
+            this.cboArrAirportFlight.Size = new System.Drawing.Size(159, 36);
             this.cboArrAirportFlight.TabIndex = 20;
             this.cboArrAirportFlight.SelectedIndexChanged += new System.EventHandler(this.cboArrAirportFlight_SelectedIndexChanged);
             // 
@@ -436,7 +436,7 @@
             this.ClientSize = new System.Drawing.Size(1155, 704);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnFlightConfirm);
-            this.Controls.Add(this.grpAirportDetails);
+            this.Controls.Add(this.grpScheduleFlightDetails);
             this.Controls.Add(this.lblAddAirport);
             this.Controls.Add(this.munBack);
             this.Controls.Add(this.mnuScheduleFlight);
@@ -445,8 +445,8 @@
             this.Name = "frmScheduleFlight";
             this.Text = "Schedule Flight";
             this.Load += new System.EventHandler(this.frmScheduleFlight_Load);
-            this.grpAirportDetails.ResumeLayout(false);
-            this.grpAirportDetails.PerformLayout();
+            this.grpScheduleFlightDetails.ResumeLayout(false);
+            this.grpScheduleFlightDetails.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -468,7 +468,7 @@
         private System.Windows.Forms.TextBox txtNumFlightSeats;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTicketPriceFlight;
-        private System.Windows.Forms.GroupBox grpAirportDetails;
+        private System.Windows.Forms.GroupBox grpScheduleFlightDetails;
         private System.Windows.Forms.Button btnFlightConfirm;
         private System.Windows.Forms.ComboBox cboArrAirportFlight;
         private System.Windows.Forms.ComboBox cboDeptAirportFlight;

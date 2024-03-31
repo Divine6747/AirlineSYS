@@ -47,7 +47,7 @@ namespace AirlineSYS
                                 "Duration: " + selectedRoute.getDuration() + "\n\n" +
                                 "Status: " + selectedRoute.getStatus();
 
-
+            lblEndRouteDetails.Font = new Font("Segoe UI", 12, FontStyle.Regular);
             lblEndRouteDetails.Text = routeInfo;
             grpEndRouteDetails.Visible = true;
             btnEndRouteConfirm.Visible = true;
@@ -73,27 +73,20 @@ namespace AirlineSYS
                 MessageBox.Show("Route has been ended in the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            grpEndRouteDetails.Visible = false;
+            //grpEndRouteDetails.Visible = false;
         }
-
-
         private void frmEndRoute_Load(object sender, EventArgs e)
         {
             cboEndRoute.Items.Clear();
-
-            btnEndRouteConfirm.Visible = false;
 
             List<Route> routes = Route.getRoutes();
 
             foreach (Route route in routes)
             {
-                string routeInfo = route.getRouteID().ToString("D2") + " " + route.getDepartureAirport() + " - " + route.getArrivalAirport();
+                string routeInfo = route.getRouteID().ToString("D2") + "  " + route.getDepartureAirport() + " - " + route.getArrivalAirport();
 
                 cboEndRoute.Items.Add(routeInfo);
             }
-
-            lblEndRouteDetails.Font = new Font("Segoe UI", 12, FontStyle.Regular);
         }
-
     }
 }

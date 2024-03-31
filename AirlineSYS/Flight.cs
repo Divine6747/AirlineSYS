@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,10 @@ namespace AirlineSYS
         private int NumSeats;
         private int NumSeatAvail;
         private string Status;
+        public string FlightNumber2 { get; set; }
+        public string DepartureAirport { get; set; }
+        public string ArrivalAirport { get; set; }
+
 
         public Flight()
         {
@@ -162,6 +167,89 @@ namespace AirlineSYS
                     throw ex;
                 }
             }
-        }            
+        }
+        //Retrieving all Route Details from database
+        public static List<Flight> getAllFlightDetails()
+        {
+            List<Flight> flights = new List<Flight>();
+            try
+            {
+                using(OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT * FROM Flights F JOIN Routes R ON F.RouteID = R.RouteID";
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                    conn.Open();
+
+                    using(OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string flightNumber = reader.GetString(0);
+                            string operatorCode = reader.GetString(1);
+                            int routeID = reader.GetInt32(2);
+                            DateTime flightDate = reader.GetDateTime(3);
+                            string flightTime = reader.GetString(4);
+                            string estArrTime = reader.GetString(5);
+                            int numSeats = reader.GetInt32(6);
+                            int numSeatAvail = reader.GetInt32(7);
+                            string status = reader.GetString(8);
+
+                            flights.Add(new Flight {FlightNumber = flightNumber, OperatorCode = operatorCode, RouteID = routeID,FlightDate = flightDate,FlightTime = flightTime, 
+                            EstArrTime = estArrTime, NumSeats = numSeats, NumSeatAvail = numSeatAvail, Status = status });
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return flights;
+        }
+        public static List<Flight> retrievingScheduledFlights()
+        {
+            List<Flight> flights = new List<Flight>();
+
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                string sqlQuery = "SELECT F.FLIGHTNUMBER, R.DeptAirport, R.ArrAirport " +
+                  "FROM Flights F " +
+                  "JOIN Routes R ON F.ROUTEID = R.RouteID ";
+
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                try
+                {
+                    conn.Open();
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string FlightNumber2 = reader.GetString(0);
+                            string DepartureAirport = reader.GetString(1);
+                            string ArrivalAirport = reader.GetString(2);
+                        
+                            flights.Add(new Flight { FlightNumber2 = FlightNumber2, DepartureAirport  = DepartureAirport, ArrivalAirport = ArrivalAirport});
+                        }
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return flights;
+        }
+
     }
 }
