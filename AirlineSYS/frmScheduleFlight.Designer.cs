@@ -39,8 +39,6 @@
             this.lblOperatorCode = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNumFlightSeats = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTicketPriceFlight = new System.Windows.Forms.TextBox();
             this.grpScheduleFlightDetails = new System.Windows.Forms.GroupBox();
             this.cboOperatorCodeFlight = new System.Windows.Forms.ComboBox();
             this.cboDeptTime = new System.Windows.Forms.ComboBox();
@@ -82,7 +80,7 @@
             this.mnuScheduleFlight.Location = new System.Drawing.Point(0, 0);
             this.mnuScheduleFlight.Name = "mnuScheduleFlight";
             this.mnuScheduleFlight.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuScheduleFlight.Size = new System.Drawing.Size(1155, 30);
+            this.mnuScheduleFlight.Size = new System.Drawing.Size(1155, 24);
             this.mnuScheduleFlight.TabIndex = 6;
             // 
             // lblAddAirport
@@ -170,35 +168,13 @@
             this.txtNumFlightSeats.Size = new System.Drawing.Size(159, 34);
             this.txtNumFlightSeats.TabIndex = 25;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(73, 288);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 24);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Ticket Price";
-            // 
-            // txtTicketPriceFlight
-            // 
-            this.txtTicketPriceFlight.Location = new System.Drawing.Point(281, 286);
-            this.txtTicketPriceFlight.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTicketPriceFlight.Name = "txtTicketPriceFlight";
-            this.txtTicketPriceFlight.Size = new System.Drawing.Size(159, 34);
-            this.txtTicketPriceFlight.TabIndex = 27;
-            this.txtTicketPriceFlight.Text = "0.00";
-            // 
             // grpScheduleFlightDetails
             // 
             this.grpScheduleFlightDetails.Controls.Add(this.cboOperatorCodeFlight);
             this.grpScheduleFlightDetails.Controls.Add(this.cboDeptTime);
             this.grpScheduleFlightDetails.Controls.Add(this.dtpDeptFlight);
             this.grpScheduleFlightDetails.Controls.Add(this.cboArrAirportFlight);
-            this.grpScheduleFlightDetails.Controls.Add(this.txtTicketPriceFlight);
             this.grpScheduleFlightDetails.Controls.Add(this.cboDeptAirportFlight);
-            this.grpScheduleFlightDetails.Controls.Add(this.label3);
             this.grpScheduleFlightDetails.Controls.Add(this.txtNumFlightSeats);
             this.grpScheduleFlightDetails.Controls.Add(this.label2);
             this.grpScheduleFlightDetails.Controls.Add(this.lblOperatorCode);
@@ -207,11 +183,11 @@
             this.grpScheduleFlightDetails.Controls.Add(this.lblAirportName);
             this.grpScheduleFlightDetails.Controls.Add(this.lblAirportCode);
             this.grpScheduleFlightDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpScheduleFlightDetails.Location = new System.Drawing.Point(62, 237);
+            this.grpScheduleFlightDetails.Location = new System.Drawing.Point(62, 247);
             this.grpScheduleFlightDetails.Margin = new System.Windows.Forms.Padding(4);
             this.grpScheduleFlightDetails.Name = "grpScheduleFlightDetails";
             this.grpScheduleFlightDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.grpScheduleFlightDetails.Size = new System.Drawing.Size(1031, 372);
+            this.grpScheduleFlightDetails.Size = new System.Drawing.Size(1031, 291);
             this.grpScheduleFlightDetails.TabIndex = 12;
             this.grpScheduleFlightDetails.TabStop = false;
             this.grpScheduleFlightDetails.Text = "Schedule Flight Details";
@@ -308,7 +284,7 @@
             // 
             this.btnFlightConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnFlightConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFlightConfirm.Location = new System.Drawing.Point(461, 641);
+            this.btnFlightConfirm.Location = new System.Drawing.Point(446, 587);
             this.btnFlightConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnFlightConfirm.Name = "btnFlightConfirm";
             this.btnFlightConfirm.Size = new System.Drawing.Size(232, 47);
@@ -420,7 +396,7 @@
             this.groupBox1.Controls.Add(this.lblRouteDuration);
             this.groupBox1.Controls.Add(this.lblFlightNumber);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.groupBox1.Location = new System.Drawing.Point(331, 65);
+            this.groupBox1.Location = new System.Drawing.Point(331, 78);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -433,7 +409,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1155, 704);
+            this.ClientSize = new System.Drawing.Size(1155, 650);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnFlightConfirm);
             this.Controls.Add(this.grpScheduleFlightDetails);
@@ -466,8 +442,6 @@
         private System.Windows.Forms.Label lblOperatorCode;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNumFlightSeats;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTicketPriceFlight;
         private System.Windows.Forms.GroupBox grpScheduleFlightDetails;
         private System.Windows.Forms.Button btnFlightConfirm;
         private System.Windows.Forms.ComboBox cboArrAirportFlight;

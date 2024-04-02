@@ -27,7 +27,7 @@ namespace AirlineSYS
         }
         private void btnFlightConfirm_Click(object sender, EventArgs e)
         {
-            if (!validateFlightUtility.ValidateFlightField(cboDeptAirportFlight, cboArrAirportFlight, cboOperatorCodeFlight.Text, txtNumFlightSeats.Text, txtTicketPriceFlight.Text, dtpDeptFlight.Value, cboDeptTime))
+            if (!validateFlightUtility.ValidateFlightField(cboDeptAirportFlight, cboArrAirportFlight, cboOperatorCodeFlight, int.Parse(txtNumFlightSeats.Text), dtpDeptFlight.Value, cboDeptTime, lblFlightNumberDetail.Text))
             {
                 return;
             }
@@ -52,7 +52,6 @@ namespace AirlineSYS
                                      lblFlightNumberDetail + "\n\n" +
                                      cboOperatorCodeFlight.SelectedItem + "\n\n" +
                                      txtNumFlightSeats.Text + "\n\n" +
-                                     txtTicketPriceFlight.Text + "\n\n" +
                                      dtpDeptFlight.Text + "\n\n" +
                                      cboDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -62,8 +61,7 @@ namespace AirlineSYS
                     txtNumFlightSeats.Clear();
                     dtpDeptFlight.Value = DateTime.Now;
                     cboDeptTime.SelectedIndex = -1;
-                    txtTicketPriceFlight.Clear();
-                    txtTicketPriceFlight.Text = "0.00";
+                   
                 }
                 else
                 {
@@ -165,13 +163,13 @@ namespace AirlineSYS
             {
                 cboDeptTime.SelectedIndex = -1;
                 return;
-            }            
+            }
             checkDuration();
         }
         private void cboArrAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!checkRoutExist())
-            {               
+            {
                 cboDeptTime.SelectedIndex = -1;
                 return;
             }
@@ -200,7 +198,7 @@ namespace AirlineSYS
         }
         private void calculateEstArrTime()
         {
-            if (cboDeptTime.SelectedItem != null &&  lblRouteDurationDetail.Text != "Does Not Exist")
+            if (cboDeptTime.SelectedItem != null && lblRouteDurationDetail.Text != "Does Not Exist")
             {
                 string selectedDeptTime = cboDeptTime.SelectedItem.ToString();
                 int duration = int.Parse(lblRouteDurationDetail.Text);

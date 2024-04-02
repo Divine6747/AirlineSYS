@@ -332,5 +332,40 @@ namespace AirlineSYS
             }
             return duration;
         }
+        public static Route getAirportsByID(int routeID)
+        {
+            Route route = null;
+
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT DeptAirport, ArrAirport FROM Routes WHERE RouteID = :RouteID";
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                    cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = routeID;
+                    conn.Open();
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string deptAirport = reader.GetString(0);
+                            string arrAirport = reader.GetString(1);
+                            route = new Route { RouteID = routeID, DepartureAirport = deptAirport, ArrivalAirport = arrAirport };
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return route;
+        }
     }
 }

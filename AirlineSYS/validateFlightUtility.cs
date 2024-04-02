@@ -10,7 +10,7 @@ namespace AirlineSYS
 {
     public static class validateFlightUtility
     {
-        public static bool ValidateFlightField(ComboBox cboDeptAirport, ComboBox cboArrAirport, string operatorCode, string numFlightSeats, string ticketPrice, DateTime deptDate, ComboBox cboDeptTime)
+        public static bool ValidateFlightField(ComboBox cboDeptAirport, ComboBox cboArrAirport, ComboBox cboOperatorCode, int numFlightSeats, DateTime deptDate, ComboBox cboDeptTime, string estArrTime)
         {
             if (cboDeptAirport.SelectedItem == null)
             {
@@ -30,25 +30,19 @@ namespace AirlineSYS
                 return false;
             }
 
-            if (string.IsNullOrEmpty(operatorCode))
+            if (cboOperatorCode.SelectedItem == null)
             {
                 MessageBox.Show("Please enter an operator code.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (string.IsNullOrEmpty(numFlightSeats))
+            if (numFlightSeats <= 0)
             {
-                MessageBox.Show("Please enter the number of flight seats.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Number of seats must be a positive integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (!int.TryParse(numFlightSeats, out int flightSeats))
-            {
-                MessageBox.Show("Number of seats must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (flightSeats < 70)
+            if (numFlightSeats < 70)
             {
                 MessageBox.Show("Number of seats must be greater than or equal to 70.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -66,25 +60,8 @@ namespace AirlineSYS
                 return false;
             }
 
-            if (string.IsNullOrEmpty(ticketPrice))
-            {
-                MessageBox.Show("Please enter the ticket price.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            // Additional validation for estArrTime if needed
 
-            if (!decimal.TryParse(ticketPrice, out decimal decimalTcketPrice))
-            {
-                MessageBox.Show("Ticket Price must be a valid decimal.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            decimal ticketMinVal = 69.00M;
-
-            if (decimalTcketPrice < ticketMinVal)
-            {
-                MessageBox.Show($"Ticket Price must be greater than €{ticketMinVal}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
             return true;
         }
     }
