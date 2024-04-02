@@ -41,13 +41,14 @@ namespace AirlineSYS
                 return;
             }
 
+            // Gets the selected flightNumber
             string selectedFlightNumber = cboUpdateFlight.SelectedItem.ToString();
 
-            // Get all flight details
             List<Flight> flights = Flight.getAllFlightDetails();
 
-            // Search for the flight with the selected flight number
+            // Searching for the flight with the selected flight number
             Flight selectedFlight = null;
+
             foreach (Flight flight in flights)
             {
                 if (flight.getFlightNumber() == selectedFlightNumber)
@@ -63,85 +64,68 @@ namespace AirlineSYS
                 return;
             }
 
-            // Displaying flight details
-            lblUpdateFlightNumberDetail.Text = selectedFlight.getFlightNumber();
+            lblUpdateFlightNumberDetail.Text = selectedFlight.getFlightNumber().ToString();
             lblUpdateFlightRouteIdDetails.Text = selectedFlight.getRouteID().ToString();
             lblUpdateFlightEstArrTimeDetail.Text = selectedFlight.getEstArrTime();
-            cboUpdateOperatorCodeFlight.Text = selectedFlight.getOperatorCode();
+            cboUpdateOperatorCodeFlight.SelectedItem = selectedFlight.getOperatorCode();
             txtUpdateNumFlightSeats.Text = selectedFlight.getNumSeats().ToString();
             dtpUpdateDeptFlight.Value = selectedFlight.getFlightDate();
-            cboUpdateDeptTime.Text = selectedFlight.getFlightTime();
+            cboUpdateDeptTime.SelectedItem = selectedFlight.getFlightTime();
+
             grpUpdateFlightDetails.Visible = true;
             btnUpdateFlightConfirm.Visible = true;
             grpViewUpdateFlightDetails.Visible = true;
-            int routeID = Convert.ToInt32(lblUpdateFlightRouteIdDetails.Text);
 
-            // Get departure and arrival airports using route ID
+            // Get dept and arr airports using routeID
+            int routeID = Convert.ToInt32(lblUpdateFlightRouteIdDetails.Text);
             Route route = Route.getAirportsByID(routeID);
+
             if (route != null)
             {
-                cboUpdateDeptAirportFlight.Text = route.getDepartureAirport();
-                cboUpdateArrAirportFlight.Text = route.getArrivalAirport();
+                cboUpdateDeptAirportFlight.SelectedItem = route.getDepartureAirport();
+                cboUpdateArrAirportFlight.SelectedItem = route.getArrivalAirport();
             }
             else
             {
                 MessageBox.Show("Selected route details are not available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //This is just a draft is update. Not edited from schedule flight yet
+
         private void btnAirportConfirm_Click(object sender, EventArgs e)
         {
-            if (cboUpdateDeptAirportFlight.SelectedItem == null || cboUpdateArrAirportFlight.SelectedItem == null || cboUpdateOperatorCodeFlight.SelectedItem == null || cboUpdateDeptTime.SelectedItem == null)
+            if (!UpdateFlightValidation.ValidateFields(cboUpdateDeptAirportFlight, cboUpdateArrAirportFlight, cboUpdateOperatorCodeFlight, cboUpdateDeptTime, txtUpdateNumFlightSeats.Text))
             {
-                MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (string.IsNullOrEmpty(txtUpdateNumFlightSeats.Text))
-            {
-                MessageBox.Show("Please enter the number of flight seats.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            string dept = cboUpdateDeptAirportFlight.SelectedItem.ToString();
+            string arr = cboUpdateArrAirportFlight.SelectedItem.ToString();
 
-            int numFlightSeats;
-            if (!int.TryParse(txtUpdateNumFlightSeats.Text, out numFlightSeats) || numFlightSeats <= 0)
+            Route getRouteID = new Route();
+            int routeID = getRouteID.getRouteID(dept, arr);
+
+            if (routeID != -1)
             {
-                MessageBox.Show("Number of seats must be a positive integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                Flight scheduleFlight = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.SelectedItem.ToString(), int.Parse(lblUpdateFlightRouteIdDetails.Text), dtpUpdateDeptFlight.Value,
+                                                    cboUpdateDeptTime.SelectedItem.ToString(), lblUpdateFlightEstArrTimeDetail.Text, int.Parse(txtUpdateNumFlightSeats.Text), int.Parse(txtUpdateNumFlightSeats.Text), "A");
+
+                MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
+                                lblUpdateFlightNumberDetail + "\n\n" +
+                                cboUpdateOperatorCodeFlight.SelectedItem + "\n\n" +
+                                txtUpdateNumFlightSeats.Text + "\n\n" +
+                                dtpUpdateDeptFlight.Text + "\n\n" +
+                                cboUpdateDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                cboUpdateArrAirportFlight.SelectedIndex = -1;
+                cboUpdateDeptAirportFlight.SelectedIndex = -1;
+                cboUpdateOperatorCodeFlight.SelectedIndex = -1;
+                txtUpdateNumFlightSeats.Clear();
+                dtpUpdateDeptFlight.Value = DateTime.Now;
+                cboUpdateDeptTime.SelectedIndex = -1;
             }
             else
             {
-                string dept = cboUpdateDeptAirportFlight.SelectedItem.ToString();
-
-                string arr = cboUpdateArrAirportFlight.SelectedItem.ToString();
-
-                Route getRouteID = new Route();
-
-                int routeID = getRouteID.getRouteID(dept, arr);
-
-                if (routeID != -1)
-                {
-                    Flight scheduleFlight = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.SelectedItem.ToString(), int.Parse(lblUpdateFlightRouteIdDetails.Text), dtpUpdateDeptFlight.Value,
-                     cboUpdateDeptTime.SelectedItem.ToString(), lblUpdateFlightEstArrTimeDetail.Text, int.Parse(txtUpdateNumFlightSeats.Text), int.Parse(txtUpdateNumFlightSeats.Text), "A");
-
-                    MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
-                                     lblUpdateFlightNumberDetail + "\n\n" +
-                                     cboUpdateOperatorCodeFlight.SelectedItem + "\n\n" +
-                                     txtUpdateNumFlightSeats.Text + "\n\n" +
-                                     dtpUpdateDeptFlight.Text + "\n\n" +
-                                     cboUpdateDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    cboUpdateArrAirportFlight.SelectedIndex = -1;
-                    cboUpdateDeptAirportFlight.SelectedIndex = -1;
-                    cboUpdateOperatorCodeFlight.SelectedIndex = -1;
-                    txtUpdateNumFlightSeats.Clear();
-                    dtpUpdateDeptFlight.Value = DateTime.Now;
-                    cboUpdateDeptTime.SelectedIndex = -1;
-                }
-                else
-                {
-                    MessageBox.Show("No RouteID Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("No RouteID Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void frmUpdateFlight_Load(object sender, EventArgs e)
@@ -150,6 +134,7 @@ namespace AirlineSYS
             btnUpdateFlightConfirm.Visible = false;
             grpViewUpdateFlightDetails.Visible = false;
             cboUpdateFlight.Items.Clear();
+            cboUpdateDeptTime.Items.Clear();
 
             List<Flight> retrievedFlights = Flight.getAllFlightDetails();
             foreach (Flight flight in retrievedFlights)
@@ -187,58 +172,57 @@ namespace AirlineSYS
             foreach (FlightTimes flightTime in flightTimes)
             {
                 cboUpdateDeptTime.Items.Add(flightTime.getFlightTime());                                            
-            }
-            
+            }        
         }
         private void ReviewUpdateFlightDetails()
         {
             lblDateReview.Text = "";
 
-            StringBuilder flightDetailsBuilder = new StringBuilder();
+            StringBuilder flightDetails = new StringBuilder();
 
             if (!string.IsNullOrEmpty(lblUpdateFlightNumberDetail.Text))
             {
-                flightDetailsBuilder.Append("Flight Number: ").Append(lblUpdateFlightNumberDetail.Text).Append("\n");
+                flightDetails.Append("Flight Number: ").Append(lblUpdateFlightNumberDetail.Text).Append("\n");
             }
 
             if (cboUpdateOperatorCodeFlight.SelectedItem != null)
             {
-                flightDetailsBuilder.Append("Operator Code: ").Append(cboUpdateOperatorCodeFlight.SelectedItem.ToString()).Append("\n");
+                flightDetails.Append("Operator Code: ").Append(cboUpdateOperatorCodeFlight.SelectedItem.ToString()).Append("\n");
             }
 
             if (!string.IsNullOrEmpty(txtUpdateNumFlightSeats.Text))
             {
-                flightDetailsBuilder.Append("Number of Seats: ").Append(txtUpdateNumFlightSeats.Text).Append("\n");
+                flightDetails.Append("Number of Seats: ").Append(txtUpdateNumFlightSeats.Text).Append("\n");
             }
 
             if (!string.IsNullOrEmpty(lblUpdateFlightRouteIdDetails.Text))
             {
-                flightDetailsBuilder.Append("Route ID: ").Append(lblUpdateFlightRouteIdDetails.Text).Append("\n");
+                flightDetails.Append("Route ID: ").Append(lblUpdateFlightRouteIdDetails.Text).Append("\n");
             }
 
-            flightDetailsBuilder.Append("Departure Date: ").Append(dtpUpdateDeptFlight.Value.ToShortDateString()).Append("\n");
+            flightDetails.Append("Departure Date: ").Append(dtpUpdateDeptFlight.Value.ToShortDateString()).Append("\n");
 
             if (cboUpdateDeptTime.SelectedItem != null)
             {
-                flightDetailsBuilder.Append("Departure Time: ").Append(cboUpdateDeptTime.SelectedItem.ToString()).Append("\n");
+                flightDetails.Append("Departure Time: ").Append(cboUpdateDeptTime.SelectedItem.ToString()).Append("\n");
             }
 
             if (!string.IsNullOrEmpty(lblUpdateFlightEstArrTimeDetail.Text))
             {
-                flightDetailsBuilder.Append("Estimated Arrival Time: ").Append(lblUpdateFlightEstArrTimeDetail.Text).Append("\n");
+                flightDetails.Append("Estimated Arrival Time: ").Append(lblUpdateFlightEstArrTimeDetail.Text).Append("\n");
             }
 
             if (cboUpdateDeptAirportFlight.SelectedItem != null)
             {
-                flightDetailsBuilder.Append("Departure Airport: ").Append(cboUpdateDeptAirportFlight.SelectedItem.ToString()).Append("\n");
+                flightDetails.Append("Departure Airport: ").Append(cboUpdateDeptAirportFlight.SelectedItem.ToString()).Append("\n");
             }
 
             if (cboUpdateArrAirportFlight.SelectedItem != null)
             {
-                flightDetailsBuilder.Append("Arrival Airport: ").Append(cboUpdateArrAirportFlight.SelectedItem.ToString()).Append("\n");
+                flightDetails.Append("Arrival Airport: ").Append(cboUpdateArrAirportFlight.SelectedItem.ToString()).Append("\n");
             }
 
-            lblDateReview.Text = flightDetailsBuilder.ToString();
+            lblDateReview.Text = flightDetails.ToString();
         }
         public bool checkRoutExist()
         {
@@ -269,23 +253,17 @@ namespace AirlineSYS
         }
         private void cboUpdateDeptAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!checkRoutExist())
-            {
-                cboUpdateDeptTime.SelectedIndex = -1;
-                return;
-            }
+            checkRoutExist();
             checkDuration();
+            calculateEstArrTime(); // Calculate estimated arrival time when the departure airport is changed
             ReviewUpdateFlightDetails();
         }
 
         private void cboUpdateArrAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!checkRoutExist())
-            {
-                cboUpdateDeptTime.SelectedIndex = -1;
-                return;
-            }
+            checkRoutExist();
             checkDuration();
+            calculateEstArrTime(); // Calculate estimated arrival time when the departure airport is changed
             ReviewUpdateFlightDetails();
         }
 
@@ -299,9 +277,9 @@ namespace AirlineSYS
             ReviewUpdateFlightDetails();
         }
         private void cboUpdateDeptTime_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            calculateEstArrTime();
+        {            
             ReviewUpdateFlightDetails();
+            calculateEstArrTime();
         }
         private void cboUpdateOperatorCodeFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -322,24 +300,31 @@ namespace AirlineSYS
         }
         private void calculateEstArrTime()
         {
-            if (cboUpdateDeptTime.SelectedItem != null && lblUpdateFlightRouteDurationDetail.Text != "Did Not Retrieve")
+            if (cboUpdateDeptTime.SelectedItem != null)
             {
                 string selectedDeptTime = cboUpdateDeptTime.SelectedItem.ToString();
-                int duration = int.Parse(lblUpdateFlightRouteDurationDetail.Text);
 
-                DateTime deptTime;
-
-                if (DateTime.TryParseExact(selectedDeptTime, "HH:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out deptTime))
+                int duration;
+                if (int.TryParse(lblUpdateFlightRouteDurationDetail.Text, out duration))
                 {
-                    DateTime estimatedArrivalTime = deptTime.AddMinutes(duration);
-
-                    lblUpdateFlightEstArrTimeDetail.Text = estimatedArrivalTime.ToString("HH:mm tt", CultureInfo.InvariantCulture).ToUpper();
+                    DateTime deptTime;
+                    if (DateTime.TryParseExact(selectedDeptTime, "HH:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out deptTime))
+                    {
+                        DateTime estimatedArrivalTime = deptTime.AddMinutes(duration);
+                        lblUpdateFlightEstArrTimeDetail.Text = estimatedArrivalTime.ToString("HH:mm tt", CultureInfo.InvariantCulture).ToUpper();
+                    }
+                }
+                else
+                {
+                    // Handling the error When duration parsing fails
+                    lblUpdateFlightEstArrTimeDetail.Text = "Cannot Be Calculated";
                 }
             }
             else
             {
-                lblUpdateFlightEstArrTimeDetail.Text = "Cannot Be Calculated"; // Display a message if estimated arrival time cannot be calculated
+                lblUpdateFlightEstArrTimeDetail.Text = "Cannot Be Calculated";
             }
+
         }
         private void checkDuration()
         {

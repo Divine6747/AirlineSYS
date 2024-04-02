@@ -355,7 +355,6 @@
             this.lblUpdateFlightEstArrTimeDetail.Size = new System.Drawing.Size(146, 24);
             this.lblUpdateFlightEstArrTimeDetail.TabIndex = 22;
             this.lblUpdateFlightEstArrTimeDetail.Text = "Did Not Retrieve";
-            this.lblUpdateFlightEstArrTimeDetail.Click += new System.EventHandler(this.label5_Click);
             // 
             // label1
             // 
