@@ -285,20 +285,27 @@ namespace AirlineSYS
 
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
-                cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = FlightNumber;
-                cmd.Parameters.Add(":operatorCode", OracleDbType.Varchar2).Value = OperatorCode;
-                cmd.Parameters.Add(":flightDate", OracleDbType.Date).Value = FlightDate;
-                cmd.Parameters.Add(":flightTime", OracleDbType.Varchar2).Value = FlightTime;
-                cmd.Parameters.Add(":estArrTime", OracleDbType.Varchar2).Value = EstArrTime;
-                cmd.Parameters.Add(":numSeats", OracleDbType.Int32).Value = NumSeats;
-                cmd.Parameters.Add(":numSeatAvail", OracleDbType.Int32).Value = NumSeatAvail;
-                cmd.Parameters.Add(":status", OracleDbType.Varchar2).Value = Status;
+                        cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = FlightNumber;
+                        cmd.Parameters.Add(":operatorCode", OracleDbType.Varchar2).Value = OperatorCode;
+                        cmd.Parameters.Add(":flightDate", OracleDbType.Date).Value = FlightDate;
+                        cmd.Parameters.Add(":flightTime", OracleDbType.Varchar2).Value = FlightTime;
+                        cmd.Parameters.Add(":estArrTime", OracleDbType.Varchar2).Value = EstArrTime;
+                        cmd.Parameters.Add(":numSeats", OracleDbType.Int32).Value = NumSeats;
+                        cmd.Parameters.Add(":numSeatAvail", OracleDbType.Int32).Value = NumSeatAvail;
+                        cmd.Parameters.Add(":status", OracleDbType.Varchar2).Value = Status;
 
                 try
                 {
                     conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Flight details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Flight details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Flight number not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 catch (OracleException ex)
                 {
@@ -448,6 +455,82 @@ namespace AirlineSYS
             }
             return routeID;
         }
+        public void cancelFlight(string flightNumber)
+        {
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                string sqlQuery = "UPDATE Flights SET Status = 'I' WHERE FlightNumber = :flightNumber";
+
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
+
+                try
+                {
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Flight canceled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Flight number not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        public static List<string[]> GetAvailableFlights()
+        {
+            List<string[]> flights = new List<string[]>();
+
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                string sqlQuery =   "SELECT f.FlightNumber, r.DeptAirport, r.ArrAirport, f.FlightTime " +
+                                    "FROM Flights f " +
+                                    "JOIN Routes r ON f.RouteID = r.RouteID " +
+                                    "WHERE f.Status = 'A'";
+
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                try
+                {
+                    conn.Open();
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string flightNumber = reader.GetString(0);
+                            string deptAirport = reader.GetString(1);
+                            string arrAirport = reader.GetString(2);
+                            string flightTime = reader.GetString(3);
+
+                            flights.Add(new string[] { flightNumber, deptAirport, arrAirport, flightTime });
+                        }
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return flights;
+        }
+
+
 
     }
 }

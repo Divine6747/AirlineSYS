@@ -31,14 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCancelFlight));
             this.munBack = new System.Windows.Forms.Label();
             this.mnuCancelFlight = new System.Windows.Forms.MenuStrip();
-            this.txtCancelFlightNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAirportConfirm = new System.Windows.Forms.Button();
+            this.btnCancelFlightConfirm = new System.Windows.Forms.Button();
             this.lblAddAirport = new System.Windows.Forms.Label();
             this.btnFlightSearch = new System.Windows.Forms.Button();
             this.grpCancelFlightDetails = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lblCancelFlightDetails = new System.Windows.Forms.Label();
+            this.cboCancelFlightNumber = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.grpCancelFlightDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // munBack
@@ -62,41 +65,33 @@
             this.mnuCancelFlight.Location = new System.Drawing.Point(0, 0);
             this.mnuCancelFlight.Name = "mnuCancelFlight";
             this.mnuCancelFlight.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuCancelFlight.Size = new System.Drawing.Size(1067, 30);
+            this.mnuCancelFlight.Size = new System.Drawing.Size(1067, 24);
             this.mnuCancelFlight.TabIndex = 4;
-            // 
-            // txtCancelFlightNumber
-            // 
-            this.txtCancelFlightNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCancelFlightNumber.Location = new System.Drawing.Point(387, 75);
-            this.txtCancelFlightNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtCancelFlightNumber.Name = "txtCancelFlightNumber";
-            this.txtCancelFlightNumber.Size = new System.Drawing.Size(229, 34);
-            this.txtCancelFlightNumber.TabIndex = 28;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(227, 78);
+            this.label1.Location = new System.Drawing.Point(265, 67);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 28);
             this.label1.TabIndex = 27;
             this.label1.Text = "Flight Number";
             // 
-            // btnAirportConfirm
+            // btnCancelFlightConfirm
             // 
-            this.btnAirportConfirm.BackColor = System.Drawing.Color.Plum;
-            this.btnAirportConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAirportConfirm.Location = new System.Drawing.Point(417, 562);
-            this.btnAirportConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnAirportConfirm.Name = "btnAirportConfirm";
-            this.btnAirportConfirm.Size = new System.Drawing.Size(232, 47);
-            this.btnAirportConfirm.TabIndex = 26;
-            this.btnAirportConfirm.Text = "CONFIRM";
-            this.btnAirportConfirm.UseVisualStyleBackColor = false;
-            this.btnAirportConfirm.Click += new System.EventHandler(this.btnAirportConfirm_Click);
+            this.btnCancelFlightConfirm.BackColor = System.Drawing.Color.Plum;
+            this.btnCancelFlightConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelFlightConfirm.Location = new System.Drawing.Point(417, 657);
+            this.btnCancelFlightConfirm.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelFlightConfirm.Name = "btnCancelFlightConfirm";
+            this.btnCancelFlightConfirm.Size = new System.Drawing.Size(232, 47);
+            this.btnCancelFlightConfirm.TabIndex = 26;
+            this.btnCancelFlightConfirm.Text = "CONFIRM";
+            this.btnCancelFlightConfirm.UseVisualStyleBackColor = false;
+            this.btnCancelFlightConfirm.Visible = false;
+            this.btnCancelFlightConfirm.Click += new System.EventHandler(this.btnAirportConfirm_Click);
             // 
             // lblAddAirport
             // 
@@ -113,7 +108,7 @@
             // 
             this.btnFlightSearch.BackColor = System.Drawing.Color.Plum;
             this.btnFlightSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnFlightSearch.Location = new System.Drawing.Point(672, 75);
+            this.btnFlightSearch.Location = new System.Drawing.Point(629, 65);
             this.btnFlightSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnFlightSearch.Name = "btnFlightSearch";
             this.btnFlightSearch.Size = new System.Drawing.Size(168, 34);
@@ -126,47 +121,80 @@
             // 
             this.grpCancelFlightDetails.Controls.Add(this.lblCancelFlightDetails);
             this.grpCancelFlightDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpCancelFlightDetails.Location = new System.Drawing.Point(111, 139);
+            this.grpCancelFlightDetails.Location = new System.Drawing.Point(111, 121);
             this.grpCancelFlightDetails.Margin = new System.Windows.Forms.Padding(4);
             this.grpCancelFlightDetails.Name = "grpCancelFlightDetails";
             this.grpCancelFlightDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.grpCancelFlightDetails.Size = new System.Drawing.Size(844, 415);
+            this.grpCancelFlightDetails.Size = new System.Drawing.Size(844, 145);
             this.grpCancelFlightDetails.TabIndex = 30;
             this.grpCancelFlightDetails.TabStop = false;
             this.grpCancelFlightDetails.Text = "Cancel Flight Details";
             this.grpCancelFlightDetails.Visible = false;
-            this.grpCancelFlightDetails.Enter += new System.EventHandler(this.grpCancelFlightDetails_Enter);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(69, 288);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(963, 321);
+            this.dataGridView1.TabIndex = 2;
             // 
             // lblCancelFlightDetails
             // 
             this.lblCancelFlightDetails.AutoSize = true;
             this.lblCancelFlightDetails.Font = new System.Drawing.Font("Segoe UI", 17F);
-            this.lblCancelFlightDetails.Location = new System.Drawing.Point(208, 46);
+            this.lblCancelFlightDetails.Location = new System.Drawing.Point(227, 227);
             this.lblCancelFlightDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelFlightDetails.Name = "lblCancelFlightDetails";
             this.lblCancelFlightDetails.Size = new System.Drawing.Size(428, 40);
             this.lblCancelFlightDetails.TabIndex = 1;
             this.lblCancelFlightDetails.Text = "NO FLIGHT HAS BEEN ENTERED";
             // 
+            // cboCancelFlightNumber
+            // 
+            this.cboCancelFlightNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCancelFlightNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCancelFlightNumber.FormattingEnabled = true;
+            this.cboCancelFlightNumber.Location = new System.Drawing.Point(443, 65);
+            this.cboCancelFlightNumber.Name = "cboCancelFlightNumber";
+            this.cboCancelFlightNumber.Size = new System.Drawing.Size(147, 33);
+            this.cboCancelFlightNumber.TabIndex = 31;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(40, 89);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(50, 33);
+            this.comboBox1.TabIndex = 32;
+            // 
             // frmCancelFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 622);
+            this.ClientSize = new System.Drawing.Size(1067, 717);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboCancelFlightNumber);
             this.Controls.Add(this.grpCancelFlightDetails);
             this.Controls.Add(this.btnFlightSearch);
-            this.Controls.Add(this.txtCancelFlightNumber);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnAirportConfirm);
+            this.Controls.Add(this.btnCancelFlightConfirm);
             this.Controls.Add(this.lblAddAirport);
             this.Controls.Add(this.munBack);
             this.Controls.Add(this.mnuCancelFlight);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCancelFlight";
             this.Text = "Cancel Flight";
+            this.Load += new System.EventHandler(this.frmCancelFlight_Load);
             this.grpCancelFlightDetails.ResumeLayout(false);
             this.grpCancelFlightDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,12 +204,14 @@
 
         private System.Windows.Forms.Label munBack;
         private System.Windows.Forms.MenuStrip mnuCancelFlight;
-        private System.Windows.Forms.TextBox txtCancelFlightNumber;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAirportConfirm;
+        private System.Windows.Forms.Button btnCancelFlightConfirm;
         private System.Windows.Forms.Label lblAddAirport;
         private System.Windows.Forms.Button btnFlightSearch;
         private System.Windows.Forms.GroupBox grpCancelFlightDetails;
         private System.Windows.Forms.Label lblCancelFlightDetails;
+        private System.Windows.Forms.ComboBox cboCancelFlightNumber;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

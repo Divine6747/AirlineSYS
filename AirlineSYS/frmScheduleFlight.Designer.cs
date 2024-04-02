@@ -55,6 +55,8 @@
             this.lblEstArrTimeDetail = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblDateReview = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.grpScheduleFlightDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -131,7 +133,7 @@
             // 
             this.lblAirportEmail.AutoSize = true;
             this.lblAirportEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAirportEmail.Location = new System.Drawing.Point(558, 132);
+            this.lblAirportEmail.Location = new System.Drawing.Point(555, 132);
             this.lblAirportEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAirportEmail.Name = "lblAirportEmail";
             this.lblAirportEmail.Size = new System.Drawing.Size(141, 24);
@@ -162,10 +164,11 @@
             // 
             // txtNumFlightSeats
             // 
+            this.txtNumFlightSeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtNumFlightSeats.Location = new System.Drawing.Point(737, 202);
             this.txtNumFlightSeats.Margin = new System.Windows.Forms.Padding(4);
             this.txtNumFlightSeats.Name = "txtNumFlightSeats";
-            this.txtNumFlightSeats.Size = new System.Drawing.Size(159, 34);
+            this.txtNumFlightSeats.Size = new System.Drawing.Size(159, 29);
             this.txtNumFlightSeats.TabIndex = 25;
             // 
             // grpScheduleFlightDetails
@@ -183,18 +186,19 @@
             this.grpScheduleFlightDetails.Controls.Add(this.lblAirportName);
             this.grpScheduleFlightDetails.Controls.Add(this.lblAirportCode);
             this.grpScheduleFlightDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpScheduleFlightDetails.Location = new System.Drawing.Point(62, 247);
+            this.grpScheduleFlightDetails.Location = new System.Drawing.Point(77, 293);
             this.grpScheduleFlightDetails.Margin = new System.Windows.Forms.Padding(4);
             this.grpScheduleFlightDetails.Name = "grpScheduleFlightDetails";
             this.grpScheduleFlightDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.grpScheduleFlightDetails.Size = new System.Drawing.Size(1031, 291);
-            this.grpScheduleFlightDetails.TabIndex = 12;
+            this.grpScheduleFlightDetails.Size = new System.Drawing.Size(999, 267);
+            this.grpScheduleFlightDetails.TabIndex = 15;
             this.grpScheduleFlightDetails.TabStop = false;
             this.grpScheduleFlightDetails.Text = "Schedule Flight Details";
             // 
             // cboOperatorCodeFlight
             // 
             this.cboOperatorCodeFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOperatorCodeFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboOperatorCodeFlight.FormattingEnabled = true;
             this.cboOperatorCodeFlight.Items.AddRange(new object[] {
             "AA - American Airlines",
@@ -212,16 +216,17 @@
             "TK: - Turkish Airlines",
             "UA - United Airlines",
             "FR - Ryanair"});
-            this.cboOperatorCodeFlight.Location = new System.Drawing.Point(281, 206);
+            this.cboOperatorCodeFlight.Location = new System.Drawing.Point(281, 205);
             this.cboOperatorCodeFlight.Margin = new System.Windows.Forms.Padding(4);
             this.cboOperatorCodeFlight.Name = "cboOperatorCodeFlight";
-            this.cboOperatorCodeFlight.Size = new System.Drawing.Size(159, 36);
+            this.cboOperatorCodeFlight.Size = new System.Drawing.Size(159, 32);
             this.cboOperatorCodeFlight.TabIndex = 31;
             this.cboOperatorCodeFlight.SelectedIndexChanged += new System.EventHandler(this.cboOperatorCodeFlight_SelectedIndexChanged);
             // 
             // cboDeptTime
             // 
             this.cboDeptTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDeptTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboDeptTime.FormattingEnabled = true;
             this.cboDeptTime.Items.AddRange(new object[] {
             "18:00 PM",
@@ -241,7 +246,7 @@
             this.cboDeptTime.Location = new System.Drawing.Point(737, 126);
             this.cboDeptTime.Margin = new System.Windows.Forms.Padding(4);
             this.cboDeptTime.Name = "cboDeptTime";
-            this.cboDeptTime.Size = new System.Drawing.Size(159, 36);
+            this.cboDeptTime.Size = new System.Drawing.Size(159, 32);
             this.cboDeptTime.TabIndex = 30;
             this.cboDeptTime.SelectedIndexChanged += new System.EventHandler(this.cboDeptTime_SelectedIndexChanged);
             // 
@@ -250,33 +255,36 @@
             this.dtpDeptFlight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dtpDeptFlight.CustomFormat = " dd-MMM-yy";
+            this.dtpDeptFlight.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.dtpDeptFlight.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDeptFlight.Location = new System.Drawing.Point(281, 128);
             this.dtpDeptFlight.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDeptFlight.MinDate = new System.DateTime(2000, 2, 1, 0, 0, 0, 0);
             this.dtpDeptFlight.Name = "dtpDeptFlight";
-            this.dtpDeptFlight.Size = new System.Drawing.Size(159, 34);
+            this.dtpDeptFlight.Size = new System.Drawing.Size(159, 32);
             this.dtpDeptFlight.TabIndex = 29;
             // 
             // cboArrAirportFlight
             // 
             this.cboArrAirportFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboArrAirportFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboArrAirportFlight.FormattingEnabled = true;
             this.cboArrAirportFlight.Location = new System.Drawing.Point(737, 50);
             this.cboArrAirportFlight.Margin = new System.Windows.Forms.Padding(4);
             this.cboArrAirportFlight.Name = "cboArrAirportFlight";
-            this.cboArrAirportFlight.Size = new System.Drawing.Size(159, 36);
+            this.cboArrAirportFlight.Size = new System.Drawing.Size(159, 32);
             this.cboArrAirportFlight.TabIndex = 20;
             this.cboArrAirportFlight.SelectedIndexChanged += new System.EventHandler(this.cboArrAirportFlight_SelectedIndexChanged);
             // 
             // cboDeptAirportFlight
             // 
             this.cboDeptAirportFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDeptAirportFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboDeptAirportFlight.FormattingEnabled = true;
             this.cboDeptAirportFlight.Location = new System.Drawing.Point(281, 48);
             this.cboDeptAirportFlight.Margin = new System.Windows.Forms.Padding(4);
             this.cboDeptAirportFlight.Name = "cboDeptAirportFlight";
-            this.cboDeptAirportFlight.Size = new System.Drawing.Size(159, 36);
+            this.cboDeptAirportFlight.Size = new System.Drawing.Size(159, 32);
             this.cboDeptAirportFlight.TabIndex = 19;
             this.cboDeptAirportFlight.SelectedIndexChanged += new System.EventHandler(this.cboDeptAirportFlight_SelectedIndexChanged);
             // 
@@ -284,7 +292,7 @@
             // 
             this.btnFlightConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnFlightConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFlightConfirm.Location = new System.Drawing.Point(446, 587);
+            this.btnFlightConfirm.Location = new System.Drawing.Point(461, 587);
             this.btnFlightConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnFlightConfirm.Name = "btnFlightConfirm";
             this.btnFlightConfirm.Size = new System.Drawing.Size(232, 47);
@@ -396,7 +404,7 @@
             this.groupBox1.Controls.Add(this.lblRouteDuration);
             this.groupBox1.Controls.Add(this.lblFlightNumber);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.groupBox1.Location = new System.Drawing.Point(331, 78);
+            this.groupBox1.Location = new System.Drawing.Point(77, 117);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -405,11 +413,37 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "View Extra Details";
             // 
+            // lblDateReview
+            // 
+            this.lblDateReview.AutoSize = true;
+            this.lblDateReview.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateReview.ForeColor = System.Drawing.Color.Plum;
+            this.lblDateReview.Location = new System.Drawing.Point(880, 85);
+            this.lblDateReview.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDateReview.Name = "lblDateReview";
+            this.lblDateReview.Size = new System.Drawing.Size(200, 24);
+            this.lblDateReview.TabIndex = 22;
+            this.lblDateReview.Text = "NO DATA GIVEN YET";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(877, 34);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(250, 41);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "REVIEWING DATA";
+            // 
             // frmScheduleFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1155, 650);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblDateReview);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnFlightConfirm);
             this.Controls.Add(this.grpScheduleFlightDetails);
@@ -458,5 +492,7 @@
         private System.Windows.Forms.Label lblEstArrTimeDetail;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblDateReview;
+        private System.Windows.Forms.Label label3;
     }
 }
