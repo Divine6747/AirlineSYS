@@ -16,6 +16,7 @@ namespace AirlineSYS
         public frmCancelBooking()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmCancelBooking(frmAirlineMainMenu parent)
         {

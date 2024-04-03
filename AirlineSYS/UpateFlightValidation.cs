@@ -9,18 +9,17 @@ namespace AirlineSYS
 {
     public static class UpdateFlightValidation
     {
-        public static bool ValidateFields(ComboBox deptAirportCombo, ComboBox arrAirportCombo, ComboBox operatorCodeCombo, ComboBox deptTimeCombo, string numSeatsText)
+        public static bool ValidateFields(ComboBox cboDeptAirport, ComboBox cboArrAirport, ComboBox cboOperatorCode, ComboBox cboDeptTime, string numSeats)
         {
-            if (deptAirportCombo.SelectedItem == null || arrAirportCombo.SelectedItem == null ||
-                operatorCodeCombo.SelectedItem == null || deptTimeCombo.SelectedItem == null ||
-                string.IsNullOrEmpty(numSeatsText))
+            if (cboDeptAirport.SelectedItem == null || cboArrAirport.SelectedItem == null ||
+                cboOperatorCode.SelectedItem == null || cboDeptTime.SelectedItem == null ||
+                string.IsNullOrEmpty(numSeats))
             {
                 MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             int numFlightSeats;
-            if (!int.TryParse(numSeatsText, out numFlightSeats) || numFlightSeats <= 0)
+            if (!int.TryParse(numSeats, out numFlightSeats) || numFlightSeats <= 0)
             {
                 MessageBox.Show("Number of seats must be a positive integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

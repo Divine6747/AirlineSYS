@@ -15,6 +15,7 @@ namespace AirlineSYS
         public frmAddOperator()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         private void munBack_Click(object sender, EventArgs e)
         {

@@ -13,6 +13,7 @@ namespace AirlineSYS
         public frmCancelFlight()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmCancelFlight(frmAirlineMainMenu parent)
         {

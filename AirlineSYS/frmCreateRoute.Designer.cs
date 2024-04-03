@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateRoute));
-            this.munBack = new System.Windows.Forms.Label();
             this.mnuCreateRoute = new System.Windows.Forms.MenuStrip();
             this.lblAddAirport = new System.Windows.Forms.Label();
             this.lblDepartAirport = new System.Windows.Forms.Label();
@@ -42,25 +41,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRoutePrice = new System.Windows.Forms.TextBox();
             this.txtRouteArr = new System.Windows.Forms.TextBox();
+            this.txtRouteDept = new System.Windows.Forms.TextBox();
             this.btnCreateRouteConfirm = new System.Windows.Forms.Button();
             this.lblRouteID = new System.Windows.Forms.Label();
             this.lblRoute = new System.Windows.Forms.Label();
             this.mnuBack = new System.Windows.Forms.Label();
-            this.txtRouteDept = new System.Windows.Forms.TextBox();
             this.grpOperatorDetails.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // munBack
-            // 
-            this.munBack.AutoSize = true;
-            this.munBack.BackColor = System.Drawing.Color.Violet;
-            this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.munBack.Location = new System.Drawing.Point(867, -1);
-            this.munBack.Name = "munBack";
-            this.munBack.Padding = new System.Windows.Forms.Padding(10, 2, 10, 2);
-            this.munBack.Size = new System.Drawing.Size(60, 24);
-            this.munBack.TabIndex = 5;
-            this.munBack.Text = "Back";
             // 
             // mnuCreateRoute
             // 
@@ -69,16 +56,16 @@
             this.mnuCreateRoute.Location = new System.Drawing.Point(0, 0);
             this.mnuCreateRoute.Name = "mnuCreateRoute";
             this.mnuCreateRoute.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuCreateRoute.Size = new System.Drawing.Size(818, 24);
+            this.mnuCreateRoute.Size = new System.Drawing.Size(1022, 24);
             this.mnuCreateRoute.TabIndex = 4;
             // 
             // lblAddAirport
             // 
             this.lblAddAirport.AutoSize = true;
             this.lblAddAirport.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddAirport.Location = new System.Drawing.Point(324, 33);
+            this.lblAddAirport.Location = new System.Drawing.Point(426, 62);
             this.lblAddAirport.Name = "lblAddAirport";
-            this.lblAddAirport.Size = new System.Drawing.Size(170, 37);
+            this.lblAddAirport.Size = new System.Drawing.Size(215, 46);
             this.lblAddAirport.TabIndex = 14;
             this.lblAddAirport.Text = "Create Route";
             // 
@@ -86,9 +73,9 @@
             // 
             this.lblDepartAirport.AutoSize = true;
             this.lblDepartAirport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartAirport.Location = new System.Drawing.Point(31, 62);
+            this.lblDepartAirport.Location = new System.Drawing.Point(68, 54);
             this.lblDepartAirport.Name = "lblDepartAirport";
-            this.lblDepartAirport.Size = new System.Drawing.Size(133, 21);
+            this.lblDepartAirport.Size = new System.Drawing.Size(168, 28);
             this.lblDepartAirport.TabIndex = 7;
             this.lblDepartAirport.Text = "Departure Airport";
             // 
@@ -96,9 +83,9 @@
             // 
             this.lblArrAirport.AutoSize = true;
             this.lblArrAirport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrAirport.Location = new System.Drawing.Point(421, 64);
+            this.lblArrAirport.Location = new System.Drawing.Point(491, 69);
             this.lblArrAirport.Name = "lblArrAirport";
-            this.lblArrAirport.Size = new System.Drawing.Size(95, 18);
+            this.lblArrAirport.Size = new System.Drawing.Size(122, 24);
             this.lblArrAirport.TabIndex = 9;
             this.lblArrAirport.Text = "Arrival Airport";
             // 
@@ -106,9 +93,9 @@
             // 
             this.lblRouteDuration.AutoSize = true;
             this.lblRouteDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRouteDuration.Location = new System.Drawing.Point(421, 115);
+            this.lblRouteDuration.Location = new System.Drawing.Point(491, 120);
             this.lblRouteDuration.Name = "lblRouteDuration";
-            this.lblRouteDuration.Size = new System.Drawing.Size(86, 18);
+            this.lblRouteDuration.Size = new System.Drawing.Size(108, 24);
             this.lblRouteDuration.TabIndex = 17;
             this.lblRouteDuration.Text = "Ticket Price";
             // 
@@ -125,68 +112,75 @@
             this.grpOperatorDetails.Controls.Add(this.lblArrAirport);
             this.grpOperatorDetails.Controls.Add(this.lblDepartAirport);
             this.grpOperatorDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpOperatorDetails.Location = new System.Drawing.Point(42, 102);
+            this.grpOperatorDetails.Location = new System.Drawing.Point(64, 111);
             this.grpOperatorDetails.Name = "grpOperatorDetails";
-            this.grpOperatorDetails.Size = new System.Drawing.Size(735, 229);
+            this.grpOperatorDetails.Size = new System.Drawing.Size(894, 288);
             this.grpOperatorDetails.TabIndex = 15;
             this.grpOperatorDetails.TabStop = false;
             this.grpOperatorDetails.Text = "Route Details";
             // 
             // txtRouteDur
             // 
-            this.txtRouteDur.Location = new System.Drawing.Point(180, 109);
+            this.txtRouteDur.Location = new System.Drawing.Point(259, 117);
             this.txtRouteDur.Name = "txtRouteDur";
-            this.txtRouteDur.Size = new System.Drawing.Size(169, 29);
+            this.txtRouteDur.Size = new System.Drawing.Size(169, 34);
             this.txtRouteDur.TabIndex = 24;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(32, 115);
+            this.label2.Location = new System.Drawing.Point(69, 115);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 18);
+            this.label2.Size = new System.Drawing.Size(80, 24);
             this.label2.TabIndex = 23;
             this.label2.Text = "Duration";
             // 
             // txtRouteStatus
             // 
-            this.txtRouteStatus.Location = new System.Drawing.Point(180, 159);
+            this.txtRouteStatus.Location = new System.Drawing.Point(259, 175);
             this.txtRouteStatus.Name = "txtRouteStatus";
-            this.txtRouteStatus.Size = new System.Drawing.Size(169, 29);
+            this.txtRouteStatus.Size = new System.Drawing.Size(169, 34);
             this.txtRouteStatus.TabIndex = 22;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(32, 165);
+            this.label1.Location = new System.Drawing.Point(69, 175);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 18);
+            this.label1.Size = new System.Drawing.Size(60, 24);
             this.label1.TabIndex = 21;
             this.label1.Text = "Status";
             // 
             // txtRoutePrice
             // 
-            this.txtRoutePrice.Location = new System.Drawing.Point(534, 110);
+            this.txtRoutePrice.Location = new System.Drawing.Point(657, 110);
             this.txtRoutePrice.Name = "txtRoutePrice";
-            this.txtRoutePrice.Size = new System.Drawing.Size(169, 29);
+            this.txtRoutePrice.Size = new System.Drawing.Size(169, 34);
             this.txtRoutePrice.TabIndex = 20;
             // 
             // txtRouteArr
             // 
-            this.txtRouteArr.Location = new System.Drawing.Point(534, 59);
+            this.txtRouteArr.Location = new System.Drawing.Point(657, 59);
             this.txtRouteArr.Name = "txtRouteArr";
-            this.txtRouteArr.Size = new System.Drawing.Size(169, 29);
+            this.txtRouteArr.Size = new System.Drawing.Size(169, 34);
             this.txtRouteArr.TabIndex = 19;
+            // 
+            // txtRouteDept
+            // 
+            this.txtRouteDept.Location = new System.Drawing.Point(259, 56);
+            this.txtRouteDept.Name = "txtRouteDept";
+            this.txtRouteDept.Size = new System.Drawing.Size(169, 34);
+            this.txtRouteDept.TabIndex = 18;
             // 
             // btnCreateRouteConfirm
             // 
             this.btnCreateRouteConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnCreateRouteConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateRouteConfirm.Location = new System.Drawing.Point(320, 357);
+            this.btnCreateRouteConfirm.Location = new System.Drawing.Point(419, 418);
             this.btnCreateRouteConfirm.Name = "btnCreateRouteConfirm";
-            this.btnCreateRouteConfirm.Size = new System.Drawing.Size(174, 38);
+            this.btnCreateRouteConfirm.Size = new System.Drawing.Size(184, 45);
             this.btnCreateRouteConfirm.TabIndex = 16;
             this.btnCreateRouteConfirm.Text = "CONFIRM";
             this.btnCreateRouteConfirm.UseVisualStyleBackColor = false;
@@ -197,18 +191,18 @@
             this.lblRouteID.AutoSize = true;
             this.lblRouteID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRouteID.ForeColor = System.Drawing.Color.Violet;
-            this.lblRouteID.Location = new System.Drawing.Point(762, 52);
+            this.lblRouteID.Location = new System.Drawing.Point(864, 81);
             this.lblRouteID.Name = "lblRouteID";
-            this.lblRouteID.Size = new System.Drawing.Size(0, 18);
+            this.lblRouteID.Size = new System.Drawing.Size(0, 24);
             this.lblRouteID.TabIndex = 28;
             // 
             // lblRoute
             // 
             this.lblRoute.AutoSize = true;
             this.lblRoute.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoute.Location = new System.Drawing.Point(695, 52);
+            this.lblRoute.Location = new System.Drawing.Point(797, 81);
             this.lblRoute.Name = "lblRoute";
-            this.lblRoute.Size = new System.Drawing.Size(66, 18);
+            this.lblRoute.Size = new System.Drawing.Size(82, 24);
             this.lblRoute.TabIndex = 27;
             this.lblRoute.Text = "Route ID";
             // 
@@ -217,33 +211,25 @@
             this.mnuBack.AutoSize = true;
             this.mnuBack.BackColor = System.Drawing.Color.Violet;
             this.mnuBack.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuBack.Location = new System.Drawing.Point(753, 0);
+            this.mnuBack.Location = new System.Drawing.Point(931, -6);
             this.mnuBack.Name = "mnuBack";
             this.mnuBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.mnuBack.Size = new System.Drawing.Size(65, 23);
+            this.mnuBack.Size = new System.Drawing.Size(78, 30);
             this.mnuBack.TabIndex = 29;
             this.mnuBack.Text = "Back";
             this.mnuBack.Click += new System.EventHandler(this.mnuBack_Click);
             // 
-            // txtRouteDept
-            // 
-            this.txtRouteDept.Location = new System.Drawing.Point(180, 56);
-            this.txtRouteDept.Name = "txtRouteDept";
-            this.txtRouteDept.Size = new System.Drawing.Size(169, 29);
-            this.txtRouteDept.TabIndex = 18;
-            // 
             // frmCreateRoute
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 407);
+            this.ClientSize = new System.Drawing.Size(1022, 486);
             this.Controls.Add(this.mnuBack);
             this.Controls.Add(this.lblRouteID);
             this.Controls.Add(this.lblRoute);
             this.Controls.Add(this.btnCreateRouteConfirm);
             this.Controls.Add(this.grpOperatorDetails);
             this.Controls.Add(this.lblAddAirport);
-            this.Controls.Add(this.munBack);
             this.Controls.Add(this.mnuCreateRoute);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -258,8 +244,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label munBack;
         private System.Windows.Forms.MenuStrip mnuCreateRoute;
         private System.Windows.Forms.Label lblAddAirport;
         private System.Windows.Forms.Label lblDepartAirport;

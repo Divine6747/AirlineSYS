@@ -17,6 +17,7 @@ namespace AirlineSYS
         public frmCreateRoute()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmCreateRoute(frmAirlineMainMenu parent)
         {

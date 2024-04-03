@@ -46,6 +46,10 @@ namespace AirlineSYS
 
             List<Flight> flights = Flight.getAllFlightDetails();
 
+            List<Operator> operators = Operator.getOperators();
+
+           
+
             // Searching for the flight with the selected flight number
             Flight selectedFlight = null;
 
@@ -67,11 +71,10 @@ namespace AirlineSYS
             lblUpdateFlightNumberDetail.Text = selectedFlight.getFlightNumber().ToString();
             lblUpdateFlightRouteIdDetails.Text = selectedFlight.getRouteID().ToString();
             lblUpdateFlightEstArrTimeDetail.Text = selectedFlight.getEstArrTime();
-            cboUpdateOperatorCodeFlight.SelectedItem = selectedFlight.getOperatorCode();
+            cboUpdateOperatorCodeFlight.Text = selectedFlight.getOperatorCode();
             txtUpdateNumFlightSeats.Text = selectedFlight.getNumSeats().ToString();
             dtpUpdateDeptFlight.Value = selectedFlight.getFlightDate();
             cboUpdateDeptTime.SelectedItem = selectedFlight.getFlightTime();
-
             grpUpdateFlightDetails.Visible = true;
             btnUpdateFlightConfirm.Visible = true;
             grpViewUpdateFlightDetails.Visible = true;
@@ -106,15 +109,19 @@ namespace AirlineSYS
 
             if (routeID != -1)
             {
-                Flight scheduleFlight = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.SelectedItem.ToString(), int.Parse(lblUpdateFlightRouteIdDetails.Text), dtpUpdateDeptFlight.Value,
+                Flight updateFlightSchedule = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.SelectedItem.ToString(), int.Parse(lblUpdateFlightRouteIdDetails.Text), dtpUpdateDeptFlight.Value,
                                                     cboUpdateDeptTime.SelectedItem.ToString(), lblUpdateFlightEstArrTimeDetail.Text, int.Parse(txtUpdateNumFlightSeats.Text), int.Parse(txtUpdateNumFlightSeats.Text), "A");
 
-                MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
+                updateFlightSchedule.updateFlight(lblUpdateFlightNumberDetail.Text);
+
+                MessageBox.Show(lblUpdateFlightNumberDetail.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+               /* MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
                                 lblUpdateFlightNumberDetail + "\n\n" +
                                 cboUpdateOperatorCodeFlight.SelectedItem + "\n\n" +
                                 txtUpdateNumFlightSeats.Text + "\n\n" +
                                 dtpUpdateDeptFlight.Text + "\n\n" +
-                                cboUpdateDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                cboUpdateDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
                 cboUpdateArrAirportFlight.SelectedIndex = -1;
                 cboUpdateDeptAirportFlight.SelectedIndex = -1;
@@ -142,13 +149,6 @@ namespace AirlineSYS
                 cboUpdateFlight.Items.Add(flight.getFlightNumber());
             }
 
-            List<Operator> operators = Operator.getOperators();
-
-            foreach (Operator opCode in operators)
-            {
-                cboUpdateOperatorCodeFlight.Items.Add(opCode.getOperatorCode());
-            }
-
             List<Route> routes = Route.getRoutes();
 
             //Checking for duplicate elements to store unique departureAirports and arrivalAirports(so filtering both sets of airports)
@@ -172,7 +172,8 @@ namespace AirlineSYS
             foreach (FlightTimes flightTime in flightTimes)
             {
                 cboUpdateDeptTime.Items.Add(flightTime.getFlightTime());                                            
-            }        
+            }
+
         }
         private void ReviewUpdateFlightDetails()
         {
@@ -255,7 +256,7 @@ namespace AirlineSYS
         {
             checkRoutExist();
             checkDuration();
-            calculateEstArrTime(); // Calculate estimated arrival time when the departure airport is changed
+            calculateEstArrTime();
             ReviewUpdateFlightDetails();
         }
 
@@ -263,7 +264,7 @@ namespace AirlineSYS
         {
             checkRoutExist();
             checkDuration();
-            calculateEstArrTime(); // Calculate estimated arrival time when the departure airport is changed
+            calculateEstArrTime();
             ReviewUpdateFlightDetails();
         }
 
@@ -280,23 +281,6 @@ namespace AirlineSYS
         {            
             ReviewUpdateFlightDetails();
             calculateEstArrTime();
-        }
-        private void cboUpdateOperatorCodeFlight_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboUpdateOperatorCodeFlight.SelectedIndex != -1)
-            {
-                string selectedOperator = cboUpdateOperatorCodeFlight.SelectedItem.ToString();
-                
-                string currentFlightNumber = lblUpdateFlightNumberDetail.Text;
-                
-                string numericPart = currentFlightNumber.Substring(selectedOperator.Length);
-
-                string newFlightNumber = selectedOperator + numericPart;
-
-                lblUpdateFlightNumberDetail.Text = newFlightNumber;
-
-                ReviewUpdateFlightDetails();
-            }
         }
         private void calculateEstArrTime()
         {
@@ -350,6 +334,11 @@ namespace AirlineSYS
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboUpdateOperatorCodeFlight_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            ReviewUpdateFlightDetails();
         }
     }
 }

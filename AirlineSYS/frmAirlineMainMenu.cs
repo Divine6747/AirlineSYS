@@ -16,6 +16,7 @@ namespace AirlineSYS
         public frmAirlineMainMenu()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmAirlineMainMenu(frmAirlineMainMenu parent)
         {
@@ -126,6 +127,13 @@ namespace AirlineSYS
         private void munExit_Click_1(object sender, EventArgs e)
         {
              Application.Exit();
+        }
+
+        private void dataViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled();
+            this.Hide();
+            frmRetrievedFlightScheduled.Show();
         }
     }
 }

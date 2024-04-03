@@ -165,10 +165,11 @@ namespace AirlineSYS
                 }
             }
         }
-        public void updateFlight(string flightNumber)
+        public void updateFlight(string oldFlightNumber)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             string sqlQuery = "UPDATE Flights SET " +
+                              "FlightNumber = :newFlightNumber, " +
                               "OperatorCode = :operatorCode, " +
                               "FlightDate = :flightDate, " +
                               "FlightTime = :flightTime, " +
@@ -176,10 +177,18 @@ namespace AirlineSYS
                               "NumSeats = :numSeats, " +
                               "NumSeatAvail = :numSeatAvail, " +
                               "Status = :status " +
-                              "WHERE FlightNumber = :flightNumber";
+                              "WHERE FlightNumber = :oldFlightNumber";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
+            // Extract the numeric part of the old flight number
+            string oldOperatorCode = oldFlightNumber.Substring(0, 2);
+            string oldNumericPart = oldFlightNumber.Substring(2);
+
+            // Combine the new operator code with the old numeric part to create the new flight number
+            string newFlightNumber = OperatorCode + oldNumericPart;
+
+            cmd.Parameters.Add(":newFlightNumber", OracleDbType.Varchar2).Value = newFlightNumber;
             cmd.Parameters.Add(":operatorCode", OracleDbType.Varchar2).Value = OperatorCode;
             cmd.Parameters.Add(":flightDate", OracleDbType.Date).Value = FlightDate;
             cmd.Parameters.Add(":flightTime", OracleDbType.Varchar2).Value = FlightTime;
@@ -187,7 +196,7 @@ namespace AirlineSYS
             cmd.Parameters.Add(":numSeats", OracleDbType.Int32).Value = NumSeats;
             cmd.Parameters.Add(":numSeatAvail", OracleDbType.Int32).Value = NumSeatAvail;
             cmd.Parameters.Add(":status", OracleDbType.Varchar2).Value = Status;
-            cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
+            cmd.Parameters.Add(":oldFlightNumber", OracleDbType.Varchar2).Value = oldFlightNumber;
 
             try
             {
@@ -215,6 +224,7 @@ namespace AirlineSYS
                 conn.Close();
             }
         }
+
 
 
 
@@ -393,11 +403,10 @@ namespace AirlineSYS
 
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
-                string sqlQuery =   "SELECT f.FlightNumber, r.DeptAirport, r.ArrAirport, f.FlightTime " +
-                                    "FROM Flights f " +
-                                    "JOIN Routes r ON f.RouteID = r.RouteID " +
-                                    "WHERE f.Status = 'A'";
-
+                string sqlQuery = "SELECT f.FlightNumber, r.DeptAirport, r.ArrAirport, f.FlightDate, f.FlightTime " +
+                              "FROM Flights f " +
+                              "JOIN Routes r ON f.RouteID = r.RouteID " +
+                              "WHERE f.Status = 'A'";
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
                 try
@@ -411,9 +420,10 @@ namespace AirlineSYS
                             string flightNumber = reader.GetString(0);
                             string deptAirport = reader.GetString(1);
                             string arrAirport = reader.GetString(2);
-                            string flightTime = reader.GetString(3);
+                            string flightDate = reader.GetDateTime(3).ToString("dd-MMM-yyyy");
+                            string flightTime = reader.GetString(4);
 
-                            flights.Add(new string[] { flightNumber, deptAirport, arrAirport, flightTime });
+                            flights.Add(new string[] { flightNumber, deptAirport, arrAirport, flightDate, flightTime });
                         }
                     }
                 }
@@ -427,7 +437,7 @@ namespace AirlineSYS
                 }
             }
             return flights;
-        }
+        }        
     }
 }
 

@@ -17,6 +17,7 @@ namespace AirlineSYS
         public frmYearlyFlightAnalysis()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmYearlyFlightAnalysis(frmAirlineMainMenu parent)
         {

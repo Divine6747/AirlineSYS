@@ -17,6 +17,7 @@ namespace AirlineSYS
         public frmUpdateAiport()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         public frmUpdateAiport(frmAirlineMainMenu parent)

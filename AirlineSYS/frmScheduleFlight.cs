@@ -14,6 +14,7 @@ namespace AirlineSYS
             InitializeComponent();
             cboDeptAirportFlight.SelectedIndexChanged += cboDeptAirportFlight_SelectedIndexChanged;
             cboDeptTime.SelectedIndexChanged += cboDeptTime_SelectedIndexChanged;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmScheduleFlight(frmAirlineMainMenu parent)
         {
@@ -104,12 +105,14 @@ namespace AirlineSYS
             cboOperatorCodeFlight.SelectedIndexChanged += cboOperatorCodeFlight_SelectedIndexChanged;
 
             List<Route> routes = Route.getRoutes();
+
             //Checking for duplicate elements to store unique departureAirports and arrivalAirports(so filtering both sets of airports)
             List<string> departureAirports = new List<string>();
             List<string> arrivalAirports = new List<string>();
 
             foreach (Route route in routes)
-            {   //Contains is cheking if the airport being added is already in the combo box
+            {   
+                //Contains is cheking if the airport being added is already in the combo box
                 if (!departureAirports.Contains(route.getDepartureAirport()))
                     departureAirports.Add(route.getDepartureAirport());
 

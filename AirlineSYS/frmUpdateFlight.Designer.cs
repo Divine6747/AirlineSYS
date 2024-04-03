@@ -35,7 +35,6 @@
             this.grpUpdateFlightDetails = new System.Windows.Forms.GroupBox();
             this.cboUpdateDeptAirportFlight = new System.Windows.Forms.ComboBox();
             this.cboUpdateArrAirportFlight = new System.Windows.Forms.ComboBox();
-            this.cboUpdateOperatorCodeFlight = new System.Windows.Forms.ComboBox();
             this.cboUpdateDeptTime = new System.Windows.Forms.ComboBox();
             this.dtpUpdateDeptFlight = new System.Windows.Forms.DateTimePicker();
             this.txtUpdateNumFlightSeats = new System.Windows.Forms.TextBox();
@@ -61,6 +60,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblDateReview = new System.Windows.Forms.Label();
+            this.cboUpdateOperatorCodeFlight = new System.Windows.Forms.ComboBox();
             this.grpUpdateFlightDetails.SuspendLayout();
             this.grpViewUpdateFlightDetails.SuspendLayout();
             this.SuspendLayout();
@@ -104,9 +104,9 @@
             // 
             // grpUpdateFlightDetails
             // 
+            this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateOperatorCodeFlight);
             this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateDeptAirportFlight);
             this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateArrAirportFlight);
-            this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateOperatorCodeFlight);
             this.grpUpdateFlightDetails.Controls.Add(this.cboUpdateDeptTime);
             this.grpUpdateFlightDetails.Controls.Add(this.dtpUpdateDeptFlight);
             this.grpUpdateFlightDetails.Controls.Add(this.txtUpdateNumFlightSeats);
@@ -148,17 +148,6 @@
             this.cboUpdateArrAirportFlight.Size = new System.Drawing.Size(159, 32);
             this.cboUpdateArrAirportFlight.TabIndex = 39;
             this.cboUpdateArrAirportFlight.SelectedIndexChanged += new System.EventHandler(this.cboUpdateArrAirportFlight_SelectedIndexChanged);
-            // 
-            // cboUpdateOperatorCodeFlight
-            // 
-            this.cboUpdateOperatorCodeFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.cboUpdateOperatorCodeFlight.FormattingEnabled = true;
-            this.cboUpdateOperatorCodeFlight.Location = new System.Drawing.Point(224, 201);
-            this.cboUpdateOperatorCodeFlight.Margin = new System.Windows.Forms.Padding(4);
-            this.cboUpdateOperatorCodeFlight.Name = "cboUpdateOperatorCodeFlight";
-            this.cboUpdateOperatorCodeFlight.Size = new System.Drawing.Size(159, 32);
-            this.cboUpdateOperatorCodeFlight.TabIndex = 38;
-            this.cboUpdateOperatorCodeFlight.SelectedIndexChanged += new System.EventHandler(this.cboUpdateOperatorCodeFlight_SelectedIndexChanged);
             // 
             // cboUpdateDeptTime
             // 
@@ -460,6 +449,15 @@
             this.lblDateReview.TabIndex = 41;
             this.lblDateReview.Text = "NO DATA GIVEN YET";
             // 
+            // cboUpdateOperatorCodeFlight
+            // 
+            this.cboUpdateOperatorCodeFlight.FormattingEnabled = true;
+            this.cboUpdateOperatorCodeFlight.Location = new System.Drawing.Point(224, 195);
+            this.cboUpdateOperatorCodeFlight.Name = "cboUpdateOperatorCodeFlight";
+            this.cboUpdateOperatorCodeFlight.Size = new System.Drawing.Size(159, 36);
+            this.cboUpdateOperatorCodeFlight.TabIndex = 41;
+            this.cboUpdateOperatorCodeFlight.SelectedIndexChanged += new System.EventHandler(this.cboUpdateOperatorCodeFlight_SelectedIndexChanged_1);
+            // 
             // frmUpdateFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -506,7 +504,6 @@
         private System.Windows.Forms.Label lblAddAirport;
         private System.Windows.Forms.Label lblUpdateFlightList;
         private System.Windows.Forms.Button btnUpdateFlightSearch;
-        private System.Windows.Forms.ComboBox cboUpdateOperatorCodeFlight;
         private System.Windows.Forms.ComboBox cboUpdateDeptTime;
         private System.Windows.Forms.DateTimePicker dtpUpdateDeptFlight;
         private System.Windows.Forms.TextBox txtUpdateNumFlightSeats;
@@ -525,5 +522,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblDateReview;
         private System.Windows.Forms.Label lblUpdateFlightEstArrTimeDetail;
+        private System.Windows.Forms.ComboBox cboUpdateOperatorCodeFlight;
     }
 }

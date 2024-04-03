@@ -18,6 +18,7 @@ namespace AirlineSYS
         public frmAddAirport()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmAddAirport(frmAirlineMainMenu parent)
         {

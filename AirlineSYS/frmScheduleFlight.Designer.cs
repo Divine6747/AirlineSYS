@@ -200,22 +200,6 @@
             this.cboOperatorCodeFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboOperatorCodeFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboOperatorCodeFlight.FormattingEnabled = true;
-            this.cboOperatorCodeFlight.Items.AddRange(new object[] {
-            "AA - American Airlines",
-            "DL - Delta Air Lines",
-            "EK - Emirates",
-            "LH -  Lufthansa",
-            "BA -  British Airways",
-            "AC - Air Canada",
-            "QF - Qantas",
-            "SQ -  Singapore Airlines",
-            "CX - Cathay Pacific",
-            "WN - Southwest Airlines",
-            "AF - Air France",
-            "JL - Japan Airlines",
-            "TK: - Turkish Airlines",
-            "UA - United Airlines",
-            "FR - Ryanair"});
             this.cboOperatorCodeFlight.Location = new System.Drawing.Point(281, 205);
             this.cboOperatorCodeFlight.Margin = new System.Windows.Forms.Padding(4);
             this.cboOperatorCodeFlight.Name = "cboOperatorCodeFlight";
