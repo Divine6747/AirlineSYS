@@ -55,9 +55,9 @@ namespace AirlineSYS
 
         private void mnuCreateBooking_Click_1(object sender, EventArgs e)
         {
-            frmCreateBooking frmAirlineMainMenu = new frmCreateBooking();
+            frmCreateBooking frmCreateBooking = new frmCreateBooking();
             this.Hide();
-            frmAirlineMainMenu.Show();
+            frmCreateBooking.Show();
         }
 
         private void mnuUpdateBooking_Click_1(object sender, EventArgs e)
@@ -121,8 +121,6 @@ namespace AirlineSYS
             this.Hide();
             frmUpdateAirport.Show();
         }
-
-
 
         private void munExit_Click_1(object sender, EventArgs e)
         {

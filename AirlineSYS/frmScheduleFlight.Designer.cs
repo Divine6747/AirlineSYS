@@ -82,7 +82,7 @@
             this.mnuScheduleFlight.Location = new System.Drawing.Point(0, 0);
             this.mnuScheduleFlight.Name = "mnuScheduleFlight";
             this.mnuScheduleFlight.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuScheduleFlight.Size = new System.Drawing.Size(1155, 24);
+            this.mnuScheduleFlight.Size = new System.Drawing.Size(1155, 30);
             this.mnuScheduleFlight.TabIndex = 6;
             // 
             // lblAddAirport
@@ -425,6 +425,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1155, 650);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblDateReview);

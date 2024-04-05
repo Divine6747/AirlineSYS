@@ -16,7 +16,7 @@ namespace AirlineSYS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAirlineMainMenu());
+            Application.Run(new frmCreateBooking());
         }
     }
 }

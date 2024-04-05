@@ -14,23 +14,59 @@ namespace AirlineSYS
     public partial class frmCreateBooking : Form
     {
         frmAirlineMainMenu parent;
+
+        private string flightNumber;
+        private string deptAirport;
+        private string arrAirport;
+        private DateTime flightDate;
+        private string flightTime;
+
+        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime)
+        {
+            InitializeComponent();
+            //Passing Selected Data Grid View in these variables
+            this.flightNumber = flightNumber;
+            this.deptAirport = deptAirport;
+            this.arrAirport = arrAirport;
+            this.flightDate = flightDate;
+            this.flightTime = flightTime;
+
+            PopulateFlightInfo();
+            baggage();
+        }
+
+        private void PopulateFlightInfo()
+        {
+            //Putting the Data Grid View data in labels
+            lblFlightNumberDetail.Text = flightNumber;
+            lblDeptAirportDetail.Text = deptAirport;
+            lblArrAirportDetail.Text = arrAirport;
+            lblFlightDateDetails.Text = flightDate.ToString("dd-MMM-yyyy");
+            lblFlightTimedetail.Text = flightTime;
+            this.ActiveControl = txtNumBaggage;//Put fcus on text box when the form is back
+            //DialogResult baggageConfirm = MessageBox.Show("Will you bring baggage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        private void baggage()
+        {
+            DialogResult baggageConfirm = MessageBox.Show("Will you bring baggage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (baggageConfirm == DialogResult.Yes)
+            {
+               
+                
+                       
+            }
+        }
         public frmCreateBooking()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen; // Set the start position to center screen
-
+            this.StartPosition = FormStartPosition.CenterScreen;       
         }
         public frmCreateBooking(frmAirlineMainMenu parent)
         {
             InitializeComponent();
             this.parent = parent;
-        }
-
-        private void btnAirportConfirm_Click(object sender, EventArgs e)
-        {
-
-            
-
         }
 
         private void munBack_Click(object sender, EventArgs e)
@@ -46,16 +82,18 @@ namespace AirlineSYS
 
             //Checking for duplicate elements to store unique departureAirports and arrivalAirports(so filtering both sets of airports)
             List<string> departureAirports = new List<string>();
-            List<string> arrivalAirports = new List<string>();
 
+            List<string> arrivalAirports = new List<string>();
 
             foreach (Route route in routes)
             {
                 //Contains is cheking if the airport being added is already in the combo box
                 if (!departureAirports.Contains(route.getDepartureAirport()))
+
                     departureAirports.Add(route.getDepartureAirport());
 
                 if (!arrivalAirports.Contains(route.getArrivalAirport()))
+
                     arrivalAirports.Add(route.getArrivalAirport());
             }
 
@@ -66,33 +104,33 @@ namespace AirlineSYS
 
         private void btnUpdateFlightSearch_Click(object sender, EventArgs e)
         {
-            //getting both dept and arr Airpor
             string deptAirport= cboDeptAirportBooking.SelectedItem.ToString();
             string arrAirport = cboArrAirportBooking.SelectedItem.ToString();
 
-            //checking of both the dept and arr aiport were selected
-            if (deptAirport != null && arrAirport != null)
+            //checking if both the dept and arr airport were selected
+            if (!string.IsNullOrEmpty(deptAirport) && !string.IsNullOrEmpty(arrAirport))
             {
-                //instance of Route
                 Route route = new Route();
 
-                //getting the routeId using the selected
+                //getting the routeId using the selected airports
                 int routeID = route.getRouteID(deptAirport, arrAirport);
 
                 if (routeID != -1)
                 {
-                    frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled();
+                    //Passing routeID to frmRetrievedFlightScheduled constructor
+                    frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(this.parent, routeID);
                     frmRetrievedFlightScheduled.Show();
+                    this.Hide();
                 }
                 else
                 {
-                    MessageBox.Show("Sorry but route does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Sorry, but route route you choose to go does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 MessageBox.Show("Please select both departure and arrival airports and date of departure", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }        
     }
 }

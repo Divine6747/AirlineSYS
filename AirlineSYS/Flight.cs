@@ -224,49 +224,6 @@ namespace AirlineSYS
                 conn.Close();
             }
         }
-
-
-
-
-        /* public static List<Flight> retrievingScheduledFlights()
-         {
-             List<Flight> flights = new List<Flight>();
-
-             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
-             {
-                 string sqlQuery = "SELECT F.FLIGHTNUMBER, R.DeptAirport, R.ArrAirport " +
-                   "FROM Flights F " +
-                   "JOIN Routes R ON F.ROUTEID = R.RouteID ";
-
-                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-                 try
-                 {
-                     conn.Open();
-
-                     using (OracleDataReader reader = cmd.ExecuteReader())
-                     {
-                         while (reader.Read())
-                         {
-                             string FlightNumber = reader.GetString(0);
-                             string DepartureAirport = reader.GetString(1);
-                             string ArrivalAirport = reader.GetString(2);
-
-                             flights.Add(new Flight { FlightNumber = FlightNumber, DepartureAirport  = DepartureAirport, ArrivalAirport = ArrivalAirport});
-                         }
-                     }
-                 }
-                 catch (OracleException ex)
-                 {
-                     MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 }
-                 catch (Exception ex)
-                 {
-                     MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 }
-             }
-             return flights;
-         }*/
         public static List<Flight> getAllFlightDetails()
         {
             List<Flight> flights = new List<Flight>();
@@ -397,7 +354,7 @@ namespace AirlineSYS
                 }
             }
         }
-        public static List<string[]> GetAvailableFlights()
+        public static List<string[]> GetAvailableFlights(int routeID)
         {
             List<string[]> flights = new List<string[]>();
 
@@ -406,8 +363,10 @@ namespace AirlineSYS
                 string sqlQuery = "SELECT f.FlightNumber, r.DeptAirport, r.ArrAirport, f.FlightDate, f.FlightTime " +
                               "FROM Flights f " +
                               "JOIN Routes r ON f.RouteID = r.RouteID " +
-                              "WHERE f.Status = 'A'";
+                              "WHERE f.Status = 'A' AND r.RouteID = :RouteID";
+
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = routeID;
 
                 try
                 {

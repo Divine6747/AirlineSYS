@@ -66,40 +66,7 @@ namespace AirlineSYS
                 cboCancelFlightNumber.Items.Add(flight.getFlightNumber());
             }
 
-            comboBox1.Items.Clear();
-
-            List<string[]> flightBookingDetails = Flight.GetAvailableFlights();
-
-            foreach (string[] flightInfo in flightBookingDetails)
-            {
-                string flightNumber = flightInfo[0].PadRight(10);
-                string deptAirport = flightInfo[1].PadRight(10);
-                string arrAirport = flightInfo[2].PadRight(10);
-                string flightTime = flightInfo[3].PadRight(10);
-
-                comboBox1.Items.Add($"{flightNumber}  {deptAirport} {arrAirport} Departute Time: {flightTime}");
-            }
-
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
-
-            dataGridView1.Columns.Add("FlightNumber", "Flight Number");
-            dataGridView1.Columns.Add("DeptAirport", "Departure Airport");
-            dataGridView1.Columns.Add("ArrAirport", "Arrival Airport");
-            dataGridView1.Columns.Add("FlightTime", "Flight Time");
-
-            dataGridView1.Columns["FlightNumber"].Width = 150;
-            dataGridView1.Columns["DeptAirport"].Width = 170;
-            dataGridView1.Columns["ArrAirport"].Width = 150;
-            dataGridView1.Columns["FlightTime"].Width = 150;
-
-            List<string[]> flightinfo = Flight.GetAvailableFlights();
-
-            foreach (string[] flightInfo in flightinfo)
-            {
-                dataGridView1.Rows.Add(flightInfo);
-            }
-
+            comboBox1.Items.Clear();          
         }
         private void btnAirportConfirm_Click(object sender, EventArgs e)
         {
