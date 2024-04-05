@@ -1,4 +1,6 @@
-﻿namespace AirlineSYS
+﻿using AirlineSYS.Properties;
+
+namespace AirlineSYS
 {
     partial class frmRetrievedFlightScheduled
     {
@@ -48,7 +50,6 @@
             this.grgRetrievedFlightScheduled.RowTemplate.Height = 24;
             this.grgRetrievedFlightScheduled.Size = new System.Drawing.Size(1099, 329);
             this.grgRetrievedFlightScheduled.TabIndex = 3;
-            this.grgRetrievedFlightScheduled.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grgRetrievedFlightScheduled_CellContentClick);
             // 
             // lblEstArrTimeDetail
             // 

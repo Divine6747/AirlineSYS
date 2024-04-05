@@ -33,6 +33,7 @@ namespace AirlineSYS
 
             PopulateFlightInfo();
             baggage();
+            grpPersonalCreateBookingDetails.Visible = false;
         }
 
         private void PopulateFlightInfo()
@@ -43,8 +44,6 @@ namespace AirlineSYS
             lblArrAirportDetail.Text = arrAirport;
             lblFlightDateDetails.Text = flightDate.ToString("dd-MMM-yyyy");
             lblFlightTimedetail.Text = flightTime;
-            this.ActiveControl = txtNumBaggage;//Put fcus on text box when the form is back
-            //DialogResult baggageConfirm = MessageBox.Show("Will you bring baggage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
 
         private void baggage()
@@ -53,11 +52,14 @@ namespace AirlineSYS
 
             if (baggageConfirm == DialogResult.Yes)
             {
-               
-                
-                       
+                txtNumBaggage.Text = "1";
+            }
+            else
+            {
+                txtNumBaggage.Text = "0";
             }
         }
+
         public frmCreateBooking()
         {
             InitializeComponent();
@@ -78,6 +80,7 @@ namespace AirlineSYS
 
         private void frmCreateBooking_Load(object sender, EventArgs e)
         {
+            grpPersonalCreateBookingDetails.Visible = false;
             List<Route> routes = Route.getRoutes();
 
             //Checking for duplicate elements to store unique departureAirports and arrivalAirports(so filtering both sets of airports)

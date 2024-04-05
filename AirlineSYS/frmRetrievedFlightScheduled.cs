@@ -89,10 +89,6 @@ namespace AirlineSYS
             //No changes can be make by the user
             grgRetrievedFlightScheduled.ReadOnly = true;
         }
-        private void grgRetrievedFlightScheduled_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private void ConfirmSelect()
         {                    
             //https://www.aspsnippets.com/Articles/2882/Pass-Send-selected-DataGridView-Row-from-one-Form-to-another-using-C-and-VBNet/
