@@ -7,24 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using Microsoft.VisualBasic;
-
 
 namespace AirlineSYS
 {
     public partial class frmRetrievedFlightScheduled : Form
     {
         private int routeID;
+        private string flightNumber;
+        private string deptAirport;
+        private string arrAirport;
+        private DateTime flightDate;
+        private string flightTime;
+        private string numBaggage;
         public frmRetrievedFlightScheduled()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
-        public frmRetrievedFlightScheduled(frmAirlineMainMenu parent, int routeID)
+        public frmRetrievedFlightScheduled(frmAirlineMainMenu parent, int routeID, string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Parent = parent;
             this.routeID = routeID;
+            this.flightNumber = flightNumber;
+            this.deptAirport = deptAirport;
+            this.arrAirport = arrAirport;
+            this.flightDate = flightDate;
+            this.flightTime = flightTime;
+            this.numBaggage = numBaggage;
         }
         private void frmRetrievedFlightScheduled_Load(object sender, EventArgs e)
         {
@@ -90,10 +101,9 @@ namespace AirlineSYS
             grgRetrievedFlightScheduled.ReadOnly = true;
         }
         private void ConfirmSelect()
-        {                    
-            //https://www.aspsnippets.com/Articles/2882/Pass-Send-selected-DataGridView-Row-from-one-Form-to-another-using-C-and-VBNet/
-           if (grgRetrievedFlightScheduled.SelectedRows.Count > 0)
-           {
+        {
+            if (grgRetrievedFlightScheduled.SelectedRows.Count > 0)
+            {
                 // Retrieve the selected flight info
                 DataGridViewRow selectedFlight = grgRetrievedFlightScheduled.SelectedRows[0];
 
@@ -108,26 +118,30 @@ namespace AirlineSYS
                 if (flightConfirm == DialogResult.Yes)
                 {
                     // Passing the selected flight info and number of bags to frmCreateBooking
-                    frmCreateBooking frmCreateBooking = new frmCreateBooking(flightNumber, deptAirport, arrAirport, flightDate, flightTime);
+                    frmCreateBooking frmCreateBooking = new frmCreateBooking(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage);
                     this.Hide();
-                    frmCreateBooking.Show();                    
+                    frmCreateBooking.Show();
                 }
             }
-           else
-           {
-               MessageBox.Show("Please select a row before confirming.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-           }            
+            else
+            {
+                MessageBox.Show("Please select a row before confirming.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
             ConfirmSelect();
         }
-
         private void munBack_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmCreateBooking frmCreateBooking = new frmCreateBooking();
-            frmCreateBooking.Show();
+
+            frmCreateBooking frmCreateBooking = Application.OpenForms["frmCreateBooking"] as frmCreateBooking;
+            if (frmCreateBooking != null)
+            {
+                frmCreateBooking.Show();
+                frmCreateBooking.RefreshFlightInfo(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage);
+            }
         }
     }
 }

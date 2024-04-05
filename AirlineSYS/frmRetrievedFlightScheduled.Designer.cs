@@ -30,6 +30,7 @@ namespace AirlineSYS
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRetrievedFlightScheduled));
             this.grgRetrievedFlightScheduled = new System.Windows.Forms.DataGridView();
             this.lblEstArrTimeDetail = new System.Windows.Forms.Label();
             this.btnFlightBookingConfirm = new System.Windows.Forms.Button();
@@ -110,6 +111,7 @@ namespace AirlineSYS
             this.Controls.Add(this.btnFlightBookingConfirm);
             this.Controls.Add(this.lblEstArrTimeDetail);
             this.Controls.Add(this.grgRetrievedFlightScheduled);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRetrievedFlightScheduled";
             this.Text = "frmRetrievedFlightScheduled";
             this.Load += new System.EventHandler(this.frmRetrievedFlightScheduled_Load);

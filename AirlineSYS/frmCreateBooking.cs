@@ -14,26 +14,29 @@ namespace AirlineSYS
     public partial class frmCreateBooking : Form
     {
         frmAirlineMainMenu parent;
-
+        //Class level
         private string flightNumber;
         private string deptAirport;
         private string arrAirport;
         private DateTime flightDate;
         private string flightTime;
+        private string numBaggage;
 
-        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime)
+
+        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             //Passing Selected Data Grid View in these variables
             this.flightNumber = flightNumber;
             this.deptAirport = deptAirport;
             this.arrAirport = arrAirport;
             this.flightDate = flightDate;
             this.flightTime = flightTime;
+            this.numBaggage = numBaggage;
 
             PopulateFlightInfo();
             baggage();
-            grpPersonalCreateBookingDetails.Visible = false;
         }
 
         private void PopulateFlightInfo()
@@ -44,7 +47,22 @@ namespace AirlineSYS
             lblArrAirportDetail.Text = arrAirport;
             lblFlightDateDetails.Text = flightDate.ToString("dd-MMM-yyyy");
             lblFlightTimedetail.Text = flightTime;
+            label1.Text = numBaggage;
+
+            txtNumBaggage.Text = numBaggage;
         }
+
+        public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
+        {
+            this.flightNumber = flightNumber;
+            this.deptAirport = deptAirport;
+            this.arrAirport = arrAirport;
+            this.flightDate = flightDate;
+            this.flightTime = flightTime;
+            this.numBaggage = numBaggage;
+            PopulateFlightInfo();
+        }
+
 
         private void baggage()
         {
@@ -52,11 +70,21 @@ namespace AirlineSYS
 
             if (baggageConfirm == DialogResult.Yes)
             {
-                txtNumBaggage.Text = "1";
+                this.ActiveControl = txtNumBaggage;
+                if (txtNumBaggage.Text == "")
+                {
+                    MessageBox.Show("Please enter a number", "Errow", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    numBaggage = txtNumBaggage.Text;
+
+                }
             }
             else
             {
                 txtNumBaggage.Text = "0";
+                numBaggage = "0";
             }
         }
 
@@ -69,6 +97,7 @@ namespace AirlineSYS
         {
             InitializeComponent();
             this.parent = parent;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void munBack_Click(object sender, EventArgs e)
@@ -80,7 +109,6 @@ namespace AirlineSYS
 
         private void frmCreateBooking_Load(object sender, EventArgs e)
         {
-            grpPersonalCreateBookingDetails.Visible = false;
             List<Route> routes = Route.getRoutes();
 
             //Checking for duplicate elements to store unique departureAirports and arrivalAirports(so filtering both sets of airports)
@@ -107,8 +135,18 @@ namespace AirlineSYS
 
         private void btnUpdateFlightSearch_Click(object sender, EventArgs e)
         {
-            string deptAirport= cboDeptAirportBooking.SelectedItem.ToString();
-            string arrAirport = cboArrAirportBooking.SelectedItem.ToString();
+            string deptAirport = null;
+            string arrAirport = null;
+
+            if (cboDeptAirportBooking.SelectedItem != null)
+            {
+                deptAirport = cboDeptAirportBooking.SelectedItem.ToString();
+            }
+
+            if (cboArrAirportBooking.SelectedItem != null)
+            {
+                arrAirport = cboArrAirportBooking.SelectedItem.ToString();
+            }
 
             //checking if both the dept and arr airport were selected
             if (!string.IsNullOrEmpty(deptAirport) && !string.IsNullOrEmpty(arrAirport))
@@ -121,7 +159,7 @@ namespace AirlineSYS
                 if (routeID != -1)
                 {
                     //Passing routeID to frmRetrievedFlightScheduled constructor
-                    frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(this.parent, routeID);
+                    frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(this.parent, routeID,flightNumber,deptAirport,arrAirport,flightDate,flightTime, numBaggage);
                     frmRetrievedFlightScheduled.Show();
                     this.Hide();
                 }
@@ -134,6 +172,15 @@ namespace AirlineSYS
             {
                 MessageBox.Show("Please select both departure and arrival airports and date of departure", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }        
+        }
+
+        private void btnBookingFlightConfirm_Click(object sender, EventArgs e)
+        {
+            frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage);
+
+            // Show the frmBookingPersonalDetails
+            frmBookingPersonalData.Show();
+
+        }
     }
 }

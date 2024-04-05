@@ -95,6 +95,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBookingPersonalDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBookingPersonalDetails.Designer.cs">
+      <DependentUpon>frmBookingPersonalDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRetrievedFlightScheduled.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAirlineMainMenu.resx">
       <DependentUpon>frmAirlineMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBookingPersonalDetails.resx">
+      <DependentUpon>frmBookingPersonalDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCancelBooking.resx">
       <DependentUpon>frmCancelBooking.cs</DependentUpon>
