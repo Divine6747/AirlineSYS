@@ -20,10 +20,31 @@ namespace AirlineSYS
         private string arrAirport;
         private DateTime flightDate;
         private string flightTime;
-        private string numBaggage;
+        private int numBaggage;
+        public Label labelNumBaggage
+        {
+            get
+            {
+                return lblNumBaggage;
+            }
+        }
+        public NumericUpDown numericUpDownNumBaggage
+        {
+            get 
+            {
+                return nudNumBaggage;
+            } 
+        }
+        public Label deptDate
+        {
+            get
+            {
+                return lblFlightDateDetails;
+            }
+        }
+        public System.Windows.Forms.Button Confirm => btnBookingFlightConfirm;
 
-
-        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
+        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, int numBaggage)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -34,7 +55,6 @@ namespace AirlineSYS
             this.flightDate = flightDate;
             this.flightTime = flightTime;
             this.numBaggage = numBaggage;
-
             PopulateFlightInfo();
             baggage();
         }
@@ -47,12 +67,10 @@ namespace AirlineSYS
             lblArrAirportDetail.Text = arrAirport;
             lblFlightDateDetails.Text = flightDate.ToString("dd-MMM-yyyy");
             lblFlightTimedetail.Text = flightTime;
-            label1.Text = numBaggage;
-
-            txtNumBaggage.Text = numBaggage;
+            nudNumBaggage.Value = numBaggage;
         }
 
-        public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
+        public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, int numBaggage)
         {
             this.flightNumber = flightNumber;
             this.deptAirport = deptAirport;
@@ -60,6 +78,7 @@ namespace AirlineSYS
             this.flightDate = flightDate;
             this.flightTime = flightTime;
             this.numBaggage = numBaggage;
+            nudNumBaggage.Value = numBaggage;
             PopulateFlightInfo();
         }
 
@@ -70,21 +89,16 @@ namespace AirlineSYS
 
             if (baggageConfirm == DialogResult.Yes)
             {
-                this.ActiveControl = txtNumBaggage;
-                if (txtNumBaggage.Text == "")
-                {
-                    MessageBox.Show("Please enter a number", "Errow", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    numBaggage = txtNumBaggage.Text;
+                nudNumBaggage.Visible = true;
+                lblNumBaggage.Visible = true;
+                numBaggage = (int)nudNumBaggage.Value;
 
-                }
             }
             else
             {
-                txtNumBaggage.Text = "0";
-                numBaggage = "0";
+                nudNumBaggage.Visible = true;
+                lblNumBaggage.Visible = true;
+                numBaggage = 0;
             }
         }
 
@@ -176,10 +190,16 @@ namespace AirlineSYS
 
         private void btnBookingFlightConfirm_Click(object sender, EventArgs e)
         {
-            frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage);
+            numBaggage = (int)nudNumBaggage.Value; // Update numBaggage value based on nudNumBaggage
+            frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage.ToString());
 
             // Show the frmBookingPersonalDetails
             frmBookingPersonalData.Show();
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
 
         }
     }

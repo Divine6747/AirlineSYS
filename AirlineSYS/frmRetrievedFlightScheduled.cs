@@ -18,13 +18,13 @@ namespace AirlineSYS
         private string arrAirport;
         private DateTime flightDate;
         private string flightTime;
-        private string numBaggage;
+        private int numBaggage;
         public frmRetrievedFlightScheduled()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
-        public frmRetrievedFlightScheduled(frmAirlineMainMenu parent, int routeID, string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
+        public frmRetrievedFlightScheduled(frmAirlineMainMenu parent, int routeID, string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, int numBaggage)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -102,25 +102,35 @@ namespace AirlineSYS
         }
         private void ConfirmSelect()
         {
-            if (grgRetrievedFlightScheduled.SelectedRows.Count > 0)
-            {
+            if(grgRetrievedFlightScheduled.SelectedRows.Count > 0)
+    {
                 // Retrieve the selected flight info
                 DataGridViewRow selectedFlight = grgRetrievedFlightScheduled.SelectedRows[0];
 
                 // Collects data from the selected row
-                string flightNumber = selectedFlight.Cells["FlightNumber"].Value.ToString();
-                string deptAirport = selectedFlight.Cells["DeptAirport"].Value.ToString();
-                string arrAirport = selectedFlight.Cells["ArrAirport"].Value.ToString();
-                DateTime flightDate = DateTime.Parse(selectedFlight.Cells["FlightDate"].Value.ToString());
-                string flightTime = selectedFlight.Cells["FlightTime"].Value.ToString();
+                flightNumber = selectedFlight.Cells["FlightNumber"].Value.ToString();
+                deptAirport = selectedFlight.Cells["DeptAirport"].Value.ToString();
+                arrAirport = selectedFlight.Cells["ArrAirport"].Value.ToString();
+                flightDate = DateTime.Parse(selectedFlight.Cells["FlightDate"].Value.ToString());
+                flightTime = selectedFlight.Cells["FlightTime"].Value.ToString();
                 DialogResult flightConfirm = MessageBox.Show("Are you sure you want to book the selected flight?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (flightConfirm == DialogResult.Yes)
                 {
+                    // Convert numBaggage to integer
+                    int numBaggageInt;
+                    if (!int.TryParse(numBaggage.ToString(), out numBaggageInt))
+                    {
+                        // Handle parsing error, maybe show a message to the user
+                        MessageBox.Show("Invalid number of baggage.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     // Passing the selected flight info and number of bags to frmCreateBooking
-                    frmCreateBooking frmCreateBooking = new frmCreateBooking(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage);
+                    frmCreateBooking frmCreateBooking = new frmCreateBooking(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggageInt);
                     this.Hide();
                     frmCreateBooking.Show();
+                    frmCreateBooking.Confirm.Visible = true;
                 }
             }
             else
@@ -128,19 +138,35 @@ namespace AirlineSYS
                 MessageBox.Show("Please select a row before confirming.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
             ConfirmSelect();
+            
         }
+
         private void munBack_Click(object sender, EventArgs e)
         {
-            this.Close();
-
             frmCreateBooking frmCreateBooking = Application.OpenForms["frmCreateBooking"] as frmCreateBooking;
             if (frmCreateBooking != null)
             {
+                int numBaggageInt = numBaggage;
+
+                DataGridViewRow selectedFlight = grgRetrievedFlightScheduled.SelectedRows[0];
+
+                if (selectedFlight.Index == -1)
+                {
+                    frmCreateBooking.deptDate.Text = "";
+
+                }
+                // Passes numBaggageString to RefreshFlightInfo method
+                frmCreateBooking.labelNumBaggage.Visible = true;
+                frmCreateBooking.numericUpDownNumBaggage.Visible = true;
+                frmCreateBooking.RefreshFlightInfo(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggageInt);
+
+                this.Close();
+
                 frmCreateBooking.Show();
-                frmCreateBooking.RefreshFlightInfo(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage);
             }
         }
     }

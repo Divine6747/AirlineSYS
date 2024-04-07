@@ -12,7 +12,6 @@ namespace AirlineSYS
 {
     public partial class frmBookingPersonalDetails : Form
     {
-        private int routeID;
         private string flightNumber;
         private string deptAirport;
         private string arrAirport;
@@ -23,7 +22,7 @@ namespace AirlineSYS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            //Passing Selected Data Grid View in these variables
+            //Passing the selected row of the  Data Grid View in these variables
             this.flightNumber = flightNumber;
             this.deptAirport = deptAirport;
             this.arrAirport = arrAirport;
@@ -35,7 +34,7 @@ namespace AirlineSYS
 
         private void PopulateFlightInfo()
         {
-            //Putting the Data Grid View data in labels
+            //Putting the selected row of the Data Grid View data on labels
             lblFlightNumberDetail.Text = flightNumber;
             lblDeptAirportDetail.Text = deptAirport;
             lblArrAirportDetail.Text = arrAirport;
@@ -58,26 +57,6 @@ namespace AirlineSYS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-        }
-
-        private void munBack_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grpPersonalCreateBookingDetails_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void frmBookingPersonalDetails_Load(object sender, EventArgs e)

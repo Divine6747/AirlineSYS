@@ -203,6 +203,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpateFlightValidation.cs" />
+    <Compile Include="validateBookingPersonalDetails.cs" />
     <Compile Include="validateFlightUtility.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
