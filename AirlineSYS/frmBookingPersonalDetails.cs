@@ -41,8 +41,26 @@ namespace AirlineSYS
             lblFlightDateDetails.Text = flightDate.ToString("dd-MMM-yyyy");
             lblFlightTimedetail.Text = flightTime;
             lblNumBaggageDetail.Text = numBaggage;
+            checkRoutExist();
         }
+        public bool checkRoutExist()
+        {
+            if (lblArrAirportDetail != null && lblDeptAirportDetail != null)
+            {
+                string dept = lblDeptAirportDetail.Text.ToString();
+                string arr = lblArrAirportDetail.Text.ToString();
+                Route checkRoutExist = new Route();
+                int routeID = checkRoutExist.getRouteID(dept, arr);
 
+                if (routeID != -1)
+                {
+                    lblBookingRouteIDDetail.Text = routeID.ToString();
+
+                    return true;
+                }
+            }
+            return false;   
+        }
         public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
         {
             this.flightNumber = flightNumber;

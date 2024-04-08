@@ -166,7 +166,7 @@ namespace AirlineSYS
             {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
-                    string sqlQuery = "SELECT* FROM Routes";
+                    string sqlQuery = "SELECT * FROM Routes";
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
                     conn.Open();
 

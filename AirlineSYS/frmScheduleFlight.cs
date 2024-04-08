@@ -94,6 +94,7 @@ namespace AirlineSYS
             cboDeptAirportFlight.Items.Clear();
             cboArrAirportFlight.Items.Clear();
             cboDeptTime.Items.Clear();
+            cboArrAirportFlight.Enabled = false;
 
             List<Operator> operators = Operator.getOperators();
 
@@ -151,6 +152,7 @@ namespace AirlineSYS
                 else
                 {
                     lblRouteIdDetails.Text = "Does Not Exist";
+                    MessageBox.Show("Route Doesn't Exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblRouteDurationDetail.Text = "Not Retrieved";
                     lblEstArrTimeDetail.Text = "Cannot Be Calculated";
                     cboDeptTime.Enabled = false;
@@ -162,14 +164,16 @@ namespace AirlineSYS
         }
         private void cboDeptAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboDeptAirportFlight.SelectedIndex != -1)
+            {
+                cboArrAirportFlight.Enabled = true;
+            }
+
             if (!checkRoutExist())
             {
                 cboDeptTime.SelectedIndex = -1;
                 return;
             }
-            checkDuration();
-            ReviewUpdateFlightDetails();
-
         }
         private void cboArrAirportFlight_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -230,53 +234,54 @@ namespace AirlineSYS
 
         private void ReviewUpdateFlightDetails()
         {
+            //https://codebuns.com/csharp-basics/stringbuilder/#:~:text=C%23%20StringBuilder%20Append%20method%20appends,of%20the%20current%20StringBuilder%20object.&text=Note%3A%20The%20capacity%20of%20the,append%20to%20add%20more%20strings.
             lblDateReview.Text = "";
 
-            StringBuilder flightDetailsBuilder = new StringBuilder();
+            StringBuilder viewFlightDetails = new StringBuilder();
 
             if (!string.IsNullOrEmpty(lblFlightNumberDetail.Text))
             {
-                flightDetailsBuilder.Append("Flight Number: ").Append(lblFlightNumberDetail.Text).Append("\n");
+                viewFlightDetails.Append("Flight Number: ").Append(lblFlightNumberDetail.Text).Append("\n\n");
             }
 
             if (cboOperatorCodeFlight.SelectedItem != null)
             {
-                flightDetailsBuilder.Append("Operator Code: ").Append(cboOperatorCodeFlight.SelectedItem.ToString()).Append("\n");
+                viewFlightDetails.Append("Operator Code: ").Append(cboOperatorCodeFlight.SelectedItem.ToString()).Append("\n\n");
             }
 
             if (!string.IsNullOrEmpty(txtNumFlightSeats.Text))
             {
-                flightDetailsBuilder.Append("Number of Seats: ").Append(txtNumFlightSeats.Text).Append("\n");
+                viewFlightDetails.Append("Number of Seats: ").Append(txtNumFlightSeats.Text).Append("\n\n");
             }
 
             if (!string.IsNullOrEmpty(lblRouteIdDetails.Text))
             {
-                flightDetailsBuilder.Append("Route ID: ").Append(lblRouteIdDetails.Text).Append("\n");
+                viewFlightDetails.Append("Route ID: ").Append(lblRouteIdDetails.Text).Append("\n\n");
             }
-
-            flightDetailsBuilder.Append("Departure Date: ").Append(dtpDeptFlight.Value.ToShortDateString()).Append("\n");
+                
+            viewFlightDetails.Append("Departure Date: ").Append(dtpDeptFlight.Value.ToShortDateString()).Append("\n\n");
 
             if (cboDeptTime.SelectedItem != null)
             {
-                flightDetailsBuilder.Append("Departure Time: ").Append(cboDeptTime.SelectedItem.ToString()).Append("\n");
+                viewFlightDetails.Append("Departure Time: ").Append(cboDeptTime.SelectedItem.ToString()).Append("\n\n");
             }
 
             if (!string.IsNullOrEmpty(lblEstArrTimeDetail.Text))
             {
-                flightDetailsBuilder.Append("Estimated Arrival Time: ").Append(lblEstArrTimeDetail.Text).Append("\n");
+                viewFlightDetails.Append("Estimated Arrival Time: ").Append(lblEstArrTimeDetail.Text).Append("\n\n");
             }
 
             if (cboDeptAirportFlight.SelectedItem != null)
             {
-                flightDetailsBuilder.Append("Departure Airport: ").Append(cboDeptAirportFlight.SelectedItem.ToString()).Append("\n");
+                viewFlightDetails.Append("Departure Airport: ").Append(cboDeptAirportFlight.SelectedItem.ToString()).Append("\n\n");
             }
 
             if (cboArrAirportFlight.SelectedItem != null)
             {
-                flightDetailsBuilder.Append("Arrival Airport: ").Append(cboArrAirportFlight.SelectedItem.ToString()).Append("\n");
+                viewFlightDetails.Append("Arrival Airport: ").Append(cboArrAirportFlight.SelectedItem.ToString()).Append("\n\n");
             }
 
-            lblDateReview.Text = flightDetailsBuilder.ToString();
+            lblDateReview.Text = viewFlightDetails.ToString();
         }
 
         private void txtNumFlightSeats_TextChanged(object sender, EventArgs e)
@@ -286,6 +291,11 @@ namespace AirlineSYS
         private void dtpDeptFlight_ValueChanged(object sender, EventArgs e)
         {
             ReviewUpdateFlightDetails();
+        }
+
+        private void txtNumFlightSeats_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
