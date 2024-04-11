@@ -32,19 +32,19 @@
             this.munBack = new System.Windows.Forms.Label();
             this.mnuCreateBooking = new System.Windows.Forms.MenuStrip();
             this.grpPersonalCreateBookingDetails = new System.Windows.Forms.GroupBox();
-            this.dtpDOB = new System.Windows.Forms.DateTimePicker();
+            this.dtpBookingDOB = new System.Windows.Forms.DateTimePicker();
             this.grpPaymentDetails = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtCreateBookingEircode = new System.Windows.Forms.TextBox();
+            this.txtBookingEircode = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCreateBooingPhone = new System.Windows.Forms.TextBox();
+            this.txtBookingPhone = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtForeName = new System.Windows.Forms.TextBox();
-            this.txtCreateBookingEmail = new System.Windows.Forms.TextBox();
+            this.txtBookingEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSurname = new System.Windows.Forms.TextBox();
@@ -53,6 +53,8 @@
             this.lblEndRouteDetails = new System.Windows.Forms.Label();
             this.btnFlightBookingConfirm = new System.Windows.Forms.Button();
             this.grpFlightData = new System.Windows.Forms.GroupBox();
+            this.lblBookingRouteIDDetail = new System.Windows.Forms.Label();
+            this.lblBookingRouteID = new System.Windows.Forms.Label();
             this.lblNumBaggageDetail = new System.Windows.Forms.Label();
             this.lblNumBaggage = new System.Windows.Forms.Label();
             this.lblFlightTime = new System.Windows.Forms.Label();
@@ -67,8 +69,6 @@
             this.lblFlightDateDetails = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label12 = new System.Windows.Forms.Label();
-            this.lblBookingRouteIDDetail = new System.Windows.Forms.Label();
-            this.lblBookingRouteID = new System.Windows.Forms.Label();
             this.grpPersonalCreateBookingDetails.SuspendLayout();
             this.grpPaymentDetails.SuspendLayout();
             this.grpFlightData.SuspendLayout();
@@ -100,14 +100,14 @@
             // 
             // grpPersonalCreateBookingDetails
             // 
-            this.grpPersonalCreateBookingDetails.Controls.Add(this.dtpDOB);
+            this.grpPersonalCreateBookingDetails.Controls.Add(this.dtpBookingDOB);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.grpPaymentDetails);
-            this.grpPersonalCreateBookingDetails.Controls.Add(this.txtCreateBookingEircode);
+            this.grpPersonalCreateBookingDetails.Controls.Add(this.txtBookingEircode);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.label6);
-            this.grpPersonalCreateBookingDetails.Controls.Add(this.txtCreateBooingPhone);
+            this.grpPersonalCreateBookingDetails.Controls.Add(this.txtBookingPhone);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.label5);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.txtForeName);
-            this.grpPersonalCreateBookingDetails.Controls.Add(this.txtCreateBookingEmail);
+            this.grpPersonalCreateBookingDetails.Controls.Add(this.txtBookingEmail);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.label2);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.label4);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.txtSurname);
@@ -123,17 +123,17 @@
             this.grpPersonalCreateBookingDetails.TabStop = false;
             this.grpPersonalCreateBookingDetails.Text = "Personal Details";
             // 
-            // dtpDOB
+            // dtpBookingDOB
             // 
-            this.dtpDOB.CustomFormat = " dd-MMM-yy";
-            this.dtpDOB.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.dtpDOB.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDOB.Location = new System.Drawing.Point(165, 128);
-            this.dtpDOB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpDOB.MinDate = new System.DateTime(2000, 2, 1, 0, 0, 0, 0);
-            this.dtpDOB.Name = "dtpDOB";
-            this.dtpDOB.Size = new System.Drawing.Size(229, 32);
-            this.dtpDOB.TabIndex = 41;
+            this.dtpBookingDOB.CustomFormat = " dd-MMM-yy";
+            this.dtpBookingDOB.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.dtpBookingDOB.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpBookingDOB.Location = new System.Drawing.Point(165, 128);
+            this.dtpBookingDOB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpBookingDOB.MinDate = new System.DateTime(2000, 2, 1, 0, 0, 0, 0);
+            this.dtpBookingDOB.Name = "dtpBookingDOB";
+            this.dtpBookingDOB.Size = new System.Drawing.Size(229, 32);
+            this.dtpBookingDOB.TabIndex = 41;
             // 
             // grpPaymentDetails
             // 
@@ -209,14 +209,14 @@
             this.label7.TabIndex = 39;
             this.label7.Text = "PAYMENT SECTION";
             // 
-            // txtCreateBookingEircode
+            // txtBookingEircode
             // 
-            this.txtCreateBookingEircode.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtCreateBookingEircode.Location = new System.Drawing.Point(539, 198);
-            this.txtCreateBookingEircode.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCreateBookingEircode.Name = "txtCreateBookingEircode";
-            this.txtCreateBookingEircode.Size = new System.Drawing.Size(229, 32);
-            this.txtCreateBookingEircode.TabIndex = 38;
+            this.txtBookingEircode.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtBookingEircode.Location = new System.Drawing.Point(539, 198);
+            this.txtBookingEircode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBookingEircode.Name = "txtBookingEircode";
+            this.txtBookingEircode.Size = new System.Drawing.Size(229, 32);
+            this.txtBookingEircode.TabIndex = 38;
             // 
             // label6
             // 
@@ -229,14 +229,14 @@
             this.label6.TabIndex = 37;
             this.label6.Text = "Eircode";
             // 
-            // txtCreateBooingPhone
+            // txtBookingPhone
             // 
-            this.txtCreateBooingPhone.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtCreateBooingPhone.Location = new System.Drawing.Point(165, 196);
-            this.txtCreateBooingPhone.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCreateBooingPhone.Name = "txtCreateBooingPhone";
-            this.txtCreateBooingPhone.Size = new System.Drawing.Size(229, 32);
-            this.txtCreateBooingPhone.TabIndex = 36;
+            this.txtBookingPhone.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtBookingPhone.Location = new System.Drawing.Point(165, 196);
+            this.txtBookingPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBookingPhone.Name = "txtBookingPhone";
+            this.txtBookingPhone.Size = new System.Drawing.Size(229, 32);
+            this.txtBookingPhone.TabIndex = 36;
             // 
             // label5
             // 
@@ -258,14 +258,14 @@
             this.txtForeName.Size = new System.Drawing.Size(229, 32);
             this.txtForeName.TabIndex = 21;
             // 
-            // txtCreateBookingEmail
+            // txtBookingEmail
             // 
-            this.txtCreateBookingEmail.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtCreateBookingEmail.Location = new System.Drawing.Point(539, 130);
-            this.txtCreateBookingEmail.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCreateBookingEmail.Name = "txtCreateBookingEmail";
-            this.txtCreateBookingEmail.Size = new System.Drawing.Size(229, 32);
-            this.txtCreateBookingEmail.TabIndex = 34;
+            this.txtBookingEmail.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtBookingEmail.Location = new System.Drawing.Point(539, 130);
+            this.txtBookingEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBookingEmail.Name = "txtBookingEmail";
+            this.txtBookingEmail.Size = new System.Drawing.Size(229, 32);
+            this.txtBookingEmail.TabIndex = 34;
             // 
             // label2
             // 
@@ -342,6 +342,7 @@
             this.btnFlightBookingConfirm.TabIndex = 38;
             this.btnFlightBookingConfirm.Text = "CONFIRM";
             this.btnFlightBookingConfirm.UseVisualStyleBackColor = false;
+            this.btnFlightBookingConfirm.Click += new System.EventHandler(this.btnFlightBookingConfirm_Click);
             // 
             // grpFlightData
             // 
@@ -366,6 +367,29 @@
             this.grpFlightData.TabIndex = 39;
             this.grpFlightData.TabStop = false;
             this.grpFlightData.Text = "Flight Data";
+            // 
+            // lblBookingRouteIDDetail
+            // 
+            this.lblBookingRouteIDDetail.AutoSize = true;
+            this.lblBookingRouteIDDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookingRouteIDDetail.ForeColor = System.Drawing.Color.Plum;
+            this.lblBookingRouteIDDetail.Location = new System.Drawing.Point(205, 49);
+            this.lblBookingRouteIDDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBookingRouteIDDetail.Name = "lblBookingRouteIDDetail";
+            this.lblBookingRouteIDDetail.Size = new System.Drawing.Size(95, 28);
+            this.lblBookingRouteIDDetail.TabIndex = 67;
+            this.lblBookingRouteIDDetail.Text = "Unknown";
+            // 
+            // lblBookingRouteID
+            // 
+            this.lblBookingRouteID.AutoSize = true;
+            this.lblBookingRouteID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookingRouteID.Location = new System.Drawing.Point(29, 49);
+            this.lblBookingRouteID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBookingRouteID.Name = "lblBookingRouteID";
+            this.lblBookingRouteID.Size = new System.Drawing.Size(87, 28);
+            this.lblBookingRouteID.TabIndex = 67;
+            this.lblBookingRouteID.Text = "Route ID";
             // 
             // lblNumBaggageDetail
             // 
@@ -516,29 +540,6 @@
             this.label12.TabIndex = 40;
             this.label12.Text = "FLIGHT DATA";
             // 
-            // lblBookingRouteIDDetail
-            // 
-            this.lblBookingRouteIDDetail.AutoSize = true;
-            this.lblBookingRouteIDDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBookingRouteIDDetail.ForeColor = System.Drawing.Color.Plum;
-            this.lblBookingRouteIDDetail.Location = new System.Drawing.Point(205, 49);
-            this.lblBookingRouteIDDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBookingRouteIDDetail.Name = "lblBookingRouteIDDetail";
-            this.lblBookingRouteIDDetail.Size = new System.Drawing.Size(95, 28);
-            this.lblBookingRouteIDDetail.TabIndex = 67;
-            this.lblBookingRouteIDDetail.Text = "Unknown";
-            // 
-            // lblBookingRouteID
-            // 
-            this.lblBookingRouteID.AutoSize = true;
-            this.lblBookingRouteID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBookingRouteID.Location = new System.Drawing.Point(29, 49);
-            this.lblBookingRouteID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBookingRouteID.Name = "lblBookingRouteID";
-            this.lblBookingRouteID.Size = new System.Drawing.Size(87, 28);
-            this.lblBookingRouteID.TabIndex = 67;
-            this.lblBookingRouteID.Text = "Route ID";
-            // 
             // frmBookingPersonalDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -571,14 +572,14 @@
         private System.Windows.Forms.Label munBack;
         private System.Windows.Forms.MenuStrip mnuCreateBooking;
         private System.Windows.Forms.GroupBox grpPersonalCreateBookingDetails;
-        private System.Windows.Forms.DateTimePicker dtpDOB;
+        private System.Windows.Forms.DateTimePicker dtpBookingDOB;
         private System.Windows.Forms.GroupBox grpPaymentDetails;
-        private System.Windows.Forms.TextBox txtCreateBookingEircode;
+        private System.Windows.Forms.TextBox txtBookingEircode;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCreateBooingPhone;
+        private System.Windows.Forms.TextBox txtBookingPhone;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtForeName;
-        private System.Windows.Forms.TextBox txtCreateBookingEmail;
+        private System.Windows.Forms.TextBox txtBookingEmail;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSurname;

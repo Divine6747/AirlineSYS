@@ -82,8 +82,6 @@ namespace AirlineSYS
             nudNumBaggage.Value = numBaggage;
             PopulateFlightInfo();
         }
-
-
         private void baggage()
         {
             DialogResult baggageConfirm = MessageBox.Show("Will you bring baggage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -102,7 +100,6 @@ namespace AirlineSYS
                 numBaggage = 0;
             }
         }
-
         public frmCreateBooking()
         {
             InitializeComponent();
@@ -122,8 +119,7 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
 
-        List<string> check2 = new List<string>();
-        
+        List<string> check2 = new List<string>();        
         
         private void frmCreateBooking_Load(object sender, EventArgs e)
         {
@@ -201,15 +197,13 @@ namespace AirlineSYS
                 string.IsNullOrWhiteSpace(lblFlightDateDetails.Text) ||
                 string.IsNullOrWhiteSpace(lblFlightTimedetail.Text))
             {
-                MessageBox.Show("Please fill in all flight details before confirming.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a flight before confirming.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // All labels are filled, proceed with confirmation
-            numBaggage = (int)nudNumBaggage.Value; // Update numBaggage value based on nudNumBaggage
+            numBaggage = (int)nudNumBaggage.Value;
             frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage.ToString());
 
-            // Show the frmBookingPersonalDetails
             frmBookingPersonalData.Show();
 
         }

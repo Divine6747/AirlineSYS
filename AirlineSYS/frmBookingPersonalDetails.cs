@@ -81,5 +81,25 @@ namespace AirlineSYS
         {
 
         }
+
+        private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
+        {
+            if (!validateBookingPersonalDetails.ValidateBookingField(txtForeName.Text,txtSurname.Text,dtpBookingDOB.Value,txtBookingEmail.Text,txtBookingPhone.Text,txtBookingEircode.Text))
+            {
+                return;
+            }
+            else
+            {
+                string userData = $"First Name: {txtForeName.Text}\n" +
+                          $"Surname: {txtSurname.Text}\n" +
+                          $"Date of Birth: {dtpBookingDOB.Value.ToShortDateString()}\n" +
+                          $"Email: {txtBookingEmail.Text}\n" +
+                          $"Phone: {txtBookingPhone.Text}\n" +
+                          $"Eircode: {txtBookingEircode.Text}";
+                MessageBox.Show($"Your flight booking information:\n\n{userData}", "Booking Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            }
+        }
     }
 }

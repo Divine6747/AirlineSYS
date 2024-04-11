@@ -157,12 +157,14 @@ namespace AirlineSYS
 
             foreach (Route route in routes)
             {   //Contains is cheking if the airport being added is already in the combo box
+                //https://learn.microsoft.com/en-us/dotnet/api/system.string.contains?view=net-8.0
                 if (!departureAirports.Contains(route.getDepartureAirport()))
                     departureAirports.Add(route.getDepartureAirport());
 
                 if (!arrivalAirports.Contains(route.getArrivalAirport()))
                     arrivalAirports.Add(route.getArrivalAirport());
             }
+            //https://www.tutorialspoint.com/merge-two-arrays-using-chash-addrange-method
             cboUpdateDeptAirportFlight.Items.AddRange(departureAirports.ToArray());
 
             cboUpdateArrAirportFlight.Items.AddRange(arrivalAirports.ToArray());
@@ -177,6 +179,7 @@ namespace AirlineSYS
         }
         private void ReviewUpdateFlightDetails()
         {
+            //https://codebuns.com/csharp-basics/stringbuilder/#:~:text=C%23%20StringBuilder%20Append%20method%20appends,of%20the%20current%20StringBuilder%20object.&text=Note%3A%20The%20capacity%20of%20the,append%20to%20add%20more%20strings.
             lblDateReview.Text = "";
 
             StringBuilder flightDetails = new StringBuilder();
