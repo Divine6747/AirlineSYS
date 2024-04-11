@@ -8,5 +8,6 @@ namespace AirlineSYS
 {
     public static class validateBookingPersonalDetails
     {
+        
     }
 }

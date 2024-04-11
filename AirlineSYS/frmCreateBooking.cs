@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -121,6 +122,9 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
 
+        List<string> check2 = new List<string>();
+        
+        
         private void frmCreateBooking_Load(object sender, EventArgs e)
         {
             List<Route> routes = Route.getRoutes();
@@ -190,6 +194,18 @@ namespace AirlineSYS
 
         private void btnBookingFlightConfirm_Click(object sender, EventArgs e)
         {
+            // Check if any label is empty
+            if (string.IsNullOrWhiteSpace(lblFlightNumberDetail.Text) ||
+                string.IsNullOrWhiteSpace(lblDeptAirportDetail.Text) ||
+                string.IsNullOrWhiteSpace(lblArrAirportDetail.Text) ||
+                string.IsNullOrWhiteSpace(lblFlightDateDetails.Text) ||
+                string.IsNullOrWhiteSpace(lblFlightTimedetail.Text))
+            {
+                MessageBox.Show("Please fill in all flight details before confirming.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // All labels are filled, proceed with confirmation
             numBaggage = (int)nudNumBaggage.Value; // Update numBaggage value based on nudNumBaggage
             frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage.ToString());
 
