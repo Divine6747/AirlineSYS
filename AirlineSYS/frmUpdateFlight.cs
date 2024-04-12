@@ -94,47 +94,7 @@ namespace AirlineSYS
             }
         }
 
-        private void btnAirportConfirm_Click(object sender, EventArgs e)
-        {
-            if (!UpdateFlightValidation.ValidateFields(cboUpdateDeptAirportFlight, cboUpdateArrAirportFlight, cboUpdateOperatorCodeFlight, cboUpdateDeptTime, txtUpdateNumFlightSeats.Text))
-            {
-                return;
-            }
 
-            string dept = cboUpdateDeptAirportFlight.SelectedItem.ToString();
-            string arr = cboUpdateArrAirportFlight.SelectedItem.ToString();
-
-            Route getRouteID = new Route();
-            int routeID = getRouteID.getRouteID(dept, arr);
-
-            if (routeID != -1)
-            {
-                Flight updateFlightSchedule = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.SelectedItem.ToString(), int.Parse(lblUpdateFlightRouteIdDetails.Text), dtpUpdateDeptFlight.Value,
-                                                    cboUpdateDeptTime.SelectedItem.ToString(), lblUpdateFlightEstArrTimeDetail.Text, int.Parse(txtUpdateNumFlightSeats.Text), int.Parse(txtUpdateNumFlightSeats.Text), "A");
-
-                updateFlightSchedule.updateFlight(lblUpdateFlightNumberDetail.Text);
-
-                MessageBox.Show(lblUpdateFlightNumberDetail.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-               /* MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
-                                lblUpdateFlightNumberDetail + "\n\n" +
-                                cboUpdateOperatorCodeFlight.SelectedItem + "\n\n" +
-                                txtUpdateNumFlightSeats.Text + "\n\n" +
-                                dtpUpdateDeptFlight.Text + "\n\n" +
-                                cboUpdateDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-
-                cboUpdateArrAirportFlight.SelectedIndex = -1;
-                cboUpdateDeptAirportFlight.SelectedIndex = -1;
-                cboUpdateOperatorCodeFlight.SelectedIndex = -1;
-                txtUpdateNumFlightSeats.Clear();
-                dtpUpdateDeptFlight.Value = DateTime.Now;
-                cboUpdateDeptTime.SelectedIndex = -1;
-            }
-            else
-            {
-                MessageBox.Show("No RouteID Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void frmUpdateFlight_Load(object sender, EventArgs e)
         {
             grpUpdateFlightDetails.Visible = false;
@@ -334,14 +294,45 @@ namespace AirlineSYS
                 }
             }
         }
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void cboUpdateOperatorCodeFlight_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             ReviewUpdateFlightDetails();
+        }
+
+        private void btnUpdateFlightConfirm_Click(object sender, EventArgs e)
+        {
+            if (!UpdateFlightValidation.ValidateFlightField(cboUpdateDeptAirportFlight, cboUpdateArrAirportFlight, cboUpdateOperatorCodeFlight, int.Parse(txtUpdateNumFlightSeats.Text), dtpUpdateDeptFlight.Value, cboUpdateDeptTime, lblUpdateFlightEstArrTimeDetail.Text))
+            {
+                return;
+            }
+
+            string dept = cboUpdateDeptAirportFlight.SelectedItem.ToString();
+            string arr = cboUpdateArrAirportFlight.SelectedItem.ToString();
+
+            Route getRouteID = new Route();
+            int routeID = getRouteID.getRouteID(dept, arr);
+
+            if (routeID != -1)
+            {
+                Flight updateFlightSchedule = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.SelectedItem.ToString(), int.Parse(lblUpdateFlightRouteIdDetails.Text), dtpUpdateDeptFlight.Value,
+                                                    cboUpdateDeptTime.SelectedItem.ToString(), lblUpdateFlightEstArrTimeDetail.Text, int.Parse(txtUpdateNumFlightSeats.Text), int.Parse(txtUpdateNumFlightSeats.Text), "A");
+
+                updateFlightSchedule.updateFlight(lblUpdateFlightNumberDetail.Text);
+
+                MessageBox.Show(lblUpdateFlightNumberDetail.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                cboUpdateArrAirportFlight.SelectedIndex = -1;
+                cboUpdateDeptAirportFlight.SelectedIndex = -1;
+                cboUpdateOperatorCodeFlight.SelectedIndex = -1;
+                txtUpdateNumFlightSeats.Clear();
+                dtpUpdateDeptFlight.Value = DateTime.Now;
+                cboUpdateDeptTime.SelectedIndex = -1;
+            }
+            else
+            {
+                MessageBox.Show("No RouteID Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

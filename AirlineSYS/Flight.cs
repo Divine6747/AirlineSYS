@@ -165,11 +165,10 @@ namespace AirlineSYS
                 }
             }
         }
-        public void updateFlight(string oldFlightNumber)
+        public void updateFlight(string flightNumber)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             string sqlQuery = "UPDATE Flights SET " +
-                              "FlightNumber = :newFlightNumber, " +
                               "OperatorCode = :operatorCode, " +
                               "FlightDate = :flightDate, " +
                               "FlightTime = :flightTime, " +
@@ -177,18 +176,10 @@ namespace AirlineSYS
                               "NumSeats = :numSeats, " +
                               "NumSeatAvail = :numSeatAvail, " +
                               "Status = :status " +
-                              "WHERE FlightNumber = :oldFlightNumber";
+                              "WHERE FlightNumber = :flightNumber";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
-            // Extract the numeric part of the old flight number
-            string oldOperatorCode = oldFlightNumber.Substring(0, 2);
-            string oldNumericPart = oldFlightNumber.Substring(2);
-
-            // Combine the new operator code with the old numeric part to create the new flight number
-            string newFlightNumber = OperatorCode + oldNumericPart;
-
-            cmd.Parameters.Add(":newFlightNumber", OracleDbType.Varchar2).Value = newFlightNumber;
             cmd.Parameters.Add(":operatorCode", OracleDbType.Varchar2).Value = OperatorCode;
             cmd.Parameters.Add(":flightDate", OracleDbType.Date).Value = FlightDate;
             cmd.Parameters.Add(":flightTime", OracleDbType.Varchar2).Value = FlightTime;
@@ -196,7 +187,7 @@ namespace AirlineSYS
             cmd.Parameters.Add(":numSeats", OracleDbType.Int32).Value = NumSeats;
             cmd.Parameters.Add(":numSeatAvail", OracleDbType.Int32).Value = NumSeatAvail;
             cmd.Parameters.Add(":status", OracleDbType.Varchar2).Value = Status;
-            cmd.Parameters.Add(":oldFlightNumber", OracleDbType.Varchar2).Value = oldFlightNumber;
+            cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
 
             try
             {

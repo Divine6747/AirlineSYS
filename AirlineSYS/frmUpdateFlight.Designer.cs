@@ -33,6 +33,7 @@
             this.mnuUpdateFlight = new System.Windows.Forms.MenuStrip();
             this.btnUpdateFlightConfirm = new System.Windows.Forms.Button();
             this.grpUpdateFlightDetails = new System.Windows.Forms.GroupBox();
+            this.cboUpdateOperatorCodeFlight = new System.Windows.Forms.ComboBox();
             this.cboUpdateDeptAirportFlight = new System.Windows.Forms.ComboBox();
             this.cboUpdateArrAirportFlight = new System.Windows.Forms.ComboBox();
             this.cboUpdateDeptTime = new System.Windows.Forms.ComboBox();
@@ -60,7 +61,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblDateReview = new System.Windows.Forms.Label();
-            this.cboUpdateOperatorCodeFlight = new System.Windows.Forms.ComboBox();
             this.grpUpdateFlightDetails.SuspendLayout();
             this.grpViewUpdateFlightDetails.SuspendLayout();
             this.SuspendLayout();
@@ -100,7 +100,7 @@
             this.btnUpdateFlightConfirm.TabIndex = 13;
             this.btnUpdateFlightConfirm.Text = "CONFIRM";
             this.btnUpdateFlightConfirm.UseVisualStyleBackColor = false;
-            this.btnUpdateFlightConfirm.Click += new System.EventHandler(this.btnAirportConfirm_Click);
+            this.btnUpdateFlightConfirm.Click += new System.EventHandler(this.btnUpdateFlightConfirm_Click);
             // 
             // grpUpdateFlightDetails
             // 
@@ -126,6 +126,15 @@
             this.grpUpdateFlightDetails.TabStop = false;
             this.grpUpdateFlightDetails.Text = "Update Flight Details";
             this.grpUpdateFlightDetails.Visible = false;
+            // 
+            // cboUpdateOperatorCodeFlight
+            // 
+            this.cboUpdateOperatorCodeFlight.FormattingEnabled = true;
+            this.cboUpdateOperatorCodeFlight.Location = new System.Drawing.Point(224, 195);
+            this.cboUpdateOperatorCodeFlight.Name = "cboUpdateOperatorCodeFlight";
+            this.cboUpdateOperatorCodeFlight.Size = new System.Drawing.Size(159, 36);
+            this.cboUpdateOperatorCodeFlight.TabIndex = 41;
+            this.cboUpdateOperatorCodeFlight.SelectedIndexChanged += new System.EventHandler(this.cboUpdateOperatorCodeFlight_SelectedIndexChanged_1);
             // 
             // cboUpdateDeptAirportFlight
             // 
@@ -448,15 +457,6 @@
             this.lblDateReview.Size = new System.Drawing.Size(200, 24);
             this.lblDateReview.TabIndex = 41;
             this.lblDateReview.Text = "NO DATA GIVEN YET";
-            // 
-            // cboUpdateOperatorCodeFlight
-            // 
-            this.cboUpdateOperatorCodeFlight.FormattingEnabled = true;
-            this.cboUpdateOperatorCodeFlight.Location = new System.Drawing.Point(224, 195);
-            this.cboUpdateOperatorCodeFlight.Name = "cboUpdateOperatorCodeFlight";
-            this.cboUpdateOperatorCodeFlight.Size = new System.Drawing.Size(159, 36);
-            this.cboUpdateOperatorCodeFlight.TabIndex = 41;
-            this.cboUpdateOperatorCodeFlight.SelectedIndexChanged += new System.EventHandler(this.cboUpdateOperatorCodeFlight_SelectedIndexChanged_1);
             // 
             // frmUpdateFlight
             // 

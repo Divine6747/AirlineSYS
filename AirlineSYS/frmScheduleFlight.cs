@@ -292,10 +292,5 @@ namespace AirlineSYS
         {
             ReviewUpdateFlightDetails();
         }
-
-        private void txtNumFlightSeats_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

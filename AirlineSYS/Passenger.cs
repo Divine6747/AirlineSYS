@@ -134,13 +134,13 @@ namespace AirlineSYS
             {
                 using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
                 {
-                    cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = this.PassengerID;
-                    cmd.Parameters.Add(":Forename", OracleDbType.Varchar2, 50).Value = this.Forename;
-                    cmd.Parameters.Add(":Surname", OracleDbType.Varchar2, 50).Value = this.Surname;
-                    cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = this.DateOfBirth;
-                    cmd.Parameters.Add(":Email", OracleDbType.Varchar2, 70).Value = this.Email;
-                    cmd.Parameters.Add(":Phone", OracleDbType.Int32).Value = this.Phone;
-                    cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2, 7).Value = this.Eircode;
+                    cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = PassengerID;
+                    cmd.Parameters.Add(":Forename", OracleDbType.Varchar2).Value = Forename;
+                    cmd.Parameters.Add(":Surname", OracleDbType.Varchar2).Value = Surname;
+                    cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = DateOfBirth;
+                    cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
+                    cmd.Parameters.Add(":Phone", OracleDbType.Int32).Value = Phone;
+                    cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
 
                     try
                     {

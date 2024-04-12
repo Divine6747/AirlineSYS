@@ -170,7 +170,6 @@
             this.txtNumFlightSeats.Name = "txtNumFlightSeats";
             this.txtNumFlightSeats.Size = new System.Drawing.Size(159, 29);
             this.txtNumFlightSeats.TabIndex = 25;
-            this.txtNumFlightSeats.TextChanged += new System.EventHandler(this.txtNumFlightSeats_TextChanged_1);
             // 
             // grpScheduleFlightDetails
             // 

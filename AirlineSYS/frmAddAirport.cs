@@ -92,7 +92,7 @@ namespace AirlineSYS
 
             else if (!(txtAirportPhone.Text.StartsWith("08")) || !(txtAirportPhone.Text.Length > 0 && txtAirportPhone.Text.Length <= 15) || !txtAirportPhone.Text.All(char.IsLetterOrDigit))
             {
-                MessageBox.Show("Airport phone must be Numeric, Starts with (08 or +353 ) and Maxium 15 characters", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Airport phone must be Numeric, Starts with (08) and Maxium 15 characters", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAirportPhone.Focus();
                 return;
             }

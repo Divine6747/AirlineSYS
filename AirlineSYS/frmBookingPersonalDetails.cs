@@ -80,13 +80,16 @@ namespace AirlineSYS
 
         private void frmBookingPersonalDetails_Load(object sender, EventArgs e)
         {
-            lblPassengerIdDetail.Text = Passenger.getNextPassengerID().ToString("00");
+            lblPassengerIdDetail.Text = Passenger.getNextPassengerID().ToString();
             if (lblDeptAirportDetail != null && lblArrAirportDetail != null)
             {
                 string deptAirport = lblDeptAirportDetail.Text;
                 string arrAirport = lblArrAirportDetail.Text;
                 lblBookingFlightPriceDetail.Text = "€" + Passenger.getRoutePrice(deptAirport, arrAirport);
             }
+
+            lblBookingIdDetail.Text = Booking.getNextBookingID().ToString();
+            lblFlightSeatNumberDetail.Text = Booking.getNextSeatNumber(flightNumber).ToString();
         }
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
@@ -98,7 +101,9 @@ namespace AirlineSYS
 
             decimal routePrice = Passenger.getRoutePrice(deptAirport, arrAirport);
 
-            if (!validateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, txtBookingEircode.Text, paymentAmount, routePrice, flightPriceText))
+            string bookingEircode = txtBookingEircode.Text.ToUpper();
+
+            if (!validateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, bookingEircode, paymentAmount, routePrice, flightPriceText))
             {
                 return;
             }
@@ -109,11 +114,16 @@ namespace AirlineSYS
                             $"Date of Birth: {dtpBookingDOB.Value.ToShortDateString()}\n" +
                             $"Email: {txtBookingEmail.Text}\n" +
                             $"Phone: {txtBookingPhone.Text}\n" +
-                            $"Eircode: {txtBookingEircode.Text}";
+                            $"Eircode: {bookingEircode}"; 
                 MessageBox.Show($"Your flight booking information:\n\n{userData}", "Booking Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                Passenger passenger = new Passenger(Convert.ToInt32(lblPassengerIdDetail.Text), txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, int.Parse(txtBookingPhone.Text), txtBookingEircode.Text);
+                Passenger passenger = new Passenger(Convert.ToInt32(lblPassengerIdDetail.Text), txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, int.Parse(txtBookingPhone.Text), bookingEircode);
                 passenger.addPassenger();
+
+                Booking booking = new Booking(Convert.ToInt32(lblBookingIdDetail.Text), Convert.ToInt32(lblPassengerIdDetail.Text),Convert.ToInt32(lblBookingRouteIDDetail.Text),lblFlightNumberDetail.Text,
+                                              lblFlightTimedetail.Text, DateTime.Parse(lblFlightDateDetails.Text), Convert.ToInt32(lblFlightSeatNumberDetail.Text),Convert.ToInt32(lblNumBaggageDetail.Text),
+                                              Convert.ToDecimal(txtPayBookingFlightPrice.Text),"CONFIRMED");
+                booking.addBooking();
             }
         }
     }

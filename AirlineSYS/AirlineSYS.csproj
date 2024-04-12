@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Airport.cs" />
+    <Compile Include="Booking.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="flightSeats.cs" />
     <Compile Include="FlightTimes.cs" />
