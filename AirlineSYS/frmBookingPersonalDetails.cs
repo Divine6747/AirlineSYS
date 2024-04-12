@@ -79,7 +79,7 @@ namespace AirlineSYS
 
         private void frmBookingPersonalDetails_Load(object sender, EventArgs e)
         {
-
+            lblArrAirport.Text = Passenger.getNextPassengerID().ToString("00");
         }
 
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
