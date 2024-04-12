@@ -18,13 +18,14 @@ namespace AirlineSYS
                 MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
             int numFlightSeats;
+
             if (!int.TryParse(numSeats, out numFlightSeats) || numFlightSeats <= 0)
             {
                 MessageBox.Show("Number of seats must be a positive integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             return true;
         }
     }

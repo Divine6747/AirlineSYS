@@ -523,9 +523,9 @@
             this.lblPassengerIdDetail.ForeColor = System.Drawing.Color.Plum;
             this.lblPassengerIdDetail.Location = new System.Drawing.Point(972, 68);
             this.lblPassengerIdDetail.Name = "lblPassengerIdDetail";
-            this.lblPassengerIdDetail.Size = new System.Drawing.Size(28, 21);
+            this.lblPassengerIdDetail.Size = new System.Drawing.Size(19, 21);
             this.lblPassengerIdDetail.TabIndex = 68;
-            this.lblPassengerIdDetail.Text = "00";
+            this.lblPassengerIdDetail.Text = "0";
             // 
             // lblPassengerId
             // 

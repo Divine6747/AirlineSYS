@@ -90,37 +90,38 @@ namespace AirlineSYS
         //Adding Route
         public void addRoute()
         {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            string sqlQuery = "INSERT INTO Routes (RouteID, DepartureAirport, ArrivalAirport, TicketPrice, Duration, Status) " +
+                              "VALUES (:RouteID, :DepartureAirport, :ArrivalAirport, :TicketPrice, :Duration, :Status)";
 
-            string sqlQuery = "INSERT INTO Routes VALUES (" +
-                this.RouteID + ",'" +
-                this.DepartureAirport + "','" +
-                this.ArrivalAirport + "', " +
-                this.TicketPrice + ", " +
-                this.Duration + ", '" +
-                this.Status + "')";
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                {
+                    cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = this.RouteID;
+                    cmd.Parameters.Add(":DepartureAirport", OracleDbType.Varchar2).Value = this.DepartureAirport;
+                    cmd.Parameters.Add(":ArrivalAirport", OracleDbType.Varchar2).Value = this.ArrivalAirport;
+                    cmd.Parameters.Add(":TicketPrice", OracleDbType.Decimal).Value = this.TicketPrice;
+                    cmd.Parameters.Add(":Duration", OracleDbType.Decimal).Value = this.Duration;
+                    cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = this.Status;
 
-            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-            try
-            {
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Route has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Route has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (OracleException ex)
+                    {
+                        MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
+
         //Getting All Routes from database
         public static List<Route> getRoutes()
         {

@@ -105,11 +105,12 @@ namespace AirlineSYS
                     cmd.Parameters.Add(":arrAirport", arrivalAirport);
 
                     conn.Open();
-                    object result = cmd.ExecuteScalar();
-
-                    if (result != null && result != DBNull.Value)
+                    using (OracleDataReader reader = cmd.ExecuteReader())
                     {
-                        ticketPrice = Convert.ToDecimal(result);
+                        if (reader.Read())
+                        {
+                            ticketPrice = reader.GetDecimal(0);
+                        }
                     }
                 }
             }
@@ -124,6 +125,39 @@ namespace AirlineSYS
 
             return ticketPrice;
         }
+        public void addPassenger()
+        {
+            string sqlQuery = "INSERT INTO PASSENGERS (PASSENGERID, FORENAME, SURNAME, DATEOFBIRTH, EMAIL, PHONE, EIRCODE) " +
+                              "VALUES (:PassengerID, :Forename, :Surname, :DateOfBirth, :Email, :Phone, :Eircode)";
 
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                {
+                    cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = this.PassengerID;
+                    cmd.Parameters.Add(":Forename", OracleDbType.Varchar2, 50).Value = this.Forename;
+                    cmd.Parameters.Add(":Surname", OracleDbType.Varchar2, 50).Value = this.Surname;
+                    cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = this.DateOfBirth;
+                    cmd.Parameters.Add(":Email", OracleDbType.Varchar2, 70).Value = this.Email;
+                    cmd.Parameters.Add(":Phone", OracleDbType.Int32).Value = this.Phone;
+                    cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2, 7).Value = this.Eircode;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Passenger has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (OracleException ex)
+                    {
+                        MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        } 
     }
 }

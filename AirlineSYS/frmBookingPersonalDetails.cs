@@ -59,7 +59,7 @@ namespace AirlineSYS
                     return true;
                 }
             }
-            return false;   
+            return false;
         }
         public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
         {
@@ -81,14 +81,13 @@ namespace AirlineSYS
         private void frmBookingPersonalDetails_Load(object sender, EventArgs e)
         {
             lblPassengerIdDetail.Text = Passenger.getNextPassengerID().ToString("00");
-            if (lblDeptAirportDetail!= null && lblArrAirportDetail!= null)
+            if (lblDeptAirportDetail != null && lblArrAirportDetail != null)
             {
                 string deptAirport = lblDeptAirportDetail.Text;
                 string arrAirport = lblArrAirportDetail.Text;
-                lblBookingFlightPriceDetail.Text = "€" + Passenger.getRoutePrice(deptAirport,arrAirport);
+                lblBookingFlightPriceDetail.Text = "€" + Passenger.getRoutePrice(deptAirport, arrAirport);
             }
         }
-
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
             string deptAirport = lblDeptAirportDetail.Text;
@@ -112,6 +111,9 @@ namespace AirlineSYS
                             $"Phone: {txtBookingPhone.Text}\n" +
                             $"Eircode: {txtBookingEircode.Text}";
                 MessageBox.Show($"Your flight booking information:\n\n{userData}", "Booking Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Passenger passenger = new Passenger(Convert.ToInt32(lblPassengerIdDetail.Text), txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, int.Parse(txtBookingPhone.Text), txtBookingEircode.Text);
+                passenger.addPassenger();
             }
         }
     }

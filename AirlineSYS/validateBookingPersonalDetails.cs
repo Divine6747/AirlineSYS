@@ -75,19 +75,25 @@ namespace AirlineSYS
 
             if (string.IsNullOrWhiteSpace(flightPriceText))
             {
-                MessageBox.Show("Please wait while the price is being retrieved.", "Price Not Available", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please pay the price for the flight.", "Price Not Entered", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (paymentAmount < routePrice)
+            if (!decimal.TryParse(flightPriceText.Replace("€", ""), out decimal retrievedPrice))
             {
-                MessageBox.Show("Payment amount is not sufficient.", "Insufficient Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error parsing the retrieved price.", "Price Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (paymentAmount > routePrice)
+            if (paymentAmount < retrievedPrice)
             {
-                MessageBox.Show("Payment amount exceeds the price.", "Excess Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Payment amount exceeds the price of the flight.", "Price Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (paymentAmount > retrievedPrice)
+            {
+                MessageBox.Show("Payment amount is insufficient for the price of the flight.", "Price Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
