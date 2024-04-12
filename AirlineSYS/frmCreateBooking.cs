@@ -49,6 +49,7 @@ namespace AirlineSYS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
             //Passing Selected Data Grid View in these variables
             this.flightNumber = flightNumber;
             this.deptAirport = deptAirport;
@@ -56,6 +57,7 @@ namespace AirlineSYS
             this.flightDate = flightDate;
             this.flightTime = flightTime;
             this.numBaggage = numBaggage;
+
             PopulateFlightInfo();
             baggage();
         }
@@ -70,7 +72,7 @@ namespace AirlineSYS
             lblFlightTimedetail.Text = flightTime;
             nudNumBaggage.Value = numBaggage;
         }
-
+        //RefreshFlightInfo() saves the previously selected flight, if user decided to to book another flight but changed their mind
         public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, int numBaggage)
         {
             this.flightNumber = flightNumber;

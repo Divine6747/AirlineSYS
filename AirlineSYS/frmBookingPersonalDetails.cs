@@ -69,6 +69,7 @@ namespace AirlineSYS
             this.flightDate = flightDate;
             this.flightTime = flightTime;
             this.numBaggage = numBaggage;
+
             PopulateFlightInfo();
         }
         public frmBookingPersonalDetails()
@@ -79,26 +80,38 @@ namespace AirlineSYS
 
         private void frmBookingPersonalDetails_Load(object sender, EventArgs e)
         {
-            lblArrAirport.Text = Passenger.getNextPassengerID().ToString("00");
+            lblPassengerIdDetail.Text = Passenger.getNextPassengerID().ToString("00");
+            if (lblDeptAirportDetail!= null && lblArrAirportDetail!= null)
+            {
+                string deptAirport = lblDeptAirportDetail.Text;
+                string arrAirport = lblArrAirportDetail.Text;
+                lblBookingFlightPriceDetail.Text = "€" + Passenger.getRoutePrice(deptAirport,arrAirport);
+            }
         }
 
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
-            if (!validateBookingPersonalDetails.ValidateBookingField(txtForeName.Text,txtSurname.Text,dtpBookingDOB.Value,txtBookingEmail.Text,txtBookingPhone.Text,txtBookingEircode.Text))
+            string deptAirport = lblDeptAirportDetail.Text;
+            string arrAirport = lblArrAirportDetail.Text;
+            decimal paymentAmount = Passenger.getRoutePrice(deptAirport, arrAirport);
+
+            string flightPriceText = lblBookingFlightPriceDetail.Text;
+
+            decimal routePrice = Passenger.getRoutePrice(deptAirport, arrAirport);
+
+            if (!validateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, txtBookingEircode.Text, paymentAmount, routePrice, flightPriceText))
             {
                 return;
             }
             else
             {
                 string userData = $"First Name: {txtForeName.Text}\n" +
-                          $"Surname: {txtSurname.Text}\n" +
-                          $"Date of Birth: {dtpBookingDOB.Value.ToShortDateString()}\n" +
-                          $"Email: {txtBookingEmail.Text}\n" +
-                          $"Phone: {txtBookingPhone.Text}\n" +
-                          $"Eircode: {txtBookingEircode.Text}";
+                            $"Surname: {txtSurname.Text}\n" +
+                            $"Date of Birth: {dtpBookingDOB.Value.ToShortDateString()}\n" +
+                            $"Email: {txtBookingEmail.Text}\n" +
+                            $"Phone: {txtBookingPhone.Text}\n" +
+                            $"Eircode: {txtBookingEircode.Text}";
                 MessageBox.Show($"Your flight booking information:\n\n{userData}", "Booking Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
             }
         }
     }

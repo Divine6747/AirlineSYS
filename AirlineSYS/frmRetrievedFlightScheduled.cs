@@ -141,13 +141,13 @@ namespace AirlineSYS
 
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
-            ConfirmSelect();
-            
+            ConfirmSelect();            
         }
 
         private void munBack_Click(object sender, EventArgs e)
         {
             frmCreateBooking frmCreateBooking = Application.OpenForms["frmCreateBooking"] as frmCreateBooking;
+
             if (frmCreateBooking != null)
             {
                 int numBaggageInt = numBaggage;
@@ -166,7 +166,10 @@ namespace AirlineSYS
 
                 this.Close();
 
-                frmCreateBooking.Show();
+                frmCreateBooking.Show();                
+                frmCreateBooking.lblFlightDateDetails.Text = "";
+                frmCreateBooking.nudNumBaggage.Visible = false;
+                MessageBox.Show("Please select a fligt properly.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

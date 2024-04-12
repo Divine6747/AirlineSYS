@@ -10,7 +10,7 @@ namespace AirlineSYS
 {
     public static class validateBookingPersonalDetails
     {
-        public static bool ValidateBookingField(string txtForeName, string txtSurname, DateTime dtpBookingDOB, string txtBookingEmail, string txtBookingPhone, string txtBookingEircode)
+        public static bool ValidateBookingField(string txtForeName, string txtSurname, DateTime dtpBookingDOB, string txtBookingEmail, string txtBookingPhone, string txtBookingEircode, decimal paymentAmount, decimal routePrice, string flightPriceText)
         {
             if (txtForeName != null)
             {
@@ -36,7 +36,6 @@ namespace AirlineSYS
             {
                 txtBookingEircode = txtBookingEircode.Trim();
             }
-
 
             if (string.IsNullOrWhiteSpace(txtForeName) || !IsValidName(txtForeName))
             {
@@ -73,10 +72,33 @@ namespace AirlineSYS
                 MessageBox.Show("Invalid phone number format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+            if (string.IsNullOrWhiteSpace(flightPriceText))
+            {
+                MessageBox.Show("Please wait while the price is being retrieved.", "Price Not Available", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (paymentAmount < routePrice)
+            {
+                MessageBox.Show("Payment amount is not sufficient.", "Insufficient Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (paymentAmount > routePrice)
+            {
+                MessageBox.Show("Payment amount exceeds the price.", "Excess Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
 
-        // Function to check if a person is 18 or older based on date of birth
+        private static bool IsValidName(string name)
+        {
+            return !string.IsNullOrWhiteSpace(name) && name.Length <= 50 && name.All(char.IsLetter);
+        }
+
         private static bool IsPerson18OrOlder(DateTime dob)
         {
             DateTime today = DateTime.Today;
@@ -86,28 +108,22 @@ namespace AirlineSYS
             return age >= 18;
         }
 
-        private static bool IsValidName(string name)
-        {
-            return !string.IsNullOrWhiteSpace(name) && name.All(char.IsLetter);
-        }
-
         private static bool IsValidEmail(string email)
         {
             string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
-            return Regex.IsMatch(email, emailPattern);
+            return !string.IsNullOrWhiteSpace(email) && email.Length <= 70 && Regex.IsMatch(email, emailPattern);
         }
 
         private static bool IsValidEircode(string eircode)
         {
             string eircodePattern = @"^[A-Za-z0-9]{7}$";
-            return Regex.IsMatch(eircode, eircodePattern);
+            return !string.IsNullOrWhiteSpace(eircode) && Regex.IsMatch(eircode, eircodePattern);
         }
 
         private static bool IsValidPhoneNumber(string phoneNumber)
         {
             string phonePattern = @"^08[3579]\d{7}$";
-            return Regex.IsMatch(phoneNumber, phonePattern);
+            return !string.IsNullOrWhiteSpace(phoneNumber) && Regex.IsMatch(phoneNumber, phonePattern);
         }
-
     }
 }

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AirlineSYS
 {
@@ -64,7 +66,7 @@ namespace AirlineSYS
             {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
-                    string sqlQuery = "SELECT MAX(PassengerID) FROM Passenger";
+                    string sqlQuery = "SELECT MAX(PassengerID) FROM Passengers";
 
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
@@ -89,5 +91,39 @@ namespace AirlineSYS
             }
             return nextPassengerID;
         }
+        public static decimal getRoutePrice(string departureAirport, string arrivalAirport)
+        {
+            decimal ticketPrice = 0;
+
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "SELECT TicketPrice FROM Routes WHERE DeptAirport = :deptAirport AND ArrAirport = :arrAirport";
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                    cmd.Parameters.Add(":deptAirport", departureAirport);
+                    cmd.Parameters.Add(":arrAirport", arrivalAirport);
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        ticketPrice = Convert.ToDecimal(result);
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return ticketPrice;
+        }
+
     }
 }
