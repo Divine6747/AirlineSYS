@@ -178,6 +178,42 @@ namespace AirlineSYS
                 }
             }
         }
+        public static bool decreaseAvailableSeats(string flightNumber, int seats)
+        {
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    string sqlQuery = "UPDATE Flights SET NUMSEATAVAIL = NUMSEATAVAIL - :seatsToDecrease WHERE FLIGHTNUMBER = :flightNumber";
+
+                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                    cmd.Parameters.Add(new OracleParameter("seatsToDecrease", seats));
+                    cmd.Parameters.Add(new OracleParameter("flightNumber", flightNumber));
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; // Handle exception gracefully
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; // Handle exception gracefully
+            }
+        }
 
     }
 }

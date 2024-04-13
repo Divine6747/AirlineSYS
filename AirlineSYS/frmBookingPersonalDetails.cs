@@ -77,7 +77,6 @@ namespace AirlineSYS
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
-
         private void frmBookingPersonalDetails_Load(object sender, EventArgs e)
         {
             lblPassengerIdDetail.Text = Passenger.getNextPassengerID().ToString();
@@ -109,21 +108,24 @@ namespace AirlineSYS
             }
             else
             {
-                string userData = $"First Name: {txtForeName.Text}\n" +
-                            $"Surname: {txtSurname.Text}\n" +
-                            $"Date of Birth: {dtpBookingDOB.Value.ToShortDateString()}\n" +
-                            $"Email: {txtBookingEmail.Text}\n" +
-                            $"Phone: {txtBookingPhone.Text}\n" +
-                            $"Eircode: {bookingEircode}"; 
-                MessageBox.Show($"Your flight booking information:\n\n{userData}", "Booking Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 Passenger passenger = new Passenger(Convert.ToInt32(lblPassengerIdDetail.Text), txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, int.Parse(txtBookingPhone.Text), bookingEircode);
                 passenger.addPassenger();
 
-                Booking booking = new Booking(Convert.ToInt32(lblBookingIdDetail.Text), Convert.ToInt32(lblPassengerIdDetail.Text),Convert.ToInt32(lblBookingRouteIDDetail.Text),lblFlightNumberDetail.Text,
-                                              lblFlightTimedetail.Text, DateTime.Parse(lblFlightDateDetails.Text), Convert.ToInt32(lblFlightSeatNumberDetail.Text),Convert.ToInt32(lblNumBaggageDetail.Text),
-                                              Convert.ToDecimal(txtPayBookingFlightPrice.Text),"CONFIRMED");
+                Booking booking = new Booking(Convert.ToInt32(lblBookingIdDetail.Text), Convert.ToInt32(lblPassengerIdDetail.Text), Convert.ToInt32(lblBookingRouteIDDetail.Text), lblFlightNumberDetail.Text,
+                                              lblFlightTimedetail.Text, DateTime.Parse(lblFlightDateDetails.Text), Convert.ToInt32(lblFlightSeatNumberDetail.Text), Convert.ToInt32(lblNumBaggageDetail.Text),
+                                              Convert.ToDecimal(txtPayBookingFlightPrice.Text), "CONFIRMED");
                 booking.addBooking();
+
+                bool isSeatDecreaseSuccessful = Booking.decreaseAvailableSeats(lblFlightNumberDetail.Text, 1);
+
+                if (isSeatDecreaseSuccessful)
+                {
+                    MessageBox.Show("Booking confirmed successfully! Seats have been decreased.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to confirm booking. Please try again.");
+                }
             }
         }
     }
