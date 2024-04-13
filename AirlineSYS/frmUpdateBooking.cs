@@ -37,31 +37,32 @@ namespace AirlineSYS
         private void btnUpdateBookingIDSearch_Click(object sender, EventArgs e)
         {
             int bookingID = Convert.ToInt32(txtBookingID.Text);
-            var (booking, passenger) = Passenger.findBookingDetails(bookingID);
+            DataTable dt = Passenger.findBookingDetails(bookingID);
 
-            if (booking != null && passenger != null)
+            if (dt.Rows.Count > 0)
             {
+                DataRow row = dt.Rows[0];
+
                 // Populate text boxes with booking data
-                lblFlightNumberDetail.Text = booking.GetFlightNumber();
-                cboDeptimeDetail.Text = booking.GetFlightTime();
-                dptUpdateBookingDate.Text = booking.GetFlightDate().ToString();
-                lblSeatNumDetail.Text = booking.GetSeatNum().ToString();
-                nudNumBaggage.Text = booking.GetNumBaggage().ToString();
-                lbFlightlBookingPriceDetail.Text = booking.GetAmountPaid().ToString();
+                lblFlightNumberDetail.Text = row["FlightNumber"].ToString();
+                cboDeptimeDetail.Text = row["FlightTime"].ToString();
+                dptUpdateBookingDate.Text = ((DateTime)row["FlightDate"]).ToString();
+                lblSeatNumDetail.Text = row["SeatNum"].ToString();
+                nudNumBaggage.Text = row["NumBaggage"].ToString();
+                lbFlightlBookingPriceDetail.Text = row["AmountPaid"].ToString();
 
                 // Populate labels with passenger data
-                txtForeName.Text = passenger.getForename();
-                txtSurname.Text = passenger.getSurname();
-                txtCreateBookingEmail.Text = passenger.getEmail();
-                dtpDOB.Text = passenger.getDateOfBirth().ToString();
-                txtCreateBooingPhone.Text = passenger.getPhone().ToString();
-                txtCreateBookingEircode.Text = passenger.getEircode();
+                txtForeName.Text = row["forename"].ToString();
+                txtSurname.Text = row["surname"].ToString();
+                txtCreateBookingEmail.Text = row["Email"].ToString();
+                dtpDOB.Text = ((DateTime)row["DateOfBirth"]).ToString();
+                txtCreateBooingPhone.Text = row["Phone"].ToString();
+                txtCreateBookingEircode.Text = row["Eircode"].ToString();
             }
             else
             {
                 MessageBox.Show("No booking found with the given ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
         private void frmUpdateBooking_Load(object sender, EventArgs e)
         {

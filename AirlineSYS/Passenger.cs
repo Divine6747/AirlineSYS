@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -160,10 +161,9 @@ namespace AirlineSYS
             }
         }
 
-        public static Tuple<Booking, Passenger> findBookingDetails(int bookingID)
+        public static DataTable findBookingDetails(int bookingID)
         {
-            Booking booking = null;
-            Passenger passenger = null;
+            DataTable dt = new DataTable();
 
             string sqlQuery = "SELECT b.BookingID, b.PassengerID, b.RouteID, b.FlightNumber, b.FlightTime, b.FlightDate, " +
                               "b.SeatNum, b.NumBaggage, b.AmountPaid, " +
@@ -182,31 +182,8 @@ namespace AirlineSYS
 
                         conn.Open();
 
-                        using (OracleDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                booking = new Booking();
-                                booking.SetBookingID(reader.GetInt32(0));
-                                booking.SetPassengerID(reader.GetInt32(1));
-                                booking.SetRouteID(reader.GetInt32(2));
-                                booking.SetFlightNumber(reader.GetString(3));
-                                booking.SetFlightTime(reader.GetString(4));
-                                booking.SetFlightDate(reader.GetDateTime(5));
-                                booking.SetSeatNum(reader.GetInt32(6));
-                                booking.SetNumBaggage(reader.GetInt32(7));
-                                booking.SetAmountPaid(reader.GetDecimal(8));
-
-                                passenger = new Passenger();
-                                passenger.setPassengerID(reader.GetInt32(0));
-                                passenger.setForename(reader.GetString(1));
-                                passenger.setSurname(reader.GetString(2));
-                                passenger.setDateOfBirth(reader.GetDateTime(3));
-                                passenger.setEmail(reader.GetString(4));
-                                passenger.setPhone(reader.GetInt64(5));
-                                passenger.setEircode(reader.GetString(7));
-                            }
-                        }
+                        OracleDataAdapter adapter = new OracleDataAdapter(cmd);
+                        adapter.Fill(dt);
                     }
                 }
             }
@@ -219,7 +196,11 @@ namespace AirlineSYS
                 MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return new Tuple<Booking, Passenger>(booking, passenger);
+            return dt;
         }
-    }
+
+    } /*catch (Exception ex)
+            {
+                MessageBox.Show($"Exception: {ex.Message}\nStack Trace: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
 }
