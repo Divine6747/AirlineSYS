@@ -106,8 +106,7 @@ namespace AirlineSYS
             }
             return nextBookingID;
         }
-
-        public static int getNextSeatNumber(string flightNumber)
+        public static int getNextSeatNumber()
         {
             int nextSeatNumber = 1;
 
@@ -115,10 +114,9 @@ namespace AirlineSYS
             {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
-                    string sqlQuery = "SELECT MAX(SeatNum) FROM Bookings WHERE FlightNumber = :flightNumber";
+                    string sqlQuery = "SELECT MAX(SeatNum) FROM Bookings";
 
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-                    cmd.Parameters.Add("flightNumber", OracleDbType.Varchar2).Value = flightNumber;
 
                     conn.Open();
 
@@ -141,6 +139,7 @@ namespace AirlineSYS
             }
             return nextSeatNumber;
         }
+
         public void addBooking()
         {
             string sqlQuery = "INSERT INTO Bookings (BookingID, PassengerID, RouteID, FlightNumber, FlightTime, FlightDate, SeatNum, NumBaggage, AmountPaid, Status) " +
@@ -206,12 +205,12 @@ namespace AirlineSYS
             catch (OracleException ex)
             {
                 MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false; // Handle exception gracefully
+                return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false; // Handle exception gracefully
+                return false;
             }
         }
 

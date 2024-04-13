@@ -155,9 +155,9 @@
             this.grpBookingDetails.Controls.Add(this.lblDeptAirportDetail);
             this.grpBookingDetails.Controls.Add(this.lblArrAirportDetail);
             this.grpBookingDetails.Location = new System.Drawing.Point(77, 89);
-            this.grpBookingDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpBookingDetails.Margin = new System.Windows.Forms.Padding(2);
             this.grpBookingDetails.Name = "grpBookingDetails";
-            this.grpBookingDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpBookingDetails.Padding = new System.Windows.Forms.Padding(2);
             this.grpBookingDetails.Size = new System.Drawing.Size(594, 192);
             this.grpBookingDetails.TabIndex = 45;
             this.grpBookingDetails.TabStop = false;
@@ -167,7 +167,7 @@
             // nudNumBaggage
             // 
             this.nudNumBaggage.Location = new System.Drawing.Point(457, 137);
-            this.nudNumBaggage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudNumBaggage.Margin = new System.Windows.Forms.Padding(2);
             this.nudNumBaggage.Name = "nudNumBaggage";
             this.nudNumBaggage.Size = new System.Drawing.Size(34, 27);
             this.nudNumBaggage.TabIndex = 17;

@@ -88,7 +88,7 @@ namespace AirlineSYS
             }
 
             lblBookingIdDetail.Text = Booking.getNextBookingID().ToString();
-            lblFlightSeatNumberDetail.Text = Booking.getNextSeatNumber(flightNumber).ToString();
+            lblFlightSeatNumberDetail.Text = Booking.getNextSeatNumber().ToString();
         }
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
