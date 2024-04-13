@@ -207,12 +207,7 @@ namespace AirlineSYS
             frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage.ToString());
 
             frmBookingPersonalData.Show();
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
+            this.Close();
         }
     }
 }

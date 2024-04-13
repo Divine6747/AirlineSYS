@@ -208,6 +208,7 @@
     <Compile Include="UpateFlightValidation.cs" />
     <Compile Include="validateBookingPersonalDetails.cs" />
     <Compile Include="validateFlightUtility.cs" />
+    <Compile Include="ValidateUpdatedBookingPersonalDetails.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

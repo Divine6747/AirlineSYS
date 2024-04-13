@@ -162,7 +162,6 @@
             this.grpBookingDetails.TabIndex = 45;
             this.grpBookingDetails.TabStop = false;
             this.grpBookingDetails.Text = "Booking Details";
-            this.grpBookingDetails.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // nudNumBaggage
             // 

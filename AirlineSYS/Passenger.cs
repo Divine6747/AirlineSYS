@@ -158,46 +158,56 @@ namespace AirlineSYS
                         MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            }
+            }            
         }
-
-        public static DataTable findBookingDetails(int bookingID)
+        public void updatePassenger(int passengerID)
         {
-            DataTable dt = new DataTable();
+            string sqlQuery = "UPDATE Passengers SET " +
+                              "Forename = :Forename, " +
+                              "Surname = :Surname, " +
+                              "DateOfBirth = :DateOfBirth, " +
+                              "Email = :Email, " +
+                              "Phone = :Phone, " +
+                              "Eircode = :Eircode " +
+                              "WHERE PassengerID = :PassengerID";
 
-            string sqlQuery = "SELECT b.BookingID, b.PassengerID, b.RouteID, b.FlightNumber, b.FlightTime, b.FlightDate, " +
-                              "b.SeatNum, b.NumBaggage, b.AmountPaid, " +
-                              "p.forename, p.surname, p.Email, p.DateOfBirth, p.Phone, p.Eircode " +
-                              "FROM Bookings b " +
-                              "JOIN Passengers p ON b.PassengerID = p.PassengerID " +
-                              "WHERE b.BookingID = :bookingID";
-
-            try
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
-                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
                 {
-                    using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                    cmd.Parameters.Add(":Forename", OracleDbType.Varchar2).Value = Forename;
+                    cmd.Parameters.Add(":Surname", OracleDbType.Varchar2).Value = Surname;
+                    cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = DateOfBirth;
+                    cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
+                    cmd.Parameters.Add(":Phone", OracleDbType.Int64).Value = Phone;
+                    cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
+                    cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = passengerID;
+
+                    try
                     {
-                        cmd.Parameters.Add(":bookingID", OracleDbType.Int32).Value = bookingID;
-
                         conn.Open();
-
-                        OracleDataAdapter adapter = new OracleDataAdapter(cmd);
-                        adapter.Fill(dt);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Passenger details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Passenger ID not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return dt;
         }
+  
 
     } /*catch (Exception ex)
             {

@@ -120,13 +120,14 @@ namespace AirlineSYS
 
                 if (isSeatDecreaseSuccessful)
                 {
-                    MessageBox.Show("Booking confirmed successfully! Seats have been decreased.");
+                    MessageBox.Show("Booking confirmed successfully! Seats have been decreased.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Failed to confirm booking. Please try again.");
+                    MessageBox.Show("Failed to confirm booking. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            this.Close();
         }
     }
 }

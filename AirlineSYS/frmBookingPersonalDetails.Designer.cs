@@ -54,6 +54,8 @@
             this.lblEndRouteDetails = new System.Windows.Forms.Label();
             this.btnFlightBookingConfirm = new System.Windows.Forms.Button();
             this.grpFlightData = new System.Windows.Forms.GroupBox();
+            this.lblFlightSeatNumber = new System.Windows.Forms.Label();
+            this.lblFlightSeatNumberDetail = new System.Windows.Forms.Label();
             this.lblPassengerIdDetail = new System.Windows.Forms.Label();
             this.lblBookingId = new System.Windows.Forms.Label();
             this.lblPassengerId = new System.Windows.Forms.Label();
@@ -74,8 +76,6 @@
             this.lblFlightDateDetails = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label12 = new System.Windows.Forms.Label();
-            this.lblFlightSeatNumber = new System.Windows.Forms.Label();
-            this.lblFlightSeatNumberDetail = new System.Windows.Forms.Label();
             this.grpPersonalCreateBookingDetails.SuspendLayout();
             this.grpPaymentDetails.SuspendLayout();
             this.grpFlightData.SuspendLayout();
@@ -393,6 +393,29 @@
             this.grpFlightData.TabStop = false;
             this.grpFlightData.Text = "Flight Data";
             // 
+            // lblFlightSeatNumber
+            // 
+            this.lblFlightSeatNumber.AutoSize = true;
+            this.lblFlightSeatNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFlightSeatNumber.Location = new System.Drawing.Point(39, 463);
+            this.lblFlightSeatNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFlightSeatNumber.Name = "lblFlightSeatNumber";
+            this.lblFlightSeatNumber.Size = new System.Drawing.Size(127, 28);
+            this.lblFlightSeatNumber.TabIndex = 73;
+            this.lblFlightSeatNumber.Text = "Seat Number";
+            // 
+            // lblFlightSeatNumberDetail
+            // 
+            this.lblFlightSeatNumberDetail.AutoSize = true;
+            this.lblFlightSeatNumberDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFlightSeatNumberDetail.ForeColor = System.Drawing.Color.Plum;
+            this.lblFlightSeatNumberDetail.Location = new System.Drawing.Point(214, 465);
+            this.lblFlightSeatNumberDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFlightSeatNumberDetail.Name = "lblFlightSeatNumberDetail";
+            this.lblFlightSeatNumberDetail.Size = new System.Drawing.Size(95, 28);
+            this.lblFlightSeatNumberDetail.TabIndex = 72;
+            this.lblFlightSeatNumberDetail.Text = "Unknown";
+            // 
             // lblPassengerIdDetail
             // 
             this.lblPassengerIdDetail.AutoSize = true;
@@ -610,29 +633,6 @@
             this.label12.Size = new System.Drawing.Size(295, 37);
             this.label12.TabIndex = 40;
             this.label12.Text = "BOOKING FLIGHT DATA";
-            // 
-            // lblFlightSeatNumber
-            // 
-            this.lblFlightSeatNumber.AutoSize = true;
-            this.lblFlightSeatNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFlightSeatNumber.Location = new System.Drawing.Point(39, 463);
-            this.lblFlightSeatNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFlightSeatNumber.Name = "lblFlightSeatNumber";
-            this.lblFlightSeatNumber.Size = new System.Drawing.Size(127, 28);
-            this.lblFlightSeatNumber.TabIndex = 73;
-            this.lblFlightSeatNumber.Text = "Seat Number";
-            // 
-            // lblFlightSeatNumberDetail
-            // 
-            this.lblFlightSeatNumberDetail.AutoSize = true;
-            this.lblFlightSeatNumberDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFlightSeatNumberDetail.ForeColor = System.Drawing.Color.Plum;
-            this.lblFlightSeatNumberDetail.Location = new System.Drawing.Point(214, 465);
-            this.lblFlightSeatNumberDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFlightSeatNumberDetail.Name = "lblFlightSeatNumberDetail";
-            this.lblFlightSeatNumberDetail.Size = new System.Drawing.Size(95, 28);
-            this.lblFlightSeatNumberDetail.TabIndex = 72;
-            this.lblFlightSeatNumberDetail.Text = "Unknown";
             // 
             // frmBookingPersonalDetails
             // 

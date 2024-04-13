@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -214,5 +215,94 @@ namespace AirlineSYS
             }
         }
 
+        public static DataTable findBookingDetails(int bookingID)
+        {
+            DataTable dt = new DataTable();
+
+            string sqlQuery = "SELECT b.BookingID, b.PassengerID, b.RouteID, b.FlightNumber, b.FlightTime, b.FlightDate, " +
+                              "b.SeatNum, b.NumBaggage, b.AmountPaid, " +
+                              "p.forename, p.surname, p.Email, p.DateOfBirth, p.Phone, p.Eircode " +
+                              "FROM Bookings b " +
+                              "JOIN Passengers p ON b.PassengerID = p.PassengerID " +
+                              "WHERE b.BookingID = :bookingID";
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                {
+                    using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                    {
+                        cmd.Parameters.Add(":bookingID", OracleDbType.Int32).Value = bookingID;
+
+                        conn.Open();
+
+                        OracleDataAdapter adapter = new OracleDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return dt;
+        }
+        public void updateBooking()
+        {
+            string sqlQuery = "UPDATE Bookings SET " +
+                              "PassengerID = :PassengerID, " +
+                              "RouteID = :RouteID, " +
+                              "FlightNumber = :FlightNumber, " +
+                              "FlightTime = :FlightTime, " +
+                              "FlightDate = :FlightDate, " +
+                              "SeatNum = :SeatNum, " +
+                              "NumBaggage = :NumBaggage, " +
+                              "AmountPaid = :AmountPaid, " +
+                              "Status = :Status " +
+                              "WHERE BookingID = :BookingID";
+
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            {
+                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                {
+                    cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = PassengerID;
+                    cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = RouteID;
+                    cmd.Parameters.Add(":FlightNumber", OracleDbType.Varchar2).Value = FlightNumber;
+                    cmd.Parameters.Add(":FlightTime", OracleDbType.Varchar2).Value = FlightTime;
+                    cmd.Parameters.Add(":FlightDate", OracleDbType.Date).Value = FlightDate;
+                    cmd.Parameters.Add(":SeatNum", OracleDbType.Int32).Value = SeatNum;
+                    cmd.Parameters.Add(":NumBaggage", OracleDbType.Int32).Value = NumBaggage;
+                    cmd.Parameters.Add(":AmountPaid", OracleDbType.Decimal).Value = AmountPaid;
+                    cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = Status;
+                    cmd.Parameters.Add(":BookingID", OracleDbType.Int32).Value = BookingID;
+
+                    try
+                    {
+                        conn.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Booking details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Booking ID not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }
