@@ -304,5 +304,43 @@ namespace AirlineSYS
                 }
             }
         }
+        public void cancelBooking(int bookingID, string forename, string surname, string email)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            string sqlQuery = "UPDATE Bookings SET Status = 'CANCELLED' WHERE BookingID = :bookingID AND PassengerID IN (SELECT PassengerID FROM Passengers WHERE Forename = :forename AND Surname = :surname AND Email = :email)";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+            cmd.Parameters.Add(":bookingID", OracleDbType.Int32).Value = bookingID;
+            cmd.Parameters.Add(":forename", OracleDbType.Varchar2).Value = forename;
+            cmd.Parameters.Add(":surname", OracleDbType.Varchar2).Value = surname;
+            cmd.Parameters.Add(":email", OracleDbType.Varchar2).Value = email;
+
+            try
+            {
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Booking cancelled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Booking not found or passenger details incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

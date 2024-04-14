@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AirlineSYS
 {
-    public static class validateFlightUtility
+    public static class ValidateFlightUtility
     {
         public static bool ValidateFlightField(ComboBox cboDeptAirport, ComboBox cboArrAirport, ComboBox cboOperatorCode, int numFlightSeats, DateTime deptDate, ComboBox cboDeptTime, string estArrTime)
         {

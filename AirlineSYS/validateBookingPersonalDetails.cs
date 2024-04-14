@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AirlineSYS
 {
-    public static class validateBookingPersonalDetails
+    public static class ValidateBookingPersonalDetails
     {
         public static bool ValidateBookingField(string txtForeName, string txtSurname, DateTime dtpBookingDOB, string txtBookingEmail, string txtBookingPhone, string txtBookingEircode, decimal paymentAmount, decimal routePrice, string flightPriceText)
         {

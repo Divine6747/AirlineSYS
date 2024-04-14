@@ -29,7 +29,7 @@ namespace AirlineSYS
         }
         private void btnFlightConfirm_Click(object sender, EventArgs e)
         {
-            if (!validateFlightUtility.ValidateFlightField(cboDeptAirportFlight, cboArrAirportFlight, cboOperatorCodeFlight, int.Parse(txtNumFlightSeats.Text), dtpDeptFlight.Value, cboDeptTime, lblFlightNumberDetail.Text))
+            if (!ValidateFlightUtility.ValidateFlightField(cboDeptAirportFlight, cboArrAirportFlight, cboOperatorCodeFlight, int.Parse(txtNumFlightSeats.Text), dtpDeptFlight.Value, cboDeptTime, lblFlightNumberDetail.Text))
             {
                 return;
             }

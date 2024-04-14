@@ -102,7 +102,7 @@ namespace AirlineSYS
 
             string bookingEircode = txtBookingEircode.Text.ToUpper();
 
-            if (!validateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, bookingEircode, paymentAmount, routePrice, flightPriceText))
+            if (!ValidateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, bookingEircode, paymentAmount, routePrice, flightPriceText))
             {
                 return;
             }
