@@ -207,10 +207,5 @@ namespace AirlineSYS
                 }
             }
         }
-  
-
-    } /*catch (Exception ex)
-            {
-                MessageBox.Show($"Exception: {ex.Message}\nStack Trace: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+    } 
 }

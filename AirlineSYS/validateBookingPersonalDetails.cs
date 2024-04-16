@@ -10,7 +10,7 @@ namespace AirlineSYS
 {
     public static class ValidateBookingPersonalDetails
     {
-        public static bool ValidateBookingField(string txtForeName, string txtSurname, DateTime dtpBookingDOB, string txtBookingEmail, string txtBookingPhone, string txtBookingEircode, decimal paymentAmount, string flightPriceText)
+        public static bool ValidateBookingField(string txtForeName, string txtSurname, DateTime dtpBookingDOB, string txtBookingEmail, string txtBookingPhone, string txtBookingEircode, string paymentAmountText, decimal routePrice, string flightPriceText)
         {
             if (txtForeName != null)
             {
@@ -73,27 +73,27 @@ namespace AirlineSYS
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(flightPriceText))
+            if (string.IsNullOrWhiteSpace(paymentAmountText))
             {
                 MessageBox.Show("Please pay the price for the flight.", "Price Not Entered", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!decimal.TryParse(flightPriceText.Replace("€", ""), out decimal retrievedPrice))
+            if (!decimal.TryParse(paymentAmountText.Replace("€", ""), out decimal retrievedPrice))
             {
                 MessageBox.Show("Error parsing the retrieved price.", "Price Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (paymentAmount < retrievedPrice)
+            if (retrievedPrice < routePrice)
             {
-                MessageBox.Show("Payment amount exceeds the price of the flight.", "Price Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Payment amount is insufficient for the price of the flight.", "Price Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (paymentAmount > retrievedPrice)
+            if (retrievedPrice > routePrice)
             {
-                MessageBox.Show("Payment amount is insufficient for the price of the flight.", "Price Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Payment amount exceeds the price of the flight.", "Price Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

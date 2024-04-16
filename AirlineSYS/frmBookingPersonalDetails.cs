@@ -96,14 +96,13 @@ namespace AirlineSYS
             string deptAirport = lblDeptAirportDetail.Text;
             string arrAirport = lblArrAirportDetail.Text;
             decimal paymentAmount = Passenger.getRoutePrice(deptAirport, arrAirport);
-
             string flightPriceText = lblBookingFlightPriceDetail.Text;
 
-            decimal routePrice = Passenger.getRoutePrice(deptAirport, arrAirport);
-
+            string paymentAmountText = txtPayBookingFlightPrice.Text;
             string bookingEircode = txtBookingEircode.Text.ToUpper();
 
-            if (!ValidateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, bookingEircode, paymentAmount, flightPriceText))
+
+            if (!ValidateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, txtBookingEircode.Text, paymentAmountText, paymentAmount, flightPriceText))
             {
                 return;
             }
@@ -121,14 +120,25 @@ namespace AirlineSYS
 
                 if (isSeatDecreaseSuccessful)
                 {
-                    MessageBox.Show("Booking successfully! Seats have been decreased.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Booking successfully! Seats have been decreased.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     MessageBox.Show("Failed to confirm booking. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            this.Close();
+            DialogResult bookingAnotherFlight = MessageBox.Show("Do you want to book another flight?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (bookingAnotherFlight == DialogResult.Yes)
+            {
+                frmCreateBooking frmCreateBooking = new frmCreateBooking();
+                frmCreateBooking.Show();
+                this.Close();
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }
