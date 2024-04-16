@@ -15,6 +15,15 @@ namespace AirlineSYS
         public frmCancelBookingDetails()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
+        {
+            Booking cancelBooking = new Booking();
+
+            cancelBooking.cancelBooking(Convert.ToInt32(txtCancelBookingID.Text),txtCancelForeName.Text,txtCancelSurname.Text, txtCancelEmail.Text);
+            this.Close();
         }
     }
 }

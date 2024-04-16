@@ -50,7 +50,6 @@
             this.mnuYearRevenue = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuYearRouteAnalysis = new System.Windows.Forms.ToolStripMenuItem();
             this.munExit = new System.Windows.Forms.Label();
-            this.dataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picAirlineMainMenu)).BeginInit();
             this.mnuAirlineMainMenu.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +60,7 @@
             this.picAirlineMainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picAirlineMainMenu.Image = ((System.Drawing.Image)(resources.GetObject("picAirlineMainMenu.Image")));
             this.picAirlineMainMenu.Location = new System.Drawing.Point(0, 33);
-            this.picAirlineMainMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picAirlineMainMenu.Margin = new System.Windows.Forms.Padding(4);
             this.picAirlineMainMenu.Name = "picAirlineMainMenu";
             this.picAirlineMainMenu.Size = new System.Drawing.Size(1067, 521);
             this.picAirlineMainMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -135,8 +134,7 @@
             this.flightToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuScheduleFlight,
             this.mnuUpdateFlight,
-            this.mnuCancelFlight,
-            this.dataViewToolStripMenuItem});
+            this.mnuCancelFlight});
             this.flightToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flightToolStripMenuItem.Name = "flightToolStripMenuItem";
             this.flightToolStripMenuItem.Size = new System.Drawing.Size(81, 29);
@@ -241,13 +239,6 @@
             this.munExit.Text = "Exit";
             this.munExit.Click += new System.EventHandler(this.munExit_Click_1);
             // 
-            // dataViewToolStripMenuItem
-            // 
-            this.dataViewToolStripMenuItem.Name = "dataViewToolStripMenuItem";
-            this.dataViewToolStripMenuItem.Size = new System.Drawing.Size(227, 30);
-            this.dataViewToolStripMenuItem.Text = "DataView";
-            this.dataViewToolStripMenuItem.Click += new System.EventHandler(this.dataViewToolStripMenuItem_Click);
-            // 
             // frmAirlineMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -258,7 +249,7 @@
             this.Controls.Add(this.mnuAirlineMainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnuAirlineMainMenu;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAirlineMainMenu";
             this.Text = "Airline Main Menu";
             ((System.ComponentModel.ISupportInitialize)(this.picAirlineMainMenu)).EndInit();
@@ -292,7 +283,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuYearRouteAnalysis;
         private System.Windows.Forms.ToolStripMenuItem munUpdateAirport;
         private System.Windows.Forms.Label munExit;
-        private System.Windows.Forms.ToolStripMenuItem dataViewToolStripMenuItem;
     }
 }
 

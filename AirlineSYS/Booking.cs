@@ -107,7 +107,7 @@ namespace AirlineSYS
             }
             return nextBookingID;
         }
-        public static int getNextSeatNumber()
+        public static int getNextSeatNumber(string flightNumber, int routeID)
         {
             int nextSeatNumber = 1;
 
@@ -115,9 +115,11 @@ namespace AirlineSYS
             {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
-                    string sqlQuery = "SELECT MAX(SeatNum) FROM Bookings";
+                    string sqlQuery = "SELECT MAX(SeatNum) FROM Bookings WHERE FlightNumber = :flightNumber AND RouteID = :routeID";
 
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                    cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
+                    cmd.Parameters.Add(":routeID", OracleDbType.Int32).Value = routeID;
 
                     conn.Open();
 

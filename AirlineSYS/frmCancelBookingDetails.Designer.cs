@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCancelBookingDetails));
             this.mnuAddAiport = new System.Windows.Forms.MenuStrip();
             this.lblCancelBookingID = new System.Windows.Forms.Label();
             this.lblCancelForeName = new System.Windows.Forms.Label();
             this.lblCancelSurnameName = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtCancelBookingID = new System.Windows.Forms.TextBox();
+            this.txtCancelForeName = new System.Windows.Forms.TextBox();
+            this.txtCancelSurname = new System.Windows.Forms.TextBox();
             this.btnFlightBookingConfirm = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtCancelEmail = new System.Windows.Forms.TextBox();
             this.lblCancelEmail = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             this.mnuAddAiport.Location = new System.Drawing.Point(0, 0);
             this.mnuAddAiport.Name = "mnuAddAiport";
             this.mnuAddAiport.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuAddAiport.Size = new System.Drawing.Size(729, 24);
+            this.mnuAddAiport.Size = new System.Drawing.Size(729, 30);
             this.mnuAddAiport.TabIndex = 3;
             // 
             // lblCancelBookingID
@@ -80,30 +81,29 @@
             this.lblCancelSurnameName.TabIndex = 6;
             this.lblCancelSurnameName.Text = "Enter Surname Name";
             // 
-            // textBox1
+            // txtCancelBookingID
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(300, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(91, 34);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCancelBookingID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCancelBookingID.Location = new System.Drawing.Point(300, 69);
+            this.txtCancelBookingID.Name = "txtCancelBookingID";
+            this.txtCancelBookingID.Size = new System.Drawing.Size(91, 34);
+            this.txtCancelBookingID.TabIndex = 7;
             // 
-            // textBox2
+            // txtCancelForeName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(300, 141);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(325, 34);
-            this.textBox2.TabIndex = 8;
+            this.txtCancelForeName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCancelForeName.Location = new System.Drawing.Point(300, 141);
+            this.txtCancelForeName.Name = "txtCancelForeName";
+            this.txtCancelForeName.Size = new System.Drawing.Size(325, 34);
+            this.txtCancelForeName.TabIndex = 8;
             // 
-            // textBox3
+            // txtCancelSurname
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(300, 213);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(325, 34);
-            this.textBox3.TabIndex = 9;
+            this.txtCancelSurname.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCancelSurname.Location = new System.Drawing.Point(300, 213);
+            this.txtCancelSurname.Name = "txtCancelSurname";
+            this.txtCancelSurname.Size = new System.Drawing.Size(325, 34);
+            this.txtCancelSurname.TabIndex = 9;
             // 
             // btnFlightBookingConfirm
             // 
@@ -116,14 +116,15 @@
             this.btnFlightBookingConfirm.TabIndex = 39;
             this.btnFlightBookingConfirm.Text = "CONFIRM";
             this.btnFlightBookingConfirm.UseVisualStyleBackColor = false;
+            this.btnFlightBookingConfirm.Click += new System.EventHandler(this.btnFlightBookingConfirm_Click);
             // 
-            // textBox4
+            // txtCancelEmail
             // 
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(300, 285);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(325, 34);
-            this.textBox4.TabIndex = 41;
+            this.txtCancelEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCancelEmail.Location = new System.Drawing.Point(300, 285);
+            this.txtCancelEmail.Name = "txtCancelEmail";
+            this.txtCancelEmail.Size = new System.Drawing.Size(325, 34);
+            this.txtCancelEmail.TabIndex = 41;
             // 
             // lblCancelEmail
             // 
@@ -140,16 +141,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 428);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtCancelEmail);
             this.Controls.Add(this.lblCancelEmail);
             this.Controls.Add(this.btnFlightBookingConfirm);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCancelSurname);
+            this.Controls.Add(this.txtCancelForeName);
+            this.Controls.Add(this.txtCancelBookingID);
             this.Controls.Add(this.lblCancelSurnameName);
             this.Controls.Add(this.lblCancelForeName);
             this.Controls.Add(this.lblCancelBookingID);
             this.Controls.Add(this.mnuAddAiport);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCancelBookingDetails";
             this.Text = "frmCancelBookingDetails";
             this.ResumeLayout(false);
@@ -163,11 +165,11 @@
         private System.Windows.Forms.Label lblCancelBookingID;
         private System.Windows.Forms.Label lblCancelForeName;
         private System.Windows.Forms.Label lblCancelSurnameName;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtCancelBookingID;
+        private System.Windows.Forms.TextBox txtCancelForeName;
+        private System.Windows.Forms.TextBox txtCancelSurname;
         private System.Windows.Forms.Button btnFlightBookingConfirm;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtCancelEmail;
         private System.Windows.Forms.Label lblCancelEmail;
     }
 }

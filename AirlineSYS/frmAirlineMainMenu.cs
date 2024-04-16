@@ -126,12 +126,5 @@ namespace AirlineSYS
         {
              Application.Exit();
         }
-
-        private void dataViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled();
-            this.Hide();
-            frmRetrievedFlightScheduled.Show();
-        }
     }
 }

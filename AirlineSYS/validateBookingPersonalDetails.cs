@@ -10,7 +10,7 @@ namespace AirlineSYS
 {
     public static class ValidateBookingPersonalDetails
     {
-        public static bool ValidateBookingField(string txtForeName, string txtSurname, DateTime dtpBookingDOB, string txtBookingEmail, string txtBookingPhone, string txtBookingEircode, decimal paymentAmount, decimal routePrice, string flightPriceText)
+        public static bool ValidateBookingField(string txtForeName, string txtSurname, DateTime dtpBookingDOB, string txtBookingEmail, string txtBookingPhone, string txtBookingEircode, decimal paymentAmount, string flightPriceText)
         {
             if (txtForeName != null)
             {
@@ -128,7 +128,7 @@ namespace AirlineSYS
 
         private static bool IsValidPhoneNumber(string phoneNumber)
         {
-            string phonePattern = @"^08\d{8}$";
+            string phonePattern = @"^08[3579]\d{7}$";
             return !string.IsNullOrWhiteSpace(phoneNumber) && Regex.IsMatch(phoneNumber, phonePattern);
         }
     }

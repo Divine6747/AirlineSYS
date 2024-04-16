@@ -85,10 +85,11 @@ namespace AirlineSYS
                 string deptAirport = lblDeptAirportDetail.Text;
                 string arrAirport = lblArrAirportDetail.Text;
                 lblBookingFlightPriceDetail.Text = "€" + Passenger.getRoutePrice(deptAirport, arrAirport);
-            }
-
+            } 
+            int routeID = Convert.ToInt32(lblBookingRouteIDDetail.Text);
+            string flightNumber = Convert.ToString(lblFlightNumberDetail.Text);
             lblBookingIdDetail.Text = Booking.getNextBookingID().ToString();
-            lblFlightSeatNumberDetail.Text = Booking.getNextSeatNumber().ToString();
+            lblFlightSeatNumberDetail.Text = Booking.getNextSeatNumber(flightNumber,routeID).ToString();
         }
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
@@ -102,7 +103,7 @@ namespace AirlineSYS
 
             string bookingEircode = txtBookingEircode.Text.ToUpper();
 
-            if (!ValidateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, bookingEircode, paymentAmount, routePrice, flightPriceText))
+            if (!ValidateBookingPersonalDetails.ValidateBookingField(txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, bookingEircode, paymentAmount, flightPriceText))
             {
                 return;
             }
@@ -120,7 +121,7 @@ namespace AirlineSYS
 
                 if (isSeatDecreaseSuccessful)
                 {
-                    MessageBox.Show("Booking confirmed successfully! Seats have been decreased.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Booking successfully! Seats have been decreased.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

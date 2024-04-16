@@ -44,7 +44,7 @@ namespace AirlineSYS
             {
                 DataRow row = dt.Rows[0];
 
-                lblUpdateFlightNumberDetail.Text = row["FlightNumber"].ToString();
+                lblUpdateFlightNumber.Text = row["FlightNumber"].ToString();
                 cboDeptimeDetail.Text = row["FlightTime"].ToString();
                 dptUpdateBookingDate.Text = ((DateTime)row["FlightDate"]).ToString();
                 lblSeatNumDetail.Text = row["SeatNum"].ToString();
@@ -69,7 +69,7 @@ namespace AirlineSYS
                 }
 
                 lblUpdateBookingID.Text = row["BookingID"].ToString();
-                lbFlightlBookingPriceDetail.Text = row["AmountPaid"].ToString();
+                lbFlightBookingPriceDetail.Text = row["AmountPaid"].ToString();
                 txtUpdateForeName.Text = row["forename"].ToString();
                 txtUpdateSurname.Text = row["surname"].ToString();
                 txtUpdateBookingEmail.Text = row["Email"].ToString();
@@ -108,12 +108,12 @@ namespace AirlineSYS
                     Convert.ToInt32(lblUpdateBookingID.Text),
                     Convert.ToInt32(lblUpdatePassengerID.Text),
                     Convert.ToInt32(lblUpdateBookingRouteID.Text),
-                    lblUpdateFlightNumberDetail.Text,
+                    lblUpdateFlightNumber.Text,
                     cboDeptimeDetail.Text,
                     DateTime.Parse(dptUpdateBookingDate.Text),
                     Convert.ToInt32(lblSeatNumDetail.Text),
                     Convert.ToInt32(nudNumBaggage.Value),
-                    Convert.ToDecimal(lbFlightlBookingPriceDetail.Text),
+                    Convert.ToDecimal(lbFlightBookingPriceDetail.Text),
                     "CONFIRMED"
                 );
 

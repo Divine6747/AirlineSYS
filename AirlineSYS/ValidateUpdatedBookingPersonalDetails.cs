@@ -55,7 +55,7 @@ namespace AirlineSYS
         {
             if (numBaggage < 0)
             {
-                MessageBox.Show("Number of baggage must be between 0 and 5.", "Invalid Number of Baggage", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Number of baggage must be equal or greater than zero", "Invalid Number of Baggage", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

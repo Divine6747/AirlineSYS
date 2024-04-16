@@ -16,7 +16,6 @@ namespace AirlineSYS
         private decimal TicketPrice;
         private int Duration;
         private string Status;
-
         public Route() 
         {
             this.RouteID = 0;
