@@ -17,8 +17,9 @@ namespace AirlineSYS
         private string arrAirport;
         private DateTime flightDate;
         private string flightTime;
+        private string estArrTime;
         private string numBaggage;
-        public frmBookingPersonalDetails(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
+        public frmBookingPersonalDetails(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string estArrTime,string numBaggage)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -28,6 +29,7 @@ namespace AirlineSYS
             this.arrAirport = arrAirport;
             this.flightDate = flightDate;
             this.flightTime = flightTime;
+            this.estArrTime = estArrTime;
             this.numBaggage = numBaggage;
             PopulateFlightInfo();
         }
@@ -40,6 +42,7 @@ namespace AirlineSYS
             lblArrAirportDetail.Text = arrAirport;
             lblFlightDateDetails.Text = flightDate.ToString("dd-MMM-yyyy");
             lblFlightTimedetail.Text = flightTime;
+            lblEstArrTimeDetail.Text = estArrTime;
             lblNumBaggageDetail.Text = numBaggage;
             checkRoutExist();
         }
@@ -61,13 +64,14 @@ namespace AirlineSYS
             }
             return false;
         }
-        public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string numBaggage)
+        public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string estArrTime,string numBaggage)
         {
             this.flightNumber = flightNumber;
             this.deptAirport = deptAirport;
             this.arrAirport = arrAirport;
             this.flightDate = flightDate;
             this.flightTime = flightTime;
+            this.estArrTime = estArrTime;
             this.numBaggage = numBaggage;
 
             PopulateFlightInfo();

@@ -54,6 +54,8 @@
             this.cboDeptAirportBooking = new System.Windows.Forms.ComboBox();
             this.btnBookingFlightConfirm = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblEstArrTimeDetails = new System.Windows.Forms.Label();
             this.grpCreateBookingDetails.SuspendLayout();
             this.grpBookingDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumBaggage)).BeginInit();
@@ -135,13 +137,15 @@
             this.grpCreateBookingDetails.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.grpCreateBookingDetails.Location = new System.Drawing.Point(26, 69);
             this.grpCreateBookingDetails.Name = "grpCreateBookingDetails";
-            this.grpCreateBookingDetails.Size = new System.Drawing.Size(749, 316);
+            this.grpCreateBookingDetails.Size = new System.Drawing.Size(749, 322);
             this.grpCreateBookingDetails.TabIndex = 15;
             this.grpCreateBookingDetails.TabStop = false;
             this.grpCreateBookingDetails.Text = "Create Booking Details";
             // 
             // grpBookingDetails
             // 
+            this.grpBookingDetails.Controls.Add(this.lblEstArrTimeDetails);
+            this.grpBookingDetails.Controls.Add(this.label1);
             this.grpBookingDetails.Controls.Add(this.nudNumBaggage);
             this.grpBookingDetails.Controls.Add(this.lblFlightTime);
             this.grpBookingDetails.Controls.Add(this.lblFlightDate);
@@ -158,7 +162,7 @@
             this.grpBookingDetails.Margin = new System.Windows.Forms.Padding(2);
             this.grpBookingDetails.Name = "grpBookingDetails";
             this.grpBookingDetails.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBookingDetails.Size = new System.Drawing.Size(594, 192);
+            this.grpBookingDetails.Size = new System.Drawing.Size(594, 208);
             this.grpBookingDetails.TabIndex = 45;
             this.grpBookingDetails.TabStop = false;
             this.grpBookingDetails.Text = "Booking Details";
@@ -313,7 +317,7 @@
             // 
             this.btnBookingFlightConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnBookingFlightConfirm.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnBookingFlightConfirm.Location = new System.Drawing.Point(321, 402);
+            this.btnBookingFlightConfirm.Location = new System.Drawing.Point(321, 412);
             this.btnBookingFlightConfirm.Name = "btnBookingFlightConfirm";
             this.btnBookingFlightConfirm.Size = new System.Drawing.Size(174, 38);
             this.btnBookingFlightConfirm.TabIndex = 16;
@@ -328,11 +332,32 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(27, 170);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 21);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Est Arrival Time";
+            // 
+            // lblEstArrTimeDetails
+            // 
+            this.lblEstArrTimeDetails.AutoSize = true;
+            this.lblEstArrTimeDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstArrTimeDetails.ForeColor = System.Drawing.Color.Plum;
+            this.lblEstArrTimeDetails.Location = new System.Drawing.Point(166, 170);
+            this.lblEstArrTimeDetails.Name = "lblEstArrTimeDetails";
+            this.lblEstArrTimeDetails.Size = new System.Drawing.Size(68, 21);
+            this.lblEstArrTimeDetails.TabIndex = 55;
+            this.lblEstArrTimeDetails.Text = "Uknown";
+            // 
             // frmCreateBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 455);
+            this.ClientSize = new System.Drawing.Size(800, 464);
             this.Controls.Add(this.btnBookingFlightConfirm);
             this.Controls.Add(this.grpCreateBookingDetails);
             this.Controls.Add(this.lblAddAirport);
@@ -378,5 +403,7 @@
         public System.Windows.Forms.Label lblFlightDateDetails;
         public System.Windows.Forms.Button btnBookingFlightConfirm;
         public System.Windows.Forms.NumericUpDown nudNumBaggage;
+        public System.Windows.Forms.Label lblEstArrTimeDetails;
+        private System.Windows.Forms.Label label1;
     }
 }

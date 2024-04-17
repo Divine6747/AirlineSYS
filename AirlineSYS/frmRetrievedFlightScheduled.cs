@@ -18,13 +18,14 @@ namespace AirlineSYS
         private string arrAirport;
         private DateTime flightDate;
         private string flightTime;
+        private string estArrTime;
         private int numBaggage;
         public frmRetrievedFlightScheduled()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
-        public frmRetrievedFlightScheduled(frmAirlineMainMenu parent, int routeID, string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, int numBaggage)
+        public frmRetrievedFlightScheduled(frmAirlineMainMenu parent, int routeID, string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string estArrTime, int numBaggage)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -35,6 +36,7 @@ namespace AirlineSYS
             this.arrAirport = arrAirport;
             this.flightDate = flightDate;
             this.flightTime = flightTime;
+            this.estArrTime = estArrTime;
             this.numBaggage = numBaggage;
         }
         private void frmRetrievedFlightScheduled_Load(object sender, EventArgs e)
@@ -45,6 +47,7 @@ namespace AirlineSYS
             grgRetrievedFlightScheduled.Columns.Add("ArrAirport", "Arrival Airport");
             grgRetrievedFlightScheduled.Columns.Add("FlightDate", "Flight Date");
             grgRetrievedFlightScheduled.Columns.Add("FlightTime", "Flight Time");
+            grgRetrievedFlightScheduled.Columns.Add("EstArrTime", "Est Arr Time");
 
             foreach (DataGridViewColumn column in grgRetrievedFlightScheduled.Columns)
             {
@@ -87,7 +90,7 @@ namespace AirlineSYS
             //Stops Multple rows for been selected
             grgRetrievedFlightScheduled.MultiSelect = false;
 
-            List<string[]> flightinfo = Flight.GetAvailableFlights(routeID);
+            List<string[]> flightinfo = Flight.getAvailableFlights(routeID);
             foreach (string[] flightInfo in flightinfo)
             {
                 grgRetrievedFlightScheduled.Rows.Add(flightInfo);
@@ -113,6 +116,7 @@ namespace AirlineSYS
                 arrAirport = selectedFlight.Cells["ArrAirport"].Value.ToString();
                 flightDate = DateTime.Parse(selectedFlight.Cells["FlightDate"].Value.ToString());
                 flightTime = selectedFlight.Cells["FlightTime"].Value.ToString();
+                estArrTime = selectedFlight.Cells["EstArrTime"].Value.ToString();
                 DialogResult flightConfirm = MessageBox.Show("Are you sure you want to book the selected flight?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (flightConfirm == DialogResult.Yes)
@@ -127,7 +131,7 @@ namespace AirlineSYS
                     }
 
                     // Passing the selected flight info and number of bags to frmCreateBooking
-                    frmCreateBooking frmCreateBooking = new frmCreateBooking(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggageInt);
+                    frmCreateBooking frmCreateBooking = new frmCreateBooking(flightNumber, deptAirport, arrAirport, flightDate, flightTime, estArrTime, numBaggageInt);
                     this.Hide();
                     frmCreateBooking.Show();
                     frmCreateBooking.Confirm.Visible = true;
@@ -162,7 +166,7 @@ namespace AirlineSYS
                 // Passes numBaggageString to RefreshFlightInfo method
                 frmCreateBooking.labelNumBaggage.Visible = true;
                 frmCreateBooking.numericUpDownNumBaggage.Visible = true;
-                frmCreateBooking.RefreshFlightInfo(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggageInt);
+                frmCreateBooking.RefreshFlightInfo(flightNumber, deptAirport, arrAirport, flightDate, flightTime, estArrTime, numBaggageInt);
 
                 this.Close();
 

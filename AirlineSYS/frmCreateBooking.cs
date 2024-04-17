@@ -21,6 +21,7 @@ namespace AirlineSYS
         private string arrAirport;
         private DateTime flightDate;
         private string flightTime;
+        private string estArrTime;
         private int numBaggage;
         public Label labelNumBaggage
         {
@@ -45,7 +46,7 @@ namespace AirlineSYS
         }
         public System.Windows.Forms.Button Confirm => btnBookingFlightConfirm;
 
-        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, int numBaggage)
+        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string estArrTime,int numBaggage)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -56,6 +57,7 @@ namespace AirlineSYS
             this.arrAirport = arrAirport;
             this.flightDate = flightDate;
             this.flightTime = flightTime;
+            this.estArrTime = estArrTime;
             this.numBaggage = numBaggage;
 
             PopulateFlightInfo();
@@ -70,16 +72,18 @@ namespace AirlineSYS
             lblArrAirportDetail.Text = arrAirport;
             lblFlightDateDetails.Text = flightDate.ToString("dd-MMM-yyyy");
             lblFlightTimedetail.Text = flightTime;
+            lblEstArrTimeDetails.Text = estArrTime;
             nudNumBaggage.Value = numBaggage;
         }
         //RefreshFlightInfo() saves the previously selected flight, if user decided to to book another flight but changed their mind
-        public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, int numBaggage)
+        public void RefreshFlightInfo(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string estArrTime, int numBaggage)
         {
             this.flightNumber = flightNumber;
             this.deptAirport = deptAirport;
             this.arrAirport = arrAirport;
             this.flightDate = flightDate;
             this.flightTime = flightTime;
+            this.estArrTime = estArrTime;
             this.numBaggage = numBaggage;
             nudNumBaggage.Value = numBaggage;
             PopulateFlightInfo();
@@ -175,7 +179,7 @@ namespace AirlineSYS
                 if (routeID != -1)
                 {
                     //Passing routeID to frmRetrievedFlightScheduled constructor
-                    frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(this.parent, routeID,flightNumber,deptAirport,arrAirport,flightDate,flightTime, numBaggage);
+                    frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(this.parent, routeID,flightNumber,deptAirport,arrAirport,flightDate,flightTime, estArrTime, numBaggage);
                     frmRetrievedFlightScheduled.Show();
                     this.Hide();
                 }
@@ -204,7 +208,7 @@ namespace AirlineSYS
             }
 
             numBaggage = (int)nudNumBaggage.Value;
-            frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, numBaggage.ToString());
+            frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime,estArrTime, numBaggage.ToString());
 
             frmBookingPersonalData.Show();
             this.Close();
