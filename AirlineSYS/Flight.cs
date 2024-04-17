@@ -70,6 +70,7 @@ namespace AirlineSYS
         public void setNumSeatAvail(int numSeatAvail) { NumSeatAvail = numSeatAvail; }
         public void setStatus(string status) { Status = status; }
 
+        //Scheduling Flight
         public void scheduleFlight()
         {
             string flightDateFormat = FlightDate.ToString("dd-MMM-yy", CultureInfo.InvariantCulture).ToUpper();
@@ -129,7 +130,7 @@ namespace AirlineSYS
                     using (OracleDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
-                        {
+                        {     
                             object result = reader[0];
 
                             int maxFlightNumber;
@@ -280,42 +281,7 @@ namespace AirlineSYS
 
             return flights;
         }
-
-
-        public int  getAirportDept(int routeID)
-        {
-            string deptAirport = "";
-            string arrAirport = "";
-
-            try
-            {
-                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
-                {
-                    string sqlQuery = "SELECT DeptAirport, ArrAirport FROM Routes WHERE RouteID = :RouteID";
-                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-                    cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = routeID;
-                    conn.Open();
-
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            deptAirport = reader.GetString(0);
-                            arrAirport = reader.GetString(1);
-                        }
-                    }
-                }
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return routeID;
-        }
+        //Cancelling Flight
         public void cancelFlight(string flightNumber)
         {
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
@@ -348,6 +314,7 @@ namespace AirlineSYS
                 }
             }
         }
+        //Getting Available flights
         public static List<string[]> getAvailableFlights(int routeID)
         {
             List<string[]> flights = new List<string[]>();

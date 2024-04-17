@@ -61,11 +61,6 @@ namespace AirlineSYS
                 MessageBox.Show("Please enter a valid positive number for Ticket Price.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
-            else if (txtRouteStatus.Text != "A" && txtRouteStatus.Text != "I")
-            {
-                MessageBox.Show("Status must be either 'A' for Active or 'I' for Inactive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
             else if (!availAirports.Contains(txtRouteDept.Text))
             {
                 MessageBox.Show("Departure airport is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -87,7 +82,7 @@ namespace AirlineSYS
                 return;
             }
 
-            Route route = new Route(Convert.ToInt32(lblRouteID.Text), txtRouteDept.Text, txtRouteArr.Text, Convert.ToDecimal(txtRoutePrice.Text), Convert.ToInt32(txtRouteDur.Text), txtRouteStatus.Text);
+            Route route = new Route(Convert.ToInt32(lblRouteID.Text), txtRouteDept.Text, txtRouteArr.Text, Convert.ToDecimal(txtRoutePrice.Text), Convert.ToInt32(txtRouteDur.Text), "A");
             route.addRoute();
 
             lblRouteID.Text = Route.getNextRouteID().ToString("00");
@@ -95,7 +90,6 @@ namespace AirlineSYS
             txtRouteArr.Clear();
             txtRoutePrice.Text = "0.00";
             txtRouteDur.Clear();
-            txtRouteStatus.Clear();
         }
 
         private void frmCreateRoute_Load(object sender, EventArgs e)

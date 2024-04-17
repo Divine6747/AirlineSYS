@@ -89,14 +89,7 @@
     <Compile Include="Airport.cs" />
     <Compile Include="Booking.cs" />
     <Compile Include="Flight.cs" />
-    <Compile Include="flightSeats.cs" />
     <Compile Include="FlightTimes.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmBookingPersonalDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,9 +209,6 @@
     <Compile Include="ValidateFlightUtility.cs" />
     <Compile Include="ValidateUpdatedBookingPersonalDetails.cs" />
     <Compile Include="ValidatieAirportDetails.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAddAirport.resx">
       <DependentUpon>frmAddAirport.cs</DependentUpon>
     </EmbeddedResource>

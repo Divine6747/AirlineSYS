@@ -21,6 +21,7 @@ namespace AirlineSYS
         {
             FlightTime = flightTime;
         }
+
         //Getter
         public string getFlightTime() { return FlightTime; }
         //setter
@@ -35,7 +36,6 @@ namespace AirlineSYS
             {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
-                    //string sqlQuery = "SELECT SUBSTR(FLIGHTTIME, 1, 5) AS FLIGHTTIME FROM FLIGHTTIMES";
                     string sqlQuery = "SELECT FLIGHTTIME FROM FLIGHTTIMES";
 
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);

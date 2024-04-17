@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,14 +52,15 @@ namespace AirlineSYS
         public void addOperator()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            String sqlQuery = "INSERT INTO Operators Values ('" +
-                this.OperatorCode + "', '" +
-                this.Name + "', '" +
-                this.City + "', '" +
-                this.Country + "', '" +
-                this.Status + "')";
+            string sqlQuery = "INSERT INTO Operators (OperatorCode, Name, City, Country, Status) VALUES (:OperatorCode, :Name, :City, :Country, :Status)";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+            cmd.Parameters.Add(":OperatorCode", OracleDbType.Varchar2).Value = OperatorCode;
+            cmd.Parameters.Add(":Name", OracleDbType.Varchar2).Value = Name;
+            cmd.Parameters.Add(":City", OracleDbType.Varchar2).Value = City;
+            cmd.Parameters.Add(":Country", OracleDbType.Varchar2).Value = Country;
+            cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = Status;
 
             try
             {
@@ -84,26 +86,26 @@ namespace AirlineSYS
         public static List<Operator> getOperators()
         {
             List<Operator> operatorCodes = new List<Operator>();
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             try
             {
-                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                string sqlQuery = "SELECT OperatorCode FROM Operators";
+
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                conn.Open();
+
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    string sqlQuery = "SELECT OperatorCode FROM Operators";
-
-                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-                    conn.Open();
-
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string operatorCode = reader.GetString(0);
-                            operatorCodes.Add(new Operator { OperatorCode = operatorCode});
-                        }
-                    }
+                    string operatorCode = reader.GetString(0);
+                    operatorCodes.Add(new Operator { OperatorCode = operatorCode });
                 }
+
+                reader.Close();
+                conn.Close();
             }
             catch (OracleException ex)
             {
@@ -113,7 +115,14 @@ namespace AirlineSYS
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
             return operatorCodes;
-        }
-    }
+        }        
+     }
 }

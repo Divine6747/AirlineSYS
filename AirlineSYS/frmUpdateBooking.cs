@@ -13,7 +13,6 @@ namespace AirlineSYS
     public partial class frmUpdateBooking : Form
     {
         frmAirlineMainMenu parent;
-        private bool isUserInteraction = false;
         private DateTime originalFlightDate;
 
         public frmUpdateBooking()

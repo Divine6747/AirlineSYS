@@ -71,7 +71,6 @@ namespace AirlineSYS
 
                 Route route = new Route();
                 route.endRoute(routeID);
-                MessageBox.Show("Route has been ended in the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             //grpEndRouteDetails.Visible = false;

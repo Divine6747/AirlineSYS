@@ -96,12 +96,12 @@ namespace AirlineSYS
             {
                 using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
                 {
-                    cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = this.RouteID;
-                    cmd.Parameters.Add(":DepartureAirport", OracleDbType.Varchar2).Value = this.DepartureAirport;
-                    cmd.Parameters.Add(":ArrivalAirport", OracleDbType.Varchar2).Value = this.ArrivalAirport;
-                    cmd.Parameters.Add(":TicketPrice", OracleDbType.Decimal).Value = this.TicketPrice;
-                    cmd.Parameters.Add(":Duration", OracleDbType.Decimal).Value = this.Duration;
-                    cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = this.Status;
+                    cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = RouteID;
+                    cmd.Parameters.Add(":DepartureAirport", OracleDbType.Varchar2).Value = DepartureAirport;
+                    cmd.Parameters.Add(":ArrivalAirport", OracleDbType.Varchar2).Value =ArrivalAirport;
+                    cmd.Parameters.Add(":TicketPrice", OracleDbType.Decimal).Value = TicketPrice;
+                    cmd.Parameters.Add(":Duration", OracleDbType.Decimal).Value = Duration;
+                    cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = Status;
 
                     try
                     {
@@ -201,15 +201,28 @@ namespace AirlineSYS
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            string sqlQuery = "UPDATE Routes SET Status = 'I' WHERE RouteID = '" + routeID + "'";
+            string sqlQueryCheckFlights = "SELECT COUNT(*) FROM Flights WHERE RouteID = '" + routeID + "' AND Status = 'A'";
+
+            string sqlQueryUpdateRoute = "UPDATE Routes SET Status = 'I' WHERE RouteID = '" + routeID + "'";
 
             try
             {
                 conn.Open();
+                OracleCommand cmdCheckFlights = new OracleCommand(sqlQueryCheckFlights, conn);
 
-                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                int activeFlightCount = Convert.ToInt32(cmdCheckFlights.ExecuteReader());
 
-                cmd.ExecuteNonQuery();
+                if (activeFlightCount > 0)
+                {
+                    MessageBox.Show("Cannot end route. There are active flights associated with it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Route has been ended in the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                OracleCommand cmdUpdateRoute = new OracleCommand(sqlQueryUpdateRoute, conn);
+                cmdUpdateRoute.ExecuteNonQuery();
             }
             catch (OracleException ex)
             {

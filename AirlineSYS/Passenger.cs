@@ -42,13 +42,13 @@ namespace AirlineSYS
         }
 
         // Getter methods
-        public int getPassengerID() { return PassengerID; }
-        public string getForename() { return Forename; }
-        public string getSurname() { return Surname; }
-        public DateTime getDateOfBirth() { return DateOfBirth; }
-        public string getEmail() { return Email; }
-        public long getPhone() { return Phone; }
-        public string getEircode() { return Eircode; }
+        public int getPassengerID() { return this.PassengerID; }
+        public string getForename() { return this.Forename; }
+        public string getSurname() { return this.Surname; }
+        public DateTime getDateOfBirth() { return this.DateOfBirth; }
+        public string getEmail() { return this.Email; }
+        public long getPhone() { return this.Phone; }
+        public string getEircode() { return this.Eircode; }
 
         // Setter methods
         public void setPassengerID(int passengerID) { PassengerID = passengerID; }
@@ -58,29 +58,29 @@ namespace AirlineSYS
         public void setEmail(string email) { Email = email; }
         public void setPhone(long phone) { Phone = phone; }
         public void setEircode(string eircode) { Eircode = eircode; }
-
         public static int getNextPassengerID()
         {
             int nextPassengerID = 1;
 
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
             try
             {
-                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                string sqlQuery = "SELECT MAX(PassengerID) FROM Passengers";
+
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+                conn.Open();
+
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read() && !reader.IsDBNull(0))
                 {
-                    string sqlQuery = "SELECT MAX(PassengerID) FROM Passengers";
-
-                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-                    conn.Open();
-
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read() && !reader.IsDBNull(0))
-                        {
-                            nextPassengerID = reader.GetInt32(0) + 1;
-                        }
-                    }
+                    nextPassengerID = reader.GetInt32(0) + 1;
                 }
+
+                reader.Close();
+                conn.Close();
             }
             catch (OracleException ex)
             {
@@ -90,30 +90,40 @@ namespace AirlineSYS
             {
                 MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+
             return nextPassengerID;
         }
+
         public static decimal getRoutePrice(string departureAirport, string arrivalAirport)
         {
             decimal ticketPrice = 0;
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             try
             {
-                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
-                {
-                    string sqlQuery = "SELECT TicketPrice FROM Routes WHERE DeptAirport = :deptAirport AND ArrAirport = :arrAirport";
-                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-                    cmd.Parameters.Add(":deptAirport", departureAirport);
-                    cmd.Parameters.Add(":arrAirport", arrivalAirport);
+                string sqlQuery = "SELECT TicketPrice FROM Routes WHERE DeptAirport = :deptAirport AND ArrAirport = :arrAirport";
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                cmd.Parameters.Add(":deptAirport", departureAirport);
+                cmd.Parameters.Add(":arrAirport", arrivalAirport);
 
-                    conn.Open();
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            ticketPrice = reader.GetDecimal(0);
-                        }
-                    }
+                conn.Open();
+
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    ticketPrice = reader.GetDecimal(0);
                 }
+
+                reader.Close();
+                conn.Close();
             }
             catch (OracleException ex)
             {
@@ -122,90 +132,114 @@ namespace AirlineSYS
             catch (Exception ex)
             {
                 MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
             }
 
             return ticketPrice;
         }
+
         public void addPassenger()
         {
-            string sqlQuery = "INSERT INTO PASSENGERS (PASSENGERID, FORENAME, SURNAME, DATEOFBIRTH, EMAIL, PHONE, EIRCODE) " +
-                              "VALUES (:PassengerID, :Forename, :Surname, :DateOfBirth, :Email, :Phone, :Eircode)";
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand();
 
-            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            try
             {
-                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
-                {
-                    cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = PassengerID;
-                    cmd.Parameters.Add(":Forename", OracleDbType.Varchar2).Value = Forename;
-                    cmd.Parameters.Add(":Surname", OracleDbType.Varchar2).Value = Surname;
-                    cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = DateOfBirth;
-                    cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
-                    cmd.Parameters.Add(":Phone", OracleDbType.Int32).Value = Phone;
-                    cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
+                string sqlQuery = "INSERT INTO PASSENGERS (PASSENGERID, FORENAME, SURNAME, DATEOFBIRTH, EMAIL, PHONE, EIRCODE) " +
+                                  "VALUES (:PassengerID, :Forename, :Surname, :DateOfBirth, :Email, :Phone, :Eircode)";
 
-                    try
-                    {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Passenger has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (OracleException ex)
-                    {
-                        MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }            
-        }
-        public void updatePassenger(int passengerID)
-        {
-            string sqlQuery = "UPDATE Passengers SET " +
-                              "Forename = :Forename, " +
-                              "Surname = :Surname, " +
-                              "DateOfBirth = :DateOfBirth, " +
-                              "Email = :Email, " +
-                              "Phone = :Phone, " +
-                              "Eircode = :Eircode " +
-                              "WHERE PassengerID = :PassengerID";
+                cmd.CommandText = sqlQuery;
+                cmd.Connection = conn;
 
-            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = PassengerID;
+                cmd.Parameters.Add(":Forename", OracleDbType.Varchar2).Value = Forename;
+                cmd.Parameters.Add(":Surname", OracleDbType.Varchar2).Value = Surname;
+                cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = DateOfBirth;
+                cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
+                cmd.Parameters.Add(":Phone", OracleDbType.Int32).Value = Phone;
+                cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Passenger has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (OracleException ex)
             {
-                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
                 {
-                    cmd.Parameters.Add(":Forename", OracleDbType.Varchar2).Value = Forename;
-                    cmd.Parameters.Add(":Surname", OracleDbType.Varchar2).Value = Surname;
-                    cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = DateOfBirth;
-                    cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
-                    cmd.Parameters.Add(":Phone", OracleDbType.Int64).Value = Phone;
-                    cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
-                    cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = passengerID;
-
-                    try
-                    {
-                        conn.Open();
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Passenger details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Passenger ID not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (OracleException ex)
-                    {
-                        MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    conn.Close();
                 }
             }
         }
-    } 
+
+        public void updatePassenger(int passengerID)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand();
+
+            try
+            {
+                string sqlQuery = "UPDATE Passengers SET " +
+                                  "Forename = :Forename, " +
+                                  "Surname = :Surname, " +
+                                  "DateOfBirth = :DateOfBirth, " +
+                                  "Email = :Email, " +
+                                  "Phone = :Phone, " +
+                                  "Eircode = :Eircode " +
+                                  "WHERE PassengerID = :PassengerID";
+
+                cmd.CommandText = sqlQuery;
+                cmd.Connection = conn;
+
+                cmd.Parameters.Add(":Forename", OracleDbType.Varchar2).Value = Forename;
+                cmd.Parameters.Add(":Surname", OracleDbType.Varchar2).Value = Surname;
+                cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = DateOfBirth;
+                cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
+                cmd.Parameters.Add(":Phone", OracleDbType.Int64).Value = Phone;
+                cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
+                cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = passengerID;
+
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Passenger details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Passenger ID not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+    }
 }
