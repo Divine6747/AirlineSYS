@@ -85,8 +85,8 @@ namespace AirlineSYS
 
             if (route != null)
             {
-                cboUpdateDeptAirportFlight.SelectedItem = route.getDepartureAirport();
-                cboUpdateArrAirportFlight.SelectedItem = route.getArrivalAirport();
+                cboUpdateDeptAirportFlight.Text = route.getDepartureAirport();
+                cboUpdateArrAirportFlight.Text = route.getArrivalAirport();
             }
             else
             {
@@ -108,26 +108,6 @@ namespace AirlineSYS
             {
                 cboUpdateFlight.Items.Add(flight.getFlightNumber());
             }
-
-            List<Route> routes = Route.getRoutes();
-
-            //Checking for duplicate elements to store unique departureAirports and arrivalAirports(so filtering both sets of airports)
-            List<string> departureAirports = new List<string>();
-            List<string> arrivalAirports = new List<string>();
-
-            foreach (Route route in routes)
-            {   //Contains is cheking if the airport being added is already in the combo box
-                //https://learn.microsoft.com/en-us/dotnet/api/system.string.contains?view=net-8.0
-                if (!departureAirports.Contains(route.getDepartureAirport()))
-                    departureAirports.Add(route.getDepartureAirport());
-
-                if (!arrivalAirports.Contains(route.getArrivalAirport()))
-                    arrivalAirports.Add(route.getArrivalAirport());
-            }
-            //https://www.tutorialspoint.com/merge-two-arrays-using-chash-addrange-method
-            cboUpdateDeptAirportFlight.Items.AddRange(departureAirports.ToArray());
-
-            cboUpdateArrAirportFlight.Items.AddRange(arrivalAirports.ToArray());
 
             List<FlightTimes> flightTimes = FlightTimes.getFlightTimes();
 
@@ -302,8 +282,16 @@ namespace AirlineSYS
 
         private void btnUpdateFlightConfirm_Click(object sender, EventArgs e)
         {
+            // Validate flight fields
             if (!UpdateFlightValidation.ValidateFlightField(cboUpdateDeptAirportFlight, cboUpdateArrAirportFlight, cboUpdateOperatorCodeFlight, int.Parse(txtUpdateNumFlightSeats.Text), dtpUpdateDeptFlight.Value, cboUpdateDeptTime, lblUpdateFlightEstArrTimeDetail.Text))
             {
+                return;
+            }
+
+            // Ensure selected items are not null
+            if (cboUpdateDeptAirportFlight.SelectedItem == null || cboUpdateArrAirportFlight.SelectedItem == null || cboUpdateOperatorCodeFlight.SelectedItem == null || cboUpdateDeptTime.SelectedItem == null)
+            {
+                MessageBox.Show("One or more required fields are not selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -315,18 +303,20 @@ namespace AirlineSYS
 
             if (routeID != -1)
             {
-                Flight updateFlightSchedule = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.SelectedItem.ToString(), int.Parse(lblUpdateFlightRouteIdDetails.Text), dtpUpdateDeptFlight.Value,
-                                                    cboUpdateDeptTime.SelectedItem.ToString(), lblUpdateFlightEstArrTimeDetail.Text, int.Parse(txtUpdateNumFlightSeats.Text), int.Parse(txtUpdateNumFlightSeats.Text), "A");
+                // Create updateFlightSchedule only if all necessary values are available
+                Flight updateFlightSchedule = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.SelectedItem.ToString(), routeID, dtpUpdateDeptFlight.Value,
+                    cboUpdateDeptTime.SelectedItem.ToString(), lblUpdateFlightEstArrTimeDetail.Text, int.Parse(txtUpdateNumFlightSeats.Text), int.Parse(txtUpdateNumFlightSeats.Text), "A");
 
+                // Call updateFlight method
                 updateFlightSchedule.updateFlight(lblUpdateFlightNumberDetail.Text);
 
-                MessageBox.Show(lblUpdateFlightNumberDetail.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Flight details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // Clear controls
                 cboUpdateArrAirportFlight.SelectedIndex = -1;
                 cboUpdateDeptAirportFlight.SelectedIndex = -1;
                 cboUpdateOperatorCodeFlight.SelectedIndex = -1;
                 txtUpdateNumFlightSeats.Clear();
-                dtpUpdateDeptFlight.Value = DateTime.Now;
                 cboUpdateDeptTime.SelectedIndex = -1;
             }
             else

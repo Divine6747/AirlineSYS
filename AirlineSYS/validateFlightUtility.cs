@@ -55,7 +55,7 @@ namespace AirlineSYS
                 return false;
             }
 
-            if (numFlightSeats < 100) 
+            if (numFlightSeats > 100) 
             {
                 MessageBox.Show("Number of seats must not exceed 100", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

@@ -299,12 +299,6 @@
             this.cboUpdateFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUpdateFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboUpdateFlight.FormattingEnabled = true;
-            this.cboUpdateFlight.Items.AddRange(new object[] {
-            "DUB - SHA",
-            "JFK - SHA",
-            "SHA - PEK",
-            "SNN - FCO",
-            "DUB - BGY"});
             this.cboUpdateFlight.Location = new System.Drawing.Point(501, 73);
             this.cboUpdateFlight.Margin = new System.Windows.Forms.Padding(4);
             this.cboUpdateFlight.Name = "cboUpdateFlight";

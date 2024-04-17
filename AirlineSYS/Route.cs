@@ -89,7 +89,7 @@ namespace AirlineSYS
         //Adding Route
         public void addRoute()
         {
-            string sqlQuery = "INSERT INTO Routes (RouteID, DepartureAirport, ArrivalAirport, TicketPrice, Duration, Status) " +
+            string sqlQuery = "INSERT INTO Routes (RouteID, DeptAirport, ArrAirport, TicketPrice, Duration, Status) " +
                               "VALUES (:RouteID, :DepartureAirport, :ArrivalAirport, :TicketPrice, :Duration, :Status)";
 
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
@@ -199,44 +199,44 @@ namespace AirlineSYS
         //Ending Routes
         public void endRoute(int routeID)
         {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            string sqlQueryCheckFlights = "SELECT COUNT(*) FROM Flights WHERE RouteID = '" + routeID + "' AND Status = 'A'";
-
-            string sqlQueryUpdateRoute = "UPDATE Routes SET Status = 'I' WHERE RouteID = '" + routeID + "'";
-
-            try
+            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
-                conn.Open();
-                OracleCommand cmdCheckFlights = new OracleCommand(sqlQueryCheckFlights, conn);
+                string sqlQueryCheckFlights = "SELECT COUNT(*) FROM Flights WHERE RouteID = :routeID AND Status = 'A'";
+                string sqlQueryUpdateRoute = "UPDATE Routes SET Status = 'I' WHERE RouteID = :routeID";
 
-                int activeFlightCount = Convert.ToInt32(cmdCheckFlights.ExecuteReader());
-
-                if (activeFlightCount > 0)
+                try
                 {
-                    MessageBox.Show("Cannot end route. There are active flights associated with it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    conn.Open();
+
+                    OracleCommand cmdCheckFlights = new OracleCommand(sqlQueryCheckFlights, conn);
+                    cmdCheckFlights.Parameters.Add(":routeID", OracleDbType.Int32).Value = routeID;
+
+                    int activeFlightCount = Convert.ToInt32(cmdCheckFlights.ExecuteScalar());
+
+                    if (activeFlightCount > 0)
+                    {
+                        MessageBox.Show("Cannot end route. There are active flights associated with it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        OracleCommand cmdUpdateRoute = new OracleCommand(sqlQueryUpdateRoute, conn);
+                        cmdUpdateRoute.Parameters.Add(":routeID", OracleDbType.Int32).Value = routeID;
+                        cmdUpdateRoute.ExecuteNonQuery();
+
+                        MessageBox.Show("Route has been ended in the Database", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else
+                catch (OracleException ex)
                 {
-                    MessageBox.Show("Route has been ended in the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                OracleCommand cmdUpdateRoute = new OracleCommand(sqlQueryUpdateRoute, conn);
-                cmdUpdateRoute.ExecuteNonQuery();
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+
 
         //Checking the database to check for route existance
         public static bool doesRouteExist(string deptAirport, string arrAiport)

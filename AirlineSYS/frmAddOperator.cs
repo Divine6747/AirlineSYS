@@ -25,8 +25,8 @@ namespace AirlineSYS
         }
         private void btnOperatorConfirm_Click(object sender, EventArgs e)
         {
-            if (txtOperatorCode.Text.Equals("") || txtOperatorName.Text.Equals("") || txtOperatorCity.Text.Equals("") || 
-                                                    txtOperatorCountry.Text.Equals("") || txtOperatorStatus.Text.Equals(""))
+            if (txtOperatorCode.Text.Equals("") || txtOperatorName.Text.Equals("") || txtOperatorCity.Text.Equals("") ||
+                                                    txtOperatorCountry.Text.Equals(""))
             {
                 MessageBox.Show("All fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtOperatorCode.Focus();
@@ -35,9 +35,9 @@ namespace AirlineSYS
             }
             else if (txtOperatorCode.Text.Length != 2 || !txtOperatorCode.Text.All(char.IsUpper))
             {
-                 MessageBox.Show("Operator Code must be a valid TWO UPPERCASE LETTER Operator Code.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 txtOperatorCode.Focus();
-                 return;
+                MessageBox.Show("Operator Code must be a valid TWO UPPERCASE LETTER Operator Code.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtOperatorCode.Focus();
+                return;
 
             }
             else if (txtOperatorName.Text.Length > 60 || !txtOperatorName.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
@@ -52,21 +52,14 @@ namespace AirlineSYS
                 txtOperatorCountry.Focus();
                 return;
             }
-            else if (txtOperatorStatus.Text.Length !=1 || !txtOperatorStatus.Text.All(char.IsLetter))
-            {
-                MessageBox.Show("Operator status is either A for 'Active' or I for 'Inactive'");
-                txtOperatorStatus.Focus();
-                return;
-            }
             else
-            {                
-                Operator anOperator = new Operator(txtOperatorCode.Text,txtOperatorName.Text,txtOperatorCity.Text,txtOperatorCountry.Text,txtOperatorStatus.Text);
+            {
+                Operator anOperator = new Operator(txtOperatorCode.Text, txtOperatorName.Text, txtOperatorCity.Text, txtOperatorCountry.Text);
                 anOperator.addOperator();
                 txtOperatorCode.Clear();
                 txtOperatorName.Clear();
                 txtOperatorCity.Clear();
                 txtOperatorCountry.Clear();
-                txtOperatorStatus.Clear();
             }
         }
     }

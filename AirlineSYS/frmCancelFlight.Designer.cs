@@ -36,12 +36,9 @@
             this.lblAddAirport = new System.Windows.Forms.Label();
             this.btnFlightSearch = new System.Windows.Forms.Button();
             this.grpCancelFlightDetails = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lblCancelFlightDetails = new System.Windows.Forms.Label();
             this.cboCancelFlightNumber = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.grpCancelFlightDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // munBack
@@ -125,21 +122,10 @@
             this.grpCancelFlightDetails.Margin = new System.Windows.Forms.Padding(4);
             this.grpCancelFlightDetails.Name = "grpCancelFlightDetails";
             this.grpCancelFlightDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.grpCancelFlightDetails.Size = new System.Drawing.Size(844, 145);
+            this.grpCancelFlightDetails.Size = new System.Drawing.Size(844, 509);
             this.grpCancelFlightDetails.TabIndex = 30;
             this.grpCancelFlightDetails.TabStop = false;
             this.grpCancelFlightDetails.Text = "Cancel Flight Details";
-            this.grpCancelFlightDetails.Visible = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(69, 288);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(963, 321);
-            this.dataGridView1.TabIndex = 2;
             // 
             // lblCancelFlightDetails
             // 
@@ -162,23 +148,11 @@
             this.cboCancelFlightNumber.Size = new System.Drawing.Size(147, 33);
             this.cboCancelFlightNumber.TabIndex = 31;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(40, 89);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(50, 33);
-            this.comboBox1.TabIndex = 32;
-            // 
             // frmCancelFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 717);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.cboCancelFlightNumber);
             this.Controls.Add(this.grpCancelFlightDetails);
             this.Controls.Add(this.btnFlightSearch);
@@ -194,7 +168,6 @@
             this.Load += new System.EventHandler(this.frmCancelFlight_Load);
             this.grpCancelFlightDetails.ResumeLayout(false);
             this.grpCancelFlightDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,7 +184,5 @@
         private System.Windows.Forms.GroupBox grpCancelFlightDetails;
         private System.Windows.Forms.Label lblCancelFlightDetails;
         private System.Windows.Forms.ComboBox cboCancelFlightNumber;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

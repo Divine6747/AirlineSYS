@@ -82,7 +82,7 @@
             this.mnuScheduleFlight.Location = new System.Drawing.Point(0, 0);
             this.mnuScheduleFlight.Name = "mnuScheduleFlight";
             this.mnuScheduleFlight.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuScheduleFlight.Size = new System.Drawing.Size(1444, 24);
+            this.mnuScheduleFlight.Size = new System.Drawing.Size(1444, 30);
             this.mnuScheduleFlight.TabIndex = 6;
             // 
             // lblAddAirport
@@ -250,7 +250,6 @@
             // 
             // cboArrAirportFlight
             // 
-            this.cboArrAirportFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboArrAirportFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboArrAirportFlight.FormattingEnabled = true;
             this.cboArrAirportFlight.Location = new System.Drawing.Point(706, 50);
@@ -262,7 +261,6 @@
             // 
             // cboDeptAirportFlight
             // 
-            this.cboDeptAirportFlight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDeptAirportFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboDeptAirportFlight.FormattingEnabled = true;
             this.cboDeptAirportFlight.Location = new System.Drawing.Point(250, 48);

@@ -15,7 +15,6 @@ namespace AirlineSYS
         private string Name;
         private string City;
         private string Country;
-        private string Status;
 
         public Operator()
         {
@@ -23,15 +22,13 @@ namespace AirlineSYS
             this.Name = "";
             this.City = "";
             this.Country = "";
-            this.Status = "";
         }
-        public Operator(string operatorCode, string name, string city, string country, string status)
+        public Operator(string operatorCode, string name, string city, string country)
         {
             this.OperatorCode = operatorCode;
             this.Name = name;
             this.City = city;
             this.Country = country;
-            this.Status = status;
         }
 
         //Getters
@@ -39,20 +36,18 @@ namespace AirlineSYS
         public string getName() { return this.Name; }
         public string getCity() { return this.City; }
         public string getCountry() { return this.Country; }
-        public string getStatus() { return this.Status; }
 
         //Setters
         public void setOperatotCode(string OperatorCode) { this.OperatorCode = OperatorCode; }
         public void setName(string Name) { this.Name = Name; }
         public void setCity(string City) { this.City = City; }
         public void setCountry(string Country) { this.Country = Country; }
-        public void setStatus(string Status) { this.Status = Status; }
 
         //Add Operetor Method
         public void addOperator()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            string sqlQuery = "INSERT INTO Operators (OperatorCode, Name, City, Country, Status) VALUES (:OperatorCode, :Name, :City, :Country, :Status)";
+            string sqlQuery = "INSERT INTO Operators (OperatorCode, Name, City, Country) VALUES (:OperatorCode, :Name, :City, :Country)";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
@@ -60,7 +55,6 @@ namespace AirlineSYS
             cmd.Parameters.Add(":Name", OracleDbType.Varchar2).Value = Name;
             cmd.Parameters.Add(":City", OracleDbType.Varchar2).Value = City;
             cmd.Parameters.Add(":Country", OracleDbType.Varchar2).Value = Country;
-            cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = Status;
 
             try
             {

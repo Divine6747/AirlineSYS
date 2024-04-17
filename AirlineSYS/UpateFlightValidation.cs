@@ -11,21 +11,15 @@ namespace AirlineSYS
     {
         public static bool ValidateFlightField(ComboBox cboDeptAirport, ComboBox cboArrAirport, ComboBox cboOperatorCode, int numFlightSeats, DateTime deptDate, ComboBox cboDeptTime, string estArrTime)
         {
-            if (cboDeptAirport.SelectedItem == null)
+            if (cboDeptAirport.Text == null)
             {
                 MessageBox.Show("Departure airport must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (cboArrAirport.SelectedItem == null)
+            if (cboArrAirport.Text == null)
             {
                 MessageBox.Show("Arrival airport must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (cboDeptAirport.SelectedItem.Equals(cboArrAirport.SelectedItem))
-            {
-                MessageBox.Show("Departure and Arrival Airport cannot be the same.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -42,7 +36,7 @@ namespace AirlineSYS
             }
 
             if (deptDate <= DateTime.Now)
-            {
+            { 
                 MessageBox.Show("Departure date must be greater than the current date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

@@ -72,8 +72,6 @@ namespace AirlineSYS
                 Route route = new Route();
                 route.endRoute(routeID);
             }
-
-            //grpEndRouteDetails.Visible = false;
         }
         private void frmEndRoute_Load(object sender, EventArgs e)
         {

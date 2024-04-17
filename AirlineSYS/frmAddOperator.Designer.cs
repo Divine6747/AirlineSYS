@@ -33,8 +33,6 @@
             this.btnOperatorConfirm = new System.Windows.Forms.Button();
             this.grpOperatorDetails = new System.Windows.Forms.GroupBox();
             this.grpAirportAddress = new System.Windows.Forms.GroupBox();
-            this.lblOperatorStatus = new System.Windows.Forms.Label();
-            this.txtOperatorStatus = new System.Windows.Forms.TextBox();
             this.txtOperatorCountry = new System.Windows.Forms.TextBox();
             this.lblOperatorCountry = new System.Windows.Forms.Label();
             this.lblOperatorCity = new System.Windows.Forms.Label();
@@ -63,7 +61,7 @@
             // 
             this.btnOperatorConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnOperatorConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOperatorConfirm.Location = new System.Drawing.Point(417, 438);
+            this.btnOperatorConfirm.Location = new System.Drawing.Point(414, 406);
             this.btnOperatorConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnOperatorConfirm.Name = "btnOperatorConfirm";
             this.btnOperatorConfirm.Size = new System.Drawing.Size(232, 47);
@@ -84,15 +82,13 @@
             this.grpOperatorDetails.Margin = new System.Windows.Forms.Padding(4);
             this.grpOperatorDetails.Name = "grpOperatorDetails";
             this.grpOperatorDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.grpOperatorDetails.Size = new System.Drawing.Size(999, 316);
+            this.grpOperatorDetails.Size = new System.Drawing.Size(999, 288);
             this.grpOperatorDetails.TabIndex = 12;
             this.grpOperatorDetails.TabStop = false;
             this.grpOperatorDetails.Text = "Operator Details";
             // 
             // grpAirportAddress
             // 
-            this.grpAirportAddress.Controls.Add(this.lblOperatorStatus);
-            this.grpAirportAddress.Controls.Add(this.txtOperatorStatus);
             this.grpAirportAddress.Controls.Add(this.txtOperatorCountry);
             this.grpAirportAddress.Controls.Add(this.lblOperatorCountry);
             this.grpAirportAddress.Controls.Add(this.lblOperatorCity);
@@ -101,33 +97,14 @@
             this.grpAirportAddress.Margin = new System.Windows.Forms.Padding(4);
             this.grpAirportAddress.Name = "grpAirportAddress";
             this.grpAirportAddress.Padding = new System.Windows.Forms.Padding(4);
-            this.grpAirportAddress.Size = new System.Drawing.Size(856, 158);
+            this.grpAirportAddress.Size = new System.Drawing.Size(856, 118);
             this.grpAirportAddress.TabIndex = 11;
             this.grpAirportAddress.TabStop = false;
             this.grpAirportAddress.Text = "Address";
             // 
-            // lblOperatorStatus
-            // 
-            this.lblOperatorStatus.AutoSize = true;
-            this.lblOperatorStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperatorStatus.Location = new System.Drawing.Point(44, 101);
-            this.lblOperatorStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblOperatorStatus.Name = "lblOperatorStatus";
-            this.lblOperatorStatus.Size = new System.Drawing.Size(65, 28);
-            this.lblOperatorStatus.TabIndex = 15;
-            this.lblOperatorStatus.Text = "Status";
-            // 
-            // txtOperatorStatus
-            // 
-            this.txtOperatorStatus.Location = new System.Drawing.Point(153, 97);
-            this.txtOperatorStatus.Margin = new System.Windows.Forms.Padding(4);
-            this.txtOperatorStatus.Name = "txtOperatorStatus";
-            this.txtOperatorStatus.Size = new System.Drawing.Size(229, 34);
-            this.txtOperatorStatus.TabIndex = 16;
-            // 
             // txtOperatorCountry
             // 
-            this.txtOperatorCountry.Location = new System.Drawing.Point(581, 38);
+            this.txtOperatorCountry.Location = new System.Drawing.Point(582, 44);
             this.txtOperatorCountry.Margin = new System.Windows.Forms.Padding(4);
             this.txtOperatorCountry.Name = "txtOperatorCountry";
             this.txtOperatorCountry.Size = new System.Drawing.Size(229, 34);
@@ -137,7 +114,7 @@
             // 
             this.lblOperatorCountry.AutoSize = true;
             this.lblOperatorCountry.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperatorCountry.Location = new System.Drawing.Point(453, 43);
+            this.lblOperatorCountry.Location = new System.Drawing.Point(454, 49);
             this.lblOperatorCountry.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOperatorCountry.Name = "lblOperatorCountry";
             this.lblOperatorCountry.Size = new System.Drawing.Size(82, 28);
@@ -148,7 +125,7 @@
             // 
             this.lblOperatorCity.AutoSize = true;
             this.lblOperatorCity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperatorCity.Location = new System.Drawing.Point(45, 38);
+            this.lblOperatorCity.Location = new System.Drawing.Point(46, 44);
             this.lblOperatorCity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOperatorCity.Name = "lblOperatorCity";
             this.lblOperatorCity.Size = new System.Drawing.Size(46, 28);
@@ -157,7 +134,7 @@
             // 
             // txtOperatorCity
             // 
-            this.txtOperatorCity.Location = new System.Drawing.Point(153, 34);
+            this.txtOperatorCity.Location = new System.Drawing.Point(154, 40);
             this.txtOperatorCity.Margin = new System.Windows.Forms.Padding(4);
             this.txtOperatorCity.Name = "txtOperatorCity";
             this.txtOperatorCity.Size = new System.Drawing.Size(229, 34);
@@ -231,7 +208,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1067, 500);
+            this.ClientSize = new System.Drawing.Size(1067, 477);
             this.Controls.Add(this.btnOperatorConfirm);
             this.Controls.Add(this.grpOperatorDetails);
             this.Controls.Add(this.lblAddAirport);
@@ -265,7 +242,5 @@
         private System.Windows.Forms.Label lblOperatorCode;
         private System.Windows.Forms.Label lblAddAirport;
         private System.Windows.Forms.Label munBack;
-        private System.Windows.Forms.Label lblOperatorStatus;
-        private System.Windows.Forms.TextBox txtOperatorStatus;
     }
 }

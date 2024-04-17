@@ -130,7 +130,7 @@ namespace AirlineSYS
                     using (OracleDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
-                        {     
+                        {
                             object result = reader[0];
 
                             int maxFlightNumber;
@@ -220,55 +220,56 @@ namespace AirlineSYS
             }
         }
         public static List<Flight> getAllFlightDetails()
-        {
-            List<Flight> flights = new List<Flight>();
-
-            try
             {
+                List<Flight> flights = new List<Flight>();
+
+                try
+                {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
                     string sqlQuery = "SELECT F.FlightNumber, F.OperatorCode, O.Name AS OperatorName, " +
                                       "F.RouteID, F.FlightDate, F.FlightTime, F.EstArrTime, " +
                                       "F.NumSeats, F.NumSeatAvail, F.Status, " +
-                                      "R.DeptAirport, R.ArrAirport " +
+                                      "R.DeptAirport, R.ArrAirport, R.Duration" +
                                       "FROM Flights F " +
                                       "JOIN Routes R ON F.RouteID = R.RouteID " +
                                       "JOIN Operators O ON F.OperatorCode = O.OperatorCode";
 
-                    using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+                {
+                    conn.Open();
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
                     {
-                        conn.Open();
-
-                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            string flightNumber = reader.GetString(0);
+                            string operatorCode = reader.GetString(1);
+                            int routeID = reader.GetInt32(3);
+                            DateTime flightDate = reader.GetDateTime(4);
+                            string flightTime = reader.GetString(5);
+                            string estArrTime = reader.GetString(6);
+                            int numSeats = reader.GetInt32(7);
+                            int numSeatAvail = reader.GetInt32(8);
+                            string status = reader.GetString(9);
+                            int duration = reader.GetInt32(10);
+\
+                            flights.Add(new Flight
                             {
-                                string flightNumber = reader.GetString(0);
-                                string operatorCode = reader.GetString(1);
-                                int routeID = reader.GetInt32(3);
-                                DateTime flightDate = reader.GetDateTime(4);
-                                string flightTime = reader.GetString(5);
-                                string estArrTime = reader.GetString(6);
-                                int numSeats = reader.GetInt32(7);
-                                int numSeatAvail = reader.GetInt32(8);
-                                string status = reader.GetString(9);
-
-                                flights.Add(new Flight
-                                {
-                                    FlightNumber = flightNumber,
-                                    OperatorCode = operatorCode,
-                                    RouteID = routeID,
-                                    FlightDate = flightDate,
-                                    FlightTime = flightTime,
-                                    EstArrTime = estArrTime,
-                                    NumSeats = numSeats,
-                                    NumSeatAvail = numSeatAvail,
-                                    Status = status
-                                });
-                            }
+                                FlightNumber = flightNumber,
+                                OperatorCode = operatorCode,
+                                RouteID = routeID,
+                                FlightDate = flightDate,
+                                FlightTime = flightTime,
+                                EstArrTime = estArrTime,
+                                NumSeats = numSeats,
+                                NumSeatAvail = numSeatAvail,
+                                Status = status
+                            });
                         }
                     }
                 }
+            }
             }
             catch (OracleException ex)
             {
@@ -284,35 +285,39 @@ namespace AirlineSYS
         //Cancelling Flight
         public void cancelFlight(string flightNumber)
         {
-            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            
+            string sqlQuery = "UPDATE Flights SET Status = 'I' WHERE FlightNumber = :flightNumber";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+            cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
+
+            try
             {
-                string sqlQuery = "UPDATE Flights SET Status = 'I' WHERE FlightNumber = :flightNumber";
-
-                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-                cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
-
-                try
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
                 {
-                    conn.Open();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Flight canceled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Flight number not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Flight has been canceled in the database.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (OracleException ex)
+                else
                 {
-                    MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Flight number not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }            
         }
         //Getting Available flights
         public static List<string[]> getAvailableFlights(int routeID)
