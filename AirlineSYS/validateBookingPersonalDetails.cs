@@ -128,7 +128,7 @@ namespace AirlineSYS
 
         private static bool IsValidPhoneNumber(string phoneNumber)
         {
-            string phonePattern = @"^08[3579]\d{7}$";
+            string phonePattern = @"^08[3578]\d{7}$";
             return !string.IsNullOrWhiteSpace(phoneNumber) && Regex.IsMatch(phoneNumber, phonePattern);
         }
     }

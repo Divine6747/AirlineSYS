@@ -97,13 +97,14 @@ namespace AirlineSYS
                 nudNumBaggage.Visible = true;
                 lblNumBaggage.Visible = true;
                 numBaggage = (int)nudNumBaggage.Value;
-
+                nudNumBaggage.Value = 1;
             }
             else
             {
                 nudNumBaggage.Visible = true;
                 lblNumBaggage.Visible = true;
-                numBaggage = 0;
+                numBaggage = (int)nudNumBaggage.Value;
+                nudNumBaggage.Value = 0;
             }
         }
         public frmCreateBooking()
@@ -193,10 +194,9 @@ namespace AirlineSYS
                 MessageBox.Show("Please select both departure and arrival airports and date of departure", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnBookingFlightConfirm_Click(object sender, EventArgs e)
         {
-            // Check if any label is empty
+            //Checking if any labels are empty
             if (string.IsNullOrWhiteSpace(lblFlightNumberDetail.Text) ||
                 string.IsNullOrWhiteSpace(lblDeptAirportDetail.Text) ||
                 string.IsNullOrWhiteSpace(lblArrAirportDetail.Text) ||
@@ -209,9 +209,18 @@ namespace AirlineSYS
 
             numBaggage = (int)nudNumBaggage.Value;
             frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime,estArrTime, numBaggage.ToString());
+            
+            DialogResult baggageConfirm = MessageBox.Show("Are you sure of your booking", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            frmBookingPersonalData.Show();
-            this.Close();
+            if (baggageConfirm == DialogResult.Yes)
+            {
+                frmBookingPersonalData.Show();
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

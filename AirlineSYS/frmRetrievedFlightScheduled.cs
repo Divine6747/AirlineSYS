@@ -106,17 +106,32 @@ namespace AirlineSYS
         private void ConfirmSelect()
         {
             if(grgRetrievedFlightScheduled.SelectedRows.Count > 0)
-    {
-                // Retrieve the selected flight info
+            {
+                bool isRowEmpty = true;
+
+                //Retrieves the selected flight info
                 DataGridViewRow selectedFlight = grgRetrievedFlightScheduled.SelectedRows[0];
 
-                // Collects data from the selected row
-                flightNumber = selectedFlight.Cells["FlightNumber"].Value.ToString();
-                deptAirport = selectedFlight.Cells["DeptAirport"].Value.ToString();
-                arrAirport = selectedFlight.Cells["ArrAirport"].Value.ToString();
-                flightDate = DateTime.Parse(selectedFlight.Cells["FlightDate"].Value.ToString());
-                flightTime = selectedFlight.Cells["FlightTime"].Value.ToString();
-                estArrTime = selectedFlight.Cells["EstArrTime"].Value.ToString();
+                foreach(DataGridViewCell selectedCell in selectedFlight.Cells)
+                {
+                    if (selectedCell.Value != null)
+                    {
+                        isRowEmpty = false;
+                         //Collects the data from the selected row
+                        flightNumber = selectedFlight.Cells["FlightNumber"].Value.ToString();
+                        deptAirport = selectedFlight.Cells["DeptAirport"].Value.ToString();
+                        arrAirport = selectedFlight.Cells["ArrAirport"].Value.ToString();
+                        flightDate = DateTime.Parse(selectedFlight.Cells["FlightDate"].Value.ToString());
+                        flightTime = selectedFlight.Cells["FlightTime"].Value.ToString();
+                        estArrTime = selectedFlight.Cells["EstArrTime"].Value.ToString();
+                    }
+                }
+                if (isRowEmpty)
+                {
+                    MessageBox.Show("Please select a row containing data.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 DialogResult flightConfirm = MessageBox.Show("Are you sure you want to book the selected flight?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (flightConfirm == DialogResult.Yes)

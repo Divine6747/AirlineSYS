@@ -253,7 +253,7 @@ namespace AirlineSYS
                             int numSeatAvail = reader.GetInt32(8);
                             string status = reader.GetString(9);
                             int duration = reader.GetInt32(10);
-\
+
                             flights.Add(new Flight
                             {
                                 FlightNumber = flightNumber,
