@@ -216,8 +216,47 @@ namespace AirlineSYS
                 return false;
             }
         }
+        //When booking is cancel the seat numbers are increased again
+        private bool increaseAvailableSeats(string flightNumber, int seats)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            try
+            {
+                string sqlQuery = "UPDATE Flights SET NUMSEATAVAIL = NUMSEATAVAIL + :seatsToIncrease WHERE FLIGHTNUMBER = :flightNumber";
 
-        public static DataTable findBookingDetails(int bookingID)
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                cmd.Parameters.Add(new OracleParameter("seatsToIncrease", seats));
+                cmd.Parameters.Add(new OracleParameter("flightNumber", flightNumber));
+
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+    public static DataTable findBookingDetails(int bookingID)
         {
             DataTable dt = new DataTable();
 

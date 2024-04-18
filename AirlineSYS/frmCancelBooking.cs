@@ -13,20 +13,17 @@ namespace AirlineSYS
     public partial class frmCancelBooking : Form
     {
         frmAirlineMainMenu parent;
-        public frmCancelBooking()
+        private string flightNumber;
+        public frmCancelBooking(string flightNumber)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.flightNumber = flightNumber;
         }
         public frmCancelBooking(frmAirlineMainMenu parent)
         {
             InitializeComponent();
             this.parent = parent;
-        }
-
-        private void frmCancelBooking_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void munBack_Click(object sender, EventArgs e)
@@ -97,6 +94,11 @@ namespace AirlineSYS
             {
                 return;
             }
+        }
+
+        private void frmCancelBooking_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
