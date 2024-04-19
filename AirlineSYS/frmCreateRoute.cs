@@ -33,52 +33,16 @@ namespace AirlineSYS
 
         private void btnCreateRouteConfirm_Click(object sender, EventArgs e)
         {
-            int duration;
-            decimal ticketPrice;
-            bool isValid = true;
-
             List<string> availAirports = Airport.getAvailAirports();
 
-            if (string.IsNullOrEmpty(lblRouteID.Text) || string.IsNullOrEmpty(txtRouteDept.Text) ||
-                string.IsNullOrEmpty(txtRouteArr.Text) || string.IsNullOrEmpty(txtRoutePrice.Text) ||
-                string.IsNullOrEmpty(txtRouteDur.Text))
-            {
-                MessageBox.Show("All required fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-            else if (txtRouteDept.Text.Equals(txtRouteArr.Text) || txtRouteArr.Text.Equals(txtRouteDept.Text))
-            {
-                MessageBox.Show("Departure Airport and Arrival Airport cannot be the same.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-            else if (!int.TryParse(txtRouteDur.Text, out duration) || duration <= 0)
-            {
-                MessageBox.Show("Please enter a valid positive number for Duration.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-            else if (!decimal.TryParse(txtRoutePrice.Text, out ticketPrice) || ticketPrice <= 0)
-            {
-                MessageBox.Show("Please enter a valid positive number for Ticket Price.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-            else if (!availAirports.Contains(txtRouteDept.Text))
-            {
-                MessageBox.Show("Departure airport is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-            else if (!availAirports.Contains(txtRouteArr.Text))
+            if (!availAirports.Contains(txtRouteArr.Text))
             {
                 MessageBox.Show("Arrival airport is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
+                return;
             }
             else if (Route.doesRouteExist(txtRouteDept.Text, txtRouteArr.Text))
             {
                 MessageBox.Show("Route is not valid. Alreary Exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (!isValid)
-            {
                 return;
             }
 

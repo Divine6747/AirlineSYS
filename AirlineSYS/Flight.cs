@@ -49,7 +49,7 @@ namespace AirlineSYS
             Status = status;
         }
 
-        // Getter methods
+        // Getters
         public string getFlightNumber() { return FlightNumber; }
         public string getOperatorCode() { return OperatorCode; }
         public int getRouteID() { return RouteID; }
@@ -59,9 +59,8 @@ namespace AirlineSYS
         public int getNumSeats() { return NumSeats; }
         public int getNumSeatAvail() { return NumSeatAvail; }
         public string getStatus() { return Status; }
-
-
-
+        
+        //Setters
         public void setFlightNumber(string flightNumber) { FlightNumber = flightNumber; }
         public void setOperatorCode(string operatorCode) { OperatorCode = operatorCode; }
         public void setRouteID(int routeID) { RouteID = routeID; }

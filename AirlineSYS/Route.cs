@@ -186,17 +186,29 @@ namespace AirlineSYS
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            string sqlQueryCheckFlights = "SELECT COUNT(*) FROM Flights WHERE RouteID = :routeID AND Status = 'A'";
+            string sqlQueryCheckRouteInUse = "SELECT COUNT(*) FROM Flights WHERE RouteID = :routeID AND Status = 'A'";
             string sqlQueryUpdateRoute = "UPDATE Routes SET Status = 'I' WHERE RouteID = :routeID";
 
-            OracleCommand cmdCheckFlights = new OracleCommand(sqlQueryCheckFlights, conn);
+            OracleCommand cmdCheckFlights = new OracleCommand(sqlQueryCheckRouteInUse, conn);
             cmdCheckFlights.Parameters.Add(":routeID", OracleDbType.Int32).Value = routeID;
+
+            OracleDataReader reader = null;
+            OracleCommand cmdUpdateRoute = null;
 
             try
             {
-                conn.Open();               
+                conn.Open();
 
-                int activeFlightCount = Convert.ToInt32(cmdCheckFlights.ExecuteScalar());
+                cmdCheckFlights.Connection = conn;
+                reader = cmdCheckFlights.ExecuteReader();
+
+                int activeFlightCount = 0;
+                if (reader.Read())
+                {
+                    activeFlightCount = reader.GetInt32(0);
+                }
+
+                reader.Close();
 
                 if (activeFlightCount > 0)
                 {
@@ -204,11 +216,11 @@ namespace AirlineSYS
                 }
                 else
                 {
-                    OracleCommand cmdUpdateRoute = new OracleCommand(sqlQueryUpdateRoute, conn);
+                    cmdUpdateRoute = new OracleCommand(sqlQueryUpdateRoute, conn);
                     cmdUpdateRoute.Parameters.Add(":routeID", OracleDbType.Int32).Value = routeID;
                     cmdUpdateRoute.ExecuteNonQuery();
 
-                    MessageBox.Show("Route has been ended in the Database", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Route has success been ended", "Success!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (OracleException ex)
@@ -221,13 +233,20 @@ namespace AirlineSYS
             }
             finally
             {
+                if (reader != null && !reader.IsClosed)
+                {
+                    reader.Close();
+                }
+                if (cmdUpdateRoute != null)
+                {
+                    cmdUpdateRoute.Dispose();
+                }
                 if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
             }
         }
-
         //Retrieving all Route Details from database
         public static List<Route> getAllRouteDetails()
         {

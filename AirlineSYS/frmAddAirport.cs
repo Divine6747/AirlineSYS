@@ -39,10 +39,17 @@ namespace AirlineSYS
             {
                 return;
             }
+
+            string airportCode = txtAirportCode.Text;
+
+            if (Airport.checkAirportExists(airportCode))
+            {
+                MessageBox.Show("Airport with code " + airportCode + " already exists!. Please enter a new airport", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             else
             {
-                Airport anAirport = new Airport(txtAirportCode.Text,txtAirportName.Text, txtAirportStreet.Text, txtAirportCity.Text, txtAirportCountry.Text, 
-                                                txtAirportEircode.Text,txtAirportPhone.Text,txtAirportEmail.Text);
+                Airport anAirport = new Airport(txtAirportCode.Text, txtAirportName.Text, txtAirportStreet.Text, txtAirportCity.Text, txtAirportCountry.Text, txtAirportEircode.Text, txtAirportPhone.Text, txtAirportEmail.Text);
 
                 anAirport.addAirport();
 

@@ -85,7 +85,7 @@ namespace AirlineSYS
             {
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Airport has been added to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Airport was added successfully!", "Success!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (OracleException ex)
             {
@@ -225,6 +225,46 @@ namespace AirlineSYS
                 }
             }
             return availAirports;
-        } 
+        }
+
+        public static bool checkAirportExists(string airportCode)
+        {
+            string sqlQuery = "SELECT AirportCode FROM Airports WHERE AirportCode = :AirportCode";
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataReader reader = null;
+
+            cmd.Parameters.Add(":AirportCode", OracleDbType.Varchar2).Value = airportCode;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                return reader.Read();
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
     }
 }

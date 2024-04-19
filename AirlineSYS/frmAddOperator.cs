@@ -25,31 +25,14 @@ namespace AirlineSYS
         }
         private void btnOperatorConfirm_Click(object sender, EventArgs e)
         {
-            if (txtOperatorCode.Text.Equals("") || txtOperatorName.Text.Equals("") || txtOperatorCity.Text.Equals("") ||
-                                                    txtOperatorCountry.Text.Equals(""))
+            if (ValidateOperator.ValidateOperatorFields(txtOperatorCode.Text, txtOperatorName.Text, txtOperatorCity.Text, txtOperatorCountry.Text))
             {
-                MessageBox.Show("All fields must be entered", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorCode.Focus();
-
                 return;
             }
-            else if (txtOperatorCode.Text.Length != 2 || !txtOperatorCode.Text.All(char.IsUpper))
+            string operatorCode = txtOperatorCode.Text;
+            if (Operator.checkOperatorExists(operatorCode))
             {
-                MessageBox.Show("Operator Code must be a valid TWO UPPERCASE LETTER Operator Code.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorCode.Focus();
-                return;
-
-            }
-            else if (txtOperatorName.Text.Length > 60 || !txtOperatorName.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
-            {
-                MessageBox.Show("Operator Name may only contain letters with the maximum length of 60", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorName.Focus();
-                return;
-            }
-            else if (txtOperatorCountry.Text.Length > 30 || !txtOperatorCountry.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
-            {
-                MessageBox.Show("Operator Country must be letter", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOperatorCountry.Focus();
+                MessageBox.Show("Operator with code " + operatorCode + " already exists!. Please enter a new airport", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else

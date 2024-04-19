@@ -116,6 +116,45 @@ namespace AirlineSYS
                 }
             }
             return operatorCodes;
-        }        
-     }
+        }
+        public static bool checkOperatorExists(string operatorCode)
+        {
+            string sqlQuery = "SELECT OperatorCode FROM Operators WHERE OperatorCode = :OperatorCode";
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataReader reader = null;
+
+            cmd.Parameters.Add(":OperatorCode", OracleDbType.Varchar2).Value = operatorCode;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                return reader.Read();
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+    }
 }
