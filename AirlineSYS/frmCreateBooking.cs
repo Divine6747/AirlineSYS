@@ -125,9 +125,6 @@ namespace AirlineSYS
             frmAirlineMainMenu frmAirlineMainMenu = new frmAirlineMainMenu();
             frmAirlineMainMenu.Show();
         }
-
-        List<string> check2 = new List<string>();
-
         private void frmCreateBooking_Load(object sender, EventArgs e)
         {
             List<Route> routes = Route.getRoutes();

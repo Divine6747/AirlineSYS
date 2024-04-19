@@ -184,12 +184,6 @@
     <Compile Include="frmUpdateFlight.Designer.cs">
       <DependentUpon>frmUpdateFlight.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmYearlyFlightAnalysis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmYearlyFlightAnalysis.Designer.cs">
-      <DependentUpon>frmYearlyFlightAnalysis.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmYearlyRevenueAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,9 +247,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateFlight.resx">
       <DependentUpon>frmUpdateFlight.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmYearlyFlightAnalysis.resx">
-      <DependentUpon>frmYearlyFlightAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmYearlyRevenueAnalysis.resx">
       <DependentUpon>frmYearlyRevenueAnalysis.cs</DependentUpon>

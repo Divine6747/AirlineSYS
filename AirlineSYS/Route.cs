@@ -236,8 +236,6 @@ namespace AirlineSYS
                 }
             }
         }
-
-
         //Checking the database to check for route existance
         public static bool doesRouteExist(string deptAirport, string arrAiport)
         {

@@ -230,7 +230,7 @@ namespace AirlineSYS
                     string sqlQuery = "SELECT F.FlightNumber, F.OperatorCode, O.Name AS OperatorName, " +
                                       "F.RouteID, F.FlightDate, F.FlightTime, F.EstArrTime, " +
                                       "F.NumSeats, F.NumSeatAvail, F.Status, " +
-                                      "R.DeptAirport, R.ArrAirport, R.Duration" +
+                                      "R.DeptAirport, R.ArrAirport " +
                                       "FROM Flights F " +
                                       "JOIN Routes R ON F.RouteID = R.RouteID " +
                                       "JOIN Operators O ON F.OperatorCode = O.OperatorCode";
@@ -252,7 +252,6 @@ namespace AirlineSYS
                                 int numSeats = reader.GetInt32(7);
                                 int numSeatAvail = reader.GetInt32(8);
                                 string status = reader.GetString(9);
-                                int duration = reader.GetInt32(10);
 
                                 flights.Add(new Flight
                                 {

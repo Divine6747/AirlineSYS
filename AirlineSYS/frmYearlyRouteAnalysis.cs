@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,12 +25,6 @@ namespace AirlineSYS
             InitializeComponent();
             this.parent = parent;
         }
-
-        private void frmYearlyRouteAnalysis_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void munBack_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -39,55 +34,56 @@ namespace AirlineSYS
 
         private void btnYearlyFlightAnalysisSearch_Click_1(object sender, EventArgs e)
         {
-            chtYearlyFlightAnalysis.Visible = true;
+            chtYearlyRouteAnalysis.Visible = true;
             btnYearlyFlightAnalysisSearch.Visible = true;
-            chtYearlyFlightAnalysis.Series.Clear();
-            grpFlightAnalysis.Visible = false;
+            chtYearlyRouteAnalysis.Series.Clear();
+            btnYearlyFlightAnalysisSearch.Visible = false;
 
-            int[] numJourney = { };
-            string[] flightNumbers = { "JFK - SHA", "SHA - PEK", "SNN - FCO", "DUB - BGY" };
+            string selectedYear = cboYearlyFlightAnalysis.SelectedItem.ToString();
 
-            if (cboYearlyFlightAnalysis.SelectedIndex >= 0 && cboYearlyFlightAnalysis.SelectedIndex < 4)
+            string query = $"SELECT r.DeptAirport || ' - ' || r.ArrAirport AS Route, COUNT(*) AS NumJourneys " +
+                           $"FROM Flights f " +
+                           $"JOIN Routes r ON f.RouteID = r.RouteID " +
+                           $"WHERE TO_CHAR(f.FlightDate, 'YYYY') = :selectedYear " +
+                           $"GROUP BY r.DeptAirport, r.ArrAirport";
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand(query, conn);
+            cmd.Parameters.Add(":selectedYear", OracleDbType.Varchar2).Value = selectedYear;
+
+            try
             {
-                if (cboYearlyFlightAnalysis.SelectedIndex == 0)
+                conn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                Series series = new Series("Yearly Route Analysis");
+                series.ChartType = SeriesChartType.Column;
+                series["PointWidth"] = "0.6";
+                series.Color = System.Drawing.Color.Teal;
+
+                // Populate the chart with the fetched data
+                while (reader.Read())
                 {
-                    numJourney = new int[] { 500, 600, 700, 800, 900 };
+                    string route = reader["Route"].ToString();
+                    int numJourneys = Convert.ToInt32(reader["NumJourneys"]);
+                    series.Points.AddXY(route, numJourneys);
                 }
-                else if (cboYearlyFlightAnalysis.SelectedIndex == 1)
-                {
-                    numJourney = new int[] { 400, 700, 600, 200, 700 };
-                }
-                else if (cboYearlyFlightAnalysis.SelectedIndex == 2)
-                {
-                    numJourney = new int[] { 300, 800, 500, 800, 900 };
-                }
-                else if (cboYearlyFlightAnalysis.SelectedIndex == 3)
-                {
-                    numJourney = new int[] { 200, 900, 400, 800, 900 };
-                }
+
+                chtYearlyRouteAnalysis.Series.Add(series);
+                chtYearlyRouteAnalysis.ChartAreas[0].AxisX.Interval = 1;
+                chtYearlyRouteAnalysis.ChartAreas[0].AxisX.Title = "Route";
+                chtYearlyRouteAnalysis.ChartAreas[0].AxisY.Title = "Number of Journeys";
+                chtYearlyRouteAnalysis.Titles.Clear();
+                chtYearlyRouteAnalysis.Titles.Add("Route Analysis Chart");
             }
-            else
+            catch (OracleException ex)
             {
-                MessageBox.Show("Invalid selection year Selected. Please choose a valid year.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show($"Oracle Exception: {ex.Message}", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            Series series = new Series("Yearly Route Analysis");
-            series.ChartType = SeriesChartType.Column;
-            series["PointWidth"] = "0.6";
-            series.Color = System.Drawing.Color.Teal;
-
-            for (int i = 0; i < flightNumbers.Length; i++)
+            finally
             {
-                series.Points.AddXY(flightNumbers[i], numJourney[i]);
+                conn.Close();
             }
-
-            chtYearlyFlightAnalysis.Series.Add(series);
-            chtYearlyFlightAnalysis.ChartAreas[0].AxisX.Interval = 1;
-            chtYearlyFlightAnalysis.ChartAreas[0].AxisX.Title = "Flight Number";
-            chtYearlyFlightAnalysis.ChartAreas[0].AxisY.Title = "Number of Journeys";
-            chtYearlyFlightAnalysis.Titles.Clear();
-            chtYearlyFlightAnalysis.Titles.Add("Route Analysis Chart");
         }
         private void btnConfirm_Click_1(object sender, EventArgs e)
         {
@@ -95,7 +91,7 @@ namespace AirlineSYS
                            "Success!",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Information);
-            chtYearlyFlightAnalysis.Visible = false;
+            chtYearlyRouteAnalysis.Visible = false;
             btnConfirm.Visible = false;
             cboYearlyFlightAnalysis.Text = "";
 

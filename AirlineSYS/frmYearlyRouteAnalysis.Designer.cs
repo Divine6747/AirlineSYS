@@ -34,14 +34,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmYearlyRouteAnalysis));
             this.munBack = new System.Windows.Forms.Label();
             this.mnuYearlyRouteAnalysis = new System.Windows.Forms.MenuStrip();
-            this.chtYearlyFlightAnalysis = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtYearlyRouteAnalysis = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cboYearlyFlightAnalysis = new System.Windows.Forms.ComboBox();
             this.btnYearlyFlightAnalysisSearch = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.lblSelectYear = new System.Windows.Forms.Label();
             this.grpFlightAnalysis = new System.Windows.Forms.GroupBox();
             this.lblCancelFlightDetails = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chtYearlyFlightAnalysis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtYearlyRouteAnalysis)).BeginInit();
             this.grpFlightAnalysis.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,22 +67,22 @@
             this.mnuYearlyRouteAnalysis.Size = new System.Drawing.Size(871, 24);
             this.mnuYearlyRouteAnalysis.TabIndex = 10;
             // 
-            // chtYearlyFlightAnalysis
+            // chtYearlyRouteAnalysis
             // 
             chartArea1.Name = "ChartArea1";
-            this.chtYearlyFlightAnalysis.ChartAreas.Add(chartArea1);
+            this.chtYearlyRouteAnalysis.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chtYearlyFlightAnalysis.Legends.Add(legend1);
-            this.chtYearlyFlightAnalysis.Location = new System.Drawing.Point(46, 97);
-            this.chtYearlyFlightAnalysis.Name = "chtYearlyFlightAnalysis";
+            this.chtYearlyRouteAnalysis.Legends.Add(legend1);
+            this.chtYearlyRouteAnalysis.Location = new System.Drawing.Point(46, 97);
+            this.chtYearlyRouteAnalysis.Name = "chtYearlyRouteAnalysis";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Yearly Route Analysis";
-            this.chtYearlyFlightAnalysis.Series.Add(series1);
-            this.chtYearlyFlightAnalysis.Size = new System.Drawing.Size(779, 423);
-            this.chtYearlyFlightAnalysis.TabIndex = 41;
-            this.chtYearlyFlightAnalysis.Text = "chart1";
-            this.chtYearlyFlightAnalysis.Visible = false;
+            this.chtYearlyRouteAnalysis.Series.Add(series1);
+            this.chtYearlyRouteAnalysis.Size = new System.Drawing.Size(779, 423);
+            this.chtYearlyRouteAnalysis.TabIndex = 41;
+            this.chtYearlyRouteAnalysis.Text = "chart1";
+            this.chtYearlyRouteAnalysis.Visible = false;
             // 
             // cboYearlyFlightAnalysis
             // 
@@ -91,7 +91,8 @@
             "2019",
             "2020",
             "2021",
-            "2022"});
+            "2022",
+            "2024"});
             this.cboYearlyFlightAnalysis.Location = new System.Drawing.Point(419, 47);
             this.cboYearlyFlightAnalysis.Name = "cboYearlyFlightAnalysis";
             this.cboYearlyFlightAnalysis.Size = new System.Drawing.Size(158, 21);
@@ -157,7 +158,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 589);
-            this.Controls.Add(this.chtYearlyFlightAnalysis);
+            this.Controls.Add(this.chtYearlyRouteAnalysis);
             this.Controls.Add(this.cboYearlyFlightAnalysis);
             this.Controls.Add(this.btnYearlyFlightAnalysisSearch);
             this.Controls.Add(this.btnConfirm);
@@ -168,8 +169,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmYearlyRouteAnalysis";
             this.Text = "Yearly Route Analysis";
-            this.Load += new System.EventHandler(this.frmYearlyRouteAnalysis_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chtYearlyFlightAnalysis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtYearlyRouteAnalysis)).EndInit();
             this.grpFlightAnalysis.ResumeLayout(false);
             this.grpFlightAnalysis.PerformLayout();
             this.ResumeLayout(false);
@@ -181,7 +181,7 @@
 
         private System.Windows.Forms.Label munBack;
         private System.Windows.Forms.MenuStrip mnuYearlyRouteAnalysis;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chtYearlyFlightAnalysis;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtYearlyRouteAnalysis;
         private System.Windows.Forms.ComboBox cboYearlyFlightAnalysis;
         private System.Windows.Forms.Button btnYearlyFlightAnalysisSearch;
         private System.Windows.Forms.Button btnConfirm;

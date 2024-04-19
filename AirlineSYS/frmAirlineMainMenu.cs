@@ -94,13 +94,6 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
 
-        private void mnuYearFlightAnalysis_Click(object sender, EventArgs e)
-        {
-            frmYearlyFlightAnalysis frmAirlineMainMenu = new frmYearlyFlightAnalysis();
-            this.Hide();
-            frmAirlineMainMenu.Show();
-        }
-
         private void mnuYearRevenue_Click(object sender, EventArgs e)
         {
             frmYearlyRevenueAnalysis frmAirlineMainMenu = new frmYearlyRevenueAnalysis();

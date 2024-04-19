@@ -9,20 +9,8 @@ namespace AirlineSYS
 {
     public static class UpdateFlightValidation
     {
-        public static bool ValidateFlightField(ComboBox cboDeptAirport, ComboBox cboArrAirport, ComboBox cboOperatorCode, int numFlightSeats, DateTime deptDate, ComboBox cboDeptTime, string estArrTime)
+        public static bool ValidateFlightField(int numFlightSeats, DateTime deptDate, ComboBox cboDeptTime, string estArrTime)
         {
-            if (cboDeptAirport.Text == null)
-            {
-                MessageBox.Show("Departure airport must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (cboArrAirport.Text == null)
-            {
-                MessageBox.Show("Arrival airport must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
             if (numFlightSeats <= 0)
             {
                 MessageBox.Show("Number of seats must be a positive integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

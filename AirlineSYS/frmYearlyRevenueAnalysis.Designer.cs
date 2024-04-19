@@ -35,7 +35,7 @@
             this.munBack = new System.Windows.Forms.Label();
             this.mnuYearlyRevenueAnalysis = new System.Windows.Forms.MenuStrip();
             this.chtYearlyRevenueAnalysis = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.cboYearlyRevenueAnalysis = new System.Windows.Forms.ComboBox();
+            this.cboYearlyRevenueAnalysisYears = new System.Windows.Forms.ComboBox();
             this.btnYearlyRevenueAnalysisSearch = new System.Windows.Forms.Button();
             this.btnRevenueConfirm = new System.Windows.Forms.Button();
             this.lblSelectYear = new System.Windows.Forms.Label();
@@ -64,7 +64,7 @@
             this.mnuYearlyRevenueAnalysis.Location = new System.Drawing.Point(0, 0);
             this.mnuYearlyRevenueAnalysis.Name = "mnuYearlyRevenueAnalysis";
             this.mnuYearlyRevenueAnalysis.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuYearlyRevenueAnalysis.Size = new System.Drawing.Size(871, 24);
+            this.mnuYearlyRevenueAnalysis.Size = new System.Drawing.Size(987, 24);
             this.mnuYearlyRevenueAnalysis.TabIndex = 10;
             // 
             // chtYearlyRevenueAnalysis
@@ -79,29 +79,25 @@
             series1.Legend = "Legend1";
             series1.Name = "Yearly Revenue Analysis";
             this.chtYearlyRevenueAnalysis.Series.Add(series1);
-            this.chtYearlyRevenueAnalysis.Size = new System.Drawing.Size(779, 423);
+            this.chtYearlyRevenueAnalysis.Size = new System.Drawing.Size(929, 422);
             this.chtYearlyRevenueAnalysis.TabIndex = 35;
             this.chtYearlyRevenueAnalysis.Text = "chart1";
             this.chtYearlyRevenueAnalysis.Visible = false;
+            this.chtYearlyRevenueAnalysis.Click += new System.EventHandler(this.chtYearlyRevenueAnalysis_Click);
             // 
-            // cboYearlyRevenueAnalysis
+            // cboYearlyRevenueAnalysisYears
             // 
-            this.cboYearlyRevenueAnalysis.FormattingEnabled = true;
-            this.cboYearlyRevenueAnalysis.Items.AddRange(new object[] {
-            "2019",
-            "2020",
-            "2021",
-            "2022"});
-            this.cboYearlyRevenueAnalysis.Location = new System.Drawing.Point(419, 47);
-            this.cboYearlyRevenueAnalysis.Name = "cboYearlyRevenueAnalysis";
-            this.cboYearlyRevenueAnalysis.Size = new System.Drawing.Size(158, 21);
-            this.cboYearlyRevenueAnalysis.TabIndex = 36;
+            this.cboYearlyRevenueAnalysisYears.FormattingEnabled = true;
+            this.cboYearlyRevenueAnalysisYears.Location = new System.Drawing.Point(432, 44);
+            this.cboYearlyRevenueAnalysisYears.Name = "cboYearlyRevenueAnalysisYears";
+            this.cboYearlyRevenueAnalysisYears.Size = new System.Drawing.Size(120, 21);
+            this.cboYearlyRevenueAnalysisYears.TabIndex = 36;
             // 
             // btnYearlyRevenueAnalysisSearch
             // 
             this.btnYearlyRevenueAnalysisSearch.BackColor = System.Drawing.Color.Plum;
             this.btnYearlyRevenueAnalysisSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnYearlyRevenueAnalysisSearch.Location = new System.Drawing.Point(606, 42);
+            this.btnYearlyRevenueAnalysisSearch.Location = new System.Drawing.Point(629, 40);
             this.btnYearlyRevenueAnalysisSearch.Name = "btnYearlyRevenueAnalysisSearch";
             this.btnYearlyRevenueAnalysisSearch.Size = new System.Drawing.Size(117, 30);
             this.btnYearlyRevenueAnalysisSearch.TabIndex = 34;
@@ -125,7 +121,7 @@
             // 
             this.lblSelectYear.AutoSize = true;
             this.lblSelectYear.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectYear.Location = new System.Drawing.Point(121, 47);
+            this.lblSelectYear.Location = new System.Drawing.Point(124, 44);
             this.lblSelectYear.Name = "lblSelectYear";
             this.lblSelectYear.Size = new System.Drawing.Size(255, 21);
             this.lblSelectYear.TabIndex = 32;
@@ -156,9 +152,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 589);
+            this.ClientSize = new System.Drawing.Size(987, 586);
             this.Controls.Add(this.chtYearlyRevenueAnalysis);
-            this.Controls.Add(this.cboYearlyRevenueAnalysis);
+            this.Controls.Add(this.cboYearlyRevenueAnalysisYears);
             this.Controls.Add(this.btnYearlyRevenueAnalysisSearch);
             this.Controls.Add(this.btnRevenueConfirm);
             this.Controls.Add(this.lblSelectYear);
@@ -168,6 +164,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmYearlyRevenueAnalysis";
             this.Text = "Yearly Revenue Analysis";
+            this.Load += new System.EventHandler(this.frmYearlyRevenueAnalysis_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chtYearlyRevenueAnalysis)).EndInit();
             this.grpFlightAnalysis.ResumeLayout(false);
             this.grpFlightAnalysis.PerformLayout();
@@ -181,7 +178,7 @@
         private System.Windows.Forms.Label munBack;
         private System.Windows.Forms.MenuStrip mnuYearlyRevenueAnalysis;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtYearlyRevenueAnalysis;
-        private System.Windows.Forms.ComboBox cboYearlyRevenueAnalysis;
+        private System.Windows.Forms.ComboBox cboYearlyRevenueAnalysisYears;
         private System.Windows.Forms.Button btnYearlyRevenueAnalysisSearch;
         private System.Windows.Forms.Button btnRevenueConfirm;
         private System.Windows.Forms.Label lblSelectYear;
