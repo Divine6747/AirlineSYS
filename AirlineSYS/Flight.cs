@@ -76,7 +76,7 @@ namespace AirlineSYS
             string flightDateFormat = FlightDate.ToString("dd-MMM-yy", CultureInfo.InvariantCulture).ToUpper();
 
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            
+
             string sqlQuery = "INSERT INTO FLIGHTS (FlightNumber, OperatorCode, RouteID, FlightDate, FlightTime, EstArrTime, NumSeats, NumSeatAvail, Status) " +
                                 "VALUES (:flightNumber, :operatorCode, :routeID, :flightDate, :flightTime, :estArrTime, :numSeats, :numSeatsAvail, :status)";
 
@@ -111,7 +111,7 @@ namespace AirlineSYS
             finally
             {
                 conn.Close();
-            }            
+            }
         }
 
         //Retrieving and incrementing flight number
@@ -220,11 +220,11 @@ namespace AirlineSYS
             }
         }
         public static List<Flight> getAllFlightDetails()
-            {
-                List<Flight> flights = new List<Flight>();
+        {
+            List<Flight> flights = new List<Flight>();
 
-                try
-                {
+            try
+            {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
                     string sqlQuery = "SELECT F.FlightNumber, F.OperatorCode, O.Name AS OperatorName, " +
@@ -235,41 +235,41 @@ namespace AirlineSYS
                                       "JOIN Routes R ON F.RouteID = R.RouteID " +
                                       "JOIN Operators O ON F.OperatorCode = O.OperatorCode";
 
-                using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
-                {
-                    conn.Open();
-
-                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
                     {
-                        while (reader.Read())
-                        {
-                            string flightNumber = reader.GetString(0);
-                            string operatorCode = reader.GetString(1);
-                            int routeID = reader.GetInt32(3);
-                            DateTime flightDate = reader.GetDateTime(4);
-                            string flightTime = reader.GetString(5);
-                            string estArrTime = reader.GetString(6);
-                            int numSeats = reader.GetInt32(7);
-                            int numSeatAvail = reader.GetInt32(8);
-                            string status = reader.GetString(9);
-                            int duration = reader.GetInt32(10);
+                        conn.Open();
 
-                            flights.Add(new Flight
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
                             {
-                                FlightNumber = flightNumber,
-                                OperatorCode = operatorCode,
-                                RouteID = routeID,
-                                FlightDate = flightDate,
-                                FlightTime = flightTime,
-                                EstArrTime = estArrTime,
-                                NumSeats = numSeats,
-                                NumSeatAvail = numSeatAvail,
-                                Status = status
-                            });
+                                string flightNumber = reader.GetString(0);
+                                string operatorCode = reader.GetString(1);
+                                int routeID = reader.GetInt32(3);
+                                DateTime flightDate = reader.GetDateTime(4);
+                                string flightTime = reader.GetString(5);
+                                string estArrTime = reader.GetString(6);
+                                int numSeats = reader.GetInt32(7);
+                                int numSeatAvail = reader.GetInt32(8);
+                                string status = reader.GetString(9);
+                                int duration = reader.GetInt32(10);
+
+                                flights.Add(new Flight
+                                {
+                                    FlightNumber = flightNumber,
+                                    OperatorCode = operatorCode,
+                                    RouteID = routeID,
+                                    FlightDate = flightDate,
+                                    FlightTime = flightTime,
+                                    EstArrTime = estArrTime,
+                                    NumSeats = numSeats,
+                                    NumSeatAvail = numSeatAvail,
+                                    Status = status
+                                });
+                            }
                         }
                     }
                 }
-            }
             }
             catch (OracleException ex)
             {
@@ -286,7 +286,7 @@ namespace AirlineSYS
         public void cancelFlight(string flightNumber)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            
+
             string sqlQuery = "UPDATE Flights SET Status = 'I' WHERE FlightNumber = :flightNumber";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -317,7 +317,7 @@ namespace AirlineSYS
             finally
             {
                 conn.Close();
-            }            
+            }
         }
         //Getting Available flights
         public static List<string[]> getAvailableFlights(int routeID)
@@ -327,9 +327,9 @@ namespace AirlineSYS
             using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
             {
                 string sqlQuery = "SELECT f.FlightNumber, r.DeptAirport, r.ArrAirport, f.FlightDate, f.FlightTime, f.EstArrTime " +
-                              "FROM Flights f " +
-                              "JOIN Routes r ON f.RouteID = r.RouteID " +
-                              "WHERE f.Status = 'A' AND r.RouteID = :RouteID";
+                                  "FROM Flights f " +
+                                  "JOIN Routes r ON f.RouteID = r.RouteID " +
+                                  "WHERE f.Status = 'A' AND r.RouteID = :RouteID";
 
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
                 cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = routeID;
@@ -363,7 +363,7 @@ namespace AirlineSYS
                 }
             }
             return flights;
-        }        
+        }
     }
 }
 

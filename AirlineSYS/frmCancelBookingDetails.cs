@@ -12,12 +12,12 @@ namespace AirlineSYS
 {   
     public partial class frmCancelBookingDetails : Form
     {
-        private string flightNumber;
+        public string flightNumber;
         public frmCancelBookingDetails(string flightNumber)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.flightNumber = flightNumber;
+            this.flightNumber = flightNumber; // Initialize flightNumber with the passed value
             lblCancelBookingPersonalFlightNumberDetail.Text = flightNumber;
         }
 

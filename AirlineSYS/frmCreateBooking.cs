@@ -32,10 +32,10 @@ namespace AirlineSYS
         }
         public NumericUpDown numericUpDownNumBaggage
         {
-            get 
+            get
             {
                 return nudNumBaggage;
-            } 
+            }
         }
         public Label deptDate
         {
@@ -46,7 +46,7 @@ namespace AirlineSYS
         }
         public System.Windows.Forms.Button Confirm => btnBookingFlightConfirm;
 
-        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string estArrTime,int numBaggage)
+        public frmCreateBooking(string flightNumber, string deptAirport, string arrAirport, DateTime flightDate, string flightTime, string estArrTime, int numBaggage)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -110,7 +110,7 @@ namespace AirlineSYS
         public frmCreateBooking()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;       
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmCreateBooking(frmAirlineMainMenu parent)
         {
@@ -126,8 +126,8 @@ namespace AirlineSYS
             frmAirlineMainMenu.Show();
         }
 
-        List<string> check2 = new List<string>();        
-        
+        List<string> check2 = new List<string>();
+
         private void frmCreateBooking_Load(object sender, EventArgs e)
         {
             List<Route> routes = Route.getRoutes();
@@ -179,19 +179,29 @@ namespace AirlineSYS
 
                 if (routeID != -1)
                 {
-                    //Passing routeID to frmRetrievedFlightScheduled constructor
-                    frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(this.parent, routeID,flightNumber,deptAirport,arrAirport,flightDate,flightTime, estArrTime, numBaggage);
-                    frmRetrievedFlightScheduled.Show();
-                    this.Hide();
+                    // Check if flights are available for the specified route ID
+                    List<string[]> availableFlights = Flight.getAvailableFlights(routeID);
+
+                    if (availableFlights.Count == 0)
+                    {
+                        MessageBox.Show("No flights found for the specified route.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        //Passing routeID to frmRetrievedFlightScheduled constructor
+                        frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(this.parent, routeID, flightNumber, deptAirport, arrAirport, flightDate, flightTime, estArrTime, numBaggage);
+                        frmRetrievedFlightScheduled.Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Sorry, but route route you choose to go does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Sorry, but the route you selected does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Please select both departure and arrival airports and date of departure", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select both departure and arrival airports.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnBookingFlightConfirm_Click(object sender, EventArgs e)
@@ -208,8 +218,8 @@ namespace AirlineSYS
             }
 
             numBaggage = (int)nudNumBaggage.Value;
-            frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime,estArrTime, numBaggage.ToString());
-            
+            frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, estArrTime, numBaggage.ToString());
+
             DialogResult baggageConfirm = MessageBox.Show("Are you sure of your booking", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (baggageConfirm == DialogResult.Yes)

@@ -14,16 +14,16 @@ namespace AirlineSYS
     {
         frmAirlineMainMenu parent;
         private string flightNumber;
-        public frmCancelBooking(string flightNumber)
+        public frmCancelBooking()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.flightNumber = flightNumber;
         }
-        public frmCancelBooking(frmAirlineMainMenu parent)
+        public frmCancelBooking(frmAirlineMainMenu parent, string flightNumber)
         {
             InitializeComponent();
             this.parent = parent;
+            this.flightNumber = flightNumber;
         }
 
         private void munBack_Click(object sender, EventArgs e)
@@ -86,7 +86,8 @@ namespace AirlineSYS
 
             if (cancelConfirm == DialogResult.Yes)
             {
-                frmCancelBookingDetails frmCancelBookingDetails = new frmCancelBookingDetails();
+                // Pass the flight number to the constructor of frmCancelBookingDetails
+                frmCancelBookingDetails frmCancelBookingDetails = new frmCancelBookingDetails(lblCancelFlightNumber.Text);
                 this.Hide();
                 frmCancelBookingDetails.Show();
             }

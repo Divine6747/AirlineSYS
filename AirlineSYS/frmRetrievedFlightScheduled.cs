@@ -91,6 +91,14 @@ namespace AirlineSYS
             grgRetrievedFlightScheduled.MultiSelect = false;
 
             List<string[]> flightinfo = Flight.getAvailableFlights(routeID);
+
+            // Check if flight information list is empty
+            if (flightinfo.Count == 0)
+            {
+                MessageBox.Show("No flights found for the specified route ID.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             foreach (string[] flightInfo in flightinfo)
             {
                 grgRetrievedFlightScheduled.Rows.Add(flightInfo);
@@ -105,19 +113,19 @@ namespace AirlineSYS
         }
         private void ConfirmSelect()
         {
-            if(grgRetrievedFlightScheduled.SelectedRows.Count > 0)
+            if (grgRetrievedFlightScheduled.SelectedRows.Count > 0)
             {
                 bool isRowEmpty = true;
 
                 //Retrieves the selected flight info
                 DataGridViewRow selectedFlight = grgRetrievedFlightScheduled.SelectedRows[0];
 
-                foreach(DataGridViewCell selectedCell in selectedFlight.Cells)
+                foreach (DataGridViewCell selectedCell in selectedFlight.Cells)
                 {
                     if (selectedCell.Value != null)
                     {
                         isRowEmpty = false;
-                         //Collects the data from the selected row
+                        //Collects the data from the selected row
                         flightNumber = selectedFlight.Cells["FlightNumber"].Value.ToString();
                         deptAirport = selectedFlight.Cells["DeptAirport"].Value.ToString();
                         arrAirport = selectedFlight.Cells["ArrAirport"].Value.ToString();
@@ -160,7 +168,7 @@ namespace AirlineSYS
 
         private void btnFlightBookingConfirm_Click(object sender, EventArgs e)
         {
-            ConfirmSelect();            
+            ConfirmSelect();
         }
 
         private void munBack_Click(object sender, EventArgs e)
@@ -185,7 +193,7 @@ namespace AirlineSYS
 
                 this.Close();
 
-                frmCreateBooking.Show();                
+                frmCreateBooking.Show();
                 frmCreateBooking.lblFlightDateDetails.Text = "";
                 frmCreateBooking.nudNumBaggage.Visible = false;
                 MessageBox.Show("Please select a fligt properly.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);

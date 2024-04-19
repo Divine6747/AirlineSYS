@@ -217,7 +217,7 @@ namespace AirlineSYS
             }
         }
         //When booking is cancel the seat numbers are increased again
-        private bool increaseAvailableSeats(string flightNumber, int seats)
+        public static bool increaseAvailableSeats(string flightNumber, int seats)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             try

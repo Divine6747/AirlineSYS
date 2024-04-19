@@ -16,7 +16,7 @@ namespace AirlineSYS
         private decimal TicketPrice;
         private int Duration;
         private string Status;
-        public Route() 
+        public Route()
         {
             this.RouteID = 0;
             this.DepartureAirport = "";
@@ -38,20 +38,20 @@ namespace AirlineSYS
 
         //Getters
         public int getRouteID() { return RouteID; }
-        public string getDepartureAirport() {  return this.DepartureAirport; }
+        public string getDepartureAirport() { return this.DepartureAirport; }
         public string getArrivalAirport() { return this.ArrivalAirport; }
-        public decimal getTicketPrice () { return this.TicketPrice; }
-        public int getDuration () { return this.Duration; }
-        public string getStatus() { return this.Status;}
+        public decimal getTicketPrice() { return this.TicketPrice; }
+        public int getDuration() { return this.Duration; }
+        public string getStatus() { return this.Status; }
 
         //Setters
-        public void setRouteID(int routeID) { this.RouteID = routeID;}
-        public void setDepartureAirport(string departureAirport) {}
-        public void setArrivalAirport(string arrivalAirport) { this.ArrivalAirport = arrivalAirport;}
+        public void setRouteID(int routeID) { this.RouteID = routeID; }
+        public void setDepartureAirport(string departureAirport) { }
+        public void setArrivalAirport(string arrivalAirport) { this.ArrivalAirport = arrivalAirport; }
         public void setTicketPrice(decimal ticketPrice) { this.TicketPrice = ticketPrice; }
         public void setDuration(int duration) { this.Duration = duration; }
-        public void setStatus(string status) { this.Status = status;}
-        
+        public void setStatus(string status) { this.Status = status; }
+
         //Getting next route ID
         public static int getNextRouteID()
         {
@@ -84,7 +84,7 @@ namespace AirlineSYS
             {
                 MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return nextRouteID;         
+            return nextRouteID;
         }
         //Adding Route
         public void addRoute()
@@ -98,7 +98,7 @@ namespace AirlineSYS
                 {
                     cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = RouteID;
                     cmd.Parameters.Add(":DepartureAirport", OracleDbType.Varchar2).Value = DepartureAirport;
-                    cmd.Parameters.Add(":ArrivalAirport", OracleDbType.Varchar2).Value =ArrivalAirport;
+                    cmd.Parameters.Add(":ArrivalAirport", OracleDbType.Varchar2).Value = ArrivalAirport;
                     cmd.Parameters.Add(":TicketPrice", OracleDbType.Decimal).Value = TicketPrice;
                     cmd.Parameters.Add(":Duration", OracleDbType.Decimal).Value = Duration;
                     cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = Status;
@@ -129,7 +129,7 @@ namespace AirlineSYS
             {
                 using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
                 {
-                    string sqlQuery = "SELECT RouteID, DeptAirport, ArrAirport FROM Routes";
+                    string sqlQuery = "SELECT RouteID, DeptAirport, ArrAirport FROM Routes WHERE Status = 'A'";
 
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
 
@@ -170,7 +170,7 @@ namespace AirlineSYS
                     OracleCommand cmd = new OracleCommand(sqlQuery, conn);
                     conn.Open();
 
-                    using(OracleDataReader reader = cmd.ExecuteReader())
+                    using (OracleDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
