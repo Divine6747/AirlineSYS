@@ -50,13 +50,6 @@ namespace AirlineSYS
                               lblEstArrTimeDetail.Text, int.Parse(txtNumFlightSeats.Text), int.Parse(txtNumFlightSeats.Text), "A");
                     scheduleFlight.scheduleFlight();
 
-                    MessageBox.Show("Route ID is: " + routeID.ToString() + "\n\n" +
-                                     lblFlightNumberDetail + "\n\n" +
-                                     cboOperatorCodeFlight.SelectedItem + "\n\n" +
-                                     txtNumFlightSeats.Text + "\n\n" +
-                                     dtpDeptFlight.Text + "\n\n" +
-                                     cboDeptTime.SelectedItem, "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     cboArrAirportFlight.SelectedIndex = -1;
                     cboDeptAirportFlight.SelectedIndex = -1;
                     cboOperatorCodeFlight.SelectedIndex = -1;

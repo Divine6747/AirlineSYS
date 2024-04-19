@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,55 +47,39 @@ namespace AirlineSYS
         //These are the getters
 
         public string getAirportCode() { return this.AirportCode; }
-
         public string getName() { return this.Name; }
-
         public string getStreet() { return this.Street; }
-
         public string getCity() { return this.City; }
-
         public string getCountry() { return this.Country; }
-
         public string getEircode() { return this.Eircode; }
-
         public string getPhone() { return this.Phone; }
-
         public string getEmail() { return this.Email; }
-
-
 
         //These are the setters
         public void setAirportCode(string AirportCode) { this.AirportCode = AirportCode; }
-
         public void setName(string Name) { this.Name = Name; }
-
         public void setStreet(string Street) { this.Street = Street; }
-
         public void setCity(string City) { this.City = City; }
-
         public void setCountry(string Country) { this.Country = Country; }
-
         public void setEircode(string Eircode) { this.Eircode = Eircode; }
-
         public void setPhone(string Phone) { this.Phone = Phone; }
-
         public void setEmail(string Email) { this.Email = Email; }
 
-        //And Airport Method
+        //Add Airport Method
         public void addAirport()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            string sqlQuery = "INSERT INTO Airports VALUES (" + "'" +
-                this.AirportCode + "', '" +
-                this.Name + "', '" +
-                this.Street + "', '" +
-                this.City + "', '" +
-                this.Country + "', '" +
-                this.Eircode + "', '" +
-                this.Phone + "', '" +
-                this.Email + "')";
+            string sqlQuery = "INSERT INTO Airports VALUES (:AirportCode, :Name, :Street, :City, :Country, :Eircode, :Phone, :Email)";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            cmd.Parameters.Add(":AirportCode", OracleDbType.Varchar2).Value = AirportCode;
+            cmd.Parameters.Add(":Name", OracleDbType.Varchar2).Value = Name;
+            cmd.Parameters.Add(":Street", OracleDbType.Varchar2).Value = Street;
+            cmd.Parameters.Add(":City", OracleDbType.Varchar2).Value = City;
+            cmd.Parameters.Add(":Country", OracleDbType.Varchar2).Value = Country;
+            cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
+            cmd.Parameters.Add(":Phone", OracleDbType.Varchar2).Value = Phone;
+            cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
 
             try
             {
@@ -105,7 +90,6 @@ namespace AirlineSYS
             catch (OracleException ex)
             {
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             catch (Exception ex)
             {
@@ -116,21 +100,24 @@ namespace AirlineSYS
                 conn.Close();
             }
         }
+
         //Update Airport Method
         public void updateAirport(string airportCode)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            string sqlQuery = "UPDATE Airports SET " +
-                              "Name = '" + this.Name + "', " +
-                              "Street = '" + this.Street + "', " +
-                              "City = '" + this.City + "', " +
-                              "Country = '" + this.Country + "', " +
-                              "Eircode = '" + this.Eircode + "', " +
-                              "Phone = '" + this.Phone + "', " +
-                              "Email = '" + this.Email + "' " +
-                              "WHERE AirportCode = '" + airportCode + "'";
+            string sqlQuery = "UPDATE Airports SET " + "Name = :Name, " + "Street = :Street, " + "City = :City, " +
+                              "Country = :Country, " + "Eircode = :Eircode, " + "Phone = :Phone, " + "Email = :Email " +
+                              "WHERE AirportCode = :AirportCode";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            cmd.Parameters.Add(":Name", OracleDbType.Varchar2).Value = Name;
+            cmd.Parameters.Add(":Street", OracleDbType.Varchar2).Value = Street;
+            cmd.Parameters.Add(":City", OracleDbType.Varchar2).Value = City;
+            cmd.Parameters.Add(":Country", OracleDbType.Varchar2).Value = Country;
+            cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
+            cmd.Parameters.Add(":Phone", OracleDbType.Varchar2).Value = Phone;
+            cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
+            cmd.Parameters.Add(":AirportCode", OracleDbType.Varchar2).Value = airportCode;
 
             try
             {
@@ -152,19 +139,18 @@ namespace AirlineSYS
             }
         }
 
-
         public void findAirportDetails(string airportCode)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            string sqlQuery = "SELECT Name, Street, City, Country, Eircode, Phone, Email FROM Airports WHERE AirportCode = '" + airportCode + "'";
+            string sqlQuery = "SELECT Name, Street, City, Country, Eircode, Phone, Email FROM Airports WHERE AirportCode = :AirportCode";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            cmd.Parameters.Add(":AirportCode", OracleDbType.Varchar2).Value = airportCode;
 
             try
             {
                 conn.Open();
-
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())
@@ -200,24 +186,22 @@ namespace AirlineSYS
         {
             List<string> availAirports = new List<string>();
 
+            string sqlQuery = "SELECT AirportCode FROM Airports";
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataReader reader = null;
+
             try
             {
-                using(OracleConnection conn  = new OracleConnection(DBConnect.oradb))
+                conn.Open();
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    string sqlQuery = "SELECT AirportCode FROM Airports";
-
-                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-                    conn.Open();
-
-                    using(OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string airportCode = reader.GetString(0);
-                            availAirports.Add(airportCode);
-                        }
-                    }
+                    string airportCode = reader.GetString(0);
+                    availAirports.Add(airportCode);
                 }
             }
             catch (OracleException ex)
@@ -228,8 +212,19 @@ namespace AirlineSYS
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
 
+                if (conn.State != ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
             return availAirports;
-        }
+        } 
     }
 }

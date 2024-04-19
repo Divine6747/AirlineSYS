@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,11 @@ namespace AirlineSYS
 {
     class FlightTimes
     {
-        private string FlightTime;
-        
+        private string FlightTime;        
         public FlightTimes()
         {
             FlightTime = "";
         }
-
         public FlightTimes(string flightTime)
         {
             FlightTime = flightTime;
@@ -32,24 +31,21 @@ namespace AirlineSYS
         {
             List<FlightTimes> flightTimes = new List<FlightTimes>();
 
+            string sqlQuery = "SELECT FLIGHTTIME FROM FLIGHTTIMES";
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand(sqlQuery,conn);
+            OracleDataReader reader = null;
+
             try
             {
-                using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    string sqlQuery = "SELECT FLIGHTTIME FROM FLIGHTTIMES";
-
-                    OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-                    conn.Open();
-
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string flightT = reader.GetString(0);
-                            flightTimes.Add(new FlightTimes { FlightTime = flightT });
-                        }
-                    }
+                    string flightTime = reader.GetString(0);
+                    flightTimes.Add(new FlightTimes { FlightTime = flightTime });
                 }
             }
             catch (OracleException ex)
@@ -59,6 +55,17 @@ namespace AirlineSYS
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
             }
             return flightTimes;
         }

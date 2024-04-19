@@ -15,7 +15,6 @@ namespace AirlineSYS
         private string Name;
         private string City;
         private string Country;
-
         public Operator()
         {
             this.OperatorCode = "";
@@ -80,14 +79,15 @@ namespace AirlineSYS
         public static List<Operator> getOperators()
         {
             List<Operator> operatorCodes = new List<Operator>();
+
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            
+            string sqlQuery = "SELECT OperatorCode FROM Operators";
 
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            
             try
-            {
-                string sqlQuery = "SELECT OperatorCode FROM Operators";
-
-                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
+            {                
                 conn.Open();
 
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -99,7 +99,6 @@ namespace AirlineSYS
                 }
 
                 reader.Close();
-                conn.Close();
             }
             catch (OracleException ex)
             {

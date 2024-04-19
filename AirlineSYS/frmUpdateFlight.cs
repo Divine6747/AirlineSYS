@@ -248,7 +248,6 @@ namespace AirlineSYS
 
         private void btnUpdateFlightConfirm_Click(object sender, EventArgs e)
         {
-            // Validate flight fields
             if (!UpdateFlightValidation.ValidateFlightField(int.Parse(txtUpdateNumFlightSeats.Text), dtpUpdateDeptFlight.Value, cboUpdateDeptTime, lblUpdateFlightEstArrTimeDetail.Text))
             {
                 return;

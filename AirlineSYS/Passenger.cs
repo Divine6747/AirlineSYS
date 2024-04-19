@@ -18,7 +18,6 @@ namespace AirlineSYS
         private string Email;
         private string Phone;
         private string Eircode;
-
         public Passenger()
         {
             PassengerID = 0;
@@ -29,7 +28,6 @@ namespace AirlineSYS
             Phone = "";
             Eircode = "";
         }
-
         public Passenger(int passengerID, string forename, string surname, DateTime dateOfBirth, string email, string phone, string eircode)
         {
             PassengerID = passengerID;
@@ -50,7 +48,7 @@ namespace AirlineSYS
         public string getPhone() { return this.Phone; }
         public string getEircode() { return this.Eircode; }
 
-        // Setter methods
+        // Setter
         public void setPassengerID(int passengerID) { PassengerID = passengerID; }
         public void setForename(string forename) { Forename = forename; }
         public void setSurname(string surname) { Surname = surname; }
@@ -97,7 +95,6 @@ namespace AirlineSYS
                     conn.Close();
                 }
             }
-
             return nextPassengerID;
         }
 
@@ -140,7 +137,6 @@ namespace AirlineSYS
                     conn.Close();
                 }
             }
-
             return ticketPrice;
         }
 
