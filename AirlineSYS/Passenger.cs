@@ -16,7 +16,7 @@ namespace AirlineSYS
         private string Surname;
         private DateTime DateOfBirth;
         private string Email;
-        private long Phone;
+        private string Phone;
         private string Eircode;
 
         public Passenger()
@@ -26,11 +26,11 @@ namespace AirlineSYS
             Surname = "";
             DateOfBirth = DateTime.Now;
             Email = "";
-            Phone = 0;
+            Phone = "";
             Eircode = "";
         }
 
-        public Passenger(int passengerID, string forename, string surname, DateTime dateOfBirth, string email, long phone, string eircode)
+        public Passenger(int passengerID, string forename, string surname, DateTime dateOfBirth, string email, string phone, string eircode)
         {
             PassengerID = passengerID;
             Forename = forename;
@@ -47,7 +47,7 @@ namespace AirlineSYS
         public string getSurname() { return this.Surname; }
         public DateTime getDateOfBirth() { return this.DateOfBirth; }
         public string getEmail() { return this.Email; }
-        public long getPhone() { return this.Phone; }
+        public string getPhone() { return this.Phone; }
         public string getEircode() { return this.Eircode; }
 
         // Setter methods
@@ -56,7 +56,7 @@ namespace AirlineSYS
         public void setSurname(string surname) { Surname = surname; }
         public void setDateOfBirth(DateTime dateOfBirth) { DateOfBirth = dateOfBirth; }
         public void setEmail(string email) { Email = email; }
-        public void setPhone(long phone) { Phone = phone; }
+        public void setPhone(string phone) { Phone = phone; }
         public void setEircode(string eircode) { Eircode = eircode; }
         public static int getNextPassengerID()
         {
@@ -162,7 +162,7 @@ namespace AirlineSYS
                 cmd.Parameters.Add(":Surname", OracleDbType.Varchar2).Value = Surname;
                 cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = DateOfBirth;
                 cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
-                cmd.Parameters.Add(":Phone", OracleDbType.Int32).Value = Phone;
+                cmd.Parameters.Add(":Phone", OracleDbType.Varchar2).Value = Phone;
                 cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
 
                 conn.Open();
@@ -209,7 +209,7 @@ namespace AirlineSYS
                 cmd.Parameters.Add(":Surname", OracleDbType.Varchar2).Value = Surname;
                 cmd.Parameters.Add(":DateOfBirth", OracleDbType.Date).Value = DateOfBirth;
                 cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
-                cmd.Parameters.Add(":Phone", OracleDbType.Int64).Value = Phone;
+                cmd.Parameters.Add(":Phone", OracleDbType.Varchar2).Value = Phone;
                 cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
                 cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = passengerID;
 

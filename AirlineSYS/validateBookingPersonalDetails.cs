@@ -27,11 +27,6 @@ namespace AirlineSYS
                 txtBookingEmail = txtBookingEmail.Trim();
             }
 
-            if (txtBookingPhone != null)
-            {
-                txtBookingPhone = txtBookingPhone.Trim();
-            }
-
             if (txtBookingEircode != null)
             {
                 txtBookingEircode = txtBookingEircode.Trim();
@@ -71,6 +66,12 @@ namespace AirlineSYS
             {
                 MessageBox.Show("Invalid phone number format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+
+            // Additional check to handle empty or null phone number
+            if (!string.IsNullOrEmpty(txtBookingPhone))
+            {
+                // Perform your calculations or operations involving the phone number here
             }
 
             if (string.IsNullOrWhiteSpace(paymentAmountText))

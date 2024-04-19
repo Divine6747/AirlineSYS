@@ -97,7 +97,7 @@ namespace AirlineSYS
                     txtUpdateSurname.Text,
                     DateTime.Parse(dtpDOBUpdate.Text),
                     txtUpdateBookingEmail.Text,
-                    Convert.ToInt64(txtUpdateBooingPhone.Text),
+                    txtUpdateBooingPhone.Text,
                     txtUpdateEircode.Text
                 );
 

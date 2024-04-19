@@ -112,7 +112,7 @@ namespace AirlineSYS
             }
             else
             {
-                Passenger passenger = new Passenger(Convert.ToInt32(lblPassengerIdDetail.Text), txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, int.Parse(txtBookingPhone.Text), bookingEircode);
+                Passenger passenger = new Passenger(Convert.ToInt32(lblPassengerIdDetail.Text), txtForeName.Text, txtSurname.Text, dtpBookingDOB.Value, txtBookingEmail.Text, txtBookingPhone.Text, bookingEircode);
                 passenger.addPassenger();
 
                 Booking booking = new Booking(Convert.ToInt32(lblBookingIdDetail.Text), Convert.ToInt32(lblPassengerIdDetail.Text), Convert.ToInt32(lblBookingRouteIDDetail.Text), lblFlightNumberDetail.Text,
