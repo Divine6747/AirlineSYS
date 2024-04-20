@@ -100,50 +100,6 @@ namespace AirlineSYS
                 conn.Close();
             }
         }
-
-        public void findAirportDetails(string airportCode)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            string sqlQuery = "SELECT Name, Street, City, Country, Eircode, Phone, Email FROM Airports WHERE AirportCode = :AirportCode";
-
-            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-            cmd.Parameters.Add(":AirportCode", OracleDbType.Varchar2).Value = airportCode;
-
-            try
-            {
-                conn.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    setName(reader.GetString(0));
-                    setStreet(reader.GetString(1));
-                    setCity(reader.GetString(2));
-                    setCountry(reader.GetString(3));
-                    setEircode(reader.GetString(4));
-                    setPhone(reader.GetString(5));
-                    setEmail(reader.GetString(6));
-                }
-                else
-                {
-                    throw new Exception("Airport not found.");
-                }
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
         public static List<string> getAvailAirports()
         {
             List<string> availAirports = new List<string>();
@@ -188,7 +144,6 @@ namespace AirlineSYS
             }
             return availAirports;
         }
-
         public static bool checkAirportExists(string airportCode)
         {
             string sqlQuery = "SELECT AirportCode FROM Airports WHERE AirportCode = :AirportCode";
@@ -227,6 +182,5 @@ namespace AirlineSYS
                 }
             }
         }
-
     }
 }
