@@ -47,7 +47,7 @@ namespace AirlineSYS
             List<Flight> flights = Flight.getAllFlightDetails();
            
 
-            // Searching for the flight with the selected flight number
+            // Searching for the flight with the selected flightNumber
             Flight selectedFlight = null;
 
             foreach (Flight flight in flights)
@@ -91,7 +91,6 @@ namespace AirlineSYS
             }
         }
 
-
         private void frmUpdateFlight_Load(object sender, EventArgs e)
         {
             grpUpdateFlightDetails.Visible = false;
@@ -116,7 +115,12 @@ namespace AirlineSYS
         }
         private void ReviewUpdateFlightDetails()
         {
-            //https://codebuns.com/csharp-basics/stringbuilder/#:~:text=C%23%20StringBuilder%20Append%20method%20appends,of%20the%20current%20StringBuilder%20object.&text=Note%3A%20The%20capacity%20of%20the,append%20to%20add%20more%20strings.
+            /*
+                Title: C# StringBuilder Append method appends the specified string to the end of the current StringBuilder object.
+                Available At: https://codebuns.com/csharp-basics/stringbuilder/#:~:text=C%23%20StringBuilder%20Append%20method%20appends,of%20the%20current%20StringBuilder%20object.&text=Note%3A%20The%20capacity%20of%20the,append%20to%20add%20more%20strings.
+                Accessed On: Apr 8, 2024
+                Website: codebuns.com
+             */
             lblDateReview.Text = "";
 
             StringBuilder flightDetails = new StringBuilder();
@@ -260,16 +264,11 @@ namespace AirlineSYS
 
             if (routeID != -1)
             {
-                // Create updateFlightSchedule only if all necessary values are available
                 Flight updateFlightSchedule = new Flight(lblUpdateFlightNumberDetail.Text, cboUpdateOperatorCodeFlight.Text, routeID, dtpUpdateDeptFlight.Value,
                     cboUpdateDeptTime.Text, lblUpdateFlightEstArrTimeDetail.Text, int.Parse(txtUpdateNumFlightSeats.Text), int.Parse(txtUpdateNumFlightSeats.Text), "A");
 
-                // Call updateFlight method
                 updateFlightSchedule.updateFlight(lblUpdateFlightNumberDetail.Text);
 
-                MessageBox.Show("Flight details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Clear controls
                 cboUpdateArrAirportFlight.SelectedIndex = -1;
                 cboUpdateDeptAirportFlight.SelectedIndex = -1;
                 cboUpdateOperatorCodeFlight.SelectedIndex = -1;
