@@ -94,9 +94,8 @@ namespace AirlineSYS
             }
             return nextRouteID;
         }
-
         //Adding Route
-        public void addRoute()
+        public void createRoute()
         {
             string sqlQuery = "INSERT INTO Routes (RouteID, DeptAirport, ArrAirport, TicketPrice, Duration, Status) " +
                               "VALUES (:RouteID, :DepartureAirport, :ArrivalAirport, :TicketPrice, :Duration, :Status)";
@@ -133,7 +132,6 @@ namespace AirlineSYS
                 }
             }
         }
-
         //Getting All Routes from database
         public static List<Route> getRoutes()
         {
@@ -180,7 +178,6 @@ namespace AirlineSYS
             }
             return routes;
         }
-
         //End Route
         public void endRoute(int routeID)
         {
@@ -388,7 +385,6 @@ namespace AirlineSYS
             }
             return routeID;
         }
-
         //Getting the duration of a route from the Routes table
         public int getDuration(string dept, string arr)
         {
@@ -435,7 +431,7 @@ namespace AirlineSYS
             }
             return duration;
         }
-        public static Route getAirportsByID(int routeID)
+        public static Route getAirportsByRouteID(int routeID)
         {
             Route route = null;
             string sqlQuery = "SELECT DeptAirport, ArrAirport FROM Routes WHERE RouteID = :RouteID";

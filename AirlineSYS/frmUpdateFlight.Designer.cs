@@ -131,7 +131,6 @@
             this.cboUpdateOperatorCodeFlight.Name = "cboUpdateOperatorCodeFlight";
             this.cboUpdateOperatorCodeFlight.Size = new System.Drawing.Size(120, 29);
             this.cboUpdateOperatorCodeFlight.TabIndex = 41;
-            this.cboUpdateOperatorCodeFlight.SelectedIndexChanged += new System.EventHandler(this.cboUpdateOperatorCodeFlight_SelectedIndexChanged_1);
             // 
             // cboUpdateDeptAirportFlight
             // 
@@ -141,7 +140,6 @@
             this.cboUpdateDeptAirportFlight.Name = "cboUpdateDeptAirportFlight";
             this.cboUpdateDeptAirportFlight.Size = new System.Drawing.Size(120, 26);
             this.cboUpdateDeptAirportFlight.TabIndex = 40;
-            this.cboUpdateDeptAirportFlight.SelectedIndexChanged += new System.EventHandler(this.cboUpdateDeptAirportFlight_SelectedIndexChanged);
             this.cboUpdateDeptAirportFlight.TextChanged += new System.EventHandler(this.cboUpdateDeptAirportFlight_TextChanged);
             // 
             // cboUpdateArrAirportFlight
@@ -152,7 +150,6 @@
             this.cboUpdateArrAirportFlight.Name = "cboUpdateArrAirportFlight";
             this.cboUpdateArrAirportFlight.Size = new System.Drawing.Size(120, 26);
             this.cboUpdateArrAirportFlight.TabIndex = 39;
-            this.cboUpdateArrAirportFlight.SelectedIndexChanged += new System.EventHandler(this.cboUpdateArrAirportFlight_SelectedIndexChanged);
             this.cboUpdateArrAirportFlight.TextChanged += new System.EventHandler(this.cboUpdateArrAirportFlight_TextChanged);
             // 
             // cboUpdateDeptTime
@@ -163,7 +160,6 @@
             this.cboUpdateDeptTime.Name = "cboUpdateDeptTime";
             this.cboUpdateDeptTime.Size = new System.Drawing.Size(120, 26);
             this.cboUpdateDeptTime.TabIndex = 37;
-            this.cboUpdateDeptTime.SelectedIndexChanged += new System.EventHandler(this.cboUpdateDeptTime_SelectedIndexChanged);
             // 
             // dtpUpdateDeptFlight
             // 

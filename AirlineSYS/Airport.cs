@@ -101,44 +101,6 @@ namespace AirlineSYS
             }
         }
 
-        //Update Airport Method
-        public void updateAirport(string airportCode)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            string sqlQuery = "UPDATE Airports SET " + "Name = :Name, " + "Street = :Street, " + "City = :City, " +
-                              "Country = :Country, " + "Eircode = :Eircode, " + "Phone = :Phone, " + "Email = :Email " +
-                              "WHERE AirportCode = :AirportCode";
-
-            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-            cmd.Parameters.Add(":Name", OracleDbType.Varchar2).Value = Name;
-            cmd.Parameters.Add(":Street", OracleDbType.Varchar2).Value = Street;
-            cmd.Parameters.Add(":City", OracleDbType.Varchar2).Value = City;
-            cmd.Parameters.Add(":Country", OracleDbType.Varchar2).Value = Country;
-            cmd.Parameters.Add(":Eircode", OracleDbType.Varchar2).Value = Eircode;
-            cmd.Parameters.Add(":Phone", OracleDbType.Varchar2).Value = Phone;
-            cmd.Parameters.Add(":Email", OracleDbType.Varchar2).Value = Email;
-            cmd.Parameters.Add(":AirportCode", OracleDbType.Varchar2).Value = airportCode;
-
-            try
-            {
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                MessageBox.Show(airportCode + " has been updated to the Database", "Success !!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
         public void findAirportDetails(string airportCode)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);

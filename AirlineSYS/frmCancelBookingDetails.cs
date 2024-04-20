@@ -27,7 +27,7 @@ namespace AirlineSYS
 
             cancelBooking.cancelBooking(Convert.ToInt32(txtCancelBookingID.Text),txtCancelForeName.Text,txtCancelSurname.Text, txtCancelEmail.Text);
             
-            bool isSeatIncreaseSuccessful = Booking.increaseAvailableSeats(lblCancelBookingPersonalFlightNumberDetail.Text, 1);
+            bool isSeatIncreaseSuccessful = Booking.increaseNumAvailSeat(lblCancelBookingPersonalFlightNumberDetail.Text, 1);
 
             if (isSeatIncreaseSuccessful)
             {

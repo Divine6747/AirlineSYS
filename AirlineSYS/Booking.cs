@@ -115,7 +115,6 @@ namespace AirlineSYS
 
             return nextBookingID;
         }
-
         public static int getNextSeatNumber(string flightNumber, int routeID)
         {
             int nextSeatNumber = 1;
@@ -160,7 +159,6 @@ namespace AirlineSYS
             }
             return nextSeatNumber;
         }
-
         public void addBooking()
         {
             string sqlQuery = "INSERT INTO Bookings (BookingID, PassengerID, RouteID, FlightNumber, FlightTime, FlightDate, SeatNum, NumBaggage, AmountPaid, Status) " +
@@ -204,7 +202,7 @@ namespace AirlineSYS
         }
 
         //When booking is successful the number of available seat numbers is decreased
-        public static bool decreaseAvailableSeats(string flightNumber, int seats)
+        public static bool decreaseNumAvailSeat(string flightNumber, int seats)
         {
             string sqlQuery = "UPDATE Flights SET NUMSEATAVAIL = NUMSEATAVAIL - :seatsToDecrease WHERE FLIGHTNUMBER = :flightNumber";
 
@@ -241,7 +239,7 @@ namespace AirlineSYS
         }
 
         //When booking is cancel the seat numbers are increased again
-        public static bool increaseAvailableSeats(string flightNumber, int seats)
+        public static bool increaseNumAvailSeat(string flightNumber, int seats)
         {
             string sqlQuery = "UPDATE Flights SET NUMSEATAVAIL = NUMSEATAVAIL + :seatsToIncrease WHERE FLIGHTNUMBER = :flightNumber";
 

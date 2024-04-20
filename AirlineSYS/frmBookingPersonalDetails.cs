@@ -120,7 +120,7 @@ namespace AirlineSYS
                                               Convert.ToDecimal(txtPayBookingFlightPrice.Text), "CONFIRMED");
                 booking.addBooking();
 
-                bool isSeatDecreaseSuccessful = Booking.decreaseAvailableSeats(lblFlightNumberDetail.Text, 1);
+                bool isSeatDecreaseSuccessful = Booking.decreaseNumAvailSeat(lblFlightNumberDetail.Text, 1);
 
                 if (isSeatDecreaseSuccessful)
                 {

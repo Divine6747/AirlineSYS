@@ -16,6 +16,11 @@ namespace AirlineSYS
                 MessageBox.Show("Number of seats must be a positive integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            if (numFlightSeats > 100)
+            {
+                MessageBox.Show("Number of seats MAXIMUM 100.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
             if (numFlightSeats < 70)
             {
@@ -34,7 +39,6 @@ namespace AirlineSYS
                 MessageBox.Show("Please select a departure time.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             return true;
         }
 

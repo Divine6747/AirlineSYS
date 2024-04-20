@@ -78,7 +78,7 @@ namespace AirlineSYS
 
             // Get dept and arr airports using routeID
             int routeID = Convert.ToInt32(lblUpdateFlightRouteIdDetails.Text);
-            Route route = Route.getAirportsByID(routeID);
+            Route route = Route.getAirportsByRouteID(routeID);
 
             if (route != null)
             {

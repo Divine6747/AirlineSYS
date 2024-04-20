@@ -55,7 +55,7 @@ namespace AirlineSYS
                 originalFlightDate = (DateTime)row["FlightDate"];
                 dptUpdateBookingDate.Text = originalFlightDate.ToString();
 
-                Route route = Route.getAirportsByID(routeID);
+                Route route = Route.getAirportsByRouteID(routeID);
 
                 if (route != null)
                 {

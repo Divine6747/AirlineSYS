@@ -51,7 +51,7 @@ namespace AirlineSYS
                 lblCancelBookingRouteID.Text = row["RouteID"].ToString();
                 int routeID = Convert.ToInt32(row["RouteID"]);
 
-                Route route = Route.getAirportsByID(routeID);
+                Route route = Route.getAirportsByRouteID(routeID);
                 cboCancelDeptAirportDetail.Visible = true;
                 cboCancelDeptAirportDetail.BringToFront();
 

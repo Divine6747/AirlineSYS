@@ -47,7 +47,7 @@ namespace AirlineSYS
             }
 
             Route route = new Route(Convert.ToInt32(lblRouteID.Text), txtRouteDept.Text, txtRouteArr.Text, Convert.ToDecimal(txtRoutePrice.Text), Convert.ToInt32(txtRouteDur.Text), "A");
-            route.addRoute();
+            route.createRoute();
 
             lblRouteID.Text = Route.getNextRouteID().ToString("00");
             txtRouteDept.Clear();

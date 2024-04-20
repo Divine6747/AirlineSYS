@@ -34,70 +34,61 @@ namespace AirlineSYS
             frmAirlineMainMenu frmAirlineMainMenu = new frmAirlineMainMenu();
             frmAirlineMainMenu.Show();
         }
-
-
         private void btnYearlyRevenueAnalysisSearch_Click(object sender, EventArgs e)
         {
-            chtYearlyRevenueAnalysis.Visible = true;
-            btnYearlyRevenueAnalysisSearch.Visible = true;
-            grpFlightAnalysis.Visible = false;
-
             string selectedYear = cboYearlyRevenueAnalysisYears.SelectedItem.ToString();
 
             string query = "SELECT TO_CHAR(FlightDate, 'MM') AS Month, SUM(AmountPaid) AS TotalAmount " +
                "FROM Bookings " +
-               $"WHERE EXTRACT(YEAR FROM FlightDate) = '{selectedYear}' " +
+               "WHERE EXTRACT(YEAR FROM FlightDate) = '" + selectedYear + "' " +
                "GROUP BY TO_CHAR(FlightDate, 'MM') " +
                "ORDER BY TO_CHAR(FlightDate, 'MM')";
 
-            DataTable dt = new DataTable();
 
-            using (OracleConnection conn = new OracleConnection(DBConnect.oradb))
+            DataTable dt = new DataTable();
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            try
             {
                 conn.Open();
-                using (OracleCommand cmd = new OracleCommand(query, conn))
+                OracleCommand cmd = new OracleCommand(query, conn);
+                OracleDataAdapter adapter = new OracleDataAdapter(cmd);
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conn.State != ConnectionState.Closed)
                 {
-                    using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
-                    {
-                        adapter.Fill(dt);
-                    }
+                    conn.Close();
                 }
             }
 
             List<string> months = new List<string>();
             List<decimal> amounts = new List<decimal>();
 
-            // Initialize arrays with default values
             for (int i = 1; i <= 12; i++)
             {
                 months.Add(getMonthName(i));
                 amounts.Add(0);
             }
 
-            // Update arrays with data from the DataTable
             foreach (DataRow row in dt.Rows)
             {
                 int monthIndex = Convert.ToInt32(row["Month"]) - 1;
                 amounts[monthIndex] = Convert.ToDecimal(row["TotalAmount"]);
             }
 
-            // Check if the series collection contains any series
-            if (chtYearlyRevenueAnalysis.Series.Count > 0)
-            {
-                // Bind data to the first series in the collection
-                chtYearlyRevenueAnalysis.Series[0].Points.DataBindXY(months, amounts);
-                chtYearlyRevenueAnalysis.Series[0].Label = "#VALY"; // Display values on the chart
-            }
-            else
-            {
-                MessageBox.Show("No series found in the chart.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            chtYearlyRevenueAnalysis.Series[0].Points.DataBindXY(months, amounts);
+            chtYearlyRevenueAnalysis.Series[0].Label = "#VALY";
 
             chtYearlyRevenueAnalysis.Titles.Clear();
             chtYearlyRevenueAnalysis.Titles.Add($"Flight Booking Revenue in {selectedYear}");
             chtYearlyRevenueAnalysis.Visible = true;
         }
-        // Method to get month name from month number
         private string getMonthName(int month)
         {
             switch (month)
@@ -120,21 +111,12 @@ namespace AirlineSYS
 
         private void btnRevenueConfirm_Click_1(object sender, EventArgs e)
         {
+            MessageBox.Show("End of the Analysis!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            MessageBox.Show("End of the Analysis!",
-                           "Success!",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Information);
             chtYearlyRevenueAnalysis.Visible = false;
             btnRevenueConfirm.Visible = false;
             cboYearlyRevenueAnalysisYears.Text = "";
         }
-
-        private void chtYearlyRevenueAnalysis_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void frmYearlyRevenueAnalysis_Load(object sender, EventArgs e)
         {
             for (int year = 2020; year <= 2025; year++)
@@ -142,7 +124,7 @@ namespace AirlineSYS
                 cboYearlyRevenueAnalysisYears.Items.Add(year.ToString());
             }
 
-            // Set the default selected year as the current year
+            //Set's the default selected year as the current year
             cboYearlyRevenueAnalysisYears.SelectedItem = DateTime.Now.Year.ToString();
         }
     }

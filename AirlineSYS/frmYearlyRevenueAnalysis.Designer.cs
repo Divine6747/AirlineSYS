@@ -83,7 +83,6 @@
             this.chtYearlyRevenueAnalysis.TabIndex = 35;
             this.chtYearlyRevenueAnalysis.Text = "chart1";
             this.chtYearlyRevenueAnalysis.Visible = false;
-            this.chtYearlyRevenueAnalysis.Click += new System.EventHandler(this.chtYearlyRevenueAnalysis_Click);
             // 
             // cboYearlyRevenueAnalysisYears
             // 

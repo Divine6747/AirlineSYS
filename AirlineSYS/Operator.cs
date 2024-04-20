@@ -35,13 +35,11 @@ namespace AirlineSYS
         public string getName() { return this.Name; }
         public string getCity() { return this.City; }
         public string getCountry() { return this.Country; }
-
         //Setters
         public void setOperatotCode(string OperatorCode) { this.OperatorCode = OperatorCode; }
         public void setName(string Name) { this.Name = Name; }
         public void setCity(string City) { this.City = City; }
         public void setCountry(string Country) { this.Country = Country; }
-
         //Add Operetor Method
         public void addOperator()
         {
@@ -74,7 +72,6 @@ namespace AirlineSYS
                 conn.Close();
             }
         }
-
         //Get Operator Method
         public static List<Operator> getOperators()
         {
