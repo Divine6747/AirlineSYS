@@ -42,7 +42,12 @@ namespace AirlineSYS
             }
             else if (Route.doesRouteExist(txtRouteDept.Text, txtRouteArr.Text))
             {
-                MessageBox.Show("Route is not valid. Alreary Exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Route is not valid. Already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!ValidateRoute.ValidateRouteFields(lblRouteID.Text, txtRouteDept.Text, txtRouteArr.Text, txtRouteDur.Text, txtRoutePrice.Text, availAirports.ToArray()))
+            {
                 return;
             }
 
@@ -55,7 +60,6 @@ namespace AirlineSYS
             txtRoutePrice.Text = "0.00";
             txtRouteDur.Clear();
         }
-
         private void frmCreateRoute_Load(object sender, EventArgs e)
         {
             lblRouteID.Text = Route.getNextRouteID().ToString("00");

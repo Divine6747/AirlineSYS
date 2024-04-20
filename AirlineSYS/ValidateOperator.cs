@@ -26,19 +26,19 @@ namespace AirlineSYS
 
             if (operatorName.Length > 60 || !operatorName.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
             {
-                MessageBox.Show("Operator Name may only contain letters with the maximum length of 60", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Operator Name may only contain letters with a maximum length of 60", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (operatorCity.Length > 65 || !operatorCity.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
             {
-                MessageBox.Show("Operator City may only contain letters, digits, or spaces with the maximum length of 65", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Operator City may only contain letters, digits, or spaces with a maximum length of 65", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (operatorCountry.Length > 65 || !operatorCountry.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
+            if (operatorCountry.Length > 30 || !operatorCountry.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
             {
-                MessageBox.Show("Operator Country must be letters with the maximum length of 30", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Operator Country must be letters with a maximum length of 30", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

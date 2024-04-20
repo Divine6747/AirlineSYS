@@ -25,25 +25,24 @@ namespace AirlineSYS
         }
         private void btnOperatorConfirm_Click(object sender, EventArgs e)
         {
-            if (ValidateOperator.ValidateOperatorFields(txtOperatorCode.Text, txtOperatorName.Text, txtOperatorCity.Text, txtOperatorCountry.Text))
+            if (!ValidateOperator.ValidateOperatorFields(txtOperatorCode.Text, txtOperatorName.Text, txtOperatorCity.Text, txtOperatorCountry.Text))
             {
                 return;
             }
+
             string operatorCode = txtOperatorCode.Text;
             if (Operator.checkOperatorExists(operatorCode))
             {
                 MessageBox.Show("Operator with code " + operatorCode + " already exists!. Please enter a new airport", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else
-            {
-                Operator anOperator = new Operator(txtOperatorCode.Text, txtOperatorName.Text, txtOperatorCity.Text, txtOperatorCountry.Text);
-                anOperator.addOperator();
-                txtOperatorCode.Clear();
-                txtOperatorName.Clear();
-                txtOperatorCity.Clear();
-                txtOperatorCountry.Clear();
-            }
+
+            Operator anOperator = new Operator(txtOperatorCode.Text, txtOperatorName.Text, txtOperatorCity.Text, txtOperatorCountry.Text);
+            anOperator.addOperator();
+            txtOperatorCode.Clear();
+            txtOperatorName.Clear();
+            txtOperatorCity.Clear();
+            txtOperatorCountry.Clear();
         }
     }
 }
