@@ -97,8 +97,8 @@ namespace AirlineSYS
             }
             return nextPassengerID;
         }
-
-        public static decimal getRoutePrice(string departureAirport, string arrivalAirport)
+        //Getting the price of a route
+        public static decimal getRoutePrice(string deptAirport, string arrAirport)
         {
             decimal ticketPrice = 0;
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -107,8 +107,8 @@ namespace AirlineSYS
             {
                 string sqlQuery = "SELECT TicketPrice FROM Routes WHERE DeptAirport = :deptAirport AND ArrAirport = :arrAirport";
                 OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-                cmd.Parameters.Add(":deptAirport", departureAirport);
-                cmd.Parameters.Add(":arrAirport", arrivalAirport);
+                cmd.Parameters.Add(":deptAirport", deptAirport);
+                cmd.Parameters.Add(":arrAirport", arrAirport);
 
                 conn.Open();
 
