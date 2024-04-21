@@ -68,12 +68,6 @@ namespace AirlineSYS
                 return false;
             }
 
-            // Additional check to handle empty or null phone number
-            if (!string.IsNullOrEmpty(txtBookingPhone))
-            {
-                // Perform your calculations or operations involving the phone number here
-            }
-
             if (string.IsNullOrWhiteSpace(paymentAmountText))
             {
                 MessageBox.Show("Please pay the price for the flight.", "Price Not Entered", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -108,6 +102,14 @@ namespace AirlineSYS
 
         private static bool IsPerson18OrOlder(DateTime dob)
         {
+            /*
+               Title: Calculate age from DateTime?
+               Available At: https://learn.microsoft.com/en-us/answers/questions/1138131/calculate-age-from-datetime
+               Accessed On: Apr 11, 2024
+               Website: learn.microsoft.com
+               Author: Karen Payne MVP
+               Created on: Dec 27, 2022, 4:58 PM
+            */
             DateTime today = DateTime.Today;
             int age = today.Year - dob.Year;
             if (dob > today.AddYears(-age)) age--;

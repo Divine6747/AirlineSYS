@@ -213,7 +213,7 @@ namespace AirlineSYS
         {
             List<Flight> flights = new List<Flight>();
 
-            string sqlQuery =  "SELECT F.FlightNumber, F.OperatorCode, O.Name AS OperatorName, " +
+            string sqlQuery = "SELECT F.FlightNumber, F.OperatorCode, O.Name AS OperatorName, " +
                                "F.RouteID, F.FlightDate, F.FlightTime, F.EstArrTime, " +
                                "F.NumSeats, F.NumSeatAvail, F.Status, " +
                                "R.DeptAirport, R.ArrAirport " +
@@ -228,7 +228,7 @@ namespace AirlineSYS
 
             try
             {
-                conn.Open();                
+                conn.Open();
                 reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -243,9 +243,18 @@ namespace AirlineSYS
                     int numSeatAvail = reader.GetInt32(8);
                     string status = reader.GetString(9);
 
-                    flights.Add(new Flight { FlightNumber = flightNumber, OperatorCode = operatorCode, RouteID = routeID, FlightDate = flightDate,
-                                             FlightTime = flightTime, EstArrTime = estArrTime, NumSeats = numSeats, NumSeatAvail = numSeatAvail,
-                                             Status = status});
+                    flights.Add(new Flight
+                    {
+                        FlightNumber = flightNumber,
+                        OperatorCode = operatorCode,
+                        RouteID = routeID,
+                        FlightDate = flightDate,
+                        FlightTime = flightTime,
+                        EstArrTime = estArrTime,
+                        NumSeats = numSeats,
+                        NumSeatAvail = numSeatAvail,
+                        Status = status
+                    });
                 }
             }
             catch (OracleException ex)
@@ -314,9 +323,9 @@ namespace AirlineSYS
             List<string[]> flights = new List<string[]>();
 
             string sqlQuery = "SELECT f.FlightNumber, r.DeptAirport, r.ArrAirport, f.FlightDate, f.FlightTime, f.EstArrTime " +
-                                  "FROM Flights f " +
-                                  "JOIN Routes r ON f.RouteID = r.RouteID " +
-                                  "WHERE f.Status = 'A' AND r.RouteID = :RouteID";
+                              "FROM Flights f " +
+                              "JOIN Routes r ON f.RouteID = r.RouteID " +
+                              "WHERE f.Status = 'A' AND r.RouteID = :RouteID AND f.FlightDate > SYSDATE";
 
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);

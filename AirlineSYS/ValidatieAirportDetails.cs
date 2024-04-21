@@ -57,9 +57,15 @@ namespace AirlineSYS
                 return false;
             }
 
-            if (!(airportPhone.StartsWith("08")) || !(airportPhone.Length == 10) || !airportPhone.All(char.IsDigit))
+            if (string.IsNullOrWhiteSpace(airportPhone) || !IsValidPhoneNumber(airportPhone))
             {
-                MessageBox.Show("Airport phone must be Numeric, Starts with '08' and have a length of 10 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid phone number format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (airportPhone.Length != 10)
+            {
+                MessageBox.Show("Invalid phone number length!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -76,6 +82,11 @@ namespace AirlineSYS
         {
             string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
             return Regex.IsMatch(email, emailPattern);
+        }
+        private static bool IsValidPhoneNumber(string phoneNumber)
+        {
+            string phonePattern = @"^08[3578]\d{7}$";
+            return !string.IsNullOrWhiteSpace(phoneNumber) && Regex.IsMatch(phoneNumber, phonePattern);
         }
     }
 }

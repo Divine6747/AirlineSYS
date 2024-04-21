@@ -91,10 +91,7 @@ namespace AirlineSYS
         }
         private void btnConfirm_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("End of the Analysis!",
-                           "Success!",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Information);
+            MessageBox.Show("End of the Analysis!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             chtYearlyRouteAnalysis.Visible = false;
             btnConfirm.Visible = false;
             cboYearlyFlightAnalysis.Text = "";

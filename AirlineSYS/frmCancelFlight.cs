@@ -39,13 +39,14 @@ namespace AirlineSYS
         {
             List<Flight> flights = Flight.getAllFlightDetails();
 
-            if (cboCancelFlightNumber.SelectedIndex == -1)
+            if (cboCancelFlightNumber.SelectedIndex == -1 || cboCancelFlightNumber.SelectedIndex >= flights.Count)
             {
-                MessageBox.Show("Please select a flight to view details and cancel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a valid flight to view details and cancel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             Flight selectedFlight = flights[cboCancelFlightNumber.SelectedIndex];
+
 
             string flightInfo = "Flight Number: " + selectedFlight.getFlightNumber() + "\n\n" +
                                 "Operator Code: " + selectedFlight.getOperatorCode() + "\n\n" +
@@ -91,6 +92,9 @@ namespace AirlineSYS
 
                 Flight flight = new Flight();
                 flight.cancelFlight(selectedFlightNumber);
+
+                //Reload form when the flight was been cancelled
+                frmCancelFlight_Load(sender, e);
             }
         }
     }

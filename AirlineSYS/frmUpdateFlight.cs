@@ -120,6 +120,7 @@ namespace AirlineSYS
                 Available At: https://codebuns.com/csharp-basics/stringbuilder/#:~:text=C%23%20StringBuilder%20Append%20method%20appends,of%20the%20current%20StringBuilder%20object.&text=Note%3A%20The%20capacity%20of%20the,append%20to%20add%20more%20strings.
                 Accessed On: Apr 8, 2024
                 Website: codebuns.com
+                Author: codebuns.com
              */
             lblDateReview.Text = "";
 
@@ -269,11 +270,12 @@ namespace AirlineSYS
 
                 updateFlightSchedule.updateFlight(lblUpdateFlightNumberDetail.Text);
 
-                cboUpdateArrAirportFlight.SelectedIndex = -1;
-                cboUpdateDeptAirportFlight.SelectedIndex = -1;
-                cboUpdateOperatorCodeFlight.SelectedIndex = -1;
-                txtUpdateNumFlightSeats.Clear();
-                cboUpdateDeptTime.SelectedIndex = -1;
+                //Reloads form after updating flight
+                frmUpdateFlight_Load(sender, e);
+
+                grpViewUpdateFlightDetails.Visible = false;
+                grpUpdateFlightDetails.Visible = false;
+                btnUpdateFlightConfirm.Visible = false;
             }
             else
             {
