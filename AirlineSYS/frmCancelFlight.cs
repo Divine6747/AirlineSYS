@@ -69,11 +69,11 @@ namespace AirlineSYS
             cboCancelFlightNumber.Items.Clear();
             btnCancelFlightConfirm.Visible = false;
 
-            List<string> activeFlightNumbers = Flight.getActiveFlightNumbers();
+            List<Flight> activeFlights = Flight.getActiveFlights();
 
-            foreach (string flightNumber in activeFlightNumbers)
+            foreach (Flight flight in activeFlights)
             {
-                cboCancelFlightNumber.Items.Add(flightNumber);
+                cboCancelFlightNumber.Items.Add(flight.getFlightNumber());
             }
         }
         private void btnAirportConfirm_Click(object sender, EventArgs e)
@@ -92,8 +92,6 @@ namespace AirlineSYS
 
                 Flight flight = new Flight();
                 flight.cancelFlight(selectedFlightNumber);
-
-                //Reload form when the flight was been cancelled
                 frmCancelFlight_Load(sender, e);
             }
         }

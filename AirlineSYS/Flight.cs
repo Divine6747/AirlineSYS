@@ -281,17 +281,37 @@ namespace AirlineSYS
         //Cancelling Flight
         public void cancelFlight(string flightNumber)
         {
-            string sqlQuery = "UPDATE Flights SET Status = 'I' WHERE FlightNumber = :flightNumber";
+            string sqlCheckScheduled = "SELECT COUNT(*) FROM Bookings WHERE FlightNumber = :flightNumber AND FlightDate > SYSDATE";
+            string sqlCancelFlight = "UPDATE Flights SET Status = 'I' WHERE FlightNumber = :flightNumber";
 
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleCommand cmdCheck = new OracleCommand(sqlCheckScheduled, conn);
+            OracleCommand cmdCancel = new OracleCommand(sqlCancelFlight, conn);
 
-            cmd.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
+            cmdCheck.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
+            cmdCancel.Parameters.Add(":flightNumber", OracleDbType.Varchar2).Value = flightNumber;
 
             try
             {
                 conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
+
+                //Checking if the flight is Booked by a passenger
+                OracleDataReader reader = cmdCheck.ExecuteReader();
+                int scheduledCount = 0;
+                if (reader.Read())
+                {
+                    scheduledCount = reader.GetInt32(0);
+                }
+                reader.Close();
+
+                if (scheduledCount > 0)
+                {
+                    MessageBox.Show("Cannot cancel the flight as it is already scheduled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // If the flight is not scheduled, then cancel it
+                int rowsAffected = cmdCancel.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Flight has been canceled in the database.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -317,6 +337,7 @@ namespace AirlineSYS
                 }
             }
         }
+
         //Getting Available flights
         public static List<string[]> getAvailableFlights(int routeID)
         {
@@ -372,6 +393,64 @@ namespace AirlineSYS
             }
             return flights;
         }
+
+        public static List<Flight> getActiveFlights()
+        {
+            List<Flight> activeFlights = new List<Flight>();
+
+            string sqlQuery = "SELECT FlightNumber, OperatorCode, RouteID, FlightDate, FlightTime, EstArrTime, " +
+                              "NumSeats, NumSeatAvail, Status " +
+                              "FROM Flights " +
+                              "WHERE Status = 'A' AND FlightDate > SYSDATE";
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataReader reader = null;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string flightNumber = reader.GetString(0);
+                    string operatorCode = reader.GetString(1);
+                    int routeID = reader.GetInt32(2);
+                    DateTime flightDate = reader.GetDateTime(3);
+                    string flightTime = reader.GetString(4);
+                    string estArrTime = reader.GetString(5);
+                    int numSeats = reader.GetInt32(6);
+                    int numSeatAvail = reader.GetInt32(7);
+                    string status = reader.GetString(8);
+
+                    Flight flight = new Flight(flightNumber, operatorCode, routeID, flightDate, flightTime, estArrTime, numSeats, numSeatAvail, status);
+                    activeFlights.Add(flight);
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+
+            return activeFlights;
+        }
+
         // Getting available for flights cancellation
         public static List<string> getActiveFlightNumbers()
         {
