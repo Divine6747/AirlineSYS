@@ -39,11 +39,10 @@ namespace AirlineSYS
             string selectedYear = cboYearlyRevenueAnalysisYears.SelectedItem.ToString();
 
             string query = "SELECT TO_CHAR(FlightDate, 'MM') AS Month, SUM(AmountPaid) AS TotalAmount " +
-               "FROM Bookings " +
-               "WHERE EXTRACT(YEAR FROM FlightDate) = '" + selectedYear + "' " +
-               "GROUP BY TO_CHAR(FlightDate, 'MM') " +
-               "ORDER BY TO_CHAR(FlightDate, 'MM')";
-
+                           "FROM Bookings " +
+                           "WHERE EXTRACT(YEAR FROM FlightDate) = '" + selectedYear + "' " +
+                           "GROUP BY TO_CHAR(FlightDate, 'MM') " +
+                           "ORDER BY TO_CHAR(FlightDate, 'MM')";
 
             DataTable dt = new DataTable();
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -70,9 +69,10 @@ namespace AirlineSYS
             List<string> months = new List<string>();
             List<decimal> amounts = new List<decimal>();
 
-            for (int i = 1; i <= 12; i++)
+            for (int month = 1; month <= 12; month++)
             {
-                months.Add(getMonthName(i));
+                DateTime monthDate = new DateTime(DateTime.Now.Year, month, 1);
+                months.Add(monthDate.ToString("MMMM")); // Using MMMM to get full month name
                 amounts.Add(0);
             }
 
@@ -105,7 +105,7 @@ namespace AirlineSYS
                 case 10: return "October";
                 case 11: return "November";
                 case 12: return "December";
-                default: return "Unknown";
+                default: return "OTH";
             }
         }
 

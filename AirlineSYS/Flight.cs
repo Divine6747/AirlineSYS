@@ -158,7 +158,6 @@ namespace AirlineSYS
             }
             return selectedOperatorCode + "0000";
         }
-
         //Update Flight
         public void updateFlight(string flightNumber)
         {
@@ -214,13 +213,14 @@ namespace AirlineSYS
         {
             List<Flight> flights = new List<Flight>();
 
-            string sqlQuery = "SELECT F.FlightNumber, F.OperatorCode, O.Name AS OperatorName, " +
-                                  "F.RouteID, F.FlightDate, F.FlightTime, F.EstArrTime, " +
-                                  "F.NumSeats, F.NumSeatAvail, F.Status, " +
-                                  "R.DeptAirport, R.ArrAirport " +
-                                  "FROM Flights F " +
-                                  "JOIN Routes R ON F.RouteID = R.RouteID " +
-                                  "JOIN Operators O ON F.OperatorCode = O.OperatorCode";
+            string sqlQuery =  "SELECT F.FlightNumber, F.OperatorCode, O.Name AS OperatorName, " +
+                               "F.RouteID, F.FlightDate, F.FlightTime, F.EstArrTime, " +
+                               "F.NumSeats, F.NumSeatAvail, F.Status, " +
+                               "R.DeptAirport, R.ArrAirport " +
+                               "FROM Flights F " +
+                               "JOIN Routes R ON F.RouteID = R.RouteID " +
+                               "JOIN Operators O ON F.OperatorCode = O.OperatorCode " +
+                               "WHERE F.Status = 'A' AND F.FlightDate > SYSDATE";
 
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -269,7 +269,6 @@ namespace AirlineSYS
             }
             return flights;
         }
-
         //Cancelling Flight
         public void cancelFlight(string flightNumber)
         {
