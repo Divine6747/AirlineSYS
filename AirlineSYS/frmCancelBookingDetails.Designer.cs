@@ -50,7 +50,7 @@
             this.mnuAddAiport.Location = new System.Drawing.Point(0, 0);
             this.mnuAddAiport.Name = "mnuAddAiport";
             this.mnuAddAiport.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuAddAiport.Size = new System.Drawing.Size(729, 24);
+            this.mnuAddAiport.Size = new System.Drawing.Size(799, 24);
             this.mnuAddAiport.TabIndex = 3;
             // 
             // lblCancelBookingID
@@ -115,7 +115,7 @@
             this.btnFlightBookingConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnFlightBookingConfirm.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFlightBookingConfirm.Location = new System.Drawing.Point(248, 360);
-            this.btnFlightBookingConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFlightBookingConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnFlightBookingConfirm.Name = "btnFlightBookingConfirm";
             this.btnFlightBookingConfirm.Size = new System.Drawing.Size(232, 47);
             this.btnFlightBookingConfirm.TabIndex = 39;
@@ -147,7 +147,7 @@
             this.lblCancelBookingPersonalFlightNumberDetail.AutoSize = true;
             this.lblCancelBookingPersonalFlightNumberDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancelBookingPersonalFlightNumberDetail.ForeColor = System.Drawing.Color.Plum;
-            this.lblCancelBookingPersonalFlightNumberDetail.Location = new System.Drawing.Point(665, 44);
+            this.lblCancelBookingPersonalFlightNumberDetail.Location = new System.Drawing.Point(668, 44);
             this.lblCancelBookingPersonalFlightNumberDetail.Name = "lblCancelBookingPersonalFlightNumberDetail";
             this.lblCancelBookingPersonalFlightNumberDetail.Size = new System.Drawing.Size(34, 28);
             this.lblCancelBookingPersonalFlightNumberDetail.TabIndex = 42;
@@ -167,7 +167,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 428);
+            this.ClientSize = new System.Drawing.Size(799, 428);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCancelBookingPersonalFlightNumberDetail);
             this.Controls.Add(this.txtCancelEmail);

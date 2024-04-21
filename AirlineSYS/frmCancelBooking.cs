@@ -35,6 +35,9 @@ namespace AirlineSYS
 
         private void btnCancelBookingIDSearch_Click(object sender, EventArgs e)
         {
+            grpRetrievedBooking.Visible = true;
+            grpCancelBookingDetails.Visible = true;
+
             int bookingID = Convert.ToInt32(txtCancelBookingID.Text);
             DataTable dt = Booking.findBookingDetails(bookingID);
 

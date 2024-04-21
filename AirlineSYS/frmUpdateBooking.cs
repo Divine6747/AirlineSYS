@@ -36,6 +36,8 @@ namespace AirlineSYS
 
         private void btnUpdateBookingIDSearch_Click(object sender, EventArgs e)
         {
+            grpUpdateCreateBookingDetails.Visible = true;
+            grpRetriveUpdateBooking.Visible = true;
             int bookingID = Convert.ToInt32(txtBookingID.Text);
             DataTable dt = Booking.findBookingDetails(bookingID);
 

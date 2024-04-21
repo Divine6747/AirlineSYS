@@ -181,11 +181,11 @@
             this.mnuBack.AutoSize = true;
             this.mnuBack.BackColor = System.Drawing.Color.Violet;
             this.mnuBack.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuBack.Location = new System.Drawing.Point(802, 4);
+            this.mnuBack.Location = new System.Drawing.Point(802, 2);
             this.mnuBack.Name = "mnuBack";
             this.mnuBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.mnuBack.Size = new System.Drawing.Size(78, 30);
-            this.mnuBack.TabIndex = 0;
+            this.mnuBack.TabIndex = 30;
             this.mnuBack.Text = "Back";
             this.mnuBack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.mnuBack.Click += new System.EventHandler(this.mnuBack_Click);
@@ -196,7 +196,7 @@
             this.mnuCreateRoute.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuCreateRoute.Location = new System.Drawing.Point(0, 0);
             this.mnuCreateRoute.Name = "mnuCreateRoute";
-            this.mnuCreateRoute.Size = new System.Drawing.Size(880, 24);
+            this.mnuCreateRoute.Size = new System.Drawing.Size(868, 24);
             this.mnuCreateRoute.TabIndex = 30;
             this.mnuCreateRoute.Text = "menuStrip1";
             // 
@@ -204,7 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 396);
+            this.ClientSize = new System.Drawing.Size(868, 396);
             this.Controls.Add(this.mnuBack);
             this.Controls.Add(this.lblRouteID);
             this.Controls.Add(this.lblRoute);

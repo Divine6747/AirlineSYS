@@ -50,10 +50,11 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.munBack.Location = new System.Drawing.Point(808, 1);
+            this.munBack.Location = new System.Drawing.Point(1239, 1);
+            this.munBack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.munBack.Name = "munBack";
-            this.munBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.munBack.Size = new System.Drawing.Size(60, 20);
+            this.munBack.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            this.munBack.Size = new System.Drawing.Size(77, 25);
             this.munBack.TabIndex = 11;
             this.munBack.Text = "Back";
             this.munBack.Click += new System.EventHandler(this.munBack_Click);
@@ -61,10 +62,11 @@
             // mnuYearlyRevenueAnalysis
             // 
             this.mnuYearlyRevenueAnalysis.BackColor = System.Drawing.Color.Plum;
+            this.mnuYearlyRevenueAnalysis.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuYearlyRevenueAnalysis.Location = new System.Drawing.Point(0, 0);
             this.mnuYearlyRevenueAnalysis.Name = "mnuYearlyRevenueAnalysis";
             this.mnuYearlyRevenueAnalysis.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuYearlyRevenueAnalysis.Size = new System.Drawing.Size(987, 24);
+            this.mnuYearlyRevenueAnalysis.Size = new System.Drawing.Size(1316, 24);
             this.mnuYearlyRevenueAnalysis.TabIndex = 10;
             // 
             // chtYearlyRevenueAnalysis
@@ -73,13 +75,14 @@
             this.chtYearlyRevenueAnalysis.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chtYearlyRevenueAnalysis.Legends.Add(legend1);
-            this.chtYearlyRevenueAnalysis.Location = new System.Drawing.Point(46, 97);
+            this.chtYearlyRevenueAnalysis.Location = new System.Drawing.Point(61, 119);
+            this.chtYearlyRevenueAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chtYearlyRevenueAnalysis.Name = "chtYearlyRevenueAnalysis";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Yearly Revenue Analysis";
             this.chtYearlyRevenueAnalysis.Series.Add(series1);
-            this.chtYearlyRevenueAnalysis.Size = new System.Drawing.Size(929, 422);
+            this.chtYearlyRevenueAnalysis.Size = new System.Drawing.Size(1239, 519);
             this.chtYearlyRevenueAnalysis.TabIndex = 35;
             this.chtYearlyRevenueAnalysis.Text = "chart1";
             this.chtYearlyRevenueAnalysis.Visible = false;
@@ -87,18 +90,20 @@
             // cboYearlyRevenueAnalysisYears
             // 
             this.cboYearlyRevenueAnalysisYears.FormattingEnabled = true;
-            this.cboYearlyRevenueAnalysisYears.Location = new System.Drawing.Point(432, 44);
+            this.cboYearlyRevenueAnalysisYears.Location = new System.Drawing.Point(576, 54);
+            this.cboYearlyRevenueAnalysisYears.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboYearlyRevenueAnalysisYears.Name = "cboYearlyRevenueAnalysisYears";
-            this.cboYearlyRevenueAnalysisYears.Size = new System.Drawing.Size(120, 21);
+            this.cboYearlyRevenueAnalysisYears.Size = new System.Drawing.Size(159, 24);
             this.cboYearlyRevenueAnalysisYears.TabIndex = 36;
             // 
             // btnYearlyRevenueAnalysisSearch
             // 
             this.btnYearlyRevenueAnalysisSearch.BackColor = System.Drawing.Color.Plum;
             this.btnYearlyRevenueAnalysisSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnYearlyRevenueAnalysisSearch.Location = new System.Drawing.Point(629, 40);
+            this.btnYearlyRevenueAnalysisSearch.Location = new System.Drawing.Point(839, 49);
+            this.btnYearlyRevenueAnalysisSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnYearlyRevenueAnalysisSearch.Name = "btnYearlyRevenueAnalysisSearch";
-            this.btnYearlyRevenueAnalysisSearch.Size = new System.Drawing.Size(117, 30);
+            this.btnYearlyRevenueAnalysisSearch.Size = new System.Drawing.Size(156, 37);
             this.btnYearlyRevenueAnalysisSearch.TabIndex = 34;
             this.btnYearlyRevenueAnalysisSearch.Text = "SEARCH";
             this.btnYearlyRevenueAnalysisSearch.UseVisualStyleBackColor = false;
@@ -108,9 +113,10 @@
             // 
             this.btnRevenueConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnRevenueConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRevenueConfirm.Location = new System.Drawing.Point(344, 537);
+            this.btnRevenueConfirm.Location = new System.Drawing.Point(459, 661);
+            this.btnRevenueConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRevenueConfirm.Name = "btnRevenueConfirm";
-            this.btnRevenueConfirm.Size = new System.Drawing.Size(174, 38);
+            this.btnRevenueConfirm.Size = new System.Drawing.Size(232, 47);
             this.btnRevenueConfirm.TabIndex = 33;
             this.btnRevenueConfirm.Text = "CONFIRM";
             this.btnRevenueConfirm.UseVisualStyleBackColor = false;
@@ -120,9 +126,10 @@
             // 
             this.lblSelectYear.AutoSize = true;
             this.lblSelectYear.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectYear.Location = new System.Drawing.Point(124, 44);
+            this.lblSelectYear.Location = new System.Drawing.Point(165, 54);
+            this.lblSelectYear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSelectYear.Name = "lblSelectYear";
-            this.lblSelectYear.Size = new System.Drawing.Size(255, 21);
+            this.lblSelectYear.Size = new System.Drawing.Size(317, 28);
             this.lblSelectYear.TabIndex = 32;
             this.lblSelectYear.Text = "Select Concluded Years for Analysis";
             // 
@@ -130,9 +137,11 @@
             // 
             this.grpFlightAnalysis.Controls.Add(this.lblCancelFlightDetails);
             this.grpFlightAnalysis.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFlightAnalysis.Location = new System.Drawing.Point(124, 132);
+            this.grpFlightAnalysis.Location = new System.Drawing.Point(165, 162);
+            this.grpFlightAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grpFlightAnalysis.Name = "grpFlightAnalysis";
-            this.grpFlightAnalysis.Size = new System.Drawing.Size(633, 337);
+            this.grpFlightAnalysis.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpFlightAnalysis.Size = new System.Drawing.Size(844, 415);
             this.grpFlightAnalysis.TabIndex = 37;
             this.grpFlightAnalysis.TabStop = false;
             this.grpFlightAnalysis.Text = "Select Year To be Analysed";
@@ -141,17 +150,18 @@
             // 
             this.lblCancelFlightDetails.AutoSize = true;
             this.lblCancelFlightDetails.Font = new System.Drawing.Font("Segoe UI", 17F);
-            this.lblCancelFlightDetails.Location = new System.Drawing.Point(85, 37);
+            this.lblCancelFlightDetails.Location = new System.Drawing.Point(113, 46);
+            this.lblCancelFlightDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelFlightDetails.Name = "lblCancelFlightDetails";
-            this.lblCancelFlightDetails.Size = new System.Drawing.Size(462, 31);
+            this.lblCancelFlightDetails.Size = new System.Drawing.Size(585, 40);
             this.lblCancelFlightDetails.TabIndex = 1;
             this.lblCancelFlightDetails.Text = "NO YEAR HAS BEEN ENTERED OR SELECTED";
             // 
             // frmYearlyRevenueAnalysis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 586);
+            this.ClientSize = new System.Drawing.Size(1316, 721);
             this.Controls.Add(this.chtYearlyRevenueAnalysis);
             this.Controls.Add(this.cboYearlyRevenueAnalysisYears);
             this.Controls.Add(this.btnYearlyRevenueAnalysisSearch);
@@ -161,6 +171,7 @@
             this.Controls.Add(this.munBack);
             this.Controls.Add(this.mnuYearlyRevenueAnalysis);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmYearlyRevenueAnalysis";
             this.Text = "Yearly Revenue Analysis";
             this.Load += new System.EventHandler(this.frmYearlyRevenueAnalysis_Load);

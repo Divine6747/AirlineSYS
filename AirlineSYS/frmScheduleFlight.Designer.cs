@@ -66,7 +66,7 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.munBack.Location = new System.Drawing.Point(1367, -1);
+            this.munBack.Location = new System.Drawing.Point(1366, 2);
             this.munBack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.munBack.Name = "munBack";
             this.munBack.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
@@ -82,7 +82,7 @@
             this.mnuScheduleFlight.Location = new System.Drawing.Point(0, 0);
             this.mnuScheduleFlight.Name = "mnuScheduleFlight";
             this.mnuScheduleFlight.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuScheduleFlight.Size = new System.Drawing.Size(1444, 30);
+            this.mnuScheduleFlight.Size = new System.Drawing.Size(1444, 24);
             this.mnuScheduleFlight.TabIndex = 6;
             // 
             // lblAddAirport

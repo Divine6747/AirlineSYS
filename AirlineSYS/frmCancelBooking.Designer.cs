@@ -32,7 +32,7 @@
             this.munBack = new System.Windows.Forms.Label();
             this.mnuCancelBooking = new System.Windows.Forms.MenuStrip();
             this.btnAirportConfirm = new System.Windows.Forms.Button();
-            this.grpAirportDetails = new System.Windows.Forms.GroupBox();
+            this.grpCancelBookingDetails = new System.Windows.Forms.GroupBox();
             this.cboCancelDeptimeDetail = new System.Windows.Forms.ComboBox();
             this.dptCancelBookingDate = new System.Windows.Forms.DateTimePicker();
             this.cboCancelArrAirportDetail = new System.Windows.Forms.ComboBox();
@@ -72,11 +72,11 @@
             this.lblCancelPassengerID = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.grpAirportDetails.SuspendLayout();
+            this.grpRetrievedBooking = new System.Windows.Forms.GroupBox();
+            this.grpCancelBookingDetails.SuspendLayout();
             this.grpPersonalCreateBookingDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCancelNumBaggage)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.grpRetrievedBooking.SuspendLayout();
             this.SuspendLayout();
             // 
             // munBack
@@ -84,10 +84,11 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.munBack.Location = new System.Drawing.Point(740, -1);
+            this.munBack.Location = new System.Drawing.Point(1381, 1);
+            this.munBack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.munBack.Name = "munBack";
-            this.munBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.munBack.Size = new System.Drawing.Size(60, 20);
+            this.munBack.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            this.munBack.Size = new System.Drawing.Size(77, 25);
             this.munBack.TabIndex = 5;
             this.munBack.Text = "Back";
             this.munBack.Click += new System.EventHandler(this.munBack_Click);
@@ -99,51 +100,55 @@
             this.mnuCancelBooking.Location = new System.Drawing.Point(0, 0);
             this.mnuCancelBooking.Name = "mnuCancelBooking";
             this.mnuCancelBooking.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuCancelBooking.Size = new System.Drawing.Size(1095, 24);
+            this.mnuCancelBooking.Size = new System.Drawing.Size(1460, 24);
             this.mnuCancelBooking.TabIndex = 4;
             // 
             // btnAirportConfirm
             // 
             this.btnAirportConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnAirportConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAirportConfirm.Location = new System.Drawing.Point(313, 594);
+            this.btnAirportConfirm.Location = new System.Drawing.Point(614, 728);
+            this.btnAirportConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAirportConfirm.Name = "btnAirportConfirm";
-            this.btnAirportConfirm.Size = new System.Drawing.Size(174, 38);
+            this.btnAirportConfirm.Size = new System.Drawing.Size(232, 47);
             this.btnAirportConfirm.TabIndex = 28;
             this.btnAirportConfirm.Text = "CONFIRM";
             this.btnAirportConfirm.UseVisualStyleBackColor = false;
             this.btnAirportConfirm.Click += new System.EventHandler(this.btnAirportConfirm_Click);
             // 
-            // grpAirportDetails
+            // grpCancelBookingDetails
             // 
-            this.grpAirportDetails.Controls.Add(this.cboCancelDeptimeDetail);
-            this.grpAirportDetails.Controls.Add(this.dptCancelBookingDate);
-            this.grpAirportDetails.Controls.Add(this.cboCancelArrAirportDetail);
-            this.grpAirportDetails.Controls.Add(this.grpPersonalCreateBookingDetails);
-            this.grpAirportDetails.Controls.Add(this.cboCancelDeptAirportDetail);
-            this.grpAirportDetails.Controls.Add(this.lblArrAirport);
-            this.grpAirportDetails.Controls.Add(this.lblDeptAirport);
-            this.grpAirportDetails.Controls.Add(this.lblDepartDate);
-            this.grpAirportDetails.Controls.Add(this.label7);
-            this.grpAirportDetails.Controls.Add(this.lblDepartureTime);
-            this.grpAirportDetails.Controls.Add(this.nudCancelNumBaggage);
-            this.grpAirportDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpAirportDetails.Location = new System.Drawing.Point(26, 102);
-            this.grpAirportDetails.Name = "grpAirportDetails";
-            this.grpAirportDetails.Size = new System.Drawing.Size(749, 467);
-            this.grpAirportDetails.TabIndex = 27;
-            this.grpAirportDetails.TabStop = false;
-            this.grpAirportDetails.Text = "Cancel Booking Details";
+            this.grpCancelBookingDetails.Controls.Add(this.cboCancelDeptimeDetail);
+            this.grpCancelBookingDetails.Controls.Add(this.dptCancelBookingDate);
+            this.grpCancelBookingDetails.Controls.Add(this.cboCancelArrAirportDetail);
+            this.grpCancelBookingDetails.Controls.Add(this.grpPersonalCreateBookingDetails);
+            this.grpCancelBookingDetails.Controls.Add(this.cboCancelDeptAirportDetail);
+            this.grpCancelBookingDetails.Controls.Add(this.lblArrAirport);
+            this.grpCancelBookingDetails.Controls.Add(this.lblDeptAirport);
+            this.grpCancelBookingDetails.Controls.Add(this.lblDepartDate);
+            this.grpCancelBookingDetails.Controls.Add(this.label7);
+            this.grpCancelBookingDetails.Controls.Add(this.lblDepartureTime);
+            this.grpCancelBookingDetails.Controls.Add(this.nudCancelNumBaggage);
+            this.grpCancelBookingDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpCancelBookingDetails.Location = new System.Drawing.Point(35, 131);
+            this.grpCancelBookingDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpCancelBookingDetails.Name = "grpCancelBookingDetails";
+            this.grpCancelBookingDetails.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpCancelBookingDetails.Size = new System.Drawing.Size(999, 575);
+            this.grpCancelBookingDetails.TabIndex = 27;
+            this.grpCancelBookingDetails.TabStop = false;
+            this.grpCancelBookingDetails.Text = "Cancel Booking Details";
+            this.grpCancelBookingDetails.Visible = false;
             // 
             // cboCancelDeptimeDetail
             // 
             this.cboCancelDeptimeDetail.Enabled = false;
             this.cboCancelDeptimeDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCancelDeptimeDetail.FormattingEnabled = true;
-            this.cboCancelDeptimeDetail.Location = new System.Drawing.Point(578, 104);
-            this.cboCancelDeptimeDetail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboCancelDeptimeDetail.Location = new System.Drawing.Point(771, 128);
+            this.cboCancelDeptimeDetail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboCancelDeptimeDetail.Name = "cboCancelDeptimeDetail";
-            this.cboCancelDeptimeDetail.Size = new System.Drawing.Size(110, 29);
+            this.cboCancelDeptimeDetail.Size = new System.Drawing.Size(145, 36);
             this.cboCancelDeptimeDetail.TabIndex = 78;
             // 
             // dptCancelBookingDate
@@ -152,10 +157,10 @@
             this.dptCancelBookingDate.Enabled = false;
             this.dptCancelBookingDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dptCancelBookingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptCancelBookingDate.Location = new System.Drawing.Point(217, 104);
-            this.dptCancelBookingDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dptCancelBookingDate.Location = new System.Drawing.Point(289, 128);
+            this.dptCancelBookingDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dptCancelBookingDate.Name = "dptCancelBookingDate";
-            this.dptCancelBookingDate.Size = new System.Drawing.Size(110, 29);
+            this.dptCancelBookingDate.Size = new System.Drawing.Size(145, 34);
             this.dptCancelBookingDate.TabIndex = 77;
             // 
             // cboCancelArrAirportDetail
@@ -163,10 +168,10 @@
             this.cboCancelArrAirportDetail.Enabled = false;
             this.cboCancelArrAirportDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCancelArrAirportDetail.FormattingEnabled = true;
-            this.cboCancelArrAirportDetail.Location = new System.Drawing.Point(578, 41);
-            this.cboCancelArrAirportDetail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboCancelArrAirportDetail.Location = new System.Drawing.Point(771, 50);
+            this.cboCancelArrAirportDetail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboCancelArrAirportDetail.Name = "cboCancelArrAirportDetail";
-            this.cboCancelArrAirportDetail.Size = new System.Drawing.Size(110, 29);
+            this.cboCancelArrAirportDetail.Size = new System.Drawing.Size(145, 36);
             this.cboCancelArrAirportDetail.TabIndex = 76;
             // 
             // grpPersonalCreateBookingDetails
@@ -183,9 +188,11 @@
             this.grpPersonalCreateBookingDetails.Controls.Add(this.txtUpdateSurname);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.label1);
             this.grpPersonalCreateBookingDetails.Controls.Add(this.label3);
-            this.grpPersonalCreateBookingDetails.Location = new System.Drawing.Point(28, 219);
+            this.grpPersonalCreateBookingDetails.Location = new System.Drawing.Point(37, 270);
+            this.grpPersonalCreateBookingDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grpPersonalCreateBookingDetails.Name = "grpPersonalCreateBookingDetails";
-            this.grpPersonalCreateBookingDetails.Size = new System.Drawing.Size(692, 227);
+            this.grpPersonalCreateBookingDetails.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpPersonalCreateBookingDetails.Size = new System.Drawing.Size(923, 279);
             this.grpPersonalCreateBookingDetails.TabIndex = 68;
             this.grpPersonalCreateBookingDetails.TabStop = false;
             this.grpPersonalCreateBookingDetails.Text = "Cancel Personal Details";
@@ -195,71 +202,78 @@
             this.dtpDOBUpdate.CustomFormat = "dd-MM-yy";
             this.dtpDOBUpdate.Enabled = false;
             this.dtpDOBUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDOBUpdate.Location = new System.Drawing.Point(147, 110);
-            this.dtpDOBUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpDOBUpdate.Location = new System.Drawing.Point(196, 135);
+            this.dtpDOBUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpDOBUpdate.Name = "dtpDOBUpdate";
-            this.dtpDOBUpdate.Size = new System.Drawing.Size(173, 29);
+            this.dtpDOBUpdate.Size = new System.Drawing.Size(229, 34);
             this.dtpDOBUpdate.TabIndex = 41;
             // 
             // txtUpdateEircode
             // 
-            this.txtUpdateEircode.Location = new System.Drawing.Point(480, 162);
+            this.txtUpdateEircode.Location = new System.Drawing.Point(640, 199);
+            this.txtUpdateEircode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUpdateEircode.Name = "txtUpdateEircode";
             this.txtUpdateEircode.ReadOnly = true;
-            this.txtUpdateEircode.Size = new System.Drawing.Size(173, 29);
+            this.txtUpdateEircode.Size = new System.Drawing.Size(229, 34);
             this.txtUpdateEircode.TabIndex = 38;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(377, 162);
+            this.label6.Location = new System.Drawing.Point(503, 199);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 18);
+            this.label6.Size = new System.Drawing.Size(76, 24);
             this.label6.TabIndex = 37;
             this.label6.Text = "Eircode";
             // 
             // txtUpdateBooingPhone
             // 
-            this.txtUpdateBooingPhone.Location = new System.Drawing.Point(147, 162);
+            this.txtUpdateBooingPhone.Location = new System.Drawing.Point(196, 199);
+            this.txtUpdateBooingPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUpdateBooingPhone.Name = "txtUpdateBooingPhone";
             this.txtUpdateBooingPhone.ReadOnly = true;
-            this.txtUpdateBooingPhone.Size = new System.Drawing.Size(173, 29);
+            this.txtUpdateBooingPhone.Size = new System.Drawing.Size(229, 34);
             this.txtUpdateBooingPhone.TabIndex = 36;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(42, 162);
+            this.label5.Location = new System.Drawing.Point(56, 199);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 18);
+            this.label5.Size = new System.Drawing.Size(66, 24);
             this.label5.TabIndex = 35;
             this.label5.Text = "Phone";
             // 
             // txtCancelForeName
             // 
-            this.txtCancelForeName.Location = new System.Drawing.Point(147, 52);
+            this.txtCancelForeName.Location = new System.Drawing.Point(196, 64);
+            this.txtCancelForeName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCancelForeName.Name = "txtCancelForeName";
             this.txtCancelForeName.ReadOnly = true;
-            this.txtCancelForeName.Size = new System.Drawing.Size(173, 29);
+            this.txtCancelForeName.Size = new System.Drawing.Size(229, 34);
             this.txtCancelForeName.TabIndex = 21;
             // 
             // txtUpdateBookingEmail
             // 
-            this.txtUpdateBookingEmail.Location = new System.Drawing.Point(480, 110);
+            this.txtUpdateBookingEmail.Location = new System.Drawing.Point(640, 135);
+            this.txtUpdateBookingEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUpdateBookingEmail.Name = "txtUpdateBookingEmail";
             this.txtUpdateBookingEmail.ReadOnly = true;
-            this.txtUpdateBookingEmail.Size = new System.Drawing.Size(173, 29);
+            this.txtUpdateBookingEmail.Size = new System.Drawing.Size(229, 34);
             this.txtUpdateBookingEmail.TabIndex = 34;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(377, 57);
+            this.label2.Location = new System.Drawing.Point(503, 70);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 18);
+            this.label2.Size = new System.Drawing.Size(87, 24);
             this.label2.TabIndex = 24;
             this.label2.Text = "Surname";
             // 
@@ -267,27 +281,30 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(377, 116);
+            this.label4.Location = new System.Drawing.Point(503, 143);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 18);
+            this.label4.Size = new System.Drawing.Size(57, 24);
             this.label4.TabIndex = 33;
             this.label4.Text = "Email";
             // 
             // txtUpdateSurname
             // 
-            this.txtUpdateSurname.Location = new System.Drawing.Point(480, 52);
+            this.txtUpdateSurname.Location = new System.Drawing.Point(640, 64);
+            this.txtUpdateSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUpdateSurname.Name = "txtUpdateSurname";
             this.txtUpdateSurname.ReadOnly = true;
-            this.txtUpdateSurname.Size = new System.Drawing.Size(173, 29);
+            this.txtUpdateSurname.Size = new System.Drawing.Size(229, 34);
             this.txtUpdateSurname.TabIndex = 25;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(42, 57);
+            this.label1.Location = new System.Drawing.Point(56, 70);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 18);
+            this.label1.Size = new System.Drawing.Size(98, 24);
             this.label1.TabIndex = 32;
             this.label1.Text = "Forename";
             // 
@@ -295,9 +312,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(42, 116);
+            this.label3.Location = new System.Drawing.Point(56, 143);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 18);
+            this.label3.Size = new System.Drawing.Size(50, 24);
             this.label3.TabIndex = 26;
             this.label3.Text = "DOB\r\n";
             // 
@@ -306,10 +324,10 @@
             this.cboCancelDeptAirportDetail.Enabled = false;
             this.cboCancelDeptAirportDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCancelDeptAirportDetail.FormattingEnabled = true;
-            this.cboCancelDeptAirportDetail.Location = new System.Drawing.Point(217, 46);
-            this.cboCancelDeptAirportDetail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboCancelDeptAirportDetail.Location = new System.Drawing.Point(289, 57);
+            this.cboCancelDeptAirportDetail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboCancelDeptAirportDetail.Name = "cboCancelDeptAirportDetail";
-            this.cboCancelDeptAirportDetail.Size = new System.Drawing.Size(110, 29);
+            this.cboCancelDeptAirportDetail.Size = new System.Drawing.Size(145, 36);
             this.cboCancelDeptAirportDetail.TabIndex = 75;
             this.cboCancelDeptAirportDetail.BackColorChanged += new System.EventHandler(this.btnCancelBookingIDSearch_Click);
             // 
@@ -317,9 +335,10 @@
             // 
             this.lblArrAirport.AutoSize = true;
             this.lblArrAirport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrAirport.Location = new System.Drawing.Point(416, 35);
+            this.lblArrAirport.Location = new System.Drawing.Point(555, 43);
+            this.lblArrAirport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArrAirport.Name = "lblArrAirport";
-            this.lblArrAirport.Size = new System.Drawing.Size(109, 21);
+            this.lblArrAirport.Size = new System.Drawing.Size(137, 28);
             this.lblArrAirport.TabIndex = 73;
             this.lblArrAirport.Text = "Arrival Airport";
             // 
@@ -327,9 +346,10 @@
             // 
             this.lblDeptAirport.AutoSize = true;
             this.lblDeptAirport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeptAirport.Location = new System.Drawing.Point(57, 33);
+            this.lblDeptAirport.Location = new System.Drawing.Point(76, 41);
+            this.lblDeptAirport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDeptAirport.Name = "lblDeptAirport";
-            this.lblDeptAirport.Size = new System.Drawing.Size(133, 21);
+            this.lblDeptAirport.Size = new System.Drawing.Size(168, 28);
             this.lblDeptAirport.TabIndex = 74;
             this.lblDeptAirport.Text = "Departure Airport";
             // 
@@ -337,9 +357,10 @@
             // 
             this.lblDepartDate.AutoSize = true;
             this.lblDepartDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartDate.Location = new System.Drawing.Point(57, 97);
+            this.lblDepartDate.Location = new System.Drawing.Point(76, 119);
+            this.lblDepartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDepartDate.Name = "lblDepartDate";
-            this.lblDepartDate.Size = new System.Drawing.Size(116, 21);
+            this.lblDepartDate.Size = new System.Drawing.Size(146, 28);
             this.lblDepartDate.TabIndex = 71;
             this.lblDepartDate.Text = "Departure Date";
             // 
@@ -347,9 +368,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(57, 162);
+            this.label7.Location = new System.Drawing.Point(76, 199);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 18);
+            this.label7.Size = new System.Drawing.Size(121, 24);
             this.label7.TabIndex = 69;
             this.label7.Text = "No. Baggage";
             // 
@@ -357,9 +379,10 @@
             // 
             this.lblDepartureTime.AutoSize = true;
             this.lblDepartureTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartureTime.Location = new System.Drawing.Point(416, 104);
+            this.lblDepartureTime.Location = new System.Drawing.Point(555, 128);
+            this.lblDepartureTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDepartureTime.Name = "lblDepartureTime";
-            this.lblDepartureTime.Size = new System.Drawing.Size(118, 21);
+            this.lblDepartureTime.Size = new System.Drawing.Size(147, 28);
             this.lblDepartureTime.TabIndex = 70;
             this.lblDepartureTime.Text = "Departure Time";
             // 
@@ -367,19 +390,20 @@
             // 
             this.nudCancelNumBaggage.Enabled = false;
             this.nudCancelNumBaggage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudCancelNumBaggage.Location = new System.Drawing.Point(217, 162);
-            this.nudCancelNumBaggage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCancelNumBaggage.Location = new System.Drawing.Point(289, 199);
+            this.nudCancelNumBaggage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nudCancelNumBaggage.Name = "nudCancelNumBaggage";
-            this.nudCancelNumBaggage.Size = new System.Drawing.Size(34, 29);
+            this.nudCancelNumBaggage.Size = new System.Drawing.Size(45, 34);
             this.nudCancelNumBaggage.TabIndex = 72;
             // 
             // lblAddAirport
             // 
             this.lblAddAirport.AutoSize = true;
             this.lblAddAirport.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddAirport.Location = new System.Drawing.Point(25, 28);
+            this.lblAddAirport.Location = new System.Drawing.Point(33, 34);
+            this.lblAddAirport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddAirport.Name = "lblAddAirport";
-            this.lblAddAirport.Size = new System.Drawing.Size(156, 30);
+            this.lblAddAirport.Size = new System.Drawing.Size(201, 37);
             this.lblAddAirport.TabIndex = 26;
             this.lblAddAirport.Text = "Cancel Booking";
             // 
@@ -387,9 +411,10 @@
             // 
             this.btnCancelBookingIDSearch.BackColor = System.Drawing.Color.Plum;
             this.btnCancelBookingIDSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnCancelBookingIDSearch.Location = new System.Drawing.Point(500, 68);
+            this.btnCancelBookingIDSearch.Location = new System.Drawing.Point(667, 80);
+            this.btnCancelBookingIDSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelBookingIDSearch.Name = "btnCancelBookingIDSearch";
-            this.btnCancelBookingIDSearch.Size = new System.Drawing.Size(126, 28);
+            this.btnCancelBookingIDSearch.Size = new System.Drawing.Size(168, 34);
             this.btnCancelBookingIDSearch.TabIndex = 31;
             this.btnCancelBookingIDSearch.Text = "SEARCH";
             this.btnCancelBookingIDSearch.UseVisualStyleBackColor = false;
@@ -398,18 +423,20 @@
             // txtCancelBookingID
             // 
             this.txtCancelBookingID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCancelBookingID.Location = new System.Drawing.Point(293, 68);
+            this.txtCancelBookingID.Location = new System.Drawing.Point(391, 80);
+            this.txtCancelBookingID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCancelBookingID.Name = "txtCancelBookingID";
-            this.txtCancelBookingID.Size = new System.Drawing.Size(173, 29);
+            this.txtCancelBookingID.Size = new System.Drawing.Size(229, 34);
             this.txtCancelBookingID.TabIndex = 30;
             // 
             // lblCancelSearchBookingID
             // 
             this.lblCancelSearchBookingID.AutoSize = true;
             this.lblCancelSearchBookingID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancelSearchBookingID.Location = new System.Drawing.Point(173, 72);
+            this.lblCancelSearchBookingID.Location = new System.Drawing.Point(231, 85);
+            this.lblCancelSearchBookingID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelSearchBookingID.Name = "lblCancelSearchBookingID";
-            this.lblCancelSearchBookingID.Size = new System.Drawing.Size(86, 21);
+            this.lblCancelSearchBookingID.Size = new System.Drawing.Size(109, 28);
             this.lblCancelSearchBookingID.TabIndex = 29;
             this.lblCancelSearchBookingID.Text = "Booking ID";
             // 
@@ -417,9 +444,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(14, 236);
+            this.label8.Location = new System.Drawing.Point(19, 290);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 21);
+            this.label8.Size = new System.Drawing.Size(54, 28);
             this.label8.TabIndex = 60;
             this.label8.Text = "Price";
             // 
@@ -428,9 +456,10 @@
             this.lblCancelSeatNumDetail.AutoSize = true;
             this.lblCancelSeatNumDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancelSeatNumDetail.ForeColor = System.Drawing.Color.Plum;
-            this.lblCancelSeatNumDetail.Location = new System.Drawing.Point(124, 196);
+            this.lblCancelSeatNumDetail.Location = new System.Drawing.Point(165, 241);
+            this.lblCancelSeatNumDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelSeatNumDetail.Name = "lblCancelSeatNumDetail";
-            this.lblCancelSeatNumDetail.Size = new System.Drawing.Size(77, 21);
+            this.lblCancelSeatNumDetail.Size = new System.Drawing.Size(95, 28);
             this.lblCancelSeatNumDetail.TabIndex = 57;
             this.lblCancelSeatNumDetail.Text = "Unknown";
             // 
@@ -438,9 +467,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(14, 196);
+            this.label10.Location = new System.Drawing.Point(19, 241);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(102, 21);
+            this.label10.Size = new System.Drawing.Size(127, 28);
             this.label10.TabIndex = 58;
             this.label10.Text = "Seat Number";
             // 
@@ -449,9 +479,10 @@
             this.lblCancelBookingRouteID.AutoSize = true;
             this.lblCancelBookingRouteID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancelBookingRouteID.ForeColor = System.Drawing.Color.Plum;
-            this.lblCancelBookingRouteID.Location = new System.Drawing.Point(124, 155);
+            this.lblCancelBookingRouteID.Location = new System.Drawing.Point(165, 191);
+            this.lblCancelBookingRouteID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelBookingRouteID.Name = "lblCancelBookingRouteID";
-            this.lblCancelBookingRouteID.Size = new System.Drawing.Size(77, 21);
+            this.lblCancelBookingRouteID.Size = new System.Drawing.Size(95, 28);
             this.lblCancelBookingRouteID.TabIndex = 68;
             this.lblCancelBookingRouteID.Text = "Unknown";
             // 
@@ -460,9 +491,10 @@
             this.lbCancelFlightBookingPrice.AutoSize = true;
             this.lbCancelFlightBookingPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCancelFlightBookingPrice.ForeColor = System.Drawing.Color.Plum;
-            this.lbCancelFlightBookingPrice.Location = new System.Drawing.Point(124, 236);
+            this.lbCancelFlightBookingPrice.Location = new System.Drawing.Point(165, 290);
+            this.lbCancelFlightBookingPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCancelFlightBookingPrice.Name = "lbCancelFlightBookingPrice";
-            this.lbCancelFlightBookingPrice.Size = new System.Drawing.Size(77, 21);
+            this.lbCancelFlightBookingPrice.Size = new System.Drawing.Size(95, 28);
             this.lbCancelFlightBookingPrice.TabIndex = 59;
             this.lbCancelFlightBookingPrice.Text = "Unknown";
             // 
@@ -471,9 +503,10 @@
             this.lblCancelBookingID.AutoSize = true;
             this.lblCancelBookingID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancelBookingID.ForeColor = System.Drawing.Color.Plum;
-            this.lblCancelBookingID.Location = new System.Drawing.Point(124, 33);
+            this.lblCancelBookingID.Location = new System.Drawing.Point(165, 41);
+            this.lblCancelBookingID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelBookingID.Name = "lblCancelBookingID";
-            this.lblCancelBookingID.Size = new System.Drawing.Size(77, 21);
+            this.lblCancelBookingID.Size = new System.Drawing.Size(95, 28);
             this.lblCancelBookingID.TabIndex = 64;
             this.lblCancelBookingID.Text = "Unknown";
             // 
@@ -481,9 +514,10 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(14, 155);
+            this.label14.Location = new System.Drawing.Point(19, 191);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(51, 21);
+            this.label14.Size = new System.Drawing.Size(63, 28);
             this.label14.TabIndex = 69;
             this.label14.Text = "Route";
             // 
@@ -491,9 +525,10 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(14, 33);
+            this.label15.Location = new System.Drawing.Point(19, 41);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(91, 21);
+            this.label15.Size = new System.Drawing.Size(116, 28);
             this.label15.TabIndex = 65;
             this.label15.Text = "BookiongID";
             // 
@@ -502,9 +537,10 @@
             this.lblCancelFlightNumber.AutoSize = true;
             this.lblCancelFlightNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancelFlightNumber.ForeColor = System.Drawing.Color.Plum;
-            this.lblCancelFlightNumber.Location = new System.Drawing.Point(124, 115);
+            this.lblCancelFlightNumber.Location = new System.Drawing.Point(165, 142);
+            this.lblCancelFlightNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelFlightNumber.Name = "lblCancelFlightNumber";
-            this.lblCancelFlightNumber.Size = new System.Drawing.Size(77, 21);
+            this.lblCancelFlightNumber.Size = new System.Drawing.Size(95, 28);
             this.lblCancelFlightNumber.TabIndex = 47;
             this.lblCancelFlightNumber.Text = "Unknown";
             // 
@@ -513,9 +549,10 @@
             this.lblCancelPassengerID.AutoSize = true;
             this.lblCancelPassengerID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancelPassengerID.ForeColor = System.Drawing.Color.Plum;
-            this.lblCancelPassengerID.Location = new System.Drawing.Point(124, 74);
+            this.lblCancelPassengerID.Location = new System.Drawing.Point(165, 91);
+            this.lblCancelPassengerID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelPassengerID.Name = "lblCancelPassengerID";
-            this.lblCancelPassengerID.Size = new System.Drawing.Size(77, 21);
+            this.lblCancelPassengerID.Size = new System.Drawing.Size(95, 28);
             this.lblCancelPassengerID.TabIndex = 66;
             this.lblCancelPassengerID.Text = "Unknown";
             // 
@@ -523,9 +560,10 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(14, 74);
+            this.label18.Location = new System.Drawing.Point(19, 91);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(95, 21);
+            this.label18.Size = new System.Drawing.Size(117, 28);
             this.label18.TabIndex = 67;
             this.label18.Text = "PassengerID";
             // 
@@ -533,59 +571,64 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(14, 115);
+            this.label19.Location = new System.Drawing.Point(19, 142);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(111, 21);
+            this.label19.Size = new System.Drawing.Size(139, 28);
             this.label19.TabIndex = 48;
             this.label19.Text = "Flight Number";
             // 
-            // groupBox1
+            // grpRetrievedBooking
             // 
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.lblCancelSeatNumDetail);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.lblCancelBookingRouteID);
-            this.groupBox1.Controls.Add(this.lbCancelFlightBookingPrice);
-            this.groupBox1.Controls.Add(this.lblCancelBookingID);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.lblCancelFlightNumber);
-            this.groupBox1.Controls.Add(this.lblCancelPassengerID);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(814, 119);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(255, 293);
-            this.groupBox1.TabIndex = 63;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Cancel Retrieved Booking Details";
+            this.grpRetrievedBooking.Controls.Add(this.label8);
+            this.grpRetrievedBooking.Controls.Add(this.lblCancelSeatNumDetail);
+            this.grpRetrievedBooking.Controls.Add(this.label10);
+            this.grpRetrievedBooking.Controls.Add(this.lblCancelBookingRouteID);
+            this.grpRetrievedBooking.Controls.Add(this.lbCancelFlightBookingPrice);
+            this.grpRetrievedBooking.Controls.Add(this.lblCancelBookingID);
+            this.grpRetrievedBooking.Controls.Add(this.label14);
+            this.grpRetrievedBooking.Controls.Add(this.label15);
+            this.grpRetrievedBooking.Controls.Add(this.lblCancelFlightNumber);
+            this.grpRetrievedBooking.Controls.Add(this.lblCancelPassengerID);
+            this.grpRetrievedBooking.Controls.Add(this.label18);
+            this.grpRetrievedBooking.Controls.Add(this.label19);
+            this.grpRetrievedBooking.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpRetrievedBooking.Location = new System.Drawing.Point(1085, 146);
+            this.grpRetrievedBooking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpRetrievedBooking.Name = "grpRetrievedBooking";
+            this.grpRetrievedBooking.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpRetrievedBooking.Size = new System.Drawing.Size(340, 361);
+            this.grpRetrievedBooking.TabIndex = 63;
+            this.grpRetrievedBooking.TabStop = false;
+            this.grpRetrievedBooking.Text = "Cancel Retrieved Booking Details";
+            this.grpRetrievedBooking.Visible = false;
             // 
             // frmCancelBooking
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1095, 671);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1460, 799);
+            this.Controls.Add(this.grpRetrievedBooking);
             this.Controls.Add(this.btnCancelBookingIDSearch);
             this.Controls.Add(this.txtCancelBookingID);
             this.Controls.Add(this.lblCancelSearchBookingID);
             this.Controls.Add(this.btnAirportConfirm);
-            this.Controls.Add(this.grpAirportDetails);
+            this.Controls.Add(this.grpCancelBookingDetails);
             this.Controls.Add(this.lblAddAirport);
             this.Controls.Add(this.munBack);
             this.Controls.Add(this.mnuCancelBooking);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmCancelBooking";
             this.Text = "Cancel Booking";
             this.Load += new System.EventHandler(this.frmCancelBooking_Load);
-            this.grpAirportDetails.ResumeLayout(false);
-            this.grpAirportDetails.PerformLayout();
+            this.grpCancelBookingDetails.ResumeLayout(false);
+            this.grpCancelBookingDetails.PerformLayout();
             this.grpPersonalCreateBookingDetails.ResumeLayout(false);
             this.grpPersonalCreateBookingDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCancelNumBaggage)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpRetrievedBooking.ResumeLayout(false);
+            this.grpRetrievedBooking.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -596,7 +639,7 @@
         private System.Windows.Forms.Label munBack;
         private System.Windows.Forms.MenuStrip mnuCancelBooking;
         private System.Windows.Forms.Button btnAirportConfirm;
-        private System.Windows.Forms.GroupBox grpAirportDetails;
+        private System.Windows.Forms.GroupBox grpCancelBookingDetails;
         private System.Windows.Forms.Label lblAddAirport;
         private System.Windows.Forms.ComboBox cboCancelDeptimeDetail;
         private System.Windows.Forms.DateTimePicker dptCancelBookingDate;
@@ -624,7 +667,7 @@
         private System.Windows.Forms.Button btnCancelBookingIDSearch;
         private System.Windows.Forms.TextBox txtCancelBookingID;
         private System.Windows.Forms.Label lblCancelSearchBookingID;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpRetrievedBooking;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblCancelSeatNumDetail;
         private System.Windows.Forms.Label label10;
