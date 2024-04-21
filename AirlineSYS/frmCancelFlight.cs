@@ -19,7 +19,6 @@ namespace AirlineSYS
     public partial class frmCancelFlight : Form
     {
         frmAirlineMainMenu parent;
-
         public frmCancelFlight()
         {
             InitializeComponent();
@@ -60,7 +59,7 @@ namespace AirlineSYS
 
             lblCancelFlightDetails.Text = flightInfo;
             lblCancelFlightDetails.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            lblCancelFlightDetails.Location = new System.Drawing.Point(208, 31);
+            lblCancelFlightDetails.Location = new Point(208, 31);
             btnCancelFlightConfirm.Visible = false;
             btnCancelFlightConfirm.Visible = true;
         }
@@ -69,14 +68,13 @@ namespace AirlineSYS
             cboCancelFlightNumber.Items.Clear();
             btnCancelFlightConfirm.Visible = false;
 
-            List<Flight> flights = Flight.getAllFlightDetails();
+            List<string> activeFlightNumbers = Flight.getActiveFlightNumbers();
 
-            foreach (Flight flight in flights)
+            foreach (string flightNumber in activeFlightNumbers)
             {
-                cboCancelFlightNumber.Items.Add(flight.getFlightNumber());
+                cboCancelFlightNumber.Items.Add(flightNumber);
             }
-
-       }
+        }
         private void btnAirportConfirm_Click(object sender, EventArgs e)
         {
             if (cboCancelFlightNumber.SelectedIndex == -1)

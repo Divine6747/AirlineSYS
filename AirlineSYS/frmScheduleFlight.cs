@@ -48,6 +48,7 @@ namespace AirlineSYS
                     Flight scheduleFlight = new Flight(lblFlightNumberDetail.Text, cboOperatorCodeFlight.SelectedItem.ToString(),
                               int.Parse(lblRouteIdDetails.Text), dtpDeptFlight.Value, cboDeptTime.SelectedItem.ToString(),
                               lblEstArrTimeDetail.Text, int.Parse(txtNumFlightSeats.Text), int.Parse(txtNumFlightSeats.Text), "A");
+                    
                     scheduleFlight.scheduleFlight();
 
                     cboArrAirportFlight.SelectedIndex = -1;

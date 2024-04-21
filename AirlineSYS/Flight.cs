@@ -243,18 +243,9 @@ namespace AirlineSYS
                     int numSeatAvail = reader.GetInt32(8);
                     string status = reader.GetString(9);
 
-                    flights.Add(new Flight
-                    {
-                        FlightNumber = flightNumber,
-                        OperatorCode = operatorCode,
-                        RouteID = routeID,
-                        FlightDate = flightDate,
-                        FlightTime = flightTime,
-                        EstArrTime = estArrTime,
-                        NumSeats = numSeats,
-                        NumSeatAvail = numSeatAvail,
-                        Status = status
-                    });
+                    flights.Add(new Flight { FlightNumber = flightNumber, OperatorCode = operatorCode, RouteID = routeID, FlightDate = flightDate,
+                                             FlightTime = flightTime, EstArrTime = estArrTime, NumSeats = numSeats, NumSeatAvail = numSeatAvail,
+                                             Status = status});
                 }
             }
             catch (OracleException ex)
@@ -373,7 +364,49 @@ namespace AirlineSYS
             }
             return flights;
         }
+        // Getting available for flights cancellation
+        public static List<string> getActiveFlightNumbers()
+        {
+            List<string> activeFlightNumbers = new List<string>();
 
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conn;
+
+            string sqlQuery = "SELECT FlightNumber FROM Flights WHERE Status = 'A'";
+            cmd.CommandText = sqlQuery;
+
+            try
+            {
+                conn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string flightNumber = reader.GetString(0);
+                    activeFlightNumbers.Add(flightNumber);
+                }
+
+                reader.Close();
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+
+            return activeFlightNumbers;
+        }
     }
 }
 

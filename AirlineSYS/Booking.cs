@@ -200,7 +200,6 @@ namespace AirlineSYS
                 }
             }
         }
-
         //When booking is successful the number of available seat numbers is decreased
         public static bool decreaseNumAvailSeat(string flightNumber, int seats)
         {
@@ -237,7 +236,6 @@ namespace AirlineSYS
                 }
             }
         }
-
         //When booking is cancel the seat numbers are increased again
         public static bool increaseNumAvailSeat(string flightNumber, int seats)
         {
@@ -320,7 +318,6 @@ namespace AirlineSYS
             }
             return dt;
         }
-
         public void updateBooking()
         {
             string sqlQuery = "UPDATE Bookings SET " +
@@ -378,7 +375,6 @@ namespace AirlineSYS
                 }
             }
         }
-
         public void cancelBooking(int bookingID, string forename, string surname, string email)
         {
             string sqlQuery = "UPDATE Bookings SET Status = 'CANCELLED' WHERE BookingID = :bookingID AND PassengerID IN (SELECT PassengerID FROM Passengers WHERE Forename = :forename AND Surname = :surname AND Email = :email)";
