@@ -52,6 +52,7 @@ namespace AirlineSYS
         public void setDuration(int duration) { this.Duration = duration; }
         public void setStatus(string status) { this.Status = status; }
 
+        //Getting next routeID
         public static int getNextRouteID()
         {
             int nextRouteID = 1;

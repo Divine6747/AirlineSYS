@@ -451,49 +451,6 @@ namespace AirlineSYS
             return activeFlights;
         }
 
-        // Getting available for flights cancellation
-        public static List<string> getActiveFlightNumbers()
-        {
-            List<string> activeFlightNumbers = new List<string>();
-
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            OracleCommand cmd = new OracleCommand();
-            cmd.Connection = conn;
-
-            string sqlQuery = "SELECT FlightNumber FROM Flights WHERE Status = 'A'";
-            cmd.CommandText = sqlQuery;
-
-            try
-            {
-                conn.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string flightNumber = reader.GetString(0);
-                    activeFlightNumbers.Add(flightNumber);
-                }
-
-                reader.Close();
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (conn.State == ConnectionState.Open)
-                {
-                    conn.Close();
-                }
-            }
-
-            return activeFlightNumbers;
-        }
     }
 }
 

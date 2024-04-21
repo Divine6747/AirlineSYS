@@ -200,6 +200,105 @@ namespace AirlineSYS
                 }
             }
         }
+        public void updateBooking()
+        {
+            string sqlQuery = "UPDATE Bookings SET " +
+                              "PassengerID = :PassengerID, " +
+                              "RouteID = :RouteID, " +
+                              "FlightNumber = :FlightNumber, " +
+                              "FlightTime = :FlightTime, " +
+                              "FlightDate = :FlightDate, " +
+                              "SeatNum = :SeatNum, " +
+                              "NumBaggage = :NumBaggage, " +
+                              "AmountPaid = :AmountPaid, " +
+                              "Status = :Status " +
+                              "WHERE BookingID = :BookingID";
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand(sqlQuery,conn);
+
+            cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = PassengerID;
+            cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = RouteID;
+            cmd.Parameters.Add(":FlightNumber", OracleDbType.Varchar2).Value = FlightNumber;
+            cmd.Parameters.Add(":FlightTime", OracleDbType.Varchar2).Value = FlightTime;
+            cmd.Parameters.Add(":FlightDate", OracleDbType.Date).Value = FlightDate;
+            cmd.Parameters.Add(":SeatNum", OracleDbType.Int32).Value = SeatNum;
+            cmd.Parameters.Add(":NumBaggage", OracleDbType.Int32).Value = NumBaggage;
+            cmd.Parameters.Add(":AmountPaid", OracleDbType.Decimal).Value = AmountPaid;
+            cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = Status;
+            cmd.Parameters.Add(":BookingID", OracleDbType.Int32).Value = BookingID;
+
+            try
+            {
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Booking details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Booking ID not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }        
+        public void cancelBooking(int bookingID, string forename, string surname, string email)
+        {
+            string sqlQuery = "UPDATE Bookings SET Status = 'CANCELLED' WHERE BookingID = :bookingID AND PassengerID IN (SELECT PassengerID FROM Passengers WHERE Forename = :forename AND Surname = :surname AND Email = :email)";
+            
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+
+            cmd.Parameters.Add(":bookingID", OracleDbType.Int32).Value = bookingID;
+            cmd.Parameters.Add(":forename", OracleDbType.Varchar2).Value = forename;
+            cmd.Parameters.Add(":surname", OracleDbType.Varchar2).Value = surname;
+            cmd.Parameters.Add(":email", OracleDbType.Varchar2).Value = email;
+
+            try
+            {
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Booking cancelled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Booking not found or passenger details incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
         //When booking is successful the number of available seat numbers is decreased
         public static bool decreaseNumAvailSeat(string flightNumber, int seats)
         {
@@ -236,7 +335,7 @@ namespace AirlineSYS
                 }
             }
         }
-        //When booking is cancel the seat numbers are increased again
+        //When booking is successfully canceled the seat numbers are increased again
         public static bool increaseNumAvailSeat(string flightNumber, int seats)
         {
             string sqlQuery = "UPDATE Flights SET NUMSEATAVAIL = NUMSEATAVAIL + :seatsToIncrease WHERE FLIGHTNUMBER = :flightNumber";
@@ -317,104 +416,6 @@ namespace AirlineSYS
                 adapter.Dispose();
             }
             return dt;
-        }
-        public void updateBooking()
-        {
-            string sqlQuery = "UPDATE Bookings SET " +
-                              "PassengerID = :PassengerID, " +
-                              "RouteID = :RouteID, " +
-                              "FlightNumber = :FlightNumber, " +
-                              "FlightTime = :FlightTime, " +
-                              "FlightDate = :FlightDate, " +
-                              "SeatNum = :SeatNum, " +
-                              "NumBaggage = :NumBaggage, " +
-                              "AmountPaid = :AmountPaid, " +
-                              "Status = :Status " +
-                              "WHERE BookingID = :BookingID";
-
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            OracleCommand cmd = new OracleCommand(sqlQuery,conn);
-
-            cmd.Parameters.Add(":PassengerID", OracleDbType.Int32).Value = PassengerID;
-            cmd.Parameters.Add(":RouteID", OracleDbType.Int32).Value = RouteID;
-            cmd.Parameters.Add(":FlightNumber", OracleDbType.Varchar2).Value = FlightNumber;
-            cmd.Parameters.Add(":FlightTime", OracleDbType.Varchar2).Value = FlightTime;
-            cmd.Parameters.Add(":FlightDate", OracleDbType.Date).Value = FlightDate;
-            cmd.Parameters.Add(":SeatNum", OracleDbType.Int32).Value = SeatNum;
-            cmd.Parameters.Add(":NumBaggage", OracleDbType.Int32).Value = NumBaggage;
-            cmd.Parameters.Add(":AmountPaid", OracleDbType.Decimal).Value = AmountPaid;
-            cmd.Parameters.Add(":Status", OracleDbType.Varchar2).Value = Status;
-            cmd.Parameters.Add(":BookingID", OracleDbType.Int32).Value = BookingID;
-
-            try
-            {
-                conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Booking details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Booking ID not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (conn.State == ConnectionState.Open)
-                {
-                    conn.Close();
-                }
-            }
-        }
-        public void cancelBooking(int bookingID, string forename, string surname, string email)
-        {
-            string sqlQuery = "UPDATE Bookings SET Status = 'CANCELLED' WHERE BookingID = :bookingID AND PassengerID IN (SELECT PassengerID FROM Passengers WHERE Forename = :forename AND Surname = :surname AND Email = :email)";
-            
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-
-            cmd.Parameters.Add(":bookingID", OracleDbType.Int32).Value = bookingID;
-            cmd.Parameters.Add(":forename", OracleDbType.Varchar2).Value = forename;
-            cmd.Parameters.Add(":surname", OracleDbType.Varchar2).Value = surname;
-            cmd.Parameters.Add(":email", OracleDbType.Varchar2).Value = email;
-
-            try
-            {
-                conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Booking cancelled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Booking not found or passenger details incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("Oracle Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (conn.State == ConnectionState.Open)
-                {
-                    conn.Close();
-                }
-            }
-        }
+        }        
     }
 }
