@@ -37,15 +37,14 @@ namespace AirlineSYS
             chtYearlyRouteAnalysis.Visible = true;
             btnYearlyFlightAnalysisSearch.Visible = true;
             chtYearlyRouteAnalysis.Series.Clear();
-            btnYearlyFlightAnalysisSearch.Visible = false;
 
             string selectedYear = cboYearlyFlightAnalysis.SelectedItem.ToString();
 
-            string query = $"SELECT r.DeptAirport || ' - ' || r.ArrAirport AS Route, COUNT(*) AS NumJourneys " +
-                           $"FROM Flights f " +
-                           $"JOIN Routes r ON f.RouteID = r.RouteID " +
-                           $"WHERE TO_CHAR(f.FlightDate, 'YYYY') = :selectedYear " +
-                           $"GROUP BY r.DeptAirport, r.ArrAirport";
+            string query = "SELECT r.DeptAirport || ' - ' || r.ArrAirport AS Route, COUNT(*) AS NumJourneys " +
+                   "FROM Flights f " +
+                   "JOIN Routes r ON f.RouteID = r.RouteID " +
+                   "WHERE TO_CHAR(f.FlightDate, 'YYYY') = '" + selectedYear + "' " +
+                   "GROUP BY r.DeptAirport, r.ArrAirport";
 
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             OracleCommand cmd = new OracleCommand(query, conn);
@@ -56,12 +55,17 @@ namespace AirlineSYS
                 conn.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
+                if (!reader.HasRows)
+                {
+                    MessageBox.Show("No data found for the selected year.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 Series series = new Series("Yearly Route Analysis");
                 series.ChartType = SeriesChartType.Column;
                 series["PointWidth"] = "0.6";
                 series.Color = System.Drawing.Color.Teal;
 
-                // Populate the chart with the fetched data
                 while (reader.Read())
                 {
                     string route = reader["Route"].ToString();
@@ -95,6 +99,16 @@ namespace AirlineSYS
             btnConfirm.Visible = false;
             cboYearlyFlightAnalysis.Text = "";
 
+        }
+
+        private void frmYearlyRouteAnalysis_Load(object sender, EventArgs e)
+        {
+            for (int year = 2020; year <= 2025; year++)
+            {
+                cboYearlyFlightAnalysis.Items.Add(year.ToString());
+            }
+
+            cboYearlyFlightAnalysis.SelectedItem = DateTime.Now.Year.ToString();
         }
     }
 }

@@ -50,10 +50,11 @@
             this.munBack.AutoSize = true;
             this.munBack.BackColor = System.Drawing.Color.Violet;
             this.munBack.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.munBack.Location = new System.Drawing.Point(808, 1);
+            this.munBack.Location = new System.Drawing.Point(1077, 1);
+            this.munBack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.munBack.Name = "munBack";
-            this.munBack.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.munBack.Size = new System.Drawing.Size(60, 20);
+            this.munBack.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            this.munBack.Size = new System.Drawing.Size(77, 25);
             this.munBack.TabIndex = 11;
             this.munBack.Text = "Back";
             this.munBack.Click += new System.EventHandler(this.munBack_Click);
@@ -61,10 +62,11 @@
             // mnuYearlyRouteAnalysis
             // 
             this.mnuYearlyRouteAnalysis.BackColor = System.Drawing.Color.Plum;
+            this.mnuYearlyRouteAnalysis.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuYearlyRouteAnalysis.Location = new System.Drawing.Point(0, 0);
             this.mnuYearlyRouteAnalysis.Name = "mnuYearlyRouteAnalysis";
             this.mnuYearlyRouteAnalysis.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuYearlyRouteAnalysis.Size = new System.Drawing.Size(871, 24);
+            this.mnuYearlyRouteAnalysis.Size = new System.Drawing.Size(1161, 24);
             this.mnuYearlyRouteAnalysis.TabIndex = 10;
             // 
             // chtYearlyRouteAnalysis
@@ -73,13 +75,14 @@
             this.chtYearlyRouteAnalysis.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chtYearlyRouteAnalysis.Legends.Add(legend1);
-            this.chtYearlyRouteAnalysis.Location = new System.Drawing.Point(46, 97);
+            this.chtYearlyRouteAnalysis.Location = new System.Drawing.Point(61, 119);
+            this.chtYearlyRouteAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chtYearlyRouteAnalysis.Name = "chtYearlyRouteAnalysis";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Yearly Route Analysis";
             this.chtYearlyRouteAnalysis.Series.Add(series1);
-            this.chtYearlyRouteAnalysis.Size = new System.Drawing.Size(779, 423);
+            this.chtYearlyRouteAnalysis.Size = new System.Drawing.Size(1039, 521);
             this.chtYearlyRouteAnalysis.TabIndex = 41;
             this.chtYearlyRouteAnalysis.Text = "chart1";
             this.chtYearlyRouteAnalysis.Visible = false;
@@ -87,24 +90,20 @@
             // cboYearlyFlightAnalysis
             // 
             this.cboYearlyFlightAnalysis.FormattingEnabled = true;
-            this.cboYearlyFlightAnalysis.Items.AddRange(new object[] {
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2024"});
-            this.cboYearlyFlightAnalysis.Location = new System.Drawing.Point(419, 47);
+            this.cboYearlyFlightAnalysis.Location = new System.Drawing.Point(559, 58);
+            this.cboYearlyFlightAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboYearlyFlightAnalysis.Name = "cboYearlyFlightAnalysis";
-            this.cboYearlyFlightAnalysis.Size = new System.Drawing.Size(158, 21);
+            this.cboYearlyFlightAnalysis.Size = new System.Drawing.Size(209, 24);
             this.cboYearlyFlightAnalysis.TabIndex = 42;
             // 
             // btnYearlyFlightAnalysisSearch
             // 
             this.btnYearlyFlightAnalysisSearch.BackColor = System.Drawing.Color.Plum;
             this.btnYearlyFlightAnalysisSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btnYearlyFlightAnalysisSearch.Location = new System.Drawing.Point(606, 42);
+            this.btnYearlyFlightAnalysisSearch.Location = new System.Drawing.Point(808, 52);
+            this.btnYearlyFlightAnalysisSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnYearlyFlightAnalysisSearch.Name = "btnYearlyFlightAnalysisSearch";
-            this.btnYearlyFlightAnalysisSearch.Size = new System.Drawing.Size(117, 30);
+            this.btnYearlyFlightAnalysisSearch.Size = new System.Drawing.Size(156, 37);
             this.btnYearlyFlightAnalysisSearch.TabIndex = 40;
             this.btnYearlyFlightAnalysisSearch.Text = "SEARCH";
             this.btnYearlyFlightAnalysisSearch.UseVisualStyleBackColor = false;
@@ -114,9 +113,10 @@
             // 
             this.btnConfirm.BackColor = System.Drawing.Color.Plum;
             this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.Location = new System.Drawing.Point(344, 537);
+            this.btnConfirm.Location = new System.Drawing.Point(459, 661);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(174, 38);
+            this.btnConfirm.Size = new System.Drawing.Size(232, 47);
             this.btnConfirm.TabIndex = 39;
             this.btnConfirm.Text = "CONFIRM";
             this.btnConfirm.UseVisualStyleBackColor = false;
@@ -126,9 +126,10 @@
             // 
             this.lblSelectYear.AutoSize = true;
             this.lblSelectYear.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectYear.Location = new System.Drawing.Point(121, 47);
+            this.lblSelectYear.Location = new System.Drawing.Point(161, 58);
+            this.lblSelectYear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSelectYear.Name = "lblSelectYear";
-            this.lblSelectYear.Size = new System.Drawing.Size(255, 21);
+            this.lblSelectYear.Size = new System.Drawing.Size(317, 28);
             this.lblSelectYear.TabIndex = 38;
             this.lblSelectYear.Text = "Select Concluded Years for Analysis";
             // 
@@ -136,9 +137,11 @@
             // 
             this.grpFlightAnalysis.Controls.Add(this.lblCancelFlightDetails);
             this.grpFlightAnalysis.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFlightAnalysis.Location = new System.Drawing.Point(124, 132);
+            this.grpFlightAnalysis.Location = new System.Drawing.Point(165, 162);
+            this.grpFlightAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grpFlightAnalysis.Name = "grpFlightAnalysis";
-            this.grpFlightAnalysis.Size = new System.Drawing.Size(633, 337);
+            this.grpFlightAnalysis.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpFlightAnalysis.Size = new System.Drawing.Size(844, 415);
             this.grpFlightAnalysis.TabIndex = 43;
             this.grpFlightAnalysis.TabStop = false;
             this.grpFlightAnalysis.Text = "Select Year To be Analysed";
@@ -147,17 +150,18 @@
             // 
             this.lblCancelFlightDetails.AutoSize = true;
             this.lblCancelFlightDetails.Font = new System.Drawing.Font("Segoe UI", 17F);
-            this.lblCancelFlightDetails.Location = new System.Drawing.Point(85, 37);
+            this.lblCancelFlightDetails.Location = new System.Drawing.Point(113, 46);
+            this.lblCancelFlightDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelFlightDetails.Name = "lblCancelFlightDetails";
-            this.lblCancelFlightDetails.Size = new System.Drawing.Size(462, 31);
+            this.lblCancelFlightDetails.Size = new System.Drawing.Size(585, 40);
             this.lblCancelFlightDetails.TabIndex = 1;
             this.lblCancelFlightDetails.Text = "NO YEAR HAS BEEN ENTERED OR SELECTED";
             // 
             // frmYearlyRouteAnalysis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 589);
+            this.ClientSize = new System.Drawing.Size(1161, 725);
             this.Controls.Add(this.chtYearlyRouteAnalysis);
             this.Controls.Add(this.cboYearlyFlightAnalysis);
             this.Controls.Add(this.btnYearlyFlightAnalysisSearch);
@@ -167,8 +171,10 @@
             this.Controls.Add(this.munBack);
             this.Controls.Add(this.mnuYearlyRouteAnalysis);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmYearlyRouteAnalysis";
             this.Text = "Yearly Route Analysis";
+            this.Load += new System.EventHandler(this.frmYearlyRouteAnalysis_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chtYearlyRouteAnalysis)).EndInit();
             this.grpFlightAnalysis.ResumeLayout(false);
             this.grpFlightAnalysis.PerformLayout();
