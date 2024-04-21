@@ -129,7 +129,7 @@ namespace AirlineSYS
         {
             List<Route> routes = Route.getRoutes();
 
-            //Checking for duplicate elements to store unique departureAirports and arrivalAirports(so filtering both sets of airports)
+            //Filtering both sets of airports duplicate elements to store unique departureAirports and arrivalAirports(so )
             List<string> departureAirports = new List<string>();
 
             List<string> arrivalAirports = new List<string>();
@@ -186,7 +186,7 @@ namespace AirlineSYS
                     else
                     {
                         //Passing routeID to frmRetrievedFlightScheduled constructor
-                        frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(this.parent, routeID, flightNumber, deptAirport, arrAirport, flightDate, flightTime, estArrTime, numBaggage);
+                        frmRetrievedFlightScheduled frmRetrievedFlightScheduled = new frmRetrievedFlightScheduled(parent, routeID, flightNumber, deptAirport, arrAirport, flightDate, flightTime, estArrTime, numBaggage);
                         frmRetrievedFlightScheduled.Show();
                         this.Hide();
                     }
@@ -216,18 +216,10 @@ namespace AirlineSYS
 
             numBaggage = (int)nudNumBaggage.Value;
             frmBookingPersonalDetails frmBookingPersonalData = new frmBookingPersonalDetails(flightNumber, deptAirport, arrAirport, flightDate, flightTime, estArrTime, numBaggage.ToString());
-
-            DialogResult baggageConfirm = MessageBox.Show("Are you sure of your booking", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (baggageConfirm == DialogResult.Yes)
-            {
-                frmBookingPersonalData.Show();
-                this.Close();
-            }
-            else
-            {
-                return;
-            }
+            
+            frmBookingPersonalData.Show();
+            this.Close();
+   
         }
     }
 }
