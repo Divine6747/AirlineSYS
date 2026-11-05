@@ -1,5 +1,5 @@
 # Software Engineering Project – AirlineSYS
-This was my second-year Software Engineering project, developed following my lecturer’s preferred coding style and structure. The project involved building an Airline System that allowed airport administrators to schedule flights between existing airports, which could then be booked by passengers.
+Second year Software Engineering project, developed following lecturer’s preferred coding style and structure. The project involved building an Airline System that allowed airport administrators to schedule flights between existing airports, which could then be booked by passengers.
 
 It was my first experience using C# in Visual Studio to connect to an existing database, giving me practical exposure to backend integration and application logic.
 
